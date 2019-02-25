@@ -1,0 +1,177 @@
+\documentclass[oneside,b5papar,15pt]{book}
+
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx,wrapfig} % Required for including pictures
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{amscd,amsmath}
+\usepackage{tikz,stmaryrd}
+\usepackage{latexsym,amsbsy,bbold, fullpage}
+\usepackage{amssymb,amsthm,amsfonts}
+\usepackage{pdfsync,yfonts}
+\usepackage{tkz-graph,tikz-cd}
+\usepackage[all,pdf]{xy}
+\usepackage{ctex}
+\usepackage{titlesec}
+\usepackage{color,xcolor,tcolorbox}
+\usepackage{framed}
+\usepackage{hyperref,url}
+\usepackage{makeidx}
+\usepackage[annataritalic]{tengwarscript}%支持Tengwa字母，可以写精灵语了
+\usepackage{enumitem}
+
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z
+\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,
+\do\?\do\'\do+\do\=\do\#}%URL换行咒语
+
+\usetikzlibrary{matrix, calc, arrows}
+\usetikzlibrary{patterns,trees,snakes}
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\vs}{\vspace{5pt}}
+\newcommand*{\vsp}{\vspace{10pt}}
+\newcommand*{\vspp}{\vspace{15pt}}
+\newcommand*{\kong}{$\,\,\,$}
+
+\newcommand*{\ad}{\text{ad}}
+
+
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\ra}{\rightarrow}
+\newcommand*{\p}{\partial}
+\newcommand*{\ten}{\otimes}
+\newcommand*{\op}{^{\text{op}}}
+\newcommand*{\downdot}{_{\bullet}}
+\newcommand*{\updot}{^{\bullet}}
+
+\newcommand*{\fengexian}{
+  \rule[0pt]{14.3cm}{0.01em}
+\vs}
+
+%%%%%%%%%%%%%%定理环境%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{mythm}{定理}[section]
+\newtheorem{lemma}[mythm]{引理}
+\newtheorem{myprop}[mythm]{性质}
+\newtheorem{myaxiom}[mythm]{公理}
+\newtheorem{mydefinition}[mythm]{定义}
+\newtheorem{example}[mythm]{例子}
+\newtheorem{rem}[mythm]{注记}
+\newtheorem{cor}[mythm]{推论}
+\newtheorem{claim}[mythm]{断言}
+\newtheorem{prob}{习题}[section]
+
+\newcommand{\chapterbackgroundcolor}{
+  \definecolor{shadecolor}{RGB}{255,227,170}
+}
+
+\chapterbackgroundcolor
+
+\newenvironment{thm}
+  {\definecolor{shadecolor}{RGB}{253,251,247}
+    \begin{shaded}\begin{mythm}}
+  {\end{mythm}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{prop}
+  {\definecolor{shadecolor}{RGB}{253,251,247}
+    \begin{shaded}\begin{myprop}}
+  {\end{myprop}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{axiom}
+  {\definecolor{shadecolor}{RGB}{247,247,249}
+    \begin{shaded}\begin{myaxiom}}
+  {\end{myaxiom}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{definition}
+  {\definecolor{shadecolor}{RGB}{247,255,240}
+    \begin{shaded}\begin{mydefinition}}
+  {\end{mydefinition}\end{shaded}
+  \chapterbackgroundcolor}
+
+
+\DeclareMathOperator{\HH}{HH}
+
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\linespread{1.2} % 调整行间距
+
+\makeatletter
+%\renewcommand\@biblabel[1]{\textbf{#1.}}
+% 将参考文献的方括号 '[1]' 换成 '1.'
+
+\renewcommand{\@listI}{\itemsep=0pt}
+% Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{
+% Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{center} % Right align 可以换成 “flushleft”
+{\Huge\@title} % Increase the font size of the title
+
+\vspace{50pt} % 标题与作者之间的行间距
+
+{\Large\@author} % 作者姓名
+\\\@date % Date
+
+\vspace{20pt} % 作者与摘要之间的行间距
+\end{center}
+}
+
+
+%\renewcommand{\abstractname}{摘要}
+% Uncomment to change the name of the abstract to something else
+
+\renewcommand{\bibname}{参考文献}
+\renewcommand{\contentsname}{目录}
+\renewcommand{\proofname}{证明}
+\renewcommand{\indexname}{术语索引}
+
+\titleformat{\chapter}
+  {\color{blue}
+    \huge\bfseries}
+  {第\,\thechapter\,章}
+{1em}{}
+
+\newcommand{\mchapter}[1]{
+  \begin{shaded}
+    \chapter{#1}
+  \end{shaded}
+}
+
+
+
+\title{\textbf{非交换几何}% Title
+} % Subtitle
+
+\author{\textsc{曲豆豆\,\,\,码字} % Author
+\\{\textit{南七技校福利社五道口分社}}}
+
+\date{\today\\
+第00稿}
+
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+\include{notes/Lec1}
+
+
+\printindex
+\end{document} 

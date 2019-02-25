@@ -1,0 +1,190 @@
+\chapter{非交换代数}
+我们需要\textbf{代数拓扑}、\textbf{同调代数}的预备知识，
+并且采用同调代数的标准术语、记号，
+诸如链复形、上同调、导出函子等等。
+首先介绍基本的记号与概念。
+
+在本课，我们给定一个特征$0$的含幺交换环$K$（例如一个域），
+考虑含幺结合$K-$代数$A$（注意$A$未必是交换代数），
+则$A$首先为交换环$K$上的模。
+$A$的$K-$代数结构给出如下$K-$模同态：
+\begin{eqnarray*}
+A\otimes_KA        &\rightarrow& A\\
+(a_1,a_2)          &\mapsto    & a_1a_2
+\end{eqnarray*}
+由$A$的结合性，$(a_1a_2)a_3=a_1(a_2a_3)$
+对$A$中任意元素$a_1,a_2,a_3$成立.
+
+对于含幺结合$K$-代数$A$，
+回顾$A$的\textbf{反代数}（opposite algebra）
+\index{opposite algebra\kong 反代数}
+$A\op$.反代数$A\op$作为$K$-模与$A$完全相同，记号如下：
+\begin{eqnarray*}
+\text{id}:A &\rightarrow & A\op\\
+x&\mapsto&x\op
+\end{eqnarray*}
+但是$A\op$具有与$A$“相反”的乘法，
+具体地，对于$A\op$中的元素$x\op,y\op$，
+成立
+$$x\op y\op:=(yx)\op$$
+
+\begin{definition}
+对于含幺结合$K$-代数$A$，我们定义$K-$代数$A^e$为
+$$A^e:=A\ten_K A\op$$
+即$A$与$A\op$的$K-$代数张量积。
+\end{definition}
+
+容易验证对于任何两个含幺结合$K-$代数$A,B$，总有
+$$(A\ten_K B)\op=A\op\ten_{K}B\op$$
+从而容易得到
+$$(A\op)^e=(A^e)\op$$
+
+对于$K-$代数$A$，回顾
+\textbf{双$A-$模}（$A$-bimodule）的概念如下：
+
+\begin{definition}对于$K-$代数$A$，
+双$A-$模是指如下资料：
+
+（1）$K$-模$M$；
+
+（2）$A$在$M$上的左、右$K-$线性作用，
+
+并且满足相容性：$(a.m).b=a.(m.b)$对任意$m\in M$以及$a,b\in A$成立。
+\end{definition}
+
+例如，$A$本身自然有双$A-$模结构，
+$A$在其上的左、右作用即为左乘、右乘。
+再比如$K-$模张量积$A\ten_KA$具有如下双$A-$模结构：
+$$b.(a_1\ten a_2):=(ba_1)\ten a_2$$
+$$(a_1\ten a_2).b:=a_1\ten(a_2b)$$
+其中$a_1,a_2,b\in A$.
+
+我们不再回顾左模、右模的概念了，
+也不去回顾右模与左模的平衡张量积。
+
+\begin{prop}设$M$为双$A-$模，
+
+（1）$M$可自然地视为左$A^e$-模：
+$$(a_1\ten a_2\op).m=a_1.m.a_2$$
+
+（2）$M$可自然地视为右$A^e$-模：
+$$m.(a_1\ten a_2\op)=a_2.m.a_1$$
+反之，左（右）$A^e$模也可视为双$A-$模。
+\end{prop}
+
+\begin{proof}
+容易验证。
+\end{proof}
+
+特别地如果$M,N$都是双$A-$模，那么考虑平衡张量积
+$M\ten_{A^e}N$，它的双$A-$模结构具体如下：
+$$a.(m\ten n)=(a.m)\ten n=m\ten(n.a)$$
+$$(m\ten n).b=m\ten (n.b)=(b.m)\ten n$$
+对于任何$m\in M,n\in N,a,b\in A$成立。
+
+\begin{definition}（余中心 cocenter）
+\index{cocenter\kong 余中心}
+对于双$A-$模$M$，称双$A-$模
+$$M\ten_{A^e}A$$
+为$M$的\textbf{余中心}（cocenter）。
+\end{definition}
+
+容易看出，对任意的$m\in M,a\in A$，
+在余中心$M\ten_{A^e}A$当中，成立
+$$(m.a)\ten 1=m\ten(a.1)=m\ten a=m\ten(1.a)=(a.m)\ten 1$$
+从而$(m.a-a.m)\ten 1=0$.
+事实上，$M$的余中心具有如下结构：
+
+\begin{prop}
+对于双$A-$模$M$，则有如下双$A-$模同构
+$$M\ten_{A^e}A\cong M/\{(m.a-a.m)|a\in A,m\in M\}$$
+\end{prop}
+
+\begin{proof}
+考虑如下的双$A-$模链复形
+$$\p\downdot:A\ten A\ten A\ra A\ten A\ra A\ra 0$$
+其中
+\begin{eqnarray*}
+\p:a_1\ten a_2\ten a_3 &\mapsto& a_1a_2\ten a_3-a_1\ten a_2a_3\\
+a_1\ten a_2&\mapsto&a_1a_2
+\end{eqnarray*}
+容易验证$\p^2$=0（由$A$的结合性），
+从而$\p\downdot$为双$A-$模链复形。
+并且显然$\p:A\ten A\ra A$是满同态。
+
+断言链复形$\p\downdot$为正合（exact）的。
+\index{exact\kong 正合}
+事实上，$\p\downdot$到其自身的恒等链映射与零链映射是链同伦的。
+我们构造如下的链同伦$h\downdot$：
+\begin{eqnarray*}
+h:a_1&\mapsto&1\ten a_1\\
+a_1\ten a_2&\mapsto&1\ten a_1\ten a_2
+\end{eqnarray*}
+容易验证，对于任意的$\varphi=a_1\ten a_2\in A\ten A$，成立
+\begin{eqnarray*}
+   (\p h+h\p)\varphi
+&=&(\p h+h\p)(a_1\ten a_2)\\
+&=&\p(1\ten a_1\ten a_2)+h(a_1a_2)\\
+&=&a_1\ten a_2-1\ten a_1a_2+1\ten a_1a_2\\
+&=&a_1\ten a_2=\varphi\\
+\end{eqnarray*}
+从而对于$\varphi\in A\ten A$，
+如果$\p\varphi=0$，那么
+$$\varphi=(\p h+h\p)\varphi=\p(h\varphi)$$
+这说明链复形$\p\downdot$在$A\ten A$处正合，
+因此$\p\downdot$是正合的。\vs
+
+接下来，将函子$M\ten_{A^e}-$作用于链复形
+$\p\downdot$，得到如下的双$A-$模链复形：
+$$M\ten_{A^e}\p\downdot:
+M\ten A\ra M\ra M\ten_{A^e}A\ra 0$$
+由张量函子的右正合性，上述链复形也是正合的。
+其中注意到双$A-$模同构
+\begin{eqnarray*}
+M\ten_{A^e}(A\ten A\ten A)&\cong& M\ten A\\
+m\ten(a_1\ten a_2\ten a_3)&\mapsto&(a_3.m.a_1)\ten a_2
+\end{eqnarray*}
+以及双$A-$模同构
+\begin{eqnarray*}
+M\ten_{A^e}(A\ten A)&\cong& M\\
+m\ten(a_1\ten a_2)&\mapsto& a_2.m.a_1
+\end{eqnarray*}
+
+于是正合列$M\ten_{A^e}\p$的边界映射有如下具体表达式：
+
+\begin{eqnarray*}
+M\ten_{A^e}\p\downdot:
+M\ten A&\to& M\\
+m\ten A&\mapsto&m.a-a.m
+\end{eqnarray*}
+
+从而由正合性，易知
+$$M\ten_{A^e}A\cong M/\{(m.a-a.m)|a\in A,m\in M\}$$
+\end{proof}
+
+可见，$M$的余中心无非是$M$当中“非交换的部分”
+商掉之后所得到的“交换的部分”，如此望文生义。
+例如，如果$A$为交换$K-$代数，
+那么$A$本身作为双$A-$模，其余中心为$A$本身.
+
+\begin{definition}（Hochschild 同调）
+
+对于双$A-$模$M$，以及非负整数$n$，记
+$$H_n(A,M):=\Tor_n^{A^e}(M,A)$$
+称为$M$的第$n$个Hochschild同调。特别地，我们记
+$$\HH_n(A):=H_n(A,A)$$
+\end{definition}
+
+由定义以及导出函子的基础知识，容易知道
+双$A-$模$M$的第$0$个Hochschild同调
+$$H_0(A,M)=M\ten_{A^e}A=M/\{(m.a-a.m)|a\in A,m\in M\}$$
+正是$M$的余中心。
+
+
+
+
+
+
+
+
+
