@@ -1,13 +1,17 @@
 \chapter{非交换代数}
+
+\section{结合代数的双模、余中心}
+
 我们需要\textbf{代数拓扑}、\textbf{同调代数}的预备知识，
 并且采用同调代数的标准术语、记号，
 诸如链复形、上同调、导出函子等等。
 首先介绍基本的记号与概念。
 
 在本课，我们给定一个特征$0$的含幺交换环$K$（例如一个域），
-考虑含幺结合$K-$代数$A$（注意$A$未必是交换代数），
-则$A$首先为交换环$K$上的模。
-$A$的$K-$代数结构给出如下$K-$模同态：
+考虑含幺结合$K$-代数$A$（注意$A$未必是交换代数），
+并且$A$作为交换环$K$上的模是投射模（projective module）。
+\index{projective module\kong 投射模}
+$A$的$K$-代数结构给出如下$K$-模同态：
 \begin{eqnarray*}
 A\otimes_KA        &\rightarrow& A\\
 (a_1,a_2)          &\mapsto    & a_1a_2
@@ -29,12 +33,12 @@ x&\mapsto&x\op
 $$x\op y\op:=(yx)\op$$
 
 \begin{definition}
-对于含幺结合$K$-代数$A$，我们定义$K-$代数$A^e$为
+对于含幺结合$K$-代数$A$，我们定义$K$-代数$A^e$为
 $$A^e:=A\ten_K A\op$$
 即$A$与$A\op$的$K-$代数张量积。
 \end{definition}
 
-容易验证对于任何两个含幺结合$K-$代数$A,B$，总有
+容易验证对于任何两个含幺结合$K$-代数$A,B$，总有
 $$(A\ten_K B)\op=A\op\ten_{K}B\op$$
 从而容易得到
 $$(A\op)^e=(A^e)\op$$
@@ -42,19 +46,19 @@ $$(A\op)^e=(A^e)\op$$
 对于$K-$代数$A$，回顾
 \textbf{双$A-$模}（$A$-bimodule）的概念如下：
 
-\begin{definition}对于$K-$代数$A$，
-双$A-$模是指如下资料：
+\begin{definition}对于$K$-代数$A$，
+双$A$-模是指如下资料：
 
 （1）$K$-模$M$；
 
-（2）$A$在$M$上的左、右$K-$线性作用，
+（2）$A$在$M$上的左、右$K$-线性作用，
 
 并且满足相容性：$(a.m).b=a.(m.b)$对任意$m\in M$以及$a,b\in A$成立。
 \end{definition}
 
-例如，$A$本身自然有双$A-$模结构，
+例如，$A$本身自然有双$A$-模结构，
 $A$在其上的左、右作用即为左乘、右乘。
-再比如$K-$模张量积$A\ten_KA$具有如下双$A-$模结构：
+再比如$K$-模张量积$A\ten_KA$具有如下双$A$-模结构：
 $$b.(a_1\ten a_2):=(ba_1)\ten a_2$$
 $$(a_1\ten a_2).b:=a_1\ten(a_2b)$$
 其中$a_1,a_2,b\in A$.
@@ -62,29 +66,29 @@ $$(a_1\ten a_2).b:=a_1\ten(a_2b)$$
 我们不再回顾左模、右模的概念了，
 也不去回顾右模与左模的平衡张量积。
 
-\begin{prop}设$M$为双$A-$模，
+\begin{prop}设$M$为双$A$-模，
 
 （1）$M$可自然地视为左$A^e$-模：
 $$(a_1\ten a_2\op).m=a_1.m.a_2$$
 
 （2）$M$可自然地视为右$A^e$-模：
 $$m.(a_1\ten a_2\op)=a_2.m.a_1$$
-反之，左（右）$A^e$模也可视为双$A-$模。
+反之，左（右）$A^e$-模也可视为双$A$-模。
 \end{prop}
 
 \begin{proof}
 容易验证。
 \end{proof}
 
-特别地如果$M,N$都是双$A-$模，那么考虑平衡张量积
-$M\ten_{A^e}N$，它的双$A-$模结构具体如下：
+特别地如果$M,N$都是双$A$-模，那么考虑平衡张量积
+$M\ten_{A^e}N$，它的双$A$-模结构具体如下：
 $$a.(m\ten n)=(a.m)\ten n=m\ten(n.a)$$
 $$(m\ten n).b=m\ten (n.b)=(b.m)\ten n$$
 对于任何$m\in M,n\in N,a,b\in A$成立。
 
 \begin{definition}（余中心 cocenter）
 \index{cocenter\kong 余中心}
-对于双$A-$模$M$，称双$A-$模
+对于双$A$-模$M$，称双$A$-模
 $$M\ten_{A^e}A$$
 为$M$的\textbf{余中心}（cocenter）。
 \end{definition}
@@ -96,12 +100,13 @@ $$(m.a)\ten 1=m\ten(a.1)=m\ten a=m\ten(1.a)=(a.m)\ten 1$$
 事实上，$M$的余中心具有如下结构：
 
 \begin{prop}
-对于双$A-$模$M$，则有如下双$A-$模同构
+对于双$A$-模$M$，则有如下双$A$-模同构
 $$M\ten_{A^e}A\cong M/\{(m.a-a.m)|a\in A,m\in M\}$$
+\label{双模的余中心的结构prop}
 \end{prop}
 
 \begin{proof}
-考虑如下的双$A-$模链复形
+考虑如下的双$A$-模链复形
 $$\p\downdot:A\ten A\ten A\ra A\ten A\ra A\ra 0$$
 其中
 \begin{eqnarray*}
@@ -109,7 +114,7 @@ $$\p\downdot:A\ten A\ten A\ra A\ten A\ra A\ra 0$$
 a_1\ten a_2&\mapsto&a_1a_2
 \end{eqnarray*}
 容易验证$\p^2$=0（由$A$的结合性），
-从而$\p\downdot$为双$A-$模链复形。
+从而$\p\downdot$为双$A$-模链复形。
 并且显然$\p:A\ten A\ra A$是满同态。
 
 断言链复形$\p\downdot$为正合（exact）的。
@@ -135,25 +140,25 @@ $$\varphi=(\p h+h\p)\varphi=\p(h\varphi)$$
 因此$\p\downdot$是正合的。\vs
 
 接下来，将函子$M\ten_{A^e}-$作用于链复形
-$\p\downdot$，得到如下的双$A-$模链复形：
+$\p\downdot$，得到如下的双$A$-模链复形：
 $$M\ten_{A^e}\p\downdot:
 M\ten A\ra M\ra M\ten_{A^e}A\ra 0$$
 由张量函子的右正合性，上述链复形也是正合的。
-其中注意到双$A-$模同构
+其中注意到双$A$-模同构
 \begin{eqnarray*}
 M\ten_{A^e}(A\ten A\ten A)&\cong& M\ten A\\
 m\ten(a_1\ten a_2\ten a_3)&\mapsto&(a_3.m.a_1)\ten a_2
 \end{eqnarray*}
-以及双$A-$模同构
+以及双$A$-模同构
 \begin{eqnarray*}
 M\ten_{A^e}(A\ten A)&\cong& M\\
 m\ten(a_1\ten a_2)&\mapsto& a_2.m.a_1
 \end{eqnarray*}
 
-于是正合列$M\ten_{A^e}\p$的边界映射有如下具体表达式：
+于是正合列$M\ten_{A^e}\p\downdot$的边界映射有如下具体表达式：
 
 \begin{eqnarray*}
-M\ten_{A^e}\p\downdot:
+M\ten_{A^e}\p:
 M\ten A&\to& M\\
 m\ten A&\mapsto&m.a-a.m
 \end{eqnarray*}
@@ -162,14 +167,17 @@ m\ten A&\mapsto&m.a-a.m
 $$M\ten_{A^e}A\cong M/\{(m.a-a.m)|a\in A,m\in M\}$$
 \end{proof}
 
-可见，$M$的余中心无非是$M$当中“非交换的部分”
-商掉之后所得到的“交换的部分”，如此望文生义。
-例如，如果$A$为交换$K-$代数，
-那么$A$本身作为双$A-$模，其余中心为$A$本身.
+可见，$M$的余中心无非是商掉$M$当中“非交换的部分”
+所得到的“交换的部分”，如此望文生义。
+例如，如果$A$为交换$K$-代数，
+那么$A$本身作为双$A$-模，其余中心为$A$本身.
+
+\section{Hochschild同调}
 
 \begin{definition}（Hochschild 同调）
+\index{Hochschild 同调}
 
-对于双$A-$模$M$，以及非负整数$n$，记
+对于双$A$-模$M$，以及非负整数$n$，记
 $$H_n(A,M):=\Tor_n^{A^e}(M,A)$$
 称为$M$的第$n$个Hochschild同调。特别地，我们记
 $$\HH_n(A):=H_n(A,A)$$
@@ -179,11 +187,575 @@ $$\HH_n(A):=H_n(A,A)$$
 双$A-$模$M$的第$0$个Hochschild同调
 $$H_0(A,M)=M\ten_{A^e}A=M/\{(m.a-a.m)|a\in A,m\in M\}$$
 正是$M$的余中心。
+注意Hochschild同调一般并不是环，
+仅仅能保证它是双$A$-模。
+
+%%%%%%%%%%%%%%%%2019.2.26 - 第1周第2次%%%%%%%%%%%%%%%%%%%%%%
+
+具体地，由导出函子的定义，
+我们采用投射消解（projective resolution）
+\index{projective resolution\kong 投射消解}
+来计算Hochschild同调。
+若双$A$-模链复形
+$$P\downdot\to A:=
+...\to P_3\to P_2\to P_1\to P_0\to A\to 0$$
+为双$A$-模$A$的投射消解
+（正合，并且每个$P_i(i\geq 0)$作为$K$-模是投射的），那么
+$$H_n(A,M)\cong H_n(M\ten_{A^e}P\downdot)$$
+由同调代数的事实，它与投射消解$P\downdot$的选取无关。\vs
+
+事实上Hochschild同调可以与空间上的微分形式类比。
+作为一个具体计算例子，我们考虑$\bbC$上的$n$元多项式代数
+$$A:=\bbC[x^1,x^2,...,x^n]$$
+注意到$A$作为$\bbC$-代数是交换的，从而$A=A\op$.我们记
+$$A\op=\bbC[y^1,y^2,...,y^n]\,\,\,\,\,
+A^e=\bbC[x^1,x^2,...,x^n;y^1,y^2,...,y^n]$$
+
+\begin{prop}
+\label{C[x^i]的HH同调}
+考虑$\bbC$-代数$A:=\bbC[x^1,x^2,...,x^n]$，
+则其第$k$个Hochschild同调
+$$\HH_k(A)\cong A\ten\wedgeform k(\bbC^n)$$
+是以$A$为系数的$k$-形式。
+\end{prop}
+
+\begin{proof}
+
+我们给出$A$的投射消解，比如众所周知
+的Koszul消解$$\mcalK_A\to A\to 0$$
+
+具体地，引入$n$个新的独立变元
+$\eta^1,\eta^2,...,\eta^n$
+（视为复线性空间$\bbC^n$的一组基），考虑环
+$$\mcalK:=\frac{A^e[\eta^1,\eta^2,...,\eta^n]}
+               {\{(\eta^i\eta^j+\eta^j\eta^i)|i\neq j\}}
+         =A^e\ten\wedgeform *(\bbC^n)$$
+为以$A^e$为系数的外代数。
+
+注意$\mcalK$有自然的分次：
+$$\deg\eta^i=1\,\,\,\,\,\deg x^i=\deg y^i=\deg 1=0$$
+记$\mcalK_l$为$\mcalK$的$l$次分量（$0\leq l\leq n$），即
+$$
+\mcalK_l=\bigoplus_{1\leq {i_1}<{i_2}<...<{i_l}\leq n}
+          A^e\eta^{i_1}\wedge\eta^{i_2}\wedge...\wedge\eta^{i_l}
+        =A^e\ten\wedgeform l(\bbC^n)$$
+此时$K=\bbC$是域，因此$\mcalK$
+（作为$K$-模，即复线性空间）的投射性显然。
+我们定义Koszul复形$(\mcalK_A,\p)$如下：
+$$\mcalK_A:...\xra{\p} \mcalK_n\xra{\p}\mcalK_{n-1}
+\xra{\p}...\xra{\p}\mcalK_1\xra{\p}\mcalK_0$$
+其中边缘算子$\p$（首先是$A^e$-模同态）满足
+
+$$\p\eta^i= x^i-y^i$$
+以及与外微分相同的莱布尼茨法则：
+对任意$\omega\in\mcalK$，成立
+
+$$\p(\eta^i\wedge\omega)=
+\p\eta^i\wedge\omega-\eta^i\wedge\p\omega$$
+
+再考虑连接映射
+\begin{eqnarray*}
+\veps:\mcalK_0=A^c&\to& A\\
+x^i&\mapsto&x^i\\
+y^i&\mapsto&x^i\\
+\end{eqnarray*}
+则众所周知，Koszul复形
+$$\mcalK_A\xra{\veps} A\to 0$$
+为$A$的投射消解（证明从略）。
+我们以此计算$\HH\updot(A)$.
+我们注意到以下两个简单事实：
+
+其一：对任何$1\leq l\leq n$，
+成立双$A$-模同构
+$$A\ten_{A^e}\mcalK_l=
+A\ten_{A^e}A^e\ten\wedgeform l(\bbC^n)
+\cong A\ten\wedgeform l(\bbC^n)$$
+
+其二：函子$A\ten_{A^e}-$作用于Koszul复形
+$\mcalK_A$之后，成立
+$$A\ten_{A^e}\p=0$$
+这是因为，对于任意$f\in A$，在$A\ten_{A^e}A^e$
+当中总成立
+$$f\ten x^i=x^if\ten 1
+=fx^i\ten 1=f\ten (x^i)\op=f\ten y^i$$
+因此
+$$f\ten(x^i-y^i)=0\in
+A\ten_{A^e}A^e$$
+从而由$\p$的定义，容易看出$A\ten_{A^e}\p=0$.\vs
+
+综上两方面，直接计算之，
+\begin{eqnarray*}
+\HH_k(A)&=&H_k(A\ten_{A^e}^LA)\\
+&=&H_k(A\ten_{A^e}\mcalK_A)\\
+&=&A\ten_{A^e}\mcalK_k\\
+&=&A\ten\wedgeform k(\bbC^n)
+\end{eqnarray*}
+从而得证。
+\end{proof}
+
+事实上对于一般的含幺结合$K$-代数$A$，$\HH\downdot(A)$
+扮演了“微分形式”的角色。这是Hochschild同调的一种几何解释。\vs
+
+对于一般的$A$，
+$A$作为双$A$-模，由一种典范的投射消解，
+称之为\textbf{Bar-复形}：
+
+\begin{definition}（Bar-复形）
+
+对于含幺结合$K$-代数$A$，定义以下双$A$-模链复形
+$$\cdots\to B_2A\xra{b}B_1A\xra{b}B_0A\xra{b}A\to 0$$
+如下：
+$$B_nA:=A\ten A^{\ten n}\ten A\,\,\,(n\geq 0)$$
+\begin{eqnarray*}
+b:\,\,a_0\ten a_1\ten...\ten a_n
+&\mapsto&
+\sum_{k=0}^{n-1}(-1)^k
+      a_0\ten a_1\ten...\ten(a_{k}a_{k+1})\ten...\ten a_n
+\end{eqnarray*}
+称之为\textbf{Bar-复形}。
+\index{Bar-复形}
+\end{definition}
+
+首先容易验证$b^2=0$，从而
+$B\downdot A\xra{b} A\to 0$确实是链复形。
+对于$n\geq 1$，具体验证如下：
+\begin{eqnarray*}
+    b^2(a_0\ten a_1\ten...\ten a_n)
+&=& b\left(
+         \sum_{k=0}^{n-1}(-1)^k
+             a_0\ten a_1
+             \ten...\ten(a_{k}a_{k+1})
+             \ten...\ten a_n
+     \right)\\
+&=&  \sum_{k=0}^{n-1}(-1)^k
+             b(a_0\ten a_1
+             \ten...\ten(a_{k}a_{k+1})
+             \ten...\ten a_n)\\
+&=&  \sum_{k=0}^{n-1}(-1)^k
+         \left[
+             \sum_{l=0}^{k-2}(-1)^l
+                  a_0\ten...\ten(a_{l}a_{l+1})
+                  \ten...\ten(a_{k}a_{k+1})
+                  \ten...\ten a_n
+         \right.\\
+&&+  (-1)^{k-1}
+      a_0\ten...\ten(a_{k-1}a_{k}a_{k+1})
+                  \ten...\ten a_n\\
+&&+
+     (-1)^{k}
+      a_0\ten...\ten(a_{k}a_{k+1}a_{k+2})
+                  \ten...\ten a_n\\
+&&-\left.
+             \sum_{l=k+2}^{n-1}(-1)^l
+                  a_0\ten...\ten(a_{k}a_{k+1})
+                  \ten...\ten(a_{l}a_{l+1})
+                  \ten...\ten a_n
+    \right]\\
+&&\\
+&=&  \sum_{\substack{0\leq k<l\leq n-1\\ l-k\geq 2}}
+         \left(-(-1)^{k+l}+(-1)^{k+l}\right)
+         a_0\ten...\ten(a_{k}a_{k+1})
+                  \ten...\ten(a_{l}a_{l+1})
+                  \ten...\ten a_n\\
+&&+  \sum_{0\leq k\leq n-2}
+         \left((-1)^{2k+1}+(-1)^{2k}\right)
+             a_0\ten...\ten(a_{k}a_{k+1}a_{k+2})
+                  \ten...\ten a_n\\
+&=&0
+\end{eqnarray*}
+从而验证完毕。
+
+我们可以把$a_0\ten...\ten a_n$想象为直线上依次排列的$n+1$
+个质点，将算子$b$想象为相邻质点两两“碰撞”。
+
+\begin{prop}记号同之前，则Bar-复形
+$$B\downdot A\to A\to 0$$
+是$A$的投射消解。
+\end{prop}
+
+\begin{proof}
+对任意$n\geq0$，$B_nA=A\ten A^{\ten n}\ten A$
+是投射$K$-模（这是因为由最初的假定，
+$A$是投射$K$-模，从而其张量积也投射）
+于是我们只需再验证该链复形是正合的。
+
+为此，我们构造链同伦
+\begin{eqnarray*}
+h:B_{n-2}A&\to& B_{n-1}A
+\,\,\,\,\,\,\,(n\geq1,\,B_{-1}A=A)\\
+a_0\ten...\ten a_n
+&\mapsto&
+1\ten a_0\ten...\ten a_n
+\end{eqnarray*}
+
+只需验证$hb+bh$=1，
+之后与性质\ref{双模的余中心的结构prop}的证明类似。
+
+注意到对于任意$n\geq 0$，成立
+\begin{eqnarray*}
+    bh(a_0\ten...\ten a_n)
+&=& b(1\ten a_0\ten...\ten a_n)\\
+&=& a_0\ten...\ten a_n-
+    \sum_{k=0}^{n-1}
+        1\ten a_0\ten...\ten(a_ka_{k+1})\ten...\ten a_n\\
+&=& a_0\ten...\ten a_n-
+    1\ten b(a_0\ten...\ten a_n)\\
+&=&(1-hb)a_0\ten...\ten a_n
+\end{eqnarray*}
+因此$bh+hb=1$，证毕。
+\end{proof}
+
+\begin{definition}
+设$M$为双$A$-模，定义
+\textbf{Hochschild链复形}
+\index{Hochschild链复形}
+$$C\downdot(A,M):=M\ten_{A^e} B\downdot A$$
+$$\cdots M\ten A^{\ten 3}\to M\ten A^{\ten 2}\to M\ten A\to M$$
+方便起见，该链复形的边缘算子仍记作$b$.
+%%%%%%005%%%%%%%
+\end{definition}
+
+则易知$M$的Hochdchild同调无非是Hochschlid链复形的同调：
+$$H_n(A,M)=H_n(C\downdot(A,M))$$
+
+注意到有双$A$-模同构
+$$C_n(A,M)=M\ten_{A^e}
+\left(A\ten A^{\ten n}\ten A\right)
+\cong M\ten A^{\ten n}$$
+在此同构意义下，容易验证$C\downdot(A,M)$
+的边缘算子$b$有如下显示表达：
+
+对任意$m\in M$，以及$a_1,a_2,...,a_n\in A$，成立
+\begin{eqnarray*}
+    b\left(m\ten (a_1\ten...\ten a_n)\right)
+&=& m\ten_{A^e}
+      \left(
+        b(1\ten a_1\ten...\ten a_n\ten 1)
+      \right)\\
+&=& m\ten_{A^e}
+      \large[
+        a_1\ten...\ten a_n\ten 1
+      \\
+&&+  \sum_{k=1}^{n-1}(-1)^k
+           1\ten a_1\ten...\ten(a_ka_{k+1})\ten...\ten a_n\ten 1\\
+&&+
+        (-1)^n1\ten a_1\ten...\ten a_n
+    \large]\\
+&=& (m.a_1)\ten a_2\ten...\ten a_n\\
+&&+ \sum_{k=1}^{n-1}(-1)^k
+      m\ten a_1\ten...\ten(a_ka_{k+1})\ten...\ten a_n\\
+&&+ (-1)^n(a_n.m)\ten a_1\ten...\ten a_{n-1}
+\end{eqnarray*}
+Hochschlid链复形的边缘算子的显式表达
+与Bar-复形非常相似，从上式最右边的前两项可以看出；
+区别在于上式最右边的第三项。
+
+\section{Hochschlid上同调}
+
+对于双$A$-模$M$，既然我们已经考虑
+余中心$M\ten_{A^e}A$，那么我们自然也会去考虑
+$\Hom_{A^e}(A,M)$.我们称
+双$A$-模$\Hom_{A^e}(A,M)$为$M$的\textbf{导出中心}
+（derived center）。
+\index{derived center\kong 导出中心}
+
+\begin{prop}（导出中心的结构）
+\label{双模的导出中心的结构prop}
+对于双$A$-模$M$，则有双$A$-模同构
+$$\Hom_{A^e}(A,M)
+\cong\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}$$
+\end{prop}
+
+容易验证$\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}$
+为$M$的双$A$-子模。粗俗地说，
+该子模由“与$A$中所有元素交换”的元素构成，
+故谓之“中心”。
+
+\begin{proof}对于任意的$\fai\in\Hom_{A^e}(A,M)$
+以及$a\in A$，则$\fai(a)$的取值由$\fai(1)$完全决定：
+$$\fai(a)=\fai(a.1)=a.\fai(1)$$
+而另一方面，
+$$\fai(a)=\fai(1.a)=\fai(1).a$$
+从而有$a.\fai(1)=\fai(1).a$.
+于是我们可以构造如下双$A-$模同态：
+\begin{eqnarray*}
+\Hom_{A^e}(A,M)
+&\to&\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}\\
+\fai&\mapsto&\fai(1)
+\end{eqnarray*}
+容易验证该模同态为同构。证毕。
+\end{proof}
+
+然后我们考虑$\Hom(-,M)$的导出函子，
+自然地去定义如下：
+
+\begin{definition}（Hochschild上同调）
+\index{Hochschild上同调}
+
+对于双$A$-模$M$，以及$n\geq 0$，
+定义$M$的第$n$个Hochschild上同调
+$$H^n(A,M)=\Ext_{A^e}^n(A,M)$$
+特别地，我们记
+$$H^n(A)=\Ext_{A^e}^n(A,A)$$
+\end{definition}
+
+由定义知，$M$的第$0$个Hochschild上同调为
+$\Hom_{A^e}(A,M)$，是$M$的导出中心。
+回顾Bar-复形，我们考虑如下的
+\textbf{Hochschild上链复形}
+\index{Hochschild上链复形}
+$$C\updot(A,M)=\Hom_{A^e}(B\downdot A,M)$$
+该上链复形的微分算子$\p$
+由Bar-复形$B\downdot A$的边缘算子$b$所诱导。
+则$M$的Hochschild上同调满足
+$$H^n(A,M)=H^n(C\updot(A,M),\p)
+=H^n(\Hom_{A^e}(B\downdot A,M),\p)$$
+
+注意有自然的双$A$-模同构
+$$C^n(A,M)
+=\Hom_{A^e}(A\ten A^{\ten n}\ten A,M)
+\cong\Hom(A^{\ten n},M)$$
+（即取值于$M$的$n$重$K$-线性映射）
+于是对于任意的$\fai\in C^n(A,M)=\Hom(A^{\ten n},M)$，
+容易知道$\p\fai\in\Hom(A^{\ten n+1},M)$具有如下显式表达：
+对任意$a_0,a_1,...,a_m\in A$，
+\begin{eqnarray*}
+    \p\varphi(a_0,a_1,...,a_n)
+&=& a_0.\varphi(a_1,a_2,...,a_n)\\
+&&- \sum_{k=0}^{n-1}(-1)^k
+       \fai(a_0,...;(a_ka_{k+1});...,a_n)\\
+&&-  (-1)^n\fai(a_0,a_1,...,a_{n-1}).a_n
+\end{eqnarray*}
 
 
+接下来讨论Hochschild上同调的几何意义。
+我们已经知道第0个Hochschild上同调为$M$的导出中心；
+现在我们看$H^1(A,M)$，
+我们将发现它是$A$的取值于$M$的外导子。
 
+回顾\textbf{导子}（derivation）的概念如下：
 
+\begin{definition}（导子）
+对于双$A$-模$M$，$K$-线性映射
+$$D:A\to M$$
+称为$A$的取值于$M$的\textbf{导子}（derivation），
+\index{derivation\kong 导子}
+如果对任意的$a_1,a_2\in A$，成立
+$$D(a_1a_2)=D(a_1).a_2+a_1.D(a_2)$$
+\end{definition}
 
+对于$m\in M$我们定义
+\begin{eqnarray*}
+\ad_m:A&\to& M\\
+a&\mapsto& [m,a]:=m.a-a.m
+\end{eqnarray*}
+则容易验证$\ad_m$为$A$的取值于$M$的导子，
+称形如这样的导子为\textbf{内导子}（inner derivation）。
+\index{inner derivation\kong 内导子}
+
+我们记
+$$\Der(A,M):=\{D:A\to M|D\text{为导子}\}$$
+$$\Inn(A,M):=\{\ad_m|m\in M\}\subseteq \Der(A,M)$$
+
+注意$\Inn(A,M)$与$\Der(A,M)$都有显然的$K$-模结构，
+且前者是后者的$K$-子模。
+
+\begin{prop}（$\HH^1(A,M)$的结构）
+
+对于双$A$-模$M$，成立
+$$\HH^1(A,M)\cong\frac{\Der(A,M)}{\Inn(A,M)}$$
+\end{prop}
+我们称上式右边的集合当中的元素
+为$A$的取值于$M$的\textbf{外导子}（outer derivation）。
+\index{outer derivation\kong 外导子}
+
+\begin{proof}
+只需考虑Hochschild上链复形
+$$C^0(A,M)\xra{\p^0}
+C^1(A,M)\xra{\p^1}C^2(A,M)\ra\cdots$$
+
+我们只需具体计算之。对于$\fai\in C^1(A,M)\cong\Hom(A,M)$，
+则$\p^1\fai\in C^2(A,M)\cong\Hom(A^{\ten 2},M)$满足：
+对任意$a_1,a_2\in A$，成立
+$$\p^1\fai(a_1,a_2)=
+a_1.\fai(a_2)-\fai(a_1a_2)+\fai(a_1).a_2$$
+可见$\fai\in\ker\p^1$当且仅当$\fai\in\Der(A,M)$.
+也就是说$\ker\p^1=\Der(A,M)$.
+
+另一方面，对于$m\in C^0(A,M)\cong M$，以及$a\in A$，成立
+$$(\p^0m)(a)=a.m-m.a=-\ad_m(a)$$
+因此$\ker\p^0\cong\Inn(A,M)$.
+从而
+$$\HH^1(A,M)=\frac{\ker\p^1}{\im\p^0}
+\cong\frac{\Der(A,M)}{\Inn(A,M)}$$
+\end{proof}
+
+特别地，当$M=A$时，
+$$\HH^1(A)=\Der(A,A)/\text{Inn}(A,A)$$
+注意到$\Der(A,A)$上面还有更多的结构：对于
+$\forall D_1,D_2\in\Der(A,A)$，定义
+$$[D_1,D_2]:=D_1\circ D_2-D_2\circ D_1:A\to A$$
+容易验证$[D_1,D_2]$仍然为$A$的导子，并且
+$[-,-]$为$\Der(A,A)$上的李括号（Lie bracket）。
+\index{Lie bracket\kong 李括号}
+
+另外容易验证
+$$[\Der(A,A),\Inn(A,A)]\subseteq\Inn(A,A)$$
+具体地，对于$D\in\Der(A,A)$以及$m\in M$，成立
+$$[D,\ad_m]=\ad_{D(m)}$$
+也就是说$\Inn(A,A)$是$\Der(A,A)$的理想。
+于是$[-,-]$诱导了
+$\HH^1(A)=\frac{\Der(A,A)}{\text{Inn}(A,A)}$
+上的李括号结构.
+
+如果$A$是交换$K$-代数，则$\Inn(A,A)=0$。于是
+$$\HH^1(A)\cong\Der(A,A)$$
+可被认为是“切向量场”（此时$A$被认为是“函数环”）。
+
+\vsp
+
+我们再去考虑$\HH^2(A,M)$.对于任意的
+$$\varphi\in C^2(A,M)=\Hom(A^{\ten 2},M)$$
+则对$a_0,a_1,a_2\in A$，成立
+$$\p\varphi(a_0,a_1,a_2)=
+a_0.\varphi(a_1,a_2)-\varphi(a_0a_1,a_2)
++\varphi(a_0,a_1a_2)
+-\varphi(a_0,a_1).a_2$$
+
+\begin{lemma}对于双$A$-模$M$，以及
+$\varphi\in C^2(A,M)=\Hom(A^{\ten 2},M)$，
+我们令
+$$\Ahat:=A\oplus M$$
+并赋以如下的$K$-代数结构：
+对于任意$a_1,a_2\in A$以及$m_1,m_2\in M$，
+规定$\Ahat$的乘法$\hat{\bullet}_{\fai}$为
+$$(a_1\oplus m_1)\hat{\bullet}_{\fai}(a_2\oplus m_2)
+:=a_1a_2\oplus [a_1.m_2+m_1.a_2+\fai(a_1,a_2)]$$
+那么$(\Ahat,\hat{\bullet}_{\fai})$为结合代数，
+当且仅当$\p\fai=0$.
+\end{lemma}
+
+\begin{proof}
+这是简单的计算验证。对于任意的$a_0,a_1,a_2\in A$
+以及$m_0,m_1,m_2\in M$，直接计算之，
+\begin{eqnarray*}
+&&  [(a_0\oplus m_0)\hat{\bullet}_{\fai}(a_1\oplus m_1)]
+    \hat{\bullet}_{\fai}(a_2\oplus m_2)\\
+&=& a_0a_1a_2\oplus
+    [a_0a_1.m_2+a_0.m_1.a_2+m_0.a_1a_2+
+    \fai(a_0,a_1).a_2+\fai(a_0a_1,a_2)]
+\end{eqnarray*}
+以及
+\begin{eqnarray*}
+&&  (a_0\oplus m_0)\hat{\bullet}_{\fai}[(a_1\oplus m_1)
+    \hat{\bullet}_{\fai}(a_2\oplus m_2)]\\
+&=& a_0a_1a_2\oplus
+    [a_0a_1.m_2+a_0.m_1.a_2+m_0.a_1a_2+
+    a_0.\fai(a_1,a_2)+\fai(a_0,a_1a_2)]
+\end{eqnarray*}
+因此$\hat{\bullet}_{\fai}$满足结合性，当且仅当
+$$\fai(a_0,a_1).a_2+\fai(a_0a_1,a_2)
+=a_0.\fai(a_1,a_2)+\fai(a_0,a_1a_2)$$
+而此式等价于$\p\fai=0$.
+\end{proof}
+
+注意到在$\Ahat$当中，对任意的$m_1,m_2\in M$，
+以及任意$\fai\in C^2(A,M)$，
+总有$m_1\hat{\bullet}_{\fai}m_2=0$.于是我们不妨将
+“$A\oplus M$”当中的“$M$”理解为“一阶小量”。
+我们考虑$\fai=0$时$\Ahat_0:=A\oplus M$的代数结构
+$$(a_1\oplus m_1)\bullet(a_2\oplus m_2)
+:=a_1a_2\oplus (a_1.m_2+m_1.a_2)$$
+显然$(\Ahat_0,\bullet)$为结合代数。
+若$\p\fai=0$，则结合代数$(\Ahat,\hat{\bullet}_{\fai})$
+为$(\Ahat_0,\bullet)$的\textbf{一阶形变}，
+而$\fai$为其“形变参数”。
+
+从而$M$的第2个Hochschild上同调
+
+$$
+    H^2(A,M)\cong
+  \frac{
+         \{\fai|(\Ahat,\hat{\bullet}_{\fai})
+         \text{是结合代数}\}
+       }{
+       \im(\p:C^1(A,M)\to C^2(A,M))
+       }
+$$
+商掉的东西（$\im\p$）为
+形如以下的一类特殊的一阶形变：
+\begin{eqnarray*}
+\fai_f:A\ten A&\to& M\\
+a_1\ten a_2 &\mapsto&
+a_1.f(a_2)+f(a_1).a_2-f(a_1a_2)
+\end{eqnarray*}
+其中$f\in C^1(A,M)=\Hom(A,M)$，$\fai_f=\p f$.
+
+\vs
+
+我们考察一个Hochschild上同调的具体算例。
+
+\begin{prop}若$A=\bbC[x^1,...,x^n]$为
+$\bbC$上的$n$元多项式环，则
+
+$$\HH^k(A)\cong
+\Hom\left(\wedgeform{k}(\bbC^n),A\right)$$
+\end{prop}
+
+\begin{proof}
+对于这个特例，采用Koszul复形计算更佳简便。
+有关记号同性质\ref{C[x^i]的HH同调}的证明过程.
+考虑Koszul复形
+$$
+\mcalK_A:\cdots
+\xra{\p}A^e\ten\wedgeform{k+1}(\bbC^n)
+\xra{\p}A^e\ten\wedgeform{k}(\bbC^n)
+\xra{\p}A^e\ten\wedgeform{k-1}(\bbC^n)
+\xra{\p}\cdots
+$$
+然后将函子$\Hom_{A^e}(-,A)$作用于之上。
+注意到有$\bbC$-线性同构
+\begin{eqnarray*}
+&&      \Hom_{A^e}\left(A^e\ten\wedgeform{k}(\bbC^n),A\right)\\
+&\cong& \Hom\left(\wedgeform{k}(\bbC^n),\Hom_{A^e}(A^e,A)\right)\\
+&\cong& \Hom\left(\wedgeform{k}(\bbC^n),A\right)
+\end{eqnarray*}
+
+此外再注意到，上链复形$\Hom_{A^e}(\mcalK_A,A)$的
+微分算子$\td:=\Hom_{A^e}(\p,A)=0$.这是因为对于
+$\fai\in\Hom_{A^e}\left(A^e\ten\wedgeform{k}(\bbC^n),A\right)$，
+$\omega\in\wedgeform{k+1}(\bbC^n)$以及$f\in A^e$，成立
+$$\td\fai(f\ten\omega)=\fai(\p(f\ten\omega))$$
+回顾Koszul复形边缘算子运算规则
+$$\p:\eta^i\mapsto x^i-y^i\in A^e$$
+又由于$\fai$为$A^e$-模同态，
+从而对于任意$\tilde{\omega}\in\wedgeform{k}(\bbC^n)$，成立
+$$
+\fai(x^i\ten\tilde{\omega})
+=x^i.\fai(1\ten\tilde{\omega})
+=\fai(1\ten\tilde{\omega}).x^i
+=\fai((x^i)\op\ten\tilde{\omega})
+=\fai(y^i\ten\tilde{\omega})$$
+也就是说$\fai((x^i-y^i)\ten\tilde{\omega})=0$.
+由此可见$\td=0$.综上可知
+
+$$\HH^k(A)\cong
+\Hom\left(\wedgeform{k}(\bbC^n),A\right)$$
+
+\end{proof}
+
+注意到$\Hom\left(\wedgeform{k}(\bbC^n),A\right)$
+之中的元素形如
+$$
+\sum_{1\leq i_1<...<i_k\leq n}
+f_{i_1...i_k}\p_{i_1}\wedge...\wedge\p_{i_k}
+$$
+回顾$\HH\downdot(A)$中的元素可被认为是“微分形式”，
+可见$\HH\updot(A)$中的元素则是“多重切向量场”。
+
+\section{先帝创业未半而中道崩殂}
+
+（待补）
 
 
 
