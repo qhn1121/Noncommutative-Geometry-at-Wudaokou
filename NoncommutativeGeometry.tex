@@ -33,32 +33,10 @@
 
 \makeindex
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand*{\vs}{\vspace{5pt}}
-\newcommand*{\vsp}{\vspace{10pt}}
-\newcommand*{\vspp}{\vspace{15pt}}
-\newcommand*{\kong}{$\,\,\,$}
-
-\newcommand*{\ad}{\text{ad}}
-
-
-\newcommand*{\R}{\mathbb{R}}
-\newcommand*{\ra}{\rightarrow}
-\newcommand*{\p}{\partial}
-\newcommand*{\ten}{\otimes}
-\newcommand*{\op}{^{\text{op}}}
-\newcommand*{\downdot}{_{\bullet}}
-\newcommand*{\updot}{^{\bullet}}
-
-\newcommand*{\fengexian}{
-  \rule[0pt]{14.3cm}{0.01em}
-\vs}
-
 %%%%%%%%%%%%%%定理环境%%%%%%%%%%%%%%%%%%%%%%%
 
 \newtheorem{mythm}{定理}[section]
-\newtheorem{lemma}[mythm]{引理}
+\newtheorem{mylemma}[mythm]{引理}
 \newtheorem{myprop}[mythm]{性质}
 \newtheorem{myaxiom}[mythm]{公理}
 \newtheorem{mydefinition}[mythm]{定义}
@@ -74,37 +52,110 @@
 
 \chapterbackgroundcolor
 
+\newcommand*{\thmcolor}{185,181,134}
+\newcommand*{\propcolor}{201,198,160}
+\newcommand*{\lemmacolor}{225,225,200}
+\newcommand*{\axiomcolor}{247,247,249}
+\newcommand*{\definitioncolor}{173,197,165}
+
 \newenvironment{thm}
-  {\definecolor{shadecolor}{RGB}{253,251,247}
+  {\definecolor{shadecolor}{RGB}{\thmcolor}
     \begin{shaded}\begin{mythm}}
   {\end{mythm}\end{shaded}
   \chapterbackgroundcolor}
 
+\newenvironment{lemma}
+  {\definecolor{shadecolor}{RGB}{\lemmacolor}
+    \begin{shaded}\begin{mylemma}}
+  {\end{mylemma}\end{shaded}
+  \chapterbackgroundcolor}
+
 \newenvironment{prop}
-  {\definecolor{shadecolor}{RGB}{253,251,247}
+  {\definecolor{shadecolor}{RGB}{\propcolor}
     \begin{shaded}\begin{myprop}}
   {\end{myprop}\end{shaded}
   \chapterbackgroundcolor}
 
 \newenvironment{axiom}
-  {\definecolor{shadecolor}{RGB}{247,247,249}
+  {\definecolor{shadecolor}{RGB}{\axiomcolor}
     \begin{shaded}\begin{myaxiom}}
   {\end{myaxiom}\end{shaded}
   \chapterbackgroundcolor}
 
 \newenvironment{definition}
-  {\definecolor{shadecolor}{RGB}{247,255,240}
+  {\definecolor{shadecolor}{RGB}{\definitioncolor}
     \begin{shaded}\begin{mydefinition}}
   {\end{mydefinition}\end{shaded}
   \chapterbackgroundcolor}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcommand*{\vs}{\vspace{5pt}}
+\newcommand*{\vsp}{\vspace{10pt}}
+\newcommand*{\vspp}{\vspace{20pt}}
+\newcommand*{\kong}{$\,\,\,$}
+\newcommand*{\fengexian}{
+  \rule[0pt]{14.3cm}{0.01em}
+\vs}
+
+\newcommand*{\bbA}{\mathbb{A}}
+\newcommand*{\bbB}{\mathbb{B}}
+\newcommand*{\bbC}{\mathbb{C}}
+\newcommand*{\bbD}{\mathbb{D}}
+\newcommand*{\bbE}{\mathbb{E}}
+\newcommand*{\bbF}{\mathbb{F}}
+\newcommand*{\bbG}{\mathbb{G}}
+\newcommand*{\bbH}{\mathbb{H}}
+\newcommand*{\bbI}{\mathbb{I}}
+\newcommand*{\bbJ}{\mathbb{J}}
+\newcommand*{\bbK}{\mathbb{K}}
+\newcommand*{\bbL}{\mathbb{L}}
+\newcommand*{\bbM}{\mathbb{M}}
+\newcommand*{\bbN}{\mathbb{N}}
+\newcommand*{\bbO}{\mathbb{O}}
+\newcommand*{\bbP}{\mathbb{P}}
+\newcommand*{\bbQ}{\mathbb{Q}}
+\newcommand*{\bbR}{\mathbb{R}}
+\newcommand*{\bbS}{\mathbb{S}}
+\newcommand*{\bbT}{\mathbb{T}}
+\newcommand*{\bbU}{\mathbb{U}}
+\newcommand*{\bbV}{\mathbb{V}}
+\newcommand*{\bbW}{\mathbb{W}}
+\newcommand*{\bbX}{\mathbb{X}}
+\newcommand*{\bbY}{\mathbb{Y}}
+\newcommand*{\bbZ}{\mathbb{Z}}
+
+\newcommand*{\mcalA}{\mathcal{A}}
+\newcommand*{\mcalK}{\mathcal{K}}
+
+\newcommand*{\Ahat}{\hat{A}}
+
+\newcommand*{\lmd}{\lambda}
+\newcommand*{\veps}{\varepsilon}
+\newcommand*{\fai}{\varphi}
+
+\newcommand*{\ra}{\rightarrow}
+\newcommand*{\xra}{\xrightarrow}
+\newcommand*{\xla}{\xleftarrow}
+\newcommand*{\p}{\partial}
+\newcommand*{\td}{\textrm{d}}
+\newcommand*{\pbar}{\overline{\partial}}
+\newcommand*{\ten}{\otimes}
+\newcommand*{\bigten}{\bigotimes}
+\newcommand*{\op}{^{\text{op}}}
+\newcommand*{\downdot}{_{\bullet}}
+\newcommand*{\updot}{^{\bullet}}
+\newcommand*{\wedgeform}{\bigwedge\nolimits^}
+
+\DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\HH}{HH}
-
 \DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Hom}{Hom}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \linespread{1.2} % 调整行间距
@@ -153,19 +204,40 @@
 
 
 
-\title{\textbf{非交换几何}% Title
+\title{\textbf{非交换几何选讲}% Title
 } % Subtitle
 
 \author{\textsc{曲豆豆\,\,\,码字} % Author
-\\{\textit{南七技校福利社五道口分社}}}
+\\{\textit{南七技校福利社\,\,五道口分社}}}
 
 \date{\today\\
-第00稿}
+第01稿}
 
 %----------------------------------------------------------------------------------------
 \begin{document}
 
 \maketitle
+
+\vspp
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]
+  {IMAG1097.jpg}
+
+图：雾气朦胧的安徽合肥大蜀山森林公园
+
+拍摄于2014.5.31 - 10：44
+\end{figure}
+\vspp
+
+\vspp
+
+\fengexian
+
+\begin{center}
+在五道口也要红专并进、理实交融呀$\sim$
+\end{center}
 
 \tableofcontents
 
