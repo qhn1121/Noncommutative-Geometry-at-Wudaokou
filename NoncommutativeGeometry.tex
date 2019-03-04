@@ -33,18 +33,6 @@
 
 \makeindex
 
-%%%%%%%%%%%%%%定理环境%%%%%%%%%%%%%%%%%%%%%%%
-
-\newtheorem{mythm}{定理}[section]
-\newtheorem{mylemma}[mythm]{引理}
-\newtheorem{myprop}[mythm]{性质}
-\newtheorem{myaxiom}[mythm]{公理}
-\newtheorem{mydefinition}[mythm]{定义}
-\newtheorem{example}[mythm]{例子}
-\newtheorem{rem}[mythm]{注记}
-\newtheorem{cor}[mythm]{推论}
-\newtheorem{claim}[mythm]{断言}
-\newtheorem{prob}{习题}[section]
 
 \newcommand{\chapterbackgroundcolor}{
   \definecolor{shadecolor}{RGB}{255,227,170}
@@ -58,105 +46,13 @@
 \newcommand*{\axiomcolor}{247,247,249}
 \newcommand*{\definitioncolor}{173,197,165}
 
-\newenvironment{thm}
-  {\definecolor{shadecolor}{RGB}{\thmcolor}
-    \begin{shaded}\begin{mythm}}
-  {\end{mythm}\end{shaded}
-  \chapterbackgroundcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%这里调用了曲豆豆的独家秘籍%%%%%
+\include{曲豆豆的私房符号}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newenvironment{lemma}
-  {\definecolor{shadecolor}{RGB}{\lemmacolor}
-    \begin{shaded}\begin{mylemma}}
-  {\end{mylemma}\end{shaded}
-  \chapterbackgroundcolor}
 
-\newenvironment{prop}
-  {\definecolor{shadecolor}{RGB}{\propcolor}
-    \begin{shaded}\begin{myprop}}
-  {\end{myprop}\end{shaded}
-  \chapterbackgroundcolor}
-
-\newenvironment{axiom}
-  {\definecolor{shadecolor}{RGB}{\axiomcolor}
-    \begin{shaded}\begin{myaxiom}}
-  {\end{myaxiom}\end{shaded}
-  \chapterbackgroundcolor}
-
-\newenvironment{definition}
-  {\definecolor{shadecolor}{RGB}{\definitioncolor}
-    \begin{shaded}\begin{mydefinition}}
-  {\end{mydefinition}\end{shaded}
-  \chapterbackgroundcolor}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand*{\vs}{\vspace{5pt}}
-\newcommand*{\vsp}{\vspace{10pt}}
-\newcommand*{\vspp}{\vspace{20pt}}
-\newcommand*{\kong}{$\,\,\,$}
-\newcommand*{\fengexian}{
-  \rule[0pt]{14.3cm}{0.01em}
-\vs}
-
-\newcommand*{\bbA}{\mathbb{A}}
-\newcommand*{\bbB}{\mathbb{B}}
-\newcommand*{\bbC}{\mathbb{C}}
-\newcommand*{\bbD}{\mathbb{D}}
-\newcommand*{\bbE}{\mathbb{E}}
-\newcommand*{\bbF}{\mathbb{F}}
-\newcommand*{\bbG}{\mathbb{G}}
-\newcommand*{\bbH}{\mathbb{H}}
-\newcommand*{\bbI}{\mathbb{I}}
-\newcommand*{\bbJ}{\mathbb{J}}
-\newcommand*{\bbK}{\mathbb{K}}
-\newcommand*{\bbL}{\mathbb{L}}
-\newcommand*{\bbM}{\mathbb{M}}
-\newcommand*{\bbN}{\mathbb{N}}
-\newcommand*{\bbO}{\mathbb{O}}
-\newcommand*{\bbP}{\mathbb{P}}
-\newcommand*{\bbQ}{\mathbb{Q}}
-\newcommand*{\bbR}{\mathbb{R}}
-\newcommand*{\bbS}{\mathbb{S}}
-\newcommand*{\bbT}{\mathbb{T}}
-\newcommand*{\bbU}{\mathbb{U}}
-\newcommand*{\bbV}{\mathbb{V}}
-\newcommand*{\bbW}{\mathbb{W}}
-\newcommand*{\bbX}{\mathbb{X}}
-\newcommand*{\bbY}{\mathbb{Y}}
-\newcommand*{\bbZ}{\mathbb{Z}}
-
-\newcommand*{\mcalA}{\mathcal{A}}
-\newcommand*{\mcalK}{\mathcal{K}}
-
-\newcommand*{\Ahat}{\hat{A}}
-
-\newcommand*{\lmd}{\lambda}
-\newcommand*{\veps}{\varepsilon}
-\newcommand*{\fai}{\varphi}
-
-\newcommand*{\ra}{\rightarrow}
-\newcommand*{\xra}{\xrightarrow}
-\newcommand*{\xla}{\xleftarrow}
-\newcommand*{\p}{\partial}
-\newcommand*{\td}{\textrm{d}}
-\newcommand*{\pbar}{\overline{\partial}}
-\newcommand*{\ten}{\otimes}
-\newcommand*{\bigten}{\bigotimes}
-\newcommand*{\op}{^{\text{op}}}
-\newcommand*{\downdot}{_{\bullet}}
-\newcommand*{\updot}{^{\bullet}}
-\newcommand*{\wedgeform}{\bigwedge\nolimits^}
-
-\DeclareMathOperator{\ad}{ad}
-\DeclareMathOperator{\HH}{HH}
-\DeclareMathOperator{\Der}{Der}
-\DeclareMathOperator{\Inn}{Inn}
-\DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\im}{Im}
-\DeclareMathOperator{\Tor}{Tor}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Hom}{Hom}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \linespread{1.2} % 调整行间距
 
@@ -211,7 +107,7 @@
 \\{\textit{南七技校福利社\,\,五道口分社}}}
 
 \date{\today\\
-第01稿}
+第01-1稿}
 
 %----------------------------------------------------------------------------------------
 \begin{document}

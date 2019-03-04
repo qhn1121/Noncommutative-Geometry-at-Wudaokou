@@ -1,4 +1,4 @@
-\chapter{非交换代数}
+\chapter{Hochschild理论}
 
 \section{结合代数的双模、余中心}
 
@@ -753,9 +753,204 @@ $$
 回顾$\HH\downdot(A)$中的元素可被认为是“微分形式”，
 可见$\HH\updot(A)$中的元素则是“多重切向量场”。
 
-\section{先帝创业未半而中道崩殂}
+%%%%%%%%%%%2019.3.4 Mon 第2周%%%%%%%%%%%%
 
-（待补）
+\section{约化Hochschild（上）同调}
+
+\begin{definition}（约化Bar-复形）（reduced Bar-complex）
+\index{reduced Bar-complex\kong 约化Bar-复形}
+
+对于$K$-代数$A$，则视$K$为$A$的$K$-子模，并且令$K$-模
+
+$$\overline{A}:=A/K$$
+我们定义如下的约化Bar-复形$(\overline{B}\downdot A,b)$：
+$$\overline{B}_n A:=A\ten \overline{A}^{\ten n}\ten A
+\quad \forall \,i\geq 0$$
+边缘算子$b:\overline{B}_n A\to \overline{B}_{n-1} A$如下定义：
+\begin{eqnarray*}
+b\Big(a_0\ten(\overline{a_1}\ten\cdots\ten \overline{a_n})\ten a_{n+1}\Big)
+&:=&
+ (a_0a_1)\ten(\overline{a_2}\ten\cdots\ten\overline{a_n})\ten a_{n+1}\\
+&+ &
+ \sum_{i=1}^{n-1}(-1)^ia_0\ten
+    (\overline{a_1}\ten\cdots
+    (\overline{a_ia_{i+1}})\ten\cdots\ten \overline{a_n})
+    \ten a_{n+1}\\
+&+ &(-1)^n
+ a_0\ten(\overline{a_1}\ten\cdots\ten \overline{a_{n-1}})
+   \ten(a_na_{n+1})
+\end{eqnarray*}
+\end{definition}
+
+注意到$\overline{B}\downdot A$是$B\downdot A$的商模：
+$$\overline{B}_nA=
+     \frac{B_n A}
+     {\{a_0\ten(a_1\ten\cdots
+     \ten a_{i-1}\ten 1\ten a_{i+1}
+     \ten\cdots\ten a_n)\ten a_{n+1}\}
+     }
+$$
+%%%%%%%%%崩殂%%%%%%
+
+check "b" is well defined.
+$$b(a_0\ten...\ten a_{i-1}\ten 1\ten a_{i+1}\ten...\ten a_{n+1})
+=...+(...)$$
+So,... well defined.
+
+resolution:$\bar{B}\downdot A\to A\to 0$,
+%%%%%%天下三分%%%%%%%
+
+\textbf{Reduced Hochschild Chain complex}
+$$\bar{C}\downdot(A,M):=M\ten_{A^e}\bar{B}\downdot A=M\ten\bar{A}\updot$$
+$$H\downdot(\bar{C}\downdot(A,M))=H\downdot(A,M)$$
+
+Reduced Hochschild cochain complex
+$$\bar{C}\updot(A,M)=\Hom(\bar{A}\updot,M)$$
+
+Another way to understand $B\downdot A,\bar{B}\downdot A$
+
+\begin{definition}
+A differential graded algebra
+$$A:=\bigoplus_{n\in\mathbb{Z}}A_n$$
+$$A_n\cdot:A_m\mapsto A_{n+m}$$
+with
+$$\td:A\to A$$
+derivation,$\td^2=0$,$\td:A_n\to A_{n+1}$
+$$d(\alpha\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha(\td\beta)$$
+\end{definition}
+
+%%%%微分分次代数的例子%%%%%%%
+
+\begin{prop}
+the bar resolution $[B\downdot\to A]\cong A*K[\veps]$
+(free product),and $b=\p_{\veps}$
+\end{prop}
+
+\begin{proof}["proof"]
+$$[B\downdot A\to A]\mapsto A*K[\veps]$$
+$$a_0\ten...\ten a_n\mapsto
+a_0\veps a_1\veps...a_{n-1}\veps a_n$$
+this is bijective.
+
+$$\p_{\veps}:a_0\veps a_1\veps...a_{n-1}\veps a_n\mapsto
+a_0a_1\veps.....-a_0\veps a_1a_2...$$
+...
+
+check
+\end{proof}
+
+Similarly, reduced Bar-complex
+$$[\bar{B}\downdot A\to A]\cong A*K[\veps]/\veps^2$$
+
+\begin{example}(Group (co)homology)
+
+Let $G$ be a group, $M\in\text{Rep}(G)$ is a left module,
+then we obtain a complex
+$$M\xra{\delta}C^1(G,M)\xra{\delta}C^2(G,M)\xra{\delta}...$$
+where
+$$C^n(G,M):=\Hom(G^n,M)=\{f:G^n\to M\}$$
+the differential $\delta$ s.t.
+$$\delta(m)(g)=g.m-m$$
+$$(\delta f)(g_0,g_1,...,g_n)=g_0f(g_1,...,g_n)-f(g_0g_1,g_2,...)
++...+f(g_0,...,g_{n-1}g_n)\pm f(g_0,...,g_{n-1})$$
+
+check $\delta^2=0$,this cohomology
+$$H\updot(C\updot(G,M),\delta)=H\updot(G,M)$$
+group homology
+\end{example}
+
+Let $A=K[G]$ group algebra with right $A$-action.then
+$$H\updot(G,M)\cong H\updot(K[G],M)$$
+hochschild cohomology.
+
+\begin{example}(Lie algebra (co)homology)
+
+$\mathfrak{g}$:Lie algebra, $M$ is a $\mathfrak{g}$-module.
+consider $A:=\mathcal{U}(\mathfrak{g})$ universal enveloping algebra,
+$M$ is a left $A$-module, with
+$$H\downdot(\mathcal{U}(\mathfrak{g}),M)
+=H^{\text{Lie}}\downdot(\mathfrak{g},M)$$
+\end{example}
+
+\section{循环（上）同调}
+%Cyclic homology%
+
+$\HH\downdot(A)\rightsquigarrow$noncommutative differential forms.
+$$B\dashleftarrow\text{de rham}$$
+
+cyclic group action
+$$C\downdot(A,A)=C\downdot(A)=A\ten A$$
+$$C_n(A)=A^{\ten n+1}$$
+we consider the $\bbZ/(n+1)\bbZ$ acting on $C_n A$,
+$$\lmd: C_n(A)\to C_n(A)$$
+$$a_0\ten a_1\ten...\ten a_n\mapsto
+(-1)^na_n
+\ten a_0\ten...\ten a_{n-1}$$
+then $\lmd$ is generator,
+$$\lmd^{n+1}=(-1)^{n(n+1)}=1$$
+Let
+$$C^{\lmd}\downdot(A):=C\downdot(A)/(1-\lmd)$$
+cyclic co-invariant.
+
+\begin{prop}
+Hochschild differential $b$(on $C\downdot(A)$) induces a
+differential on $C\downdot(A)/(1-\lmd)$
+\end{prop}
+\begin{proof}
+Let us define
+$$b':C\downdot(A)\to C_{\bullet-1}(A)$$
+$$b'(a_0\ten...\ten a_n)
+=a_0a_1\ten a_2\ten...\pm...\pm a_0\ten a_1\ten...\ten a_{n-1}a_n$$
+
+(($C\downdot(A),b')=(B\downdot A\to A)$)
+
+claim that
+$$(1-\lmd)b'=b(1-\lmd)$$
+
+$$[b,\lmd]=(1-\lmd)(b-b')$$
+
+In particular, $b:\im(1-\lmd)\mapsto\im(1-\lmd)$
+
+"proof":
+%%%%%%%%%%画圈圈%%%%%%%%%%%555
+
+
+\end{proof}
+
+so, $b$ acts on $C^{\lmd}\downdot(A)=C\downdot(A)/(1-\lmd)$
+,called \textbf{Connes' complex}
+$$H^{\lmd}\downdot(A)=H\downdot(C^{\lmd}\downdot(A),b)$$
+Introduce
+$$\mathcal{N}:C_n(A)\to C_n(A)$$
+%%%%%%%%%%%平均算子%%%%%%%%%
+
+\begin{prop}
+$$b'\mathcal{N}=Nb$$
+\end{prop}
+
+we have an exact sequence
+%%%%%%%平均算子‘%%%%%%
+
+\begin{definition}
+the cyclic bi-complex $CC\downdot(A)$
+%%%%%%双复形%%%%%%
+\end{definition}
+
+Let $\text{Tot}(CC\downdot(A))$ be the total complex of $CC\downdot(A)$
+with a natural map of complexs
+$$\text{Tot}(CC\downdot(A))\to C^{\lmd}\downdot(A)$$
+is a quasi-isomorphism.
+$$HC\downdot(A):=H\downdot(\text{Tot}(CC\downdot(A)))
+\cong H^{\lmd}\downdot(A)$$
+
+Intuitively, we can delete "exact sequence" and get rid of 蓝色框框，
+
+\section{始有一如，独一之神，其名在阿尔达称为伊露维塔。}
+
+%%%%%%%同调代数工具%%%%%%%
+
+
+
 
 
 
