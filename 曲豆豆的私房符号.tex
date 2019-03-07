@@ -1,0 +1,213 @@
+%这是曲豆豆的红包
+
+%%%%%%%%%%%%%%定理环境%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{mythm}{定理}[section]
+\newtheorem{mylemma}[mythm]{引理}
+\newtheorem{myprop}[mythm]{性质}
+\newtheorem{myaxiom}[mythm]{公理}
+\newtheorem{mydefinition}[mythm]{定义}
+\newtheorem{mynotation}[mythm]{记号}
+\newtheorem{example}[mythm]{例子}
+\newtheorem{rem}[mythm]{注记}
+\newtheorem{cor}[mythm]{推论}
+\newtheorem{claim}[mythm]{断言}
+\newtheorem{prob}{习题}[section]
+
+
+\chapterbackgroundcolor
+
+
+\newenvironment{thm}
+  {\definecolor{shadecolor}{RGB}{\thmcolor}
+    \begin{shaded}\begin{mythm}}
+  {\end{mythm}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{lemma}
+  {\definecolor{shadecolor}{RGB}{\lemmacolor}
+    \begin{shaded}\begin{mylemma}}
+  {\end{mylemma}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{prop}
+  {\definecolor{shadecolor}{RGB}{\propcolor}
+    \begin{shaded}\begin{myprop}}
+  {\end{myprop}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{axiom}
+  {\definecolor{shadecolor}{RGB}{\axiomcolor}
+    \begin{shaded}\begin{myaxiom}}
+  {\end{myaxiom}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{definition}
+  {\definecolor{shadecolor}{RGB}{\definitioncolor}
+    \begin{shaded}\begin{mydefinition}}
+  {\end{mydefinition}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{notation}
+  {\definecolor{shadecolor}{RGB}{\notationcolor}
+    \begin{shaded}\begin{mynotation}}
+  {\end{mynotation}\end{shaded}
+  \chapterbackgroundcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\vs}{\vspace{5pt}}
+\newcommand*{\vsp}{\vspace{10pt}}
+\newcommand*{\vspp}{\vspace{20pt}}
+\newcommand*{\kong}{$\,\,\,$}
+\newcommand*{\fengexian}{
+  \rule[0pt]{14.3cm}{0.01em}
+\vs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\bbA}{\mathbb{A}}
+\newcommand*{\bbB}{\mathbb{B}}
+\newcommand*{\bbC}{\mathbb{C}}
+\newcommand*{\bbD}{\mathbb{D}}
+\newcommand*{\bbE}{\mathbb{E}}
+\newcommand*{\bbF}{\mathbb{F}}
+\newcommand*{\bbG}{\mathbb{G}}
+\newcommand*{\bbH}{\mathbb{H}}
+\newcommand*{\bbI}{\mathbb{I}}
+\newcommand*{\bbJ}{\mathbb{J}}
+\newcommand*{\bbK}{\mathbb{K}}
+\newcommand*{\bbL}{\mathbb{L}}
+\newcommand*{\bbM}{\mathbb{M}}
+\newcommand*{\bbN}{\mathbb{N}}
+\newcommand*{\bbO}{\mathbb{O}}
+\newcommand*{\bbP}{\mathbb{P}}
+\newcommand*{\bbQ}{\mathbb{Q}}
+\newcommand*{\bbR}{\mathbb{R}}
+\newcommand*{\bbS}{\mathbb{S}}
+\newcommand*{\bbT}{\mathbb{T}}
+\newcommand*{\bbU}{\mathbb{U}}
+\newcommand*{\bbV}{\mathbb{V}}
+\newcommand*{\bbW}{\mathbb{W}}
+\newcommand*{\bbX}{\mathbb{X}}
+\newcommand*{\bbY}{\mathbb{Y}}
+\newcommand*{\bbZ}{\mathbb{Z}}
+
+\newcommand*{\mcalA}{\mathcal{A}}
+\newcommand*{\mcalB}{\mathcal{B}}
+\newcommand*{\mcalC}{\mathcal{C}}
+\newcommand*{\mcalD}{\mathcal{D}}
+\newcommand*{\mcalE}{\mathcal{E}}
+\newcommand*{\mcalF}{\mathcal{F}}
+\newcommand*{\mcalG}{\mathcal{G}}
+\newcommand*{\mcalH}{\mathcal{H}}
+\newcommand*{\mcalI}{\mathcal{I}}
+\newcommand*{\mcalJ}{\mathcal{J}}
+\newcommand*{\mcalK}{\mathcal{K}}
+\newcommand*{\mcalL}{\mathcal{L}}
+\newcommand*{\mcalM}{\mathcal{M}}
+\newcommand*{\mcalN}{\mathcal{N}}
+\newcommand*{\mcalO}{\mathcal{O}}
+\newcommand*{\mcalP}{\mathcal{P}}
+\newcommand*{\mcalQ}{\mathcal{Q}}
+\newcommand*{\mcalR}{\mathcal{R}}
+\newcommand*{\mcalS}{\mathcal{S}}
+\newcommand*{\mcalT}{\mathcal{T}}
+\newcommand*{\mcalU}{\mathcal{U}}
+\newcommand*{\mcalV}{\mathcal{V}}
+\newcommand*{\mcalW}{\mathcal{W}}
+\newcommand*{\mcalX}{\mathcal{X}}
+\newcommand*{\mcalY}{\mathcal{Y}}
+\newcommand*{\mcalZ}{\mathcal{Z}}
+
+\newcommand*{\mfkg}{\mathfrak{g}}
+\newcommand*{\mfkh}{\mathfrak{h}}
+
+\newcommand*{\mfkgl}{\mathfrak{gl}}
+\newcommand*{\mfksl}{\mathfrak{sl}}
+\newcommand*{\mfkso}{\mathfrak{so}}
+\newcommand*{\mfksp}{\mathfrak{sp}}
+
+\newcommand*{\bfk}{\boldsymbol{k}}
+
+\newcommand*{\Ahat}{\hat{A}}
+\newcommand*{\Bhat}{\hat{B}}
+\newcommand*{\Chat}{\hat{C}}
+\newcommand*{\Dhat}{\hat{D}}
+
+\newcommand*{\zbar}{\bar{z}}
+\newcommand*{\wbar}{\bar{w}}
+
+\newcommand*{\lmd}{\lambda}
+\newcommand*{\omg}{\omega}
+\newcommand*{\Omg}{\Omega}
+\newcommand*{\veps}{\varepsilon}
+\newcommand*{\fai}{\varphi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\ra}{\rightarrow}
+\newcommand*{\inj}{\hookrightarrow}
+\newcommand*{\surj}{\twoheadrightarrow}
+\newcommand*{\xra}{\xrightarrow}
+\newcommand*{\xla}{\xleftarrow}
+
+
+\newcommand*{\p}{\partial}
+\newcommand*{\td}{\mathrm{d}}
+\newcommand*{\pbar}{\overline{\partial}}
+\newcommand*{\ten}{\otimes}
+\newcommand*{\bigten}{\bigotimes}
+\newcommand*{\op}{^{\text{op}}}
+\newcommand*{\downdot}{_{\bullet}}
+\newcommand*{\updot}{^{\bullet}}
+\newcommand*{\wedgeform}{\bigwedge\nolimits^}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\Choose}[2]
+  {\left[{
+      #1 \atop
+      #2
+  }\right]}           %快速输入小型方括号组合数
+
+\newcommand*{\bbar}[1]
+  {\overline{#1}}
+
+\newcommand*{\pp}[1]
+  {\frac{\partial   }
+        {\partial #1}
+  }                               %切向量场，一阶偏微分算子
+
+\newcommand*{\pfrac}[2]
+  {\frac{\partial #1}
+        {\partial #2}
+  }                               %一阶偏微分
+
+\newcommand*{\ppfrac}[2]
+  {\frac{\partial^2{#1}}
+        {\partial{#2}^2}}          %二阶偏微分
+
+\newcommand*{\pmfrac}[3]
+  {\frac{\partial^2{#1}}
+        {\partial{#2}\partial{#3}}} %二阶混合偏微分
+
+%amsmath 宏包输入矩阵%
+%matrix pmatrix bmatrix Bmatrix vmatrix Vmatrix%
+%分别为无括号，小括号，中括号，大括号，竖线，双竖线%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\HH}{HH}         %Hochschild (co)homology
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\End}{End}       %Endomorphism
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Free}{Free}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Rep}{Rep}
+\DeclareMathOperator{\Lie}{Lie}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 

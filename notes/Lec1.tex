@@ -491,6 +491,7 @@ $$\fai(a)=\fai(1.a)=\fai(1).a$$
 
 \begin{definition}（Hochschild上同调）
 \index{Hochschild上同调}
+\label{Hochschild上同调-def}
 
 对于双$A$-模$M$，以及$n\geq 0$，
 定义$M$的第$n$个Hochschild上同调
@@ -755,7 +756,7 @@ $$
 
 %%%%%%%%%%%2019.3.4 Mon 第2周%%%%%%%%%%%%
 
-\section{约化Hochschild（上）同调}
+\section{Hochschild（上）同调的例子}
 
 \begin{definition}（约化Bar-复形）（reduced Bar-complex）
 \index{reduced Bar-complex\kong 约化Bar-复形}
@@ -790,89 +791,296 @@ $$\overline{B}_nA=
      \ten\cdots\ten a_n)\ten a_{n+1}\}
      }
 $$
-%%%%%%%%%崩殂%%%%%%
+%%%%%%%%%崩殂%%%%%%！
 
-check "b" is well defined.
-$$b(a_0\ten...\ten a_{i-1}\ten 1\ten a_{i+1}\ten...\ten a_{n+1})
-=...+(...)$$
-So,... well defined.
+容易发现约化Bar-复形的“$b$”正是Bar-复形的$b$.
+但是我们要验证$b$的良定性，即与代表元选取无关。
+这是容易验证的。进而，我们可以由约化Bar-复形构造$A$的投射消解：
+$$\overline{B}\downdot A\to A\to 0$$
+与之前$Bar$-复形完全类似，我们容易验证此复形也是正合的。
+只需构造同伦算子
+\begin{eqnarray*}
+h:\overline{B}_{n-1}A&\to&\overline{B}_{n}A\\
+a_0\ten(\overline{a_1}\ten\cdots\ten \overline{a_{n-1}})\ten a_{n}
+&\mapsto&
+1\ten(\overline{a_0}\ten\overline{a_1}\ten\cdots\ten \overline{a_n})\ten a_{n+1}
+\end{eqnarray*}
+验证$bh+hb=1$即可。
+%%%%%%天下三分%%%%%%%！
 
-resolution:$\bar{B}\downdot A\to A\to 0$,
-%%%%%%天下三分%%%%%%%
+\begin{definition}（约化Hochschild（上）链复形）
 
-\textbf{Reduced Hochschild Chain complex}
-$$\bar{C}\downdot(A,M):=M\ten_{A^e}\bar{B}\downdot A=M\ten\bar{A}\updot$$
-$$H\downdot(\bar{C}\downdot(A,M))=H\downdot(A,M)$$
-
-Reduced Hochschild cochain complex
-$$\bar{C}\updot(A,M)=\Hom(\bar{A}\updot,M)$$
-
-Another way to understand $B\downdot A,\bar{B}\downdot A$
-
-\begin{definition}
-A differential graded algebra
-$$A:=\bigoplus_{n\in\mathbb{Z}}A_n$$
-$$A_n\cdot:A_m\mapsto A_{n+m}$$
-with
-$$\td:A\to A$$
-derivation,$\td^2=0$,$\td:A_n\to A_{n+1}$
-$$d(\alpha\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha(\td\beta)$$
+对于双$A$-模$M$，我们令
+\begin{eqnarray*}
+\overline{C}\downdot(A,M)&:=&
+M\ten_{A^e}\overline{B}\downdot A\cong M\ten\overline{A}^{\ten\bullet}\\
+\overline{C}\updot(A,M)&:=&
+\Hom_{A^e}(\overline{B}\downdot A,M)
+\cong\Hom(\overline{A}^{\ten\bullet},M)
+\end{eqnarray*}
+称之为关于$M$的约化Hochschild（上）链复形。
 \end{definition}
 
-%%%%微分分次代数的例子%%%%%%%
+由于约化Bar-复形也是$A$的投射消解，
+从而我们也可以由约化Hochschild（上）
+链复形来计算Hochschild（上）同调：
+$$H\downdot(\overline{C}\downdot(A,M))=H\downdot(A,M)$$
+$$H\updot  (\overline{C}\updot  (A,M))=H\updot  (A,M)$$
+
+关于（约化）Bar-复形，我们还有另一种理解方式：
+关于$A$的（约化）Bar-复形是$A$与某个微分分次代数的自由乘积。
+%Another way to understand $B\downdot A,\bar{B}\downdot A$
+
+\begin{definition}（微分分次代数）
+
+%A differential graded algebra
+\index{differential graded algebra\kong 微分分次代数}
+$\bbZ$-分次$K$-代数
+$$A:=\bigoplus_{n\in\mathbb{Z}}A_n$$
+称为\textbf{微分分次代数}（differential graded algebra），
+若它配以$K$-线性算子$\td:A\to A$，并且满足：
+$$\left\{\begin{array}{l}
+\td(A_n)\subseteq A_{n+1}\quad\forall n\in\bbZ\\
+\td^2=0\\
+\td(\alpha\beta)
+=(\td\alpha)\beta+(-1)^{\deg\alpha}\alpha(\td\beta)
+\quad\forall\alpha,\beta\in A\text{,并且$\alpha$是齐次元}
+\end{array}\right.$$
+\end{definition}
+
+对于微分分次代数$(A,\td)$，由于$A$的分次以及$\td^2=0$，
+从而自然有上链复形
+$$\cdots\to A_{-1}\xra{\td}A_0\xra{\td}A_1\to\cdots$$
+我们将此上链复形也记为$(A,\td)$.
+
+微分分次代数最直接的例子是，对于光滑流形$X$，
+考虑$A:=\Omg\updot(X)$为$X$上的微分形式。
+$A$上的乘法即为微分形式的外积$\wedge$，
+微分结构即为外微分$\td$.
+
+我们可以适当修改微分分次代数的定义，
+将条件“$\td(A_n)\subseteq A_{n+1}$”改为
+“$\td(A_n)\subseteq A_{n-1}$”，
+此时的微分算子我们习惯记为“$\p$”.
+对于这样的微分分次代数$(A,\p)$，它可以被视为链复形。
+
+\begin{example}我们考虑如下$K$-代数：
+$$A:=K[\veps]:=K\oplus K\veps\oplus K\veps^2\oplus\cdots$$
+其中$\veps$为形式变量，并且规定$\deg\veps=1$，
+由此诱导出$K[\veps]$的分次结构。其微分算子$\p_{\veps}$由以下诱导：
+$$\p_{\veps}(1)=0\quad\p_{\veps}(\veps)=1$$
+\label{典型微分分次代数-example}
+\end{example}
+
+注意$\deg\veps=1$，按照微分代数的定义可计算出
+$$\p_{\veps}(\veps^2)=
+  \p_{\veps}(\veps)\veps
+  +(-1)^{\deg\veps}\veps\p_{\veps}(\veps)
+=\veps-\veps=0$$
+一般地，对于非负整数$n$我们有
+$$
+  \p_{\veps}(\veps^n)
+= \left\{
+    \begin{array}{ll}
+      0           &\text{$n$为偶数}\\
+      \veps^{n-1} &\text{$n$为奇数}
+    \end{array}
+  \right.
+$$
+从而链复形$(K[\veps],\p_{\veps})$：
+$$\cdots\to K\veps^4\xra{0}K\veps^3\xra{1}
+K\veps^2\xra{0}K\veps\xra{1}K\to 0$$
+是正合的。其中$1:K\veps^{2n+1}\to K\veps^{2n}$
+将$\veps^{2n+1}$映为$\veps^{2n}$.
+
+%%%%微分分次代数的例子%%%%%%%!
+
+众所周知，对于两个$K$-代数$A,B$，
+我们可以谈论它们的\textbf{自由乘积}（free product）
+$A*B$.若$A=\bigoplus\limits_{i\in\bbZ}A_n$是微分分次代数，
+其微分算子为$\td$，则容易知道$A*B$自然也有微分分次代数结构：
+$$
+\left\{
+    \begin{array}{rcll}
+       \deg b&=&0&\forall{b\in B}\\
+       \deg a&=&n&\forall{a\in A_n\subseteq A}\\
+       \td b&=&0 &\forall{b\in B}
+    \end{array}
+\right.
+$$
+容易知道$A*B$中的$N$次齐次元必形如以下元素的有限和：
+$$b_1a_1b_2a_2\cdots b_ma_mb_{m+1}\quad
+(b_i\in B\,,\,a_i\in A_{n_i}\,,\,\sum_{i=1}^mn_i=N)$$
 
 \begin{prop}
-the bar resolution $[B\downdot\to A]\cong A*K[\veps]$
-(free product),and $b=\p_{\veps}$
+对于$K$-代数$A$，则有链复形的同构
+$$(B\downdot A\to A,b)\cong (A*K[\veps],\p_{\veps})$$
+其中$(K[\veps],\p_{\veps})$为例子
+\ref{典型微分分次代数-example}
+当中的微分分次代数，视为链复形；
+同构映射为
+\begin{eqnarray*}
+\fai_n:B_nA&\to&(A*K[\veps])_n\\
+a_0\ten(a_1\ten\cdots\ten a_n)\ten a_{n+1}&\mapsto&
+a_0\veps a_1\veps a_2\cdots a_n\veps a_{n+1}
+\end{eqnarray*}
+%the bar resolution $[B\downdot\to A]\cong A*K[\veps]$
+%(free product),and $b=\p_{\veps}$
 \end{prop}
 
-\begin{proof}["proof"]
-$$[B\downdot A\to A]\mapsto A*K[\veps]$$
-$$a_0\ten...\ten a_n\mapsto
-a_0\veps a_1\veps...a_{n-1}\veps a_n$$
-this is bijective.
+这给出了Bar-复形的又一种理解方式。
 
-$$\p_{\veps}:a_0\veps a_1\veps...a_{n-1}\veps a_n\mapsto
-a_0a_1\veps.....-a_0\veps a_1a_2...$$
-...
+\begin{proof}
+容易验证$\fai_n$为$K$-模同构，且逆映射$\fai_n^{-1}$由以下诱导：
+$$\veps^n\mapsto\underbrace
+{1\veps 1\veps 1\cdots 1\veps 1}_{n\text{个}\veps}$$
+然后只需验证$\fai\downdot:(B\downdot\to A,b)\to(A*K[\veps],\p_{\veps})$:
+是链映射，也就是要验证交换关系$\fai\circ b=\p_{\veps}\circ\fai$
+$$
+\xymatrix{
+B_nA \ar[d]^{\fai} \ar[r]^b         &B_{n-1}A\ar[d]^{\fai}\\
+(K[\veps]*A)_n \ar[r]^{\p_{\veps}}  &(K[\veps]*A)_{n-1}
+}$$
+而这容易验证，验证如下：
+\begin{eqnarray*}
+&&   \fai\circ b(a_0\ten a_1\ten\cdots\ten a_n\ten a_{n+1})\\
+&= &\fai\left(
+          \sum_{k=0}^n(-1)^k
+            a_0\ten\cdots\ten(a_k a_{k+1})\ten\cdots\ten a_{n+1}
+       \right)\\
+&= &\sum_{k=0}^n(-1)^k
+      a_0\veps a_1\veps\cdots\veps a_{n+1}\\
+&= &\p_{\veps}(a_0\veps a_1\veps\cdots a_n\veps a_{n+1})\\
+&= &\p_{\veps}\circ\fai(a_0\ten a_1\ten\cdots\ten a_n\ten a_{n+1})
+\end{eqnarray*}
 
-check
+%$$[B\downdot A\to A]\mapsto A*K[\veps]$$
+%$$a_0\ten...\ten a_n\mapsto
+%a_0\veps a_1\veps...a_{n-1}\veps a_n$$
+%this is bijective.
+
+%$$\p_{\veps}:a_0\veps a_1\veps...a_{n-1}\veps a_n\mapsto
+%a_0a_1\veps.....-a_0\veps a_1a_2...$$
+%...
+
+%check
+
 \end{proof}
 
-Similarly, reduced Bar-complex
-$$[\bar{B}\downdot A\to A]\cong A*K[\veps]/\veps^2$$
+我们还可以考虑$(K[\veps],\p_{\veps})$的商代数
+$K[\veps]/\veps^2$，易知
+$(K[\veps]/\veps^2,\p_{\veps})$也构成微分分次代数，
+从而也通过微分算子$\p_{\veps}$视为链复形。
+在此代数中，$\veps^2=0$.\vs
 
-\begin{example}(Group (co)homology)
+类似地，我们可以给出约化Bar-复形的另一种理解方式：
 
-Let $G$ be a group, $M\in\text{Rep}(G)$ is a left module,
-then we obtain a complex
-$$M\xra{\delta}C^1(G,M)\xra{\delta}C^2(G,M)\xra{\delta}...$$
-where
+\begin{prop}
+对于$K$-代数$A$，则有链复形同构
+$$(\overline{B}\downdot A\to A,b)\cong (A*K[\veps]/\veps^2,\p_{\veps})$$
+\end{prop}
+
+只需注意到$A*K[\veps]/\veps^2$
+当中的$n$次齐次元必形如以下元素的有限和：
+$$a_0\veps a_1\veps\cdots a_n\veps a_{n+1}\quad (a_i\in A)$$
+
+\begin{proof}
+完全类似。事实上此链复形同构映射由
+$\fai_n:B_nA \to (A*K[\veps])_n$诱导，
+其良定性由下式保证：对任意$1\leq i\leq n$，
+\begin{eqnarray*}
+&&  \fai_n(a_0\ten \cdots\ten a_{i-1}
+    \ten 1\ten a_{i+1}\ten\cdots\ten a_{n+1})\\
+&=& a_0\veps a_1\cdots a_{i-1}\veps1\veps a_{i+1}\cdots\veps a_{n+1}\\
+&=& a_0\veps a_1\cdots a_{i-1}1\veps^2a_{i+1}\cdots\veps a_{n+1}\\
+&=& 0\mod\veps^2
+\end{eqnarray*}
+\end{proof}
+%Similarly, reduced Bar-complex
+%$$[\bar{B}\downdot A\to A]\cong A*K[\veps]/\veps^2$$
+
+本节最后简单介绍以下Hochschild（上）
+同调与其它常见的（上）同调理论的关系。
+
+\begin{example}（群的上同调）%(Group (co)homology)
+
+设$G$是一个群，$M\in\Rep(G)$为群$G$的一个左$K$-表示，
+则有$G$-模链复形
+%Let $G$ be a group, $M\in\text{Rep}(G)$ is a left module,
+%then we obtain a complex
+$$0\to M\xra{\delta}C^1(G,M)\xra{\delta}C^2(G,M)\xra{\delta}...$$
+其中%where
 $$C^n(G,M):=\Hom(G^n,M)=\{f:G^n\to M\}$$
-the differential $\delta$ s.t.
-$$\delta(m)(g)=g.m-m$$
-$$(\delta f)(g_0,g_1,...,g_n)=g_0f(g_1,...,g_n)-f(g_0g_1,g_2,...)
-+...+f(g_0,...,g_{n-1}g_n)\pm f(g_0,...,g_{n-1})$$
-
-check $\delta^2=0$,this cohomology
-$$H\updot(C\updot(G,M),\delta)=H\updot(G,M)$$
-group homology
+并且微分算子$\delta$满足%the differential $\delta$ s.t.
+$$\left\{\begin{array}{rcl}
+\delta(m)(g)&=&g.m-m\\
+(\delta f)(g_0,g_1,...,g_n)&=&
+g_0.f(g_1,g_2,...,g_n)\\
+&&-\sum\limits_{k=1}^{n-1}(-1)^kf(g_1,...,g_kg_{k+1},...,g_n)\\
+&&-(-1)^nf(g_0,g_1,...,g_{n-1})
+\end{array}\right.
+$$
+%check $\delta^2=0$,this cohomology
+容易验证$\delta^2$=0.此链复形的上同调
+$$H\updot(G,M):=H\updot(C\updot(G,M),\delta)$$
+称之为\textbf{群的上同调}(group cohomology)
+\index{group cohomology\kong 群的上同调}
 \end{example}
 
-Let $A=K[G]$ group algebra with right $A$-action.then
+由$\delta$的表达式容易看出，
+群的上同调与Hochschild上同调有以下关系：
+
+\begin{prop}设$G$是一个群，$M$为群$G$的一个左$K$-模，
+考虑群代数$A:=K[G]$，于是$M$自然有左$A$-模结构。那么有同构：
+%Let $A=K[G]$ group algebra with right $A$-action.then
 $$H\updot(G,M)\cong H\updot(K[G],M)$$
-hochschild cohomology.
+%hochschild cohomology.
+其中左边为群$G$关于$M$的上同调，
+右边为群代数$K[G]$关于$M$的Hichschild上同调。
+\end{prop}
 
-\begin{example}(Lie algebra (co)homology)
+{\color{red}
+注意$M$仅仅是左$K[G]$-模，并没有双$K[G]$-模结构呀，
+怎么谈论Hochschild上同调？
 
-$\mathfrak{g}$:Lie algebra, $M$ is a $\mathfrak{g}$-module.
-consider $A:=\mathcal{U}(\mathfrak{g})$ universal enveloping algebra,
-$M$ is a left $A$-module, with
+\color{purple}
+（强行规定$G$在$M$上的右作用恒为1，
+通过$K$-线性扩张得到$K[G]$在$M$的右作用，
+这样就得到$M$的双$K[G]$-模结构了。）}
+
+\begin{proof}
+注意到$\Hom(G^n,M)$中的元素可以自然地$K$-线性延拓为
+$\Hom(K[G]^n,M)$中的元素，这给出它们之间的同构。
+然后注意到$A=K[G]$的Hochschild上链复形的微分算子的显式表达式，
+（见定义\ref{Hochschild上同调-def}的下方）
+它与群上同调相应的上链复形的微分算子显式表达式
+“相同”。细节从略。
+\end{proof}
+
+若熟悉李代数同调，我们可以将李代数同调与
+其泛包络代数的Hochschild同调联系起来：
+
+\begin{example}（李代数同调）%(Lie algebra (co)homology)
+对于李代数$\mfkg$，$M$为李代数$\mfkg$的一个左$K$-模。
+令$A:=\mcalU(\mfkg)$为$\mfkg$的泛包络代数，
+则$A$自然有左$A$-模结构。
+（再通过某种“比较平凡”的方式给出右作用？与上例类似？）
+则有同构
+%$\mathfrak{g}$:Lie algebra, $M$ is a $\mathfrak{g}$-module.
+%consider $A:=\mathcal{U}(\mathfrak{g})$ universal enveloping algebra,
+%$M$ is a left $A$-module, with
 $$H\downdot(\mathcal{U}(\mathfrak{g}),M)
-=H^{\text{Lie}}\downdot(\mathfrak{g},M)$$
+\cong H^{\text{Lie}}\downdot(\mathfrak{g},M)$$
+其中左边是$A$关于$M$的Hochschild同调，右边是李代数同调。
 \end{example}
 
-\section{循环（上）同调}
+并没有在此叙述\textbf{李代数同调}的定义。
+留给感兴趣者。此处从略。
+
+事实上，也可以考虑\textbf{群的同调}、\textbf{李代数上同调}，
+它们也有对应的Hochschild同调、上同调。
+
+\section{循环同调}
 %Cyclic homology%
 
 $\HH\downdot(A)\rightsquigarrow$noncommutative differential forms.
@@ -945,9 +1153,244 @@ $$HC\downdot(A):=H\downdot(\text{Tot}(CC\downdot(A)))
 
 Intuitively, we can delete "exact sequence" and get rid of 蓝色框框，
 
+%%%%%%%同调代数工具%%%%%%%
+
 \section{始有一如，独一之神，其名在阿尔达称为伊露维塔。}
 
-%%%%%%%同调代数工具%%%%%%%
+%%%%%%%%%%%%%%%%2019.3.5 TUE 第二周%%%%%%%%%%%%%%%%%
+
+\textbf{Cyclic v.s. de Rham}
+
+Last time "Cyclic homology"
+
+$$\lmd:a_0\ten...\ten a_n\mapsto(-1)^n a_n\ten a_1\ten...\ten a_{n+1}$$
+
+$H^{\lmd}\downdot(A)=H\downdot(C\downdot(A)/(1-\lmd),b)$
+
+$\mcalN:C_n(A)\to C_n(A)$
+
+$\mcalN=1+\lmd+...+\lmd^n$
+
+$HC\downdot(A)=\text{Tot}\text{(cyclic bi-complex)}$
+%%%%昨天的双复形%%%%%
+
+Today：
+
+\begin{prop}
+$$B\circ b+b\circ B=0$$
+where $B$ is Connes' operator
+\end{prop}
+
+Easy to check.
+
+$$(C\downdot(A)[u^{-1}],b+uB)$$
+
+$$C\downdot(A)[u^{-1}]:=C\downdot(A)\oplus C\downdot(A)u^{-1}
+\oplus C\downdot(A)u^{-2}\oplus\cdots$$
+
+\begin{prop}
+$$H\downdot^{\lmd}(A)\cong H\downdot(C\downdot(A)[u^{-1}],b+uB)$$
+$(b+uB)^2=0$
+
+$$\deg(b)=-1,\quad\deg(B)=1,\quad\deg(u)=-2$$
+
+where $u$ is a formal variable.
+\end{prop}
+
+\begin{rem}(Geometry anelogue)
+\textbf{Hodge theory}
+
+A complex m.f.d., $X$， complex(or algebraic) geometry,
+has an operator $\pbar$;
+
+topology: consider de-rham operator $\td=\p+\pbar$.
+
+Consider $\td_u:=\pbar+u\p$, called "Hodge filtration".
+A bridge between "topology" and "complex geometry".
+
+"Stability condition".
+\end{rem}
+
+\textbf{Periodic cyclic homology}
+
+$$CC^{per}\downdot(A):=(C\downdot(A)((u)),b+uB)$$
+$$H\downdot(CC^{per}\downdot(A),b+uB)$$
+is called periodic cyclic homology.
+
+\textbf{negative cyclic homology}
+$$CC^-\downdot(A):=(C\downdot(A)[u],b+uB)$$
+
+$$CC\downdot^{per}\rightsquigarrow\text{de rham homology}
+\text{open-closed string states}$$
+
+$$CC\downdot(A)\rightsquigarrow
+\text{open string states}\leftrightsquigarrow\text{gauge theory}$$
+
+$$CC^-\downdot(A)\rightsquigarrow
+\text{closed string states}\leftrightsquigarrow\text{gravity}$$
+
+Why "$B$" is like de-rham differential?
+
+%%%%%%%%%Reduced complex%%%%%%%%%
+
+$$B:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
+$$a_0\ten\overline{a_1}\ten...\ten\overline{a_n}
+\mapsto\sum_i\pm1\ten\overline{a_i}
+\ten\cdots\ten\overline{a_n}\ten...\ten\overline{a_{i-1}}$$
+
+$$H\downdot(\overline{C}\downdot(A)[u^{-1}],b+uB)
+\cong\text{cyclic homology of $A$}$$
+
+\begin{example}
+Consider $A=K$ as $K$-algebra.
+$\overline{A}=0$.
+So,
+$$\overline{A}\downdot A=A\ten "0"$$
+$$b=0\quad B=0$$
+
+$$\overline\downdot(A)[]u^{-1}\rightsquigarrow HC_n(K)=
+\left\{\begin{array}{ll}
+K & \text{$n\geq 0$ even}\\
+0 & \text{otherwise}
+\end{array}\right.$$
+
+$$K,Ku^{-1},Ku^{-2}...H\downdot(\bbC P^{\infty}=B\cup(1))$$
+
+$$C^{\lmd}\downdot A=C\downdot(K)/(1-\lmd)$$
+
+$$C_n(K):1\overbrace{\ten1\ten...\ten1}^{n}=:\veps_n$$
+
+$$\lmd(\veps_n)=(-1)^n\veps_n$$
+
+$$\left\{
+\begin{matrix}
+\veps\text{even is cyclic invariant}\\
+\veps\text{odd$=0$ in} C\downdot^{\lmd}(K)
+\end{matrix}
+\right.
+$$
+
+$$b(\veps_{2m})=\veps_{2m-1}$$
+
+$$0=b\text{acts on} C^{\lmd}\downdot(K)$$
+
+$$H^{\lmd}\downdot(K)=C\downdot^{\lmd}(K)=
+K\veps_0\oplus K\veps_2\oplus...$$
+
+compute it by 3 ways...
+
+\end{example}
+
+\begin{example}
+$A=K[x^i]$,then $\HH\downdot(A)=\Omg\updot(A)=\bbC[x^i,\td x^i]$.
+Explicitly, we define
+$$\Phi:\overline{C}_p(A)\to \Omg^p(A)$$
+$$a_0\ten\overline{a_1}\ten...\ten\overline{A_p}
+\mapsto \frac{1}{p!}
+a_0\td a_1\wedge\td a_2\wedge...\wedge\td a_p$$
+
+Check: $\Phi\circ b=0$.i.e.
+$$\Phi:(\overline{C\downdot(A)},b)\to(\Omg^0(A),0)$$
+si a chain map.
+%%%%%%Isildur%%%%%%%%
+
+So, we have an isomorphism
+$$\HH\downdot(A)\cong \Omg\updot (A)$$
+\end{example}
+
+Check:
+$$\Phi\circ B=\td\circ\Phi$$
+%%%%%%%这很明显吧%%%%%%%%%%%
+
+So,
+
+$$\Phi:(\overline(C)\downdot(A),b,B)\to(\Omg\updot(A),0,\td)$$
+
+Cyclic homology,
+$$\Phi:(\overline(C)\downdot(A),b+uB)\to
+(\Omg\updot(A)[u^{-1}],u\td )$$
+
+
+If $A=K[x^i]$
+$$\cdots\xra{\td}\Omg\updot(A)
+\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
+
+then $$H\downdot(\Omg\updot(A),\td)=H_0=K$$
+"Poincare lemma"
+
+\begin{prop}
+$$HC\downdot(K[x^i])=\frac{\Omg\updot(A)}
+                    {d\Omg\updot(A)}
+\oplus u^{-1}K[u^{-1}]$$
+
+
+\end{prop}
+
+\begin{rem}
+
+$Phi$ has a splitting
+
+$$\eta:\Omg\updot(A)\to\overline{C}\downdot(A)$$
+$$a_0\td a_1\wedge\td a_2\wedge...\wedge\td a_p
+\mapsto\sum_{\sigma\in S_p}(-1)^{|\sigma|}a_0\ten a_{\sigma(1)}\ten...\ten a_{\sigma(p)}$$
+
+Check:$b\circ\eta=0$.
+
+So, $\eta:\Omg\updot(A)\to \HH\downdot(A)$
+which is inverse of $\Phi$.
+\end{rem}
+
+\textbf{Cyclic cohomology }
+
+$$C_n(A)\cong A^{\ten n+1}$$
+
+\begin{definition}
+$$C^n(A):=\Hom(A^{\ten n+1},K)$$
+with $f\in C^n(A)$ is called cyclic invariant if
+
+$$f(a_0,a_1,...,a_n)=(-1)^nf(a_n,a_0,...,a_{n-1})$$
+
+cyclic cochains form a subcomplex
+
+$$C_{\lmd}^n(A)\subseteq C^n(A)$$
+which is dual to
+$$C_n(A)\to C_n^{\lmd}(A)$$
+
+$$b^*:C_{\lmd}^n(A)\to C_{\lmd}^{n+1}(A)$$
+
+
+
+\end{definition}
+
+\begin{definition}
+Cyclic cohomology
+$$H\updot(H_{\lmd}\updot(A),d^*)=:H\updot_{\lmd}(A)=HC\updot(A)$$
+
+\end{definition}
+
+\begin{example}
+$$f\in C_{\lmd}^0(A):A\to K$$
+$$b^*f\in C^1_{\lmd}(A)$$
+$$b^*f(a_0,a_1)=f(b(a_0\ten a_1))=f(a_0a_1-a_1a_0)$$
+$$b^*=0\iff f:A/[A,A]\to K$$
+$f$ behaves like "trace".
+$HC^0(A)$="trace operators"
+\end{example}
+
+\textbf{Pairing}
+$M,N$ are bi-module,then there is a pairing
+$$C^n(A,M)\ten C_0(A,N)\to N\ten_{A^e}M$$
+So,
+$$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
+$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$
+
+
+
+
+
+
+
+
 
 
 
