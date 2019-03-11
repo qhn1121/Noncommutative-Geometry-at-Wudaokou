@@ -1,0 +1,258 @@
+%%%%%%%%%%2019.3.11 Mon 第三周%%%%%%%%
+\chapter{乘积}
+
+\textbf{Product}
+
+Recall:
+Commutative                 non-Commutative
+
+polyvectorfield             $(C\updot(A,A),\p)$
+
+differential form           $(C\downdot(A,A),b)$
+
+$(\Omg_X\updot)$            $(C\downdot(A),b,\mcalB)$
+%%%%%%%%%%%
+
+cyclic homology  $H\downdot(C\downdot(A)[u^{-1}],b+u\mcalB)$
+
+negative homology  $H\downdot(C\downdot(A)[u],b+u\mcalB)$
+
+periodic homology  (analogue of de Rham cohomology)
+$H\downdot(C\downdot(A)(u),b+u\mcalB)$
+
+Today:
+
+\begin{definition}
+$A$ is a $\bbZ$-graded algebra,$A=\bigoplus\limits_{k\in\bbZ}A_k$,
+such that
+$$A_k\cdot A_l\subseteq A_{k+l}$$
+and associative.
+
+$A$ is graded commutative if
+$$a_k\cdot a_l=(-1)^{kl}a_la_k$$
+\end{definition}
+
+\begin{definition}
+$\mfkg$ is a graded Lie algebra(super Lie algebra)
+if
+
+(1) $\mfkg=\bigoplus\limits_{k\in\bbZ}\mfkg_k$
+
+(2) Lie bracket $[,] \mfkg_k\times\mfkg_l\mapsto\mfkg_{k+l}$
+which is graded skew-symmetric
+$$[a,b]=-(-1)^{\deg a\deg b}[b,a]$$
+
+(3)Graded Jacobi identity
+$$[[a,b],c]=[a,[b,c]]-(-1)^{\deg a\deg b}[b,[a,c]]$$
+\end{definition}
+
+
+\begin{example}
+(1)$(\Omg_X\updot,\wedge)$ is a graded commutative algebra.
+
+(2) $\text{PV}_X:=\Gamma(X,\wedge^*TX)$poly vector field,
+is graded commutative alg.
+\end{example}
+
+Schousten-Nijenhuis bracket$\{,\}$：
+
+$$\{,\}:PV^p\times PV^q\to PV^{p+q-1}$$
+
+$$\xi=\xi_1\wedge...\wedge\xi_p$$
+$$\eta=\eta_1\wedge...\wedge\eta_q$$
+
+then
+
+$$\{\xi,\eta\}=\sum_{i,j}(-1)^{i+j}[\xi_1,\eta_j]
+\xi_1\wedge...\widehat{\xi_i}...\xi_p\wedge\eta_1...\widehat{\eta_j}...\eta_q$$
+
+Check:
+
+(1) $\{,\}$ is well-defined and coordinate independent.(HW)
+
+(2) $\{\xi,\eta\}=-(-1)^{(\deg\xi-1)(\deg\eta-1)}\{\eta,\xi\}$
+%%%%%%%%%Details%%%%%%
+
+\begin{notation}
+$A$ is graded, then $(A[1])_n:=A_{n-1}$ shifted gradation...
+\end{notation}
+
+So, $PV_X[1]$ is a graded Lie algebra, and
+$$(PV_X[1])_0=T_X$$
+is a Lie algebra.
+
+(3) graded  Leibnitz rule
+$$\{\alpha,\beta\wedge\gamma\}
+=\{\alpha,\beta\}\gamma+(-1)^{(\deg\alpha-1)\deg\beta}
+\beta\{\alpha,\gamma\}$$
+(挪之前的分次)
+
+\begin{prop}
+
+(1)$(PV,\wedge)$ graded algebra
+
+(2)$(PV[1],\{,\})$ graded Lie alg
+
+(3) (1)(2)is compactible(Leibnitz rule)
+
+\end{prop}
+
+Gerstenhaber algebra(Wiki, HW)
+(in physics, Classical BV algebra)
+
+
+\textbf{Shuffle product}
+
+\begin{definition}
+Let $S_n$ be the symmetric group, A (p,q)-Shuffle is
+ a permutation $\sigma\in S_{p+q}$ such that
+ $$\sigma(1)<\sigma(2)<...<\sigma(p)$$
+  $$\sigma(p+1)<\sigma(p+2)<...<\sigma(q)$$
+Let
+$$Sh_{p,q}:=\text{ all the $p,q$-Shuffle}$$
+\end{definition}
+
+Let $A,A'$ be to $K$-algebras,
+$M,M'$ are $A,A'$-bimodule. We define the Shuffle product $\times$
+
+$$C_p(A,M)\times C_q(A',M')\to C_{p+q}(A\ten A',M\ten M')$$
+
+$$(m,a_1,...,a_p)\times(m',a_1',...,a_q')\mapsto
+\sum_{\sigma\in Sh_{p,q}}
+  (-1)^{|\sigma|}
+  (m\ten m',\sigma(a_1,...,a_p,a_1',...,a_q'))
+$$
+
+Here $\sigma(a_1,...,a_p,a_1',...,a_q')=(a_{\sigma^{-1}(1)})$
+%要取逆。。。因为是左作用%
+
+\begin{prop}
+The Shuffle product $\times$ is compatible with
+Hochschild differential $b$: i.e.
+
+$$b(x\times y=b(x)\times y+(-1)^{\deg x}x\times b(y)$$
+\end{prop}
+
+%%%%%%%又画图了%%%%%%
+%读论文就是将非人话翻译成人话的过程，
+%写论文就是将人话写成非人话的过程。
+%                               ——李思
+
+%“我写的公式也不一定对。。。但基本上是对的，up to sign”
+
+\begin{cor}
+we get a chain complex map
+$$C\downdot(A,M)\ten C\downdot(A',M')
+\to
+C\downdot(A\ten A',M\ten M')$$
+
+pass to homology, we get
+
+$$H\downdot(A,M)\ten H\downdot(A',M')
+\to
+H\downdot(A\ten A',M\ten M')$$
+
+In particular,
+$$C\downdot(A)\ten C\downdot(A')\to C\downdot(A\ten A')$$
+\end{cor}
+
+\begin{thm}(K\"{u}nneth Forumla)
+
+Assume $a,A'$ are flat over $K$,
+then Shuffle product gives an isomorphism
+$$\HH\downdot(A)\ten\HH\downdot(A')\cong\HH\downdot(A\ten A')$$
+\end{thm}
+
+%不证了，标准的证明
+
+Functoriality:
+
+$$\fai:A\to B$$
+is a map of $K$-algebra, then
+
+$$\fai\downdot:C\downdot(A)\to C\downdot(B)$$
+
+induces
+
+$$\fai:\HH\downdot(A)\to \HH\downdot(B)$$
+%%%%%%%代数映射%%%%%%%5
+
+\begin{cor}
+Let $A$ be a commutative associative algebra, then
+$(\HH\downdot(A),\times)$ is a graded commutative algebra.
+\end{cor}
+
+HW: If $A=K[x^i]$, then
+$$(\HH\downdot(A),\times)\cong(\Omg_A\updot,\wedge)$$
+
+\textbf{Cup product}
+
+$$C\updot(A,A)=\bigoplus_p(C^p(A,A))$$
+
+%%%%%%%%%%%%%树%%%%%%%%%
+
+\begin{definition}
+For $f\in C^p(A,A)$,$g\in C^q(A,A)$. Define cup product
+$$f\cup g\in C^{p+q}(A,A)$$
+%%%%%%%shadiao%%%%
+\end{definition}
+
+\begin{prop}
+Cup product is compatible with Hochschild differential $\p$:
+
+$$\p(f\cup g)=(\p f)\cup g+(-1)^{\deg f}f\cup\p g$$
+\end{prop}
+
+%%%%%%%这岂不是吃屎%%%%%%%
+
+\begin{cor}
+There is a well-defined cup product
+$$\cup: H^p(A,A)\times H^{q}(A,A)\to H^{p+q}(A,A)$$
+\end{cor}
+
+HW: If $A=\bbC[x^i]$,then
+$$(H\updot(A,A),\cup)\cong (PV_A,\wedge)$$
+
+\textbf{Gerstenhaber algebra(自己查定义)}
+
+\begin{definition}Gershenhaber product
+$$C^{p}(A,A)\times C^q(A,A)\to C^{p+q-1}(A,A)$$
+$$(f,g)\to f\circ g$$
+
+%%%%%%%Gerstenhaber%%%%%%%%%5
+\end{definition}
+
+\begin{prop}
+$$\p(f\circ g)-(\p f)\circ g-(-1)^{\deg g-1}f\circ\p g
+=\pm(f\cup g-(-1)^{\deg f\deg g}g\cup f)
+=\text{the failure of $\circ$ being a chain map
+is measured bu the commutativity of cup product}$$
+\end{prop}
+
+\begin{proof}
+%%%%%%%暴力计算，需要画很多图，从略%%%%%%55
+HW
+\end{proof}
+
+\begin{cor}
+$(\H\updot(A,A),\cup)$ is a graded commutative algebra.
+\end{cor}
+
+\begin{proof}
+Omit.
+\end{proof}
+
+%%注记：很深刻的结论。。。。%%%
+%%
+
+\begin{definition}(Cerstenhaber bracket)
+$$\{f,g\}=f\circ g-(-1)^{(f-1)(g-1)}g\circ f$$
+%这是非交换版本的NR括号
+\end{definition}
+
+\begin{prop}
+$$\p\{f,g\}=\{\p f,g\}\pm\{f,\p g\}$$
+and induces
+$\{,\}$ defines on $H\updot(A,A)$.
+this is  the analogue of Schouten-Nijenhuis bracket.
+\end{prop}
