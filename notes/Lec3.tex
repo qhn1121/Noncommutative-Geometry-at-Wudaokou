@@ -22,6 +22,8 @@ $H\downdot(C\downdot(A)(u),b+u\mcalB)$
 
 Today:
 
+\section{多重切向量场与Schouten-Nijenhuis括号}
+
 \begin{definition}
 $A$ is a $\bbZ$-graded algebra,$A=\bigoplus\limits_{k\in\bbZ}A_k$,
 such that
@@ -101,7 +103,7 @@ Gerstenhaber algebra(Wiki, HW)
 (in physics, Classical BV algebra)
 
 
-\textbf{Shuffle product}
+\section{Shuffle乘积}
 
 \begin{definition}
 Let $S_n$ be the symmetric group, A (p,q)-Shuffle is
@@ -185,7 +187,7 @@ $(\HH\downdot(A),\times)$ is a graded commutative algebra.
 HW: If $A=K[x^i]$, then
 $$(\HH\downdot(A),\times)\cong(\Omg_A\updot,\wedge)$$
 
-\textbf{Cup product}
+\section{Cup乘积}
 
 $$C\updot(A,A)=\bigoplus_p(C^p(A,A))$$
 
@@ -213,6 +215,7 @@ $$\cup: H^p(A,A)\times H^{q}(A,A)\to H^{p+q}(A,A)$$
 HW: If $A=\bbC[x^i]$,then
 $$(H\updot(A,A),\cup)\cong (PV_A,\wedge)$$
 
+\section{Gerstenhaber 乘积}
 \textbf{Gerstenhaber algebra(自己查定义)}
 
 \begin{definition}Gershenhaber product
@@ -256,3 +259,241 @@ and induces
 $\{,\}$ defines on $H\updot(A,A)$.
 this is  the analogue of Schouten-Nijenhuis bracket.
 \end{prop}
+
+%%%%%%%%%%%%2019.3.12第三周Mon%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%下周一，周坚代课%%&%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%下周二，随堂考试%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Coalgebra and homotopy associativity}
+
+We will talk with the category
+$\bbZ$-graded $K$-modules
+$$Mod_k^{\bbZ}$$
+
+object: $C=\bigoplus\limits_{k\in\bbZ}C_k$
+
+morphism:$f:C\to D$ is said to have degree $n$ if 
+$$f:C_k\to C_{k+n}$$
+
+$$\Hom(C,D):=\bigoplus_n(C,D)_n$$
+(i.e. degree$=n$)
+where
+$$\Hom(C,D)_n=\bigoplus_m\Hom(C_m,D_{m+n})$$
+
+now,$C,D\in Mod_{K}^{\bbZ}$
+$$(C\ten D)_n:=\sum_{m+l=n}C_m\ten D_l$$
+we define the flip
+$$\tau:C\downdot\ten D\downdot\to D\downdot\ten C\downdot$$
+$$c_m\ten d_l\mapsto(-1)^{ml}d_l\ten c_m$$
+
+$\rightsquigarrow$ Koszul sign rule:
+
+Eg. $f\in\Hom(C,D)$,$g\in\Hom(C',D')$,then
+$$(f\ten g)(x\ten y)=(-1)^{|g||x|}f(x)g(y)$$
+
+$C\downdot$ graded $K$-module. Graded duality??
+$$C^*_n:=\Hom(C_{-n},K)$$
+$$C^*\downdot:=\bigoplus_n C_n^*$$
+
+A complex is $\bbZ$- graded $K$-module
+$$\cdots\to C_{-1}\xra{\td}C_0\xra{\td}C_1\xra{\td}C_2\to\cdots$$
+$\deg\td=1$，$\td^2=0$.
+
+Complex $(C\downdot,\td)\rightsquigarrow$dual complex
+$(C\downdot^*,\td^*)$is the dual of
+$C_{-(n+1)}\xra{\td}C_{-n}$.
+
+Shift
+
+$(C\downdot,\td)\rightsquigarrow(C\downdot[1])$
+$$(C\downdot[1])_n:=C_{n+1}$$
+differential$=-\td$
+
+$(C\downdot,\td_C)$ and $(D\downdot,\td_D)$,then
+$(C\downdot \ten D\downdot,\td)$
+$$\td:C_p\ten D_q\to C_{p+1}\ten D_q\oplus C_p\ten D_{q+1}$$
+$$\td=\td_C\ten 1+(-1)^p1\ten \td_D$$
+
+$A$ graded $K$-algebra,
+$$A=\bigoplus_nA_n\in Mod_K^{\bbZ}$$
+$$m:A\ten A\to A$$
+degree of $m$ is $0$.
+
+satisfying associativity
+%%%%%结合性%%%%%%%% 
+
+Category of associative graded $K$-algebra 
+$$Ass-alg_K^{\bbZ}$$
+
+$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative" 
+if
+
+%%%%%%分次交换%%%%%%%%% 
+
+A differential graded $K$-algebra $(A\downdot,\td)$
+$\td(\alpha\cdot\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha\td\beta$
+
+%%%%分次微分%%%%%%%
+
+$V$ is a graded $K$-module, then define
+$$Sym^m(V)=V^{\ten m}\big/\sim$$
+where
+$$\alpha\ten\beta\sim(-1)^{|\alpha||\beta|}\beta\ten\alpha$$
+
+and define
+$$\wedgeform{m}(V):=V^{\ten m}\big/\sim$$
+where
+$$\alpha\ten\beta\sim-(-1)^{|\alpha||\beta|}\beta\ten\alpha$$
+
+If $V=V_0$, then $Sym^n(V_0)$ is the usual symmetric tensor,
+and $\wedgeform{n}(V_0)$ exterior.
+
+HW:%%必考！！
+
+$$Sym^n(V\downdot[1])\cong\wedgeform{n}(V)[n]$$
+here $[n]=([1])^{n\text{times}}$
+
+%%非常重要！！！%
+
+We have natural forgetful functor 
+$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+
+whose left adjoints are called "free objects".
+
+\begin{definition}
+ $V\in Mod_K^{\bbZ}$, define the tensor algebra
+$$T(V):=K\oplus V\oplus V^{\ten a}\oplus\cdots=\bigoplus_{n\geq 0}V^{\ten n}$$
+with algebra structure given by $\ten$:
+$$(v_1\ten...\ten v_p)\cdot((v_{p+1}\ten...\ten v_{p+q}))
+=v_1\ten...\ten v_{p+q}$$
+\end{definition}
+
+$$T:Mod_K^{\bbZ}\to Ass-alg_K^{\bbZ}$$
+$$V\mapsto T(V)$$
+
+\begin{prop}
+$T$ is the left adjoint of
+$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+\end{prop}
+这个显然，不证了。
+
+\begin{definition}
+$V\in Mod_K^{\bbZ}$, we define $Sym(V)$ by
+$$Sym(V):=\bigoplus_{m\geq 0}^n(V)$$
+$$Sym:Mod_K^{\bbZ}\to Commu-alg_K^{\bbZ}$$
+\end{definition}
+
+\begin{prop}
+$Sym$ is the left adjoint of 
+$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+\end{prop}
+
+Let $A\in Ass-alg_K^{\bbZ}$,$M$ is a (graded) bi-module,
+a derivation 
+$$D:A\to M$$
+is a $K$-linear map ,and satisfies 
+$$D(ab)=D(a)b\pm aD(b)$$
+%也可以考虑导子的degre. 不过一般都是degree0 的
+%涉及正负号时，Koszul rule
+
+%%%%导子图%%%%%%%%
+
+\begin{prop}(if $V$ is a graded $K$-module)
+$$\Der(T(V),M)\cong\Hom(V,M)$$
+\end{prop}
+
+In particular, 
+$$\Der(T(V),T(V))\cong\Hom(V,T(V))$$
+
+Check:If $D_1,D_2\in\Der(A,A)$,then
+$$[D_1,D_2]:=D_1\circ D_2-(-1)^{|D_1||D_2|}D_2\circ D_1$$
+is also a (graded) derivation.
+
+i.e. $(\Der(A,A),[-,-])$ is a graded Lie algebra.
+
+\textbf{Co-algebra}
+
+\begin{definition}
+$C\downdot\in Mod_K^{\bbZ}$ is a graded coalgebra over $K$，
+if there is a coproduct ($\deg=0$)
+$$\triangle:C\to C\ten C$$
+%%%coproduct%%%%%%%
+\end{definition}
+
+counit$\veps:C\to K$ satisfying
+%%%%%%%%counit%%%%%%%%%
+
+co-derivation
+
+$\delta: C\to C$ satisfying
+%%%%%co-Leibnitz rule%%%%%%%
+
+A differential graded co-algebra is a co-algebra 
+$C$ with a co-derivation $\delta:C\to C$ such that 
+$\deg\delta=1$ and $\delta^2=0$.
+
+co-augmentation
+
+ (Recall:
+ $A$:$K$-algebra. augmentation is an algebra morphism
+$A\to K$.)
+
+Co-algebra $(C,\triangle)$ is called co-augmentation if 
+there is a co-algebra map $K\to C$.
+%%%%%%co-algebra的同态怎么定义？自行脑补%%%%%%%%%%
+
+$(C,\triangle)$ is co-commutative,if 
+%%%%co-commutative%%%%%%
+
+\begin{rem}
+If $(C,\triangle)$ is a co-algebra, then
+$(C^*,\triangle^*)$ is an algebra
+$$A\ten A=C^*\ten C^*\to(C\ten C)^*\xra{\triangle^*}C^*=A$$
+\end{rem}
+%%%%%见图%%%%%%%5
+
+\begin{example}
+$V\in Mod_K^{\bbZ}$, 
+$$T^c(V):=\bigoplus_{n\geq 0}V^{\ten n}$$
+$$\triangle:T(V)\to T(V)\ten T(V)$$
+$$v_1\ten...\ten v_n\mapsto
+\sum_{i=0}^n(v_1\ten...\ten v_i)\ten(v_{i+1}\ten...\ten v_n)$$
+\end{example}
+
+Check:$\triangle$ is a co-product, and what is its dual?
+
+\begin{example}
+$$\overline{T^c}(V):=\bigoplus_{n\geq 1}V^{\ten n}$$
+$$\overline{\triangle}(v_1\ten...\ten v_n)
+=
+\sum_{i=1}^{n-1}(v_1\ten...\ten v_i)\ten(v_{i+1}\ten v_n)$$
+
+$\overline{T^c}(V)$ is a co-product on $\overline{T^c}(V)$.
+\end{example}
+
+$Coder(C)$ is all the co-derivation....
+
+\begin{prop}
+$Coder(C)$ is a graded Lie algebra, where
+$$[D_1,D_2]=D_1\circ D_2-(-1)^{|D_1||D_2|}D_2\circ D_1$$
+\end{prop}
+
+\textbf{Associativity.}
+
+$$\bullet:A\ten A\to A$$
+$\Longrightarrow$
+$$m:A[1]\ten A[1]\to A[1]$$
+$$sa_1\ten sa_2\mapsto(-1)^{|a_1|+1}s(a_1a_2)$$
+
+Observation:
+Associativity of $\bullet\Longleftrightarrow[m,m]=0$
+
+%%%%%叼~~%%%%%
+
+
+
+
+
+
+

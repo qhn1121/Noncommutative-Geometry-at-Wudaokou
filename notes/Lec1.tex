@@ -215,7 +215,7 @@ A^e=\bbC[x^1,x^2,...,x^n;y^1,y^2,...,y^n]$$
 \label{C[x^i]的HH同调}
 考虑$\bbC$-代数$A:=\bbC[x^1,x^2,...,x^n]$，
 则其第$k$个Hochschild同调
-$$\HH_k(A)\cong A\ten\wedgeform k(\bbC^n)$$
+$$\HH_k(A)\cong\Omg^k_A:=A\ten\wedgeform k(\bbC^n)$$
 是以$A$为系数的$k$-形式。
 \end{prop}
 
@@ -288,7 +288,8 @@ A\ten_{A^e}A^e$$
 \HH_k(A)&=&H_k(A\ten_{A^e}^LA)\\
 &=&H_k(A\ten_{A^e}\mcalK_A)\\
 &=&A\ten_{A^e}\mcalK_k\\
-&=&A\ten\wedgeform k(\bbC^n)
+&=&A\ten\wedgeform k(\bbC^n)\\
+&=&\Omg^k_A
 \end{eqnarray*}
 从而得证。
 \end{proof}
@@ -757,12 +758,16 @@ $$
 
 %%%%%%%%%%%2019.3.4 Mon 第2周%%%%%%%%%%%%
 
-\section{Hochschild（上）同调的例子}
+\section{一些例子}
+
+如果$K\inj A$为嵌入，那么我们可以更加方便地计算Hochschild
+（上）同调：
 
 \begin{definition}（约化Bar-复形）（reduced Bar-complex）
 \index{reduced Bar-complex\kong 约化Bar-复形}
+\label{约化Bar复形-def}
 
-对于$K$-代数$A$，则视$K$为$A$的$K$-子模，并且令$K$-模
+对于$K$-代数$A$，如果$K\inj A$，那么考虑$K$-模
 
 $$\overline{A}:=A/K$$
 我们定义如下的约化Bar-复形$(\overline{B}\downdot A,b)$：
@@ -796,8 +801,10 @@ $$
 
 容易发现约化Bar-复形的“$b$”正是Bar-复形的$b$.
 但是我们要验证$b$的良定性，即与代表元选取无关。
-这是容易验证的。进而，我们可以由约化Bar-复形构造$A$的投射消解：
+这是容易验证的。于是我们得到以下链复形：
+
 $$\overline{B}\downdot A\to A\to 0$$
+
 与之前$Bar$-复形完全类似，我们容易验证此复形也是正合的。
 只需构造同伦算子
 \begin{eqnarray*}
@@ -822,11 +829,38 @@ M\ten_{A^e}\overline{B}\downdot A\cong M\ten\overline{A}^{\ten\bullet}\\
 称之为关于$M$的约化Hochschild（上）链复形。
 \end{definition}
 
-由于约化Bar-复形也是$A$的投射消解，
-从而我们也可以由约化Hochschild（上）
-链复形来计算Hochschild（上）同调：
-$$H\downdot(\overline{C}\downdot(A,M))=H\downdot(A,M)$$
-$$H\updot  (\overline{C}\updot  (A,M))=H\updot  (A,M)$$
+事实上，约化Hochschild（上）
+链复形的（上）同调自然同构于Hochschild（上）同调——
+这是由以下代数引理保证的：
+
+\begin{lemma}条件同上，则商映射
+$$\pi\downdot:C\downdot(A,M)
+\surj\overline{C}\downdot(A,M)$$
+所诱导的链映射
+$$\pi\downdot:(C\downdot(A,M),d)
+\surj(\overline{C}\downdot(A,M),d)$$
+为拟同构。
+\label{约化Hoschild复形与拟同构-lemma}
+\end{lemma}
+
+\begin{proof}
+注意链映射$\pi\downdot$为满态射，
+只需再证明其核复形
+$$\ker\pi\downdot$$
+是正合的即可。我们承认之（似乎不太好证）。
+\end{proof}
+
+注意上述引理也适用于Hochschild上链复形的情形，
+完全类似，不再赘述。
+从而我们立刻有如下推论：
+
+\begin{cor}
+对于$K$-代数$A$，如果$K\inj A$为嵌入，则有自然同构：
+\begin{eqnarray*}
+H\downdot(A,M)&\cong&H\downdot(\overline{C}\downdot(A,M))\\
+H\updot  (A,M)&\cong&H\updot  (\overline{C}\updot  (A,M))
+\end{eqnarray*}
+\end{cor}
 
 关于（约化）Bar-复形，我们还有另一种理解方式：
 关于$A$的（约化）Bar-复形是$A$与某个微分分次代数的自由乘积。

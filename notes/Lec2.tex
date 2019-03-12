@@ -1,5 +1,13 @@
 \chapter{循环同调}
-\section{循环同调}
+
+与上一章一样，我们仍假设$K$为特征零的含幺交换环，
+$A$为$K$-代数，且作为$K$-模是投射的。
+不过，在本章我们新增一条假定：
+$$\bbQ\inj K$$
+也就是说，有理数域能够嵌入到$K$中。
+（事实上，任何特征零的域都满足此假定。）
+
+\section{Connes复形$C^{\lmd}\downdot(A)$}
 %Cyclic homology%
 %$\HH\downdot(A)\rightsquigarrow$noncommutative differential forms.
 %$$B\dashleftarrow\text{de rham}$$
@@ -249,6 +257,8 @@ $C\downdot(A)\surj C^{\lmd}\downdot(A)$的下降。
 %so, $b$ acts on $C^{\lmd}\downdot(A)=C\downdot(A)/(1-\lmd)$
 %,called \textbf{Connes' complex}
 %$$H^{\lmd}\downdot(A)=H\downdot(C^{\lmd}\downdot(A),b)$$
+
+\section{循环双复形$CC\ddowndot(A)$}
 
 \begin{lemma}（平均算子）对于任意$K$-代数$A$，以及$n\geq 0$，
 引入平均算子$\mathcal{N}:C_n(A)\to C_n(A)$：
@@ -540,7 +550,7 @@ $$
 
 %%%%%%%同调代数工具%%%%%%%
 
-\section{循环同调的例子}
+\section{Connes算子$\mcalB$}
 
 %%%%%%%%%%%%%%%%2019.3.5 TUE 第二周%%%%%%%%%%%%%%%%%
 我们将给出循环同调的更多等价定义方式，
@@ -758,6 +768,7 @@ $$\mcalB\ddowndot(A)\inj CC\ddowndot(A)$$
 $$\Tot\downdot(\mcalB\ddowndot(A))
 \inj\Tot\downdot(CC\ddowndot(A))$$
 为拟同构。
+\label{Connes算子与循环同调-prop}
 \end{prop}
 
 \begin{proof}
@@ -911,161 +922,638 @@ Hochschild同调$\HH\downdot(A)$对应于“非交换版本的”
 微分形式$\Omg\updot$，从之前的例子能看出来。
 }
 
-\textbf{Periodic cyclic homology}
+\begin{definition}（周期循环同调与负循环同调）
+对于$K$-代数$A$，与$CC\downdot(A)$类似，我们还可以去定义以下：
 
-$$CC^{per}\downdot(A):=(C\downdot(A)((u)),b+uB)$$
-$$H\downdot(CC^{per}\downdot(A),b+uB)$$
-is called periodic cyclic homology.
+%\textbf{ homology}
 
-\textbf{negative cyclic homology}
-$$CC^-\downdot(A):=(C\downdot(A)[u],b+uB)$$
+（1）定义\textbf{周期循环复形}（periodic cyclic complex）
+\index{periodic cyclic complex\kong 周期循环复形}
+$$CC^{\per}\downdot(A):=
+(C\downdot(A)(\!(u)\!),b+u\mcalB)$$
+该复形的同调
+$$\HC^{\per}\downdot(A):=H\downdot(CC^{\per}\downdot(A),b+uB)$$
+%is called periodic cyclic homology.
+称之为\textbf{周期循环同调}（periodic cyclic homology）。\vs
 
-$$CC\downdot^{per}\rightsquigarrow\text{de rham homology}
-\text{open-closed string states}$$
-
-$$CC\downdot(A)\rightsquigarrow
-\text{open string states}\leftrightsquigarrow\text{gauge theory}$$
-
-$$CC^-\downdot(A)\rightsquigarrow
-\text{closed string states}\leftrightsquigarrow\text{gravity}$$
-
-Why "$B$" is like de-rham differential?
-
-%%%%%%%%%Reduced complex%%%%%%%%%
-
-$$B:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
-$$a_0\ten\overline{a_1}\ten...\ten\overline{a_n}
-\mapsto\sum_i\pm1\ten\overline{a_i}
-\ten\cdots\ten\overline{a_n}\ten...\ten\overline{a_{i-1}}$$
-
-$$H\downdot(\overline{C}\downdot(A)[u^{-1}],b+uB)
-\cong\text{cyclic homology of $A$}$$
-
-\begin{example}
-Consider $A=K$ as $K$-algebra.
-$\overline{A}=0$.
-So,
-$$\overline{A}\downdot A=A\ten "0"$$
-$$b=0\quad B=0$$
-
-$$\overline\downdot(A)[]u^{-1}\rightsquigarrow HC_n(K)=
-\left\{\begin{array}{ll}
-K & \text{$n\geq 0$ even}\\
-0 & \text{otherwise}
-\end{array}\right.$$
-
-$$K,Ku^{-1},Ku^{-2}...H\downdot(\bbC P^{\infty}=B\cup(1))$$
-
-$$C^{\lmd}\downdot A=C\downdot(K)/(1-\lmd)$$
-
-$$C_n(K):1\overbrace{\ten1\ten...\ten1}^{n}=:\veps_n$$
-
-$$\lmd(\veps_n)=(-1)^n\veps_n$$
-
-$$\left\{
-\begin{matrix}
-\veps\text{even is cyclic invariant}\\
-\veps\text{odd$=0$ in} C\downdot^{\lmd}(K)
-\end{matrix}
-\right.
-$$
-
-$$b(\veps_{2m})=\veps_{2m-1}$$
-
-$$0=b\text{acts on} C^{\lmd}\downdot(K)$$
-
-$$H^{\lmd}\downdot(K)=C\downdot^{\lmd}(K)=
-K\veps_0\oplus K\veps_2\oplus...$$
-
-compute it by 3 ways...
-
-\end{example}
-
-\begin{example}
-$A=K[x^i]$,then $\HH\downdot(A)=\Omg\updot(A)=\bbC[x^i,\td x^i]$.
-Explicitly, we define
-$$\Phi:\overline{C}_p(A)\to \Omg^p(A)$$
-$$a_0\ten\overline{a_1}\ten...\ten\overline{A_p}
-\mapsto \frac{1}{p!}
-a_0\td a_1\wedge\td a_2\wedge...\wedge\td a_p$$
-
-Check: $\Phi\circ b=0$.i.e.
-$$\Phi:(\overline{C\downdot(A)},b)\to(\Omg^0(A),0)$$
-si a chain map.
-%%%%%%Isildur%%%%%%%%
-
-So, we have an isomorphism
-$$\HH\downdot(A)\cong \Omg\updot (A)$$
-\end{example}
-
-Check:
-$$\Phi\circ B=\td\circ\Phi$$
-%%%%%%%这很明显吧%%%%%%%%%%%
-
-So,
-
-$$\Phi:(\overline(C)\downdot(A),b,B)\to(\Omg\updot(A),0,\td)$$
-
-Cyclic homology,
-$$\Phi:(\overline(C)\downdot(A),b+uB)\to
-(\Omg\updot(A)[u^{-1}],u\td )$$
-
-
-If $A=K[x^i]$
-$$\cdots\xra{\td}\Omg\updot(A)
-\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
-
-then $$H\downdot(\Omg\updot(A),\td)=H_0=K$$
-"Poincare lemma"
-
-\begin{prop}
-$$HC\downdot(K[x^i])=\frac{\Omg\updot(A)}
-                    {d\Omg\updot(A)}
-\oplus u^{-1}K[u^{-1}]$$
-
-
-\end{prop}
-
-\begin{rem}
-
-$Phi$ has a splitting
-
-$$\eta:\Omg\updot(A)\to\overline{C}\downdot(A)$$
-$$a_0\td a_1\wedge\td a_2\wedge...\wedge\td a_p
-\mapsto\sum_{\sigma\in S_p}(-1)^{|\sigma|}a_0\ten a_{\sigma(1)}\ten...\ten a_{\sigma(p)}$$
-
-Check:$b\circ\eta=0$.
-
-So, $\eta:\Omg\updot(A)\to \HH\downdot(A)$
-which is inverse of $\Phi$.
-\end{rem}
-
-\section{循环上同调}
-Cyclic cohomology
-$$C_n(A)\cong A^{\ten n+1}$$
-
-\begin{definition}
-$$C^n(A):=\Hom(A^{\ten n+1},K)$$
-with $f\in C^n(A)$ is called cyclic invariant if
-
-$$f(a_0,a_1,...,a_n)=(-1)^nf(a_n,a_0,...,a_{n-1})$$
-
-cyclic cochains form a subcomplex
-
-$$C_{\lmd}^n(A)\subseteq C^n(A)$$
-which is dual to
-$$C_n(A)\to C_n^{\lmd}(A)$$
-
-$$b^*:C_{\lmd}^n(A)\to C_{\lmd}^{n+1}(A)$$
-
-
-
+（2）定义\textbf{负循环复形}（negative cyclic complex）
+\index{negative cyclic complex\kong 负循环复形}
+$$CC^-\downdot(A):=(C\downdot(A)[\![u]\!],b+uB)$$
+该复形的同调
+$$\HC^-\downdot(A):=H\downdot(CC^{-}\downdot(A),b+uB)$$
+称之为\textbf{负循环同调}（negative cyclic homology）。
 \end{definition}
 
-\begin{definition}
-Cyclic cohomology
-$$H\updot(H_{\lmd}\updot(A),d^*)=:H\updot_{\lmd}(A)=HC\updot(A)$$
+注意上述定义当中的“$[\![u]\!]$”
+是指关于形式变元$u$的形式幂级数，
+而“$(\!(u)\!)$”为关于$u$的Laurent级数。由定义，显然有
+$$CC\downdot(A)\cong CC^{\per}\downdot(A)/CC^-\downdot(A)$$
 
+至此，我们定义出了$CC\downdot(A),
+CC\downdot^{\per}(A)$以及$CC\downdot^-(A)$。
+事实上，这三者都有深刻的物理背景，见下表：
+$$
+  \begin{tabular}{|c|l|l|}
+  \hline
+    非交换几何中的对象    &   几何、物理背景            &  几何、物理背景     \\
+  \hline
+    $CC\downdot^{per}(A)$ &   open-closed string states &  de-Rham cohomology \\
+    $CC\downdot(A)$       &   open string states        &  gauge theory       \\
+    $CC^-\downdot(A)$     &   closed string states      &  gravity            \\
+  \hline
+  \end{tabular}
+$$
+其中特别注意，周期循环同调是de-Rham上同调的“非交换版本”，
+我们将在后文举例说明。
+%$$CC\downdot^{per}\rightsquigarrow\text{}
+%\text{open-closed string states}$$
+
+%$$CC\downdot(A)\rightsquigarrow
+%\text{open string states}\leftrightsquigarrow\text{gauge theory}$$
+
+%$$CC^-\downdot(A)\rightsquigarrow
+%\text{closed string states}\leftrightsquigarrow\text{gravity}$$
+
+\section{一些例子}
+
+%Why "$B$" is like de-rham differential?
+
+回顾约化Bar-复形$\overline{B}\downdot(A)$
+（见定义\ref{约化Bar复形-def}），
+我们可以类似地通过约化Bar-复形来构造类似的“循环双复形”：
+在$K\inj A$的条件下，考虑约化Hochschild链复形
+$$\overline{C}_n(A):=
+\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
+{\color{gray}
+类似去定义循环算子$\lmd:\overline{C}_n(A)\to\overline{C}_n(A)$，
+其显式表达式与非约化情形完全相同；以及平均算子
+$$\mcalN:\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
+}
+{\color{red}
+可惜是错的，类似于此前的$\lmd,\mcalN$并不良定。比如
+$$0=\lmd(0)=\lmd(a_0\ten \overline{1})=-1\ten\overline{\lmd}\neq 0$$
+}
+
+但是，Connes算子$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$
+是有意义的，运算规则与非约化情形完全相同，具体地，
+\begin{eqnarray*}
+    \mcalB(a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})
+&=& \widetilde{(1-\lmd)}h\widetilde{\mcalN}
+    (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=& \widetilde{(1-\lmd)}h
+      \left(
+        \sum_{k=0}^n(-1)^{n(n+1-k)}
+          a_k\ten \overline{a_{k+1}}\ten\cdots\ten\overline{a_n}
+          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+      \right)\\
+&=&   \widetilde{(1-\lmd)}
+      \left(
+        \sum_{k=0}^n(-1)^{n(n+1-k)}
+          1\ten\overline{a_k}\ten \overline{a_{k+1}}
+          \ten\cdots\ten\overline{a_n}
+          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+      \right)\\
+&=&   \sum_{k=0}^n(-1)^{nk}
+        1\ten\overline{a_k}\ten \overline{a_{k+1}}
+         \ten\cdots\ten\overline{a_n}
+         \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+\end{eqnarray*}
+其中$a_{-1}:=a_n$.
+%%%%%%%%%Reduced complex%%%%%%%%%
+
+%$$B:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
+%$$a_0\ten\overline{a_1}\ten...\ten\overline{a_n}
+%\mapsto\sum_i\pm1\ten\overline{a_i}
+%\ten\cdots\ten\overline{a_n}\ten...\ten\overline{a_{i-1}}$$
+
+\begin{prop}对于$K$-代数$A$，假设$K\inj A$，
+则有如下双复形$\overline{\mcalB}\ddowndot(A)$：
+$$\xymatrix{
+    \vdots \ar[d]
+  & \vdots \ar[d]
+  & \vdots \ar[d]
+\\
+    A\ten\overline{A}^{\ten 2}  \ar[d]^b
+  & A\ten\overline{A}^{      }  \ar[d]^b  \ar[l]_{\mcalB}
+  & A^{      }                            \ar[l]_{\mcalB}
+\\
+    A\ten\overline{A}^{      }  \ar[d]^b
+  & A^{      }                            \ar[l]_{\mcalB}
+  &
+\\
+    A
+  &
+  &
+}$$
+记此双复形的全复形为$\overline{CC}\downdot(A)
+:=\Tot\downdot(\overline{\mcalB}\ddowndot(A))$，则有自然同构
+$$H^{\lmd}\downdot(A)\cong H\downdot(\overline{CC}\downdot(A))$$
+\end{prop}
+
+也就是说，在$K\inj A$的条件下，
+我们可以用约化版本的双复形来计算循环同调。
+
+\begin{proof}
+考虑商映射$\pi\downdot:C\downdot(A,A)
+\surj\overline{C}\downdot(A,A)$自然诱导的双复形同态
+$$\pi\ddowndot:
+\mcalB\ddowndot(A)\surj\overline{\mcalB}\ddowndot(A)$$
+
+注意$\pi\ddowndot$限制在双复形的每一列上，
+都为相应链复形的拟同构（这里使用了引理
+\ref{约化Hoschild复形与拟同构-lemma}），
+因此根据引理\ref{双复形的全复形-同调代数机器-lemma}，
+其诱导的全复形之间的同态
+$$
+\Tot\downdot(\mcalB\ddowndot(A))
+\surj\Tot\downdot(\overline{\mcalB}\ddowndot(A))$$
+为拟同构。再注意性质
+\ref{Connes算子与循环同调-prop}，
+上式左边的同调即为循环同调，从而证毕。
+\end{proof}
+
+与非约化情形类似，我们也可以
+$$\Tot\downdot(\overline{\mcalB}\ddowndot(A))\cong
+\overline{C}\downdot(A)[u^{-1}],b+u\mcalB)$$
+甚至去定义“约化周期循环同调”、
+“约化负循环同调”，此处不再赘述。\vs
+
+本节接下来给出循环同调的一些典型的计算实例。
+
+\begin{example}
+对于环$K$，设$K$-代数$A=K$，那么其循环同调
+$$
+H^{\lmd}_n(K)\cong
+  \left\{
+    \begin{array}{ll}
+      K & \text{$n$为偶数}\\
+      0 & \text{$n$为奇数}\\
+    \end{array}
+  \right.
+$$
+%$\overline{A}=0$.
+%So,
+%$$\overline{A}\downdot A=A\ten "0"$$
+%$$b=0\quad B=0$$
+\end{example}
+我们早已具体计算出$K[x^1,x^2,...,x^n]$的Hochschild同调，
+特别地$\HH\downdot(K)$只有第零个是非平凡的（同构于$K$），
+其余都为$0$.不过，$H^{\lmd}\downdot(K)$与$\HH\downdot(K)$
+并不相同。
+
+\begin{proof}我们采用最简便的方法去计算，
+当然采用约化循环双复形啦。在本例中，
+$$\overline{A}=K/K=0$$
+从而双复形$\overline{\mcalB}\ddowndot(K)$为以下：
+$$
+  \xymatrix{
+     \vdots \ar[d]
+    &\vdots \ar[d]
+    &\vdots \ar[d]
+    &\vdots \ar[d]
+  \\
+     0      \ar[d]
+    &0      \ar[d]   \ar[l]
+    &0      \ar[d]   \ar[l]
+    &K               \ar[l]
+  \\
+     0      \ar[d]
+    &0      \ar[d]   \ar[l]
+    &K               \ar[l]
+    &
+  \\
+     0      \ar[d]
+    &K               \ar[l]
+    &
+    &
+  \\
+     K
+    &
+    &
+    &
+  }
+$$
+其全复形$\overline{CC}\downdot(K)$为以下
+$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
+从而易求循环同调。
+\end{proof}
+
+当然我们也可以按照循环同调最原始的定义去计算，
+其实也不难算，如下：
+
+\begin{proof}[另一种计算方式]直接计算。此时，
+$$C_n(K)\cong K^{\ten n+1}\cong K$$
+我们记其生成元
+$$\veps_n:=\underbrace{1\ten 1\ten\cdots\ten 1}
+_{n+1\text{个}}\in C_n(K)$$
+容易验证算子$b$与算子$\lmd$的作用
+$$
+  b(\veps_n)=
+    \left\{
+      \begin{array}{ll}
+        \veps_{n-1} & \text{$n$为偶数} \\
+        0           & \text{$n$为奇数}
+      \end{array}
+    \right.
+\quad
+  \lmd(\veps_n)=
+    \left\{
+      \begin{array}{ll}
+        \veps_{n  } & \text{$n$为偶数} \\
+        -\veps_{n  }& \text{$n$为奇数}
+      \end{array}
+    \right.
+$$
+因此，易知Connes复形
+$C^{\lmd}\downdot(K):=C\downdot{K}/(1-\lmd)$具体如下：
+$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
+对它取同调，即得循环同调。
+\end{proof}
+
+%$$\overline\downdot(A)[]u^{-1}\rightsquigarrow HC_n(K)=
+%\left\{\begin{array}{ll}
+%K & \text{$n\geq 0$ even}\\
+%0 & \text{otherwise}
+%\end{array}\right.$$
+%$$K,Ku^{-1},Ku^{-2}...H\downdot(\bbC P^{\infty}=B\cup(1))$$
+%$$C^{\lmd}\downdot A=C\downdot(K)/(1-\lmd)$$
+%$$C_n(K):1\overbrace{\ten1\ten...\ten1}^{n}=:\veps_n$$
+%$$\lmd(\veps_n)=(-1)^n\veps_n$$
+%$$\left\{
+%\begin{matrix}
+%\veps\text{even is cyclic invariant}\\
+%\veps\text{odd$=0$ in} C\downdot^{\lmd}(K)
+%\end{matrix}
+%\right.$$
+%$$b(\veps_{2m})=\veps_{2m-1}$$
+%$$0=b\text{acts on} C^{\lmd}\downdot(K)$$
+%$$H^{\lmd}\downdot(K)=C\downdot^{\lmd}(K)=
+%K\veps_0\oplus K\veps_2\oplus...$$
+
+%compute it by 3 ways...
+
+接下来，考虑$A=K[x^1,x^2,...,x^n]$为$n$元多项式环的情形，
+我们企图取计算$A$的循环同调。注意在之前
+我们已经使用Koszul复形求出了
+$A=K[x^1,x^2,...,x^n]$的Hochschild同调。
+
+\begin{lemma}设$A=K[x^1,x^2,...,x^n]$为$n$元多项式环，
+考虑微分形式代数$\Omg_A\updot:=K[x^1,...,x^n;\td x^1,...\td x^n]$，
+注意$\Omg_A\updot$上有外积运算$\wedge$与外微分运算$\td$.
+考虑以下$K$-模同态
+\begin{eqnarray*}
+\Phi:\overline{C}_p(A)&\to& \Omg^p_A\\
+a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p}
+&\mapsto& \frac{1}{p!}
+a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
+\end{eqnarray*}
+则$\Phi$是良定的，并且成立：
+$$
+  \left\{
+    \begin{array}{l}
+       \Phi\circ b=0\\
+       \Phi\circ\mcalB=\td\circ\Phi
+    \end{array}
+  \right.
+$$
+其中$b:\overline{C}_p(A)\to\overline{C}_{p-1}(A)$
+为约化Hochschild复形的边缘算子，
+$\mcalB:\overline{C}_{p-1}(A)\to\overline{C}_{p}(A)$
+为约化的Connes算子。
+%Explicitly, we define
+\label{Hochschild-Konstant-Rosenberg算子-lemma}
+\end{lemma}
+
+\begin{proof}
+$\Phi$的良定性，即$\overline{A}$中元素与代表元选取无关。
+而此代表元选取至多相差“常数项”（即$K$中元素），
+它在外微分$\td$的作用下为零。因此$\Phi$良定。
+
+我们来验证$\Phi\circ b=0$.暴力验证如下：
+\begin{eqnarray*}
+&&   \Phi\circ b
+      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=&
+    \frac{1}{p!}
+    \Bigg(
+      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
+ +
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0\td a_1\wedge\cdots\wedge
+        \td(a_ka_{k+1})
+        \wedge\cdots\wedge\td a_{p}\\
+&&+
+      (-1)^pa_0a_p
+      \td a_1\wedge\cdots\wedge\td a_{p-1}
+    \Bigg)\\
+&=&
+    \frac{1}{p!}
+    \Bigg(
+      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
+ +
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0a_k\td a_1\wedge\cdots\wedge
+        \widehat{\td a_k}
+        \wedge\cdots\wedge\td a_{p}\\
+&&+
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0a_{k+1}\td a_1\wedge\cdots\wedge
+        \widehat{\td a_{k+1}}
+        \wedge\cdots\wedge\td a_{p}
+ +
+      (-1)^pa_0a_p
+      \td a_1\wedge\cdots\wedge\td a_{p-1}
+    \Bigg)\\
+&=&
+    0
+\end{eqnarray*}
+
+第二个等式$\Phi\circ\mcalB=\td\circ\Phi$
+也容易直接验证：一方面，
+\begin{eqnarray*}
+&& \Phi\circ\mcalB
+     (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=&
+   \sum_{k=0}^p\frac{(-1)^{pk}}{(p+1)!}
+     \Big(
+       \td a_k\wedge\td a_{k+1}\wedge\cdots\wedge\td a_p
+     \Big)
+     \wedge
+     \Big(
+       \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{k-1}
+     \Big)\\
+&=&
+   \frac{1}{p!}
+     \td a_0\wedge\td a_1\wedge\cdots\wedge\td a_{n}
+\end{eqnarray*}
+而另一方面，
+\begin{eqnarray*}
+  \td\circ\Phi
+      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p})
+=
+    \frac{1}{p!}
+    \td(a_0\td a_{1}\wedge\cdots\wedge\td a_{p})
+=
+    \frac{1}{p!}
+    \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{p}
+\end{eqnarray*}
+从而得证。
+\end{proof}
+
+由此引理，我们即可去计算$A:=K[x^1,x^2,...,x^n]$的循环同调。
+
+\begin{prop}对于$A:=K[x^1,x^2,...,x^n]$，则其循环同调
+$$H^{\lmd}_n(A)\cong
+\left\{
+  \begin{array}{ll}
+    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
+    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
+  \end{array}
+\right.
+$$
+\end{prop}
+
+\begin{proof}
+事实上，刚才的引理
+\ref{Hochschild-Konstant-Rosenberg算子-lemma}
+表明，$\Phi$诱导以下两个双复形之间的态射：
+$$
+  \begin{tabular}{cccc}
+    \xymatrix{
+       \vdots             \ar[d]
+      &\vdots             \ar[d]
+      &\vdots             \ar[d]
+    \\
+       \overline{C}_2(A)  \ar[d]^{b}
+      &\overline{C}_1(A)  \ar[d]^{b}  \ar[l]_{\mcalB}
+      &\overline{C}_0(A)              \ar[l]_{\mcalB}
+    \\
+       \overline{C}_1(A)  \ar[d]^{b}
+      &\overline{C}_0(A)              \ar[l]_{\mcalB}
+      &
+    \\
+       \overline{C}_0(A)
+      &
+      &
+    }
+      &&&
+    \xymatrix{
+       \vdots             \ar[d]
+      &\vdots             \ar[d]
+      &\vdots             \ar[d]
+    \\
+       \Omg^2_A  \ar[d]^{0}
+      &\Omg^1_A  \ar[d]^{0}  \ar[l]_{\td}
+      &\Omg^0_A              \ar[l]_{\td}
+    \\
+       \Omg^1_A  \ar[d]^{0}
+      &\Omg^0_A              \ar[l]_{\td}
+      &
+    \\
+       \Omg^0_A
+      &
+      &
+    }
+  \end{tabular}
+$$
+{\color{red}（按村儿里的规矩，此处应该有立方交换图）}
+
+其中左边为$\overline{\mcalB}\ddowndot(A)$，而
+右边的每一行均为de-Rham上链复形，每一列的边缘算子都为零。
+注意到$\Phi$是满射，以及我们早已用Koszul复形得到的
+$$H_n(\overline{C}\downdot(A))\cong\HH_n(A)
+\cong\Omg^n_A\cong H_n(\Omg\updot_A,0)$$
+从而双复形同态$\Phi$限制在每一列上都为拟同构，于是由引理
+\ref{双复形的全复形-同调代数机器-lemma}，立刻知道
+$$\Phi:\Tot\downdot(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+\to\Tot\downdot(\Omg\updot_A,0,\td)$$
+为拟同构。上式左边的同调即为$A$的循环同调，
+而右边的同调可以直接计算。只需要注意到（Poincare引理）de-Rham复形
+$$\cdots\xra{\td}\Omg\updot(A)
+\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
+的（上）同调满足
+$$
+  H^n(\Omg\updot_A,\td)=
+  \left\{
+    \begin{array}{ll}
+      K  &  n=0\\
+      0  &  n>0
+    \end{array}
+  \right.
+$$
+因此容易计算出
+$$H^{\lmd}_n(A)\cong
+\left\{
+  \begin{array}{ll}
+    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
+    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
+  \end{array}
+\right.
+$$
+\end{proof}
+
+
+
+%$$\Phi:(\overline{C\downdot(A)},b)\to(\Omg^0(A),0)$$
+%si a chain map.
+%%%%%%Isildur%%%%%%%%
+
+%So, we have an isomorphism
+%$$\HH\downdot(A)\cong \Omg\updot (A)$$
+%,then $\HH\downdot(A)=\Omg\updot(A)=\bbC[x^i,\td x^i]$.
+
+%Check:
+%$$\Phi\circ B=\td\circ\Phi$$
+%%%%%%%这很明显吧%%%%%%%%%%%
+
+%So,
+
+%$$\Phi:(\overline(C)\downdot(A),b,B)\to(\Omg\updot(A),0,\td)$$
+
+%Cyclic homology,
+%$$\Phi:(\overline(C)\downdot(A),b+uB)\to
+%(\Omg\updot(A)[u^{-1}],u\td )$$
+
+%If $A=K[x^i]$
+%$$\cdots\xra{\td}\Omg\updot(A)
+%\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
+
+%then $$H\downdot(\Omg\updot(A),\td)=H_0=K$$
+%"Poincare lemma"
+
+%\begin{prop}
+%$$HC\downdot(K[x^i])=\frac{\Omg\updot(A)}
+%                    {d\Omg\updot(A)}
+%\oplus u^{-1}K[u^{-1}]$$
+
+%\end{prop}
+\begin{rem}
+容易知道，Connes算子
+$$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
+在$\ker b$上的限制，可以下降为Hochschild同调之间的同态
+$$\mcalB:\HH_n(A)\to\HH_{n+1}(A)$$
+\end{rem}
+Hochschild同调扮演的角色相当于微分形式，而此时Connes算子
+扮演的则是外微分。
+
+\begin{rem}
+双复形满同态
+$$\Phi:(\overline{\mcalB}\ddowndot(A),b,\mcalB)\surj
+(\Omg\updot_A,0,\td)
+$$
+其实是可裂（split）的。具体地，存在双复形同态
+\begin{eqnarray*}
+\eta:\Omg\updot(A)&\to&\overline{C}\downdot(A)\\
+a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
+&\mapsto&\sum_{\sigma\in S_p}(-1)^{\sgn \sigma}
+           a_0\ten a_{\sigma(1)}\ten\cdots\ten a_{\sigma(p)}
+\end{eqnarray*}
+使得$\Phi\circ\eta=\id$.
+\end{rem}
+
+容易验证（简单的组合技巧）$\eta$的确诱导了双复形同态
+$$\eta:(\Omg\updot_A,0,\td)\to
+(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+$$
+
+\section{循环上同调}
+本章最后，简单介绍一下循环上同调（Cyclic cohomology）。
+%$$C_n(A)\cong A^{\ten n+1}$$
+对于双$A$-模$M$，
+回顾我们之前已经介绍的Hochschild上链复形
+$$C^n(A,M):=\Hom(A^{\ten n},A)$$
+特别地，当$M=A$时，我们给出以下记号:
+
+\begin{notation}对于$K$-代数$A$，以及$n\geq0$，
+我们记Hochschild上链复形
+$$C^n(A):=C^{n}(A,A)\cong\Hom(A^{\ten n},A)
+\cong\Hom(A^{\ten n+1},K)$$
+并且将该Hochschild上链复形的微分算子记为$b^*$.
+\end{notation}
+
+我们此前考虑同构$C_n(A)\cong A^{\ten n+1}$，
+而Hochschild上链复形$C^n(A)\cong\Hom(A^{\ten n+1},K)$
+恰为其对偶；微分算子$b^*$的作用即为$b$的对偶：
+即对任意$f\in C^n(A)\cong\Hom(A^{\ten n+1},K)$以及
+$\omg\in A^{\ten n+2}\cong C_{n+1}(A)$，成立
+$$(b^*f)(\omg)=f(b(\omg))$$
+
+与循环余不变量对偶，我们可以谈论循环不变量：
+
+\begin{definition}（循环不变量）
+
+对于$f\in C^n(A)$，称$f$为循环不变量
+（cyclic invariant），
+\index{cyclic invariant\kong 循环不变量}
+如果对任意的$a_0,...,a_n\in A$，成立
+$$f(a_0,a_1,...,a_n)=(-1)^nf(a_n,a_0,...,a_{n-1})$$
+记$C^n(A)$当中的循环不变量之全体为$C^n_{\lmd}(A)$.
+\end{definition}
+
+容易验证$b^*(C^{n}_{\lmd}(A))\subseteq C^{n+1}_{\lmd}(A)$，
+从而$(C\updot_{\lmd}(A),b^*)$为$(C\updot(A),b^*)$的子复形。
+（不必暴力验证了，由循环余不变量对偶过去就行）
+看图说话即可：
+
+$$
+  \xymatrix{
+     \cdots       \ar[r]
+    &C_n(A)       \ar[r]^{b'}   \ar[d]^{1-\lmd}
+    &C_{n-1}(A)   \ar[r]        \ar[d]^{1-\lmd}
+    &\cdots
+  \\
+     \cdots       \ar[r]
+    &C_n(A)       \ar[r]^{b }   \ar@{->>}[d]
+    &C_{n-1}(A)   \ar[r]        \ar@{->>}[d]
+    &\cdots
+  \\
+     \cdots       \ar[r]
+    &C_n^{\lmd}(A)\ar[r]        \ar[d]
+    &C_{n-1}^{\lmd}(A) \ar[r]   \ar[d]     
+    &\cdots
+  \\
+    &0&0&
+  }
+\quad
+  \xymatrix{
+     \cdots       
+    &C^n(A)       \ar[l]        
+    &C^{n-1}(A)   \ar[l]_{b'^*} 
+    &\cdots       \ar[l]
+  \\
+     \cdots       
+    &C^n(A)       \ar[l]        \ar[u]^{1-\lmd^*}
+    &C^{n-1}(A)   \ar[l]^{b^*}  \ar[u]^{1-\lmd^*}
+    &\cdots       \ar[l]
+  \\
+     \cdots       
+    &C^n_{\lmd}(A)\ar[l]        \ar@{^{(}->}[u]
+    &C^{n-1}_{\lmd}(A) \ar[l]   \ar@{^{(}->}[u]
+    &\cdots            \ar[l] 
+  \\
+    &0\ar[u]
+    &0\ar[u]
+    &
+  }
+$$
+
+左图我们早已熟悉，注意它的每一列都是右正合的。
+将反变左正合函子$\Hom(-,K)$作用于左图即得到右图，
+右图的每一列都是左正合的。
+
+
+%cyclic cochains form a subcomplex
+%$$C_{\lmd}^n(A)\subseteq C^n(A)$$
+%which is dual to
+%$$C_n(A)\to C_n^{\lmd}(A)$$
+%$$b^*:C_{\lmd}^n(A)\to C_{\lmd}^{n+1}(A)$$
+
+\begin{definition}（循环上同调）
+对于$K$-代数$A$定义$A$的\textbf{循环上同调}
+（Cyclic cohomology）
+\index{Cyclic cohomology\kong 循环上同调}
+$$H\updot_{\lmd}(A):=\HC\updot(A)
+:=H\updot(C_{\lmd}\updot(A),d^*)$$
 \end{definition}
 
 \begin{example}
@@ -1082,4 +1570,4 @@ $M,N$ are bi-module,then there is a pairing
 $$C^n(A,M)\ten C_0(A,N)\to N\ten_{A^e}M$$
 So,
 $$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
-$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$
+$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$ 
