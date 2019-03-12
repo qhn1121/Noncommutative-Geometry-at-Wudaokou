@@ -10,7 +10,7 @@
 \newtheorem{mynotation}[mythm]{记号}
 \newtheorem{example}[mythm]{例子}
 \newtheorem{rem}[mythm]{注记}
-\newtheorem{cor}[mythm]{推论}
+\newtheorem{mycor}[mythm]{推论}
 \newtheorem{claim}[mythm]{断言}
 \newtheorem{prob}{习题}[section]
 
@@ -40,6 +40,12 @@
   {\definecolor{shadecolor}{RGB}{\axiomcolor}
     \begin{shaded}\begin{myaxiom}}
   {\end{myaxiom}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{cor}
+  {\definecolor{shadecolor}{RGB}{\lemmacolor}
+    \begin{shaded}\begin{mycor}}
+  {\end{mycor}\end{shaded}
   \chapterbackgroundcolor}
 
 \newenvironment{definition}
@@ -200,13 +206,17 @@
 \DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\HC}{HC}         %Hochschild Cyclic (co)homology
 \DeclareMathOperator{\HH}{HH}         %Hochschild (co)homology
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\End}{End}       %Endomorphism
 \DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\Inv}{Inv}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\per}{per}       %periodic cyclic complex
+\DeclareMathOperator{\PV}{PV}         %Polyvector field
 \DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Free}{Free}
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\Gal}{Gal}
