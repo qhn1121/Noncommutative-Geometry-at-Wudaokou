@@ -63,6 +63,19 @@ $$b.(a_1\ten a_2):=(ba_1)\ten a_2$$
 $$(a_1\ten a_2).b:=a_1\ten(a_2b)$$
 其中$a_1,a_2,b\in A$.
 
+再比如，对于$K$-代数$A$，考虑其对偶
+$$A^*:=\Hom(A,K)$$
+则$A^*$具有以下的双$A$-模结构：对任意$a,x\in A$以及$f\in A^*$，
+$$
+  \left\{
+    \begin{array}{l}
+      (a.f)(x):=f(xa)\\
+      (f.a)(x):=f(ax)
+    \end{array}
+  \right.
+$$
+容易验证这的确使得$A^*$为双$A$-模。\vs
+
 我们不再回顾左模、右模的概念了，
 也不去回顾右模与左模的平衡张量积。
 
@@ -692,7 +705,35 @@ $$
 a_1\ten a_2 &\mapsto&
 a_1.f(a_2)+f(a_1).a_2-f(a_1a_2)
 \end{eqnarray*}
-其中$f\in C^1(A,M)=\Hom(A,M)$，$\fai_f=\p f$.
+其中$f\in C^1(A,M)=\Hom(A,M)$，$\fai_f=\p f$.\vs
+
+Hochschild上同调与Hochschild同调两者之间有如下自然的配对：
+
+\begin{definition}
+设$M,N$为双$A$-模，则自然有如下配对：
+$$C^n(A,M)\ten C_n(A,N)\to N\ten_{A^e}M$$
+定义为：对任意$f\in C^n(A,M)=\Hom(A^{\ten n},M)$
+以及任意$y\ten a_1\ten\cdots\ten a_n\in C_n(A,N)=N\ten A^{\ten n}$，
+有
+$$(f,y\ten a_1\ten\cdots\ten a_n)\mapsto
+y\ten f(a_1,...,a_n)\in N\ten_{A^e}M$$
+其中任意$y\in N$，以及$a_1,...,a_n\in A$.
+\end{definition}
+
+容易验证，该配对自然诱导了
+$$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
+这是容易发现的（先限制，再下降，下降的良定性容易说明。）
+
+特别地，当$M=A,N=A^*$（其中$A^*:=\Hom(A,K)$）时，
+我们有双线性函数
+$$H^n(A,A)\ten H_n(A,A^*)\to A^*\ten_{A^e}A\xra{\ev}K$$ 
+
+%\textbf{Pairing}
+%$M,N$ are bi-module,then there is a pairing
+%$$C^n(A,M)\ten C_0(A,N)\to N\ten_{A^e}M$$
+%So,
+%$$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
+%$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$ 
 
 \vs
 
@@ -755,6 +796,8 @@ f_{i_1...i_k}\p_{i_1}\wedge...\wedge\p_{i_k}
 $$
 回顾$\HH\downdot(A)$中的元素可被认为是“微分形式”，
 可见$\HH\updot(A)$中的元素则是“多重切向量场”。
+
+
 
 %%%%%%%%%%%2019.3.4 Mon 第2周%%%%%%%%%%%%
 

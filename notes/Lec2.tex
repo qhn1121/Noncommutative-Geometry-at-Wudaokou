@@ -1509,27 +1509,27 @@ $$
   \\
      \cdots       \ar[r]
     &C_n^{\lmd}(A)\ar[r]        \ar[d]
-    &C_{n-1}^{\lmd}(A) \ar[r]   \ar[d]     
+    &C_{n-1}^{\lmd}(A) \ar[r]   \ar[d]
     &\cdots
   \\
     &0&0&
   }
 \quad
   \xymatrix{
-     \cdots       
-    &C^n(A)       \ar[l]        
-    &C^{n-1}(A)   \ar[l]_{b'^*} 
+     \cdots
+    &C^n(A)       \ar[l]
+    &C^{n-1}(A)   \ar[l]_{b'^*}
     &\cdots       \ar[l]
   \\
-     \cdots       
+     \cdots
     &C^n(A)       \ar[l]        \ar[u]^{1-\lmd^*}
     &C^{n-1}(A)   \ar[l]^{b^*}  \ar[u]^{1-\lmd^*}
     &\cdots       \ar[l]
   \\
-     \cdots       
+     \cdots
     &C^n_{\lmd}(A)\ar[l]        \ar@{^{(}->}[u]
     &C^{n-1}_{\lmd}(A) \ar[l]   \ar@{^{(}->}[u]
-    &\cdots            \ar[l] 
+    &\cdots            \ar[l]
   \\
     &0\ar[u]
     &0\ar[u]
@@ -1556,18 +1556,38 @@ $$H\updot_{\lmd}(A):=\HC\updot(A)
 :=H\updot(C_{\lmd}\updot(A),d^*)$$
 \end{definition}
 
-\begin{example}
-$$f\in C_{\lmd}^0(A):A\to K$$
-$$b^*f\in C^1_{\lmd}(A)$$
-$$b^*f(a_0,a_1)=f(b(a_0\ten a_1))=f(a_0a_1-a_1a_0)$$
-$$b^*=0\iff f:A/[A,A]\to K$$
-$f$ behaves like "trace".
-$HC^0(A)$="trace operators"
+作为例子，我们具体计算一下第零个循环上同调。
+
+\begin{example}对于$K$-代数$A$，则有
+$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
+\forall x,y\in A,f(xy)=f(yx)\}$$
 \end{example}
 
-\textbf{Pairing}
-$M,N$ are bi-module,then there is a pairing
-$$C^n(A,M)\ten C_0(A,N)\to N\ten_{A^e}M$$
-So,
-$$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
-$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$ 
+\begin{proof}直接计算即可。
+只需考虑Hochschild上链复形
+$$0\to C^0_\lmd(A)\xra{b^*}C^1_{\lmd}(A)
+\xra{b^*}C^2_{\lmd}(A)\to\cdots$$
+易知$C^0_{\lmd}(A)=C^0(A)=\Hom(A,K)$，从而
+$$H^0_{\lmd}(A)=\ker(b^*:C^0(A)\to C^1(A))$$
+
+对于$f\in\Hom(A,K)$，若$b^*f=0$，则对于任意$x,y\in A$，有
+$$0=(b^*f)(x,y)=f(b(x\ten y))=f(xy-yx)=f(xy)-f(yx)$$
+从而可知
+$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
+\forall x,y\in A,f(xy)=f(yx)\}$$
+\end{proof}
+
+像$H^0_{\lmd}(A)$当中的线性算子那样，满足
+$$f(xy)=f(yx)\quad(\forall x,y\in A)$$
+的线性算子称之为\textbf{迹算子}。
+
+高阶的循环上同调可被认为是“导出的”迹算子。
+
+%$$f\in C_{\lmd}^0(A):A\to K$$
+%$$b^*f\in C^1_{\lmd}(A)$$
+%$$b^*f(a_0,a_1)=f(b(a_0\ten a_1))=f(a_0a_1-a_1a_0)$$
+%$$b^*=0\iff f:A/[A,A]\to K$$
+%$f$ behaves like "trace".
+%$HC^0(A)$="trace operators"
+
+
