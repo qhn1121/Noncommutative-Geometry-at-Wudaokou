@@ -2,7 +2,8 @@
 
 \section{结合代数的双模、余中心}
 
-我们需要\textbf{代数拓扑}、\textbf{同调代数}的预备知识，
+我们需要\textbf{代数拓扑}、\textbf{同调代数}、
+\textbf{基础范畴论}的预备知识，
 并且采用同调代数的标准术语、记号，
 诸如链复形、上同调、导出函子等等。
 首先介绍基本的记号与概念。
@@ -726,14 +727,14 @@ $$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
 
 特别地，当$M=A,N=A^*$（其中$A^*:=\Hom(A,K)$）时，
 我们有双线性函数
-$$H^n(A,A)\ten H_n(A,A^*)\to A^*\ten_{A^e}A\xra{\ev}K$$ 
+$$H^n(A,A)\ten H_n(A,A^*)\to A^*\ten_{A^e}A\xra{\ev}K$$
 
 %\textbf{Pairing}
 %$M,N$ are bi-module,then there is a pairing
 %$$C^n(A,M)\ten C_0(A,N)\to N\ten_{A^e}M$$
 %So,
 %$$H^n(A,M)\ten H_n(A,N)\to N\ten_{A^e}M$$
-%$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$ 
+%$$H^n(A,A^*)\ten H_n(A,A)\to A^*\ten_{A^e}A\xra{ev}K$$
 
 \vs
 
@@ -924,7 +925,12 @@ $$\left\{\begin{array}{l}
 =(\td\alpha)\beta+(-1)^{\deg\alpha}\alpha(\td\beta)
 \quad\forall\alpha,\beta\in A\text{,并且$\alpha$是齐次元}
 \end{array}\right.$$
+\label{微分分次代数-def}
 \end{definition}
+
+“$\bbZ$-分次$K$-代数”的定义
+将在后文（定义\ref{分次结合代数-def}）介绍。
+（其实大家都明白）
 
 对于微分分次代数$(A,\td)$，由于$A$的分次以及$\td^2=0$，
 从而自然有上链复形

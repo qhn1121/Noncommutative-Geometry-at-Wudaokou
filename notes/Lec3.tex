@@ -1,87 +1,863 @@
 %%%%%%%%%%2019.3.11 Mon 第三周%%%%%%%%
 \chapter{乘积}
 
-\textbf{Product}
+%\textbf{Product}
 
-Recall:
-Commutative                 non-Commutative
+%Recall:
+%Commutative                 non-Commutative
 
-polyvectorfield             $(C\updot(A,A),\p)$
+%polyvectorfield             $(C\updot(A,A),\p)$
 
-differential form           $(C\downdot(A,A),b)$
+%differential form           $(C\downdot(A,A),b)$
 
-$(\Omg_X\updot)$            $(C\downdot(A),b,\mcalB)$
+%$(\Omg_X\updot)$            $(C\downdot(A),b,\mcalB)$
 %%%%%%%%%%%
 
-cyclic homology  $H\downdot(C\downdot(A)[u^{-1}],b+u\mcalB)$
+%cyclic homology  $H\downdot(C\downdot(A)[u^{-1}],b+u\mcalB)$
 
-negative homology  $H\downdot(C\downdot(A)[u],b+u\mcalB)$
+%negative homology  $H\downdot(C\downdot(A)[u],b+u\mcalB)$
 
-periodic homology  (analogue of de Rham cohomology)
-$H\downdot(C\downdot(A)(u),b+u\mcalB)$
+%periodic homology  (analogue of de Rham cohomology)
+%5$H\downdot(C\downdot(A)(u),b+u\mcalB)$
 
-Today:
+%Today:
+
+\section{分次模与Koszul符号法则}
+
+本节我们集中起来澄清一些关于分次模、分次代数的概念，
+并且力图阐明分次代数中出现的正负号。
+这里的“分次”如不加说明，指的都是$\bbZ$-分次。
+
+首先我们考虑分次$K$-模。
+
+\begin{definition}（分次$K$-模范畴）
+
+（1）称$K$-模$M$为（$\bbZ$-）\textbf{分次$K$-模}
+（graded $K$-module），
+\index{graded $K$-module\kong 分次$K$-模}
+若$M$具有如下分次结构：
+$$M=\bigoplus_{k\in\bbZ}M_k$$
+
+（2）若$M,N$为分次$K$-模，称$K$-模同态$f:M\to N$
+为次数为$d$的\textbf{齐次$K$-模同态}，
+若对于任意$n\in \bbZ$，成立
+$$f(M_n)\subseteq N_{n+d}$$
+\end{definition}
+
+对于分次代数，我们可以定义\textbf{齐次元}，
+以及齐次元的\textbf{次数}，不再赘述。
+对于齐次元$a\in A$，将$a$的次数记为$\deg a$，
+或者简记为$|a|$.
+
+平凡的例子：通常的$K$-模自然有分次$K$-模结构——
+只需将该模中的任何元素都认为是$0$次齐次元。
+
+我们还可以谈论以分次$K$-模为对象的范畴：
+
+\begin{notation}（分次$K$-模范畴）
+对于分次$K$-模$M,N$，对任意$d\in\bbZ$，记
+$$\Hom(M,N)_d:=\bigoplus_{n\in\bbZ}\Hom(M_n,N_{n+d})$$
+即次数为$d$的分次$K$模同态之全体。再记
+$$\Hom(M,N):=\bigoplus_{d\in\bbZ}\Hom(M,N)_d$$
+称这里面的元素为分次$K$-模同态。
+
+我们考虑如下分次$K$-模范畴，记为$\Modcat{\bbZ}{K}$：
+
+（1）$\Obj=$全体分次$K$-模；
+
+（2）$\Mor(M,N)=\Hom(M,N)$为分次$K$-模同态。
+\end{notation}
+
+注意对任何分次$K$-模$M,N$，
+$\Hom(M,N)$自然有分次$K$-模结构，其中的$d$次齐次元
+即为$M$到$N$的次数为$d$的齐次同态。
+
+%We will talk with the category
+%$\bbZ$-graded $K$-modules
+%$$Mod_k^{\bbZ}$$
+
+%object: $C=\bigoplus\limits_{k\in\bbZ}C_k$
+
+%morphism:$f:C\to D$ is said to have degree $n$ if
+%$$f:C_k\to C_{k+n}$$
+
+%$$\Hom(C,D):=\bigoplus_n(C,D)_n$$
+%(i.e. degree$=n$)
+%where
+%$$\Hom(C,D)_n=\bigoplus_m\Hom(C_m,D_{m+n})$$
+对于两个分次$K$-模，它们作为$K$-模的张量积，
+也有自然的分次结构：
+
+\begin{definition}（分次$K$-模的张量积）
+对于分次$K$-模$M,N$，则张量积$M\ten N$自然有如下分次结构：
+$$M\ten N=\bigoplus_{k\in\bbZ}(M\ten N)_k$$
+其中
+$$(M\ten N)_k:=\bigoplus_{p,q\in\bbZ\atop p+q=k}
+                  M_p\ten N_q$$
+\end{definition}
+容易验证这给出了$M\ten N$的分次$K$-模结构。
+
+\begin{definition}
+对于分次$K$-模$M,N$，定义如下分次$K$-模同态：
+\begin{eqnarray*}
+\tau:M\ten N&\to& N\ten M\\
+x\ten y&\mapsto&(-1)^{\deg x\deg y}y\ten x
+\end{eqnarray*}
+其中$x,y$分别为$M,N$中的任意的齐次元。
+\end{definition}
+
+这是一个次数为$0$的齐次$K$-模同构。
+注意这里的正负号。
+
+%we define the flip
+%$$\tau:C\downdot\ten D\downdot\to D\downdot\ten C\downdot$$
+%$$c_m\ten d_l\mapsto(-1)^{ml}d_l\ten c_m$$
+
+%$\rightsquigarrow$ Koszul sign rule:
+\begin{notation}（Kuszul符号法则）
+
+设$M,M',N,N'$均为分次$K$-模，
+则自然有如下的分次$K$-模同态：
+\begin{eqnarray*}
+\Hom(M,N)\ten\Hom(M',N')&\to&\Hom(M\ten M',N\ten N')\\
+(f\ten g)(m\ten m')&:=&(-1)^{\deg g\deg m}f(m)\ten g(m')
+\end{eqnarray*}
+其中$f,g,m,m'$分别为$\Hom(M,N),\Hom(M',N'),M,M'$当中的任意齐次元。
+\label{Koszul符号法则-notation}
+\end{notation}
+
+依然注意正负号。以后我们总是
+默认$f\ten g$在$m\ten m'$上如此作用。
+
+我们还可以定义分次$K$-模的对偶模
+（与通常的对偶模仍然在正负号上有些区别）：
+
+%Eg. $f\in\Hom(C,D)$,$g\in\Hom(C',D')$,then
+%$$(f\ten g)(x\ten y)=(-1)^{|g||x|}f(x)g(y)$$
+\begin{definition}（分次对偶模）
+对于分次$K$-模$M$，定义
+$$M^*:=\bigoplus_{n\in\bbZ}M^{*}_n$$
+其中
+$$M^*_n:=\Hom(M_{-n},\bbZ)$$
+\end{definition}
+易知$M^*$具有分次$K$-模结构，
+并且有自然的配对
+$$M^*_n\times M_{-n}\to K$$
+
+%$C\downdot$ graded $K$-module. Graded duality??
+%$$C^*_n:=\Hom(C_{-n},K)$$
+%$$C^*\downdot:=\bigoplus_n C_n^*$$
+
+\begin{rem}（分次K-模上链复形）
+%A complex is $\bbZ$- graded $K$-module
+对于分次$K$-模$C$，以及$\td\in\Hom(C,C)_1$，
+即次数为$1$的齐次同态。如果$\td\circ\td=0$，则自然有$K$-模上链复形：
+$$\cdots\to C_{-1}\xra{\td}C_0\xra{\td}C_1\xra{\td}C_2\to\cdots$$
+%$\deg\td=1$，$\td^2=0$.
+\end{rem}
+这是我们在同调代数当中早已熟知的。
+我们以后就将上链复形与带有$\td$的分次$K$-模等同。
+本节我们采用上链复形的语言（即$\deg\td=1$），
+链复形（$\deg\p=-1$）的情形完全类似。
+
+这里讲到的“上链复形”，与通常同调代数当中的
+上链复形在各种操作上都会可能相差正负号；
+为了区分，我们称这里的“上链复形”为“\textbf{分次上链复形}”。
+
+我们还可以考虑分次上链复形
+$(C\downdot,\td)$的分次对偶，仍为分次上链复形：
+$$\cdots\to C_{-1}^*\xra{\td^*}C_0^*
+\xra{\td^*}C_1^*\xra{\td^*}C_2^*\to\cdots$$
+
+%Complex $(C\downdot,\td)\rightsquigarrow$dual complex
+%$(C\downdot^*,\td^*)$is the dual of
+%$C_{-(n+1)}\xra{\td}C_{-n}$.
+%Shift
+
+\begin{definition}（分次上链复形的平移）
+对于分次$K$-模上链复形$(C\downdot,\td)$，
+定义分次上链复形
+$(C\downdot[1],\td_{[1]})$如下：
+$$(C\downdot[1])_n:=C_{n+1}$$
+并且微分算子$\td_{[1]}$使得下图交换：
+$$\xymatrix{
+   (C[1])_n \ar[r]^{\td_{[1]}}  \ar@{=}[d]
+  &(C[1])_{n+1}               \ar@{=}[d]
+\\
+   C_{n+1}  \ar[r]^{-\td}
+  &C_{n+2}
+}$$
+%differential$=-\td$
+\end{definition}
+注意$\td_{[1]}$当中的负号。
+类似地，对任意$l\in\bbZ$，可以去定义$l$-平移
+$(C[l]\downdot,\td_{[l]})$，特别注意符号
+$$\td_{[l]}=(-1)^l\td$$
+
+对于一般的分次$K$-模，我们也可以考虑其平移，
+这无非是重新规定齐次元的次数。
+
+\begin{definition}（分次上链复形的张量积）
+
+对于分次上链复形$(C\downdot,\td_C)$与$(D\downdot,\td_D)$，
+定义$(C\ten D)\downdot$的分次上链复形结构$\td$如下：
+%$(C\downdot \ten D\downdot,\td)$
+\begin{eqnarray*}
+\td:C_p\ten D_q &\to& C_{p+1}\ten D_q\oplus C_p\ten D_{q+1}\\
+\td &=&\td_C\ten 1+(-1)^p1\ten \td_D
+\end{eqnarray*}
+\end{definition}
+仍然要注意正负号。
+容易验证$\td\circ\td=0$，从而
+$((C\ten D)\downdot,\td)$确实为分次上链复形。
+
+对于分次$K$-模，我们仍可以谈论对称张量、反对称张量：
+
+\begin{definition}设$V$为分次$K$-模，对任意$m\geq0$，
+
+（1）定义$m$阶\textbf{超对称张量空间}如下：
+%$V$ is a graded $K$-module, then define
+$$\Sym^m(V)=V^{\ten m}\big/\sim$$
+其中等价关系$\sim$由以下生成：
+对任意齐次元$\alpha,\beta\in V$，
+$$\alpha\ten\beta\sim(-1)^{\deg\alpha\deg\beta}\beta\ten\alpha$$
+
+（2）定义$m$阶\textbf{超反称张量空间}如下：
+$$\wedgeform{m}(V):=V^{\ten m}\big/\sim$$
+其中等价关系$\sim$由以下生成：
+对任意齐次元$\alpha,\beta\in V$，
+$$\alpha\ten\beta\sim-(-1)^{\deg\alpha\deg\beta}\beta\ten\alpha$$
+\end{definition}
+
+若$V=V_0$为通常的$K$-模，则$Sym^n(V_0)$
+与$\wedgeform{n}(V_0)$即为通常的对称张量、外张量。
+
+%我们记
+%$$\Sym(V):=\bigoplus_{m\geq 0}\Sym^m(V)$$
+%$$\wedgeform{*}(V):=\bigoplus_{m\geq 0}\wedgeform{m}(V)$$
+%则它们有自然的分次$K$-模结构。
+对于分次$K$-模$V$，以及任意的$m\geq 0$，
+$\Sym^m(V)$有以下自然的分次$K$-模结构：
+$$\Sym^m(V)=\bigoplus_{d\in\bbZ}
+\big[\Sym^m(V)\big]_d$$
+$$\big[\Sym^m(V)\big]_d
+:=\Span_K\left\{
+           v_1\odot v_2\odot\cdots\odot v_m
+           \big|\sum\limits_{i=1}^n\deg v_i=d
+         \right\}
+$$
+超反称张量空间$\wedgeform{m}(V)$
+也有完全类似的分次$K$-模结构。
+
+回顾分次$K$-模的平移，以下结果十分重要：
+
+%If $V=V_0$, then $Sym^n(V_0)$ is the usual symmetric tensor,
+%and $\wedgeform{n}(V_0)$ exterior.
+
+%HW:%%下周二必考！！
+\begin{prop}对于分次$K$-模$V$，
+以及任意$n\geq0$，则有分次$K$-模同构:
+$$\Sym^n(V[1])\cong(\wedgeform{n}(V))[n]$$
+%here $[n]=([1])^{n\text{times}}$
+\end{prop}
+%%非常重要！！！%
+
+\begin{proof}对于任意$d\in\bbZ$，
+首先看看它们的齐次分量$(\Sym^n(V[1]))_d$
+与$\big((\wedgeform{n}(V))[n]\big)_d$中的元素具有何种形式。
+我们用$v_1,...,v_n$表示$V$中的$d_1,...,d_n$
+次齐次元，根据定义容易验证
+$$(\Sym^n(V[1]))_d=
+\Span_K \{v_1\odot v_2\odot\cdots\odot v_n|
+d_1+d_2+\cdots d_n=n+d\}$$
+$$\big((\wedgeform{n}(V))[n]\big)_d=
+\Span_K \{v_1\wedge v_2\wedge\cdots\wedge v_n|
+d_1+d_2+\cdots d_n=n+d\}$$
+从而它们都为$(V^{\ten n})_{n+d}$的商模。
+
+考虑$K$-模自同构
+\begin{eqnarray*}
+\Phi_{n,d}:(V^{\ten n})_{n+d}&\to&(V^{\ten n})_{n+d}\\
+v_1\ten v_2\ten\cdots\ten v_n
+&\mapsto&(-1)^{d_1+2d_2+\cdots+nd_n}
+v_1\ten v_2\ten\cdots\ten v_n
+\end{eqnarray*}
+断言该自同构$\Phi_{n,d}$诱导了模同构
+\begin{eqnarray*}
+\fai_{n,d}:(\Sym^n(V[1]))_d&\to&
+\big((\wedgeform{n}(V))[n]\big)_d\\
+v_1\odot v_2\odot\cdots\odot v_n
+&\mapsto&(-1)^{d_1+2d_2+\cdots+nd_n}
+v_1\wedge v_2\wedge\cdots\wedge v_n
+\end{eqnarray*}
+
+为此，只需要验证$\fai_{n,d}$的良定性
+（与代表元选取无关）。若$\fai_{n,d}$良定，
+则容易构造其逆映射，进而命题得证。
+
+特别注意，$\Sym^n(V[1])$作为$V^{\ten n}$的商模，
+商掉的等价关系由
+$$x\ten y\sim(-1)^{(\deg x-1)(\deg y-1)}y\ten x$$
+生成，这直接由定义验证（{\color{red}要特别小心}）；
+而$(\wedgeform{n}(V))[n]$作为$V^{\ten n}$的商模，
+商掉的等价关系由
+$$x\ten y\sim-(-1)^{\deg x\deg y}y\ten x$$
+生成。于是只需验证对任意$1\leq l\leq n_1$，成立
+\begin{eqnarray*}
+&&
+    \Phi_{n,d}\Big(
+                 \cdots( v_{l}\ten v_{l+1}
+                   -(-1)^{(d_l-1)(d_{l+1}-1)}v_{l+1}\ten v_{l}
+                 )\cdots
+              \Big)\\
+&=&
+    (-1)^{\sum\limits_{i=1}^nid_i}
+    \Big(
+      \cdots(
+        v_l\ten v_{l+1}-(-1)^{(d_l-1)(d_{l+1}-1)-d_{l+1}+d_l}
+        v_{l+1}\ten v_{l}
+      )\cdots
+    \Big)\\
+&=&
+    (-1)^{\sum\limits_{i=1}^nid_i}
+    \Big(
+      \cdots(
+        v_l\ten v_{l+1}+(-1)^{d_ld_{l+1}}
+        v_{l+1}\ten v_{l}
+      )\cdots
+    \Big)\\
+&\equiv& 0\in ((\wedgeform{n}(V))[n])_d
+\end{eqnarray*}
+
+
+\end{proof}
+
+
+\section{分次代数与分次李代数}
+
+\begin{definition}（分次结合代数）
+对于结合$K$-代数$A$：
+\label{分次结合代数-def}
+%$A$ is a $\bbZ$-graded algebra,$A=\bigoplus\limits_{k\in\bbZ}A_k$,
+%such that
+%$$A_k\cdot A_l\subseteq A_{k+l}$$
+%and associative.
+
+（1）称$A$为（$\bbZ$-）\textbf{分次结合代数}（associative graded algebra），
+\index{graded algebra\kong 分次代数}
+若$A$具有分次$K$-模结构：
+$$A=\bigoplus_{n\in\bbZ}A_n$$
+并且与乘法相容：对任意$k,l\in\bbZ$，有
+$$A_k\cdot A_l\subseteq A_{k+l}$$
+
+（2）若$A$为分次结合代数，
+称$A$为\textbf{分次交换代数}，
+若$A$还满足以下\textbf{分次交换性}：
+对任意$a_k\in A_k,a_l\in A_l$，
+$$a_k\cdot a_l=(-1)^{kl}a_l\cdot a_k$$
+
+%$A$ is graded commutative if
+%$$a_k\cdot a_l=(-1)^{kl}a_la_k$$
+\end{definition}
+
+特别注意分次交换性的正负号。
+分次交换代数的典型例子是，
+光滑流形$X$上的微分形式$\Omg\updot_X$，
+配以外积运算$\wedge$.
+
+不过注意，多项式代数$K[x^1,...,x^n]$自然有分次结构，
+是分次代数，但它不满足分次交换性。
+{\color{blue}（仅仅是“交换的分次代数”23333）}
+
+\begin{definition}（\textbf{分次李代数}）
+\index{graded Lie algebra\kong 分次李代数}
+\index{Lie super algebra\kong 李超代数}
+
+$K$-代数$(\mfkg,[,])$ 称为\textbf{分次李代数}
+（graded Lie algebra），
+或者\textbf{李超代数}(Lie super algebra)，如果以下满足：
+
+（1） $\mfkg$具有分次
+$\mfkg=\bigoplus\limits_{k\in\bbZ}\mfkg_k$，
+使得对任意$k,l\in\bbZ$，成立
+$$[\mfkg_k,\mfkg_l]\subseteq\mfkg_{k+l}$$
+
+（2） 乘法$[,]:\mfkg\times\mfkg\to\mfkg$满足如下\textbf{分次反交换性}：
+%which is graded skew-symmetric
+对$A$中任意齐次元$a,b$，成立
+$$[a,b]=-(-1)^{\deg a\deg b}[b,a]$$
+
+（3）对于$A$中任何齐次元$a,b,c$，成立如下\textbf{分次雅可比恒等式}：
+$$(-1)^{\deg b\deg c}[c,[a,b]]
+ +(-1)^{\deg c\deg a}[a,[b,c]]
+ +(-1)^{\deg a\deg b}[b,[c,a]]=0$$
+\end{definition}
+%Graded Jacobi identity
+%$$[[a,b],c]=[a,[b,c]]-(-1)^{\deg a\deg b}[b,[a,c]]$$
+
+我们可以将“分次”（graded）与“超”（super）进行同义词替换，
+比如“分次雅可比恒等式”也可以称为“超雅可比恒等式”，
+“分次交换性”可以称为“超交换性”等等，
+甚至将“分次线性空间”称为“超空间”。
+
+容易验证，超雅可比恒等式也可以改写为：
+$$[c,[a,b]]=
+[c,[a,b]]+(-1)^{\deg a\deg c}[a,[c,b]]$$
+
+也容易验证，对于李超代数$(A,[,])$，
+则$[,]$在$A$的零次分量$A_0$的限制，
+给出了$A_0$的李代数结构。
+回顾李代数的情形，
+李括号的雅可比恒等式反映了某种导子性质；
+而李超代数完全类似，
+上述超雅可比恒等式其实表明某种“超导子”性质。
+
+\begin{notation}为了省事，我们引入一个记号约定：
+对于分次代数或者分次李代数（以及后文将介绍的分次模），
+若$a$为其次元，我们简记
+$$(-1)^a:=(-1)^{\deg a}$$
+也就是说，$(-1)$的幂次当中出现齐次元的次数时，省略“$\deg$”。
+\end{notation}
+
+例如，李超代数的超雅可比恒等式可简记为
+$$(-1)^{bc}[c,[a,b]]
+ +(-1)^{ca}[a,[b,c]]
+ +(-1)^{ab}[b,[c,a]]=0$$
+或者
+$$[c,[a,b]]=
+[c,[a,b]]+(-1)^{ac}[a,[c,b]]$$
+
+\begin{lemma}（分次结合代数诱导分次李代数）
+
+设$(A,\cdot)$为分次结合代数，
+则其乘法自然诱导出$A$的分次李代数结构如下:
+定义
+\begin{eqnarray*}
+\quad[,]:A\times A &\to& A\\
+    \quad     [a,b]&:= & a\cdot b-(-1)^{ab}b\cdot a
+\end{eqnarray*}
+其中任意$a,b\in A$为齐次元。
+则$(A,[,])$构成分次李代数，
+并且与$(A,\cdot)$具有相同的分次。
+\label{分次结合代数诱导李超代数-lemma}
+\end{lemma}
+这与由通常的结合代数通过“对易子”得到李代数的方式类似，
+不过要稍微注意正负号。
+\begin{proof}
+直接暴力验证即可，从略。注意这里的
+$$(-1)^{ab}:=(-1)^{\deg a\deg b}=(-1)^{ba}$$
+为偷懒的记号。
+\end{proof}
+
+我们可以考虑以分次$K$-代数的范畴：
+
+\begin{definition}（分次结合代数范畴）
+%$A$ graded $K$-algebra,
+%$$A=\bigoplus_nA_n\in Mod_K^{\bbZ}$$
+%$$m:A\ten A\to A$$
+%degree of $m$ is $0$.
+%satisfying associativity
+%Category of associative graded $K$-algebra
+%$$Ass-alg_K^{\bbZ}$$
+
+我们定义如下的\textbf{分次结合$K$-代数范畴}，
+记为$\Assalgcat{\bbZ}{K}$：
+
+（1）$\Obj=$全体分次结合$K$-代数；
+
+（2）$\Mor$:对任意两个分次结合$K$-代数$A,B$，
+$$\Hom(A,B):=\bigoplus_{n\in\bbZ}(\Hom(A,B))_n$$
+其中
+$$(\Hom(A,B))_n:=\{f\text{为$K$-代数同态}|
+f(A_d)\subseteq B_{d+n}\,\forall d\in\bbZ\}$$
+$(\Hom(A,B))_n$当中的元素称之为$n$次齐次$K$-代数同态。
+\end{definition}
+
+%$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative" if
+类似地，考虑\textbf{分次交换代数范畴}，
+它是分次结合代数范畴的全子范畴，记为
+$$\Commualgcat{\bbZ}{K}$$
+
+\begin{definition}（分次双$A$-模）
+
+设$A=\bigoplus\limits_{n\in\bbZ}A_n$
+为分次结合$K$-代数，$M$为双$A$-模，
+称$M$为\textbf{分次双$A$-模}，
+若$M$配以分次$K$-模结构
+$$M=\bigoplus_{n\in\bbZ}M_n$$
+并且与$A$的模作用相容：对任意$p,q\in\bbZ$，
+$$A_p.M_q\subseteq M_{p+q}$$
+$$M_p.A_q\subseteq M_{p+q}$$
+\end{definition}
+
+然后对于两个分次双$A$-模$M,N$，
+也可以定义何为“分次双$A$-模同态”，
+并且从$M$到$N$的分次双$A$-模同态之全体，
+亦有自然的分次双$A$-模结构。
+
+特别地，对于分次$K$-代数$A$，
+$A$自身有自然的分次双$A$-模结构。
+
+%Let $A\in Ass-alg_K^{\bbZ}$,$M$ is a (graded) bi-module,
+%a derivation
+%$$D:A\to M$$
+%is a $K$-linear map ,and satisfies
+%$$D(ab)=D(a)b\pm aD(b)$$
+%也可以考虑导子的degre. 不过一般都是degree0 的
+%涉及正负号时，Koszul rule
+
+\begin{definition}（导子）
+对于分次$K$-代数$A$，以及分次双$A$-模$M$，
+称$K$-线性同态
+$$D:A\to M$$
+为$A$的一个取值于$M$的\textbf{导子}，
+若对$A$中的任何齐次元$a,b$，成立
+$$D(ab)=D(a).b+(-1)^a a.D(b)$$
+
+我们将$A$的取值于$M$的导子之全体记为$\Der_0(A,M)$.
+\end{definition}
+这个定义当中并没有用到$M$的分次。
+事实上对于一般的双$A$-模$M$，
+我们都可以如此谈论$\Der_0(A,M)$.
+
+导子的作用可以用如下交换图描述：
+
+$$
+  \xymatrixcolsep{5pc}
+  \xymatrixrowsep{5pc}
+  \xymatrix{
+      A\ten A   \ar[r]^m    \ar[d]^{1\ten D+ D\ten 1}
+    & A                     \ar[d]^D
+  \\
+      A\ten M\oplus M\ten A \ar[r]^-m
+    & M
+  }
+$$
+其中$m$表示$A$中的乘法，
+然后特别注意$1\ten D$以及$D\ten 1$
+在$A\ten A$上的作用服从\textbf{Koszul符号法则}
+（回顾记号\ref{Koszul符号法则-notation}）.
+
+
+%%%%导子图%%%%%%%%搞定
+
+\begin{definition}（超导子）
+
+对于分次$K$代数$A$，以及$d\in\bbZ$，
+称次数为$d$的分次$K$-模同态
+$$D:A\to A$$
+为次数为$d$的\textbf{超导子}，
+若满足如下的\textbf{超莱布尼茨法则}：
+对$A$中任何齐次元$a,b$，成立
+$$D(ab)=D(a)b+(-1)^{d\cdot\deg a}aD(b)$$
+
+记次数为$d$的超导子之全体为$\Der(A,A)_d$，并且记
+$$\Der(A,A):=\bigoplus_{d\in\bbZ}\Der(A,A)_d$$
+\end{definition}
+
+易知$\Der(A,A)$有自然的分次$K$-模结构。
+超导子$D$的作用可由如下交换图来描述：
+
+$$
+  \xymatrixcolsep{5pc}
+  \xymatrix{
+       A\ten A  \ar[r]^-{D\ten 1+1\ten\td}  \ar[d]^-m
+     & A\ten A                              \ar[d]^-m
+  \\
+       A        \ar[r]^-{D}
+     & A
+  }
+$$
+%%%%分次微分%%%%%%%搞定
+
+\begin{rem}（微分分次代数）对于$K$-代数$A$，
+以及次数为$1$的超导子$\td\in\Der(A,A)_1$，
+如果$\td^2=0$，则
+$(A,\td)$正是我们在之前
+（见定义\ref{微分分次代数-def}）
+定义的\textbf{微分分次代数}。
+\end{rem}
+分次微分代数$(A,\td)$自然可视为分次上链复形。
+当然我们也可以考虑次数为$-1$的超导子，
+亦可定义出类似版本的分次微分代数
+（不过我们更推荐使用上链复形的语言）。
+
+\begin{lemma}（由超导子构成的李超代数）
+
+对于分次$K$-代数$A$，
+若$D_1,D_2\in\Der(A,A)$为齐次的超导子，定义
+$$[D_1,D_2]:=D_1\circ D_2-(-1)^{D_1D_2}D_2\circ D_1$$
+则$[D_1,D_2]$是次数为$\deg D_1+\deg D_2$的超导子。
+从而我们定义了
+$$[,]:\Der(A,A)\times\Der(A,A)\to\Der(A,A)$$
+使得$(\Der(A,A),[,])$为李超代数。
+%i.e. $(\Der(A,A),[-,-])$ is a graded Lie algebra.
+\end{lemma}
+%A differential graded $K$-algebra $(A\downdot,\td)$
+%$\td(\alpha\cdot\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha\td\beta$
+
+\begin{proof}对于齐次超导子$D_1,D_2$，
+只需要验证$[D_1,D_2]$仍然是超导子，然后由
+引理\ref{分次结合代数诱导李超代数-lemma}即可知
+$(\Der(A,A),[,])$为李超代数。
+
+暴力验证之（还是写一下过程吧），
+对$A$中任意齐次元$a_1,a_2$，有
+\begin{eqnarray*}
+& &
+     [D_1,D_2](a_1a_2)
+ =
+     \big(
+       D_1D_2-(-1)^{D_1D_2}
+     \big)
+     (a_1a_2)\\
+&=&
+     D_1\big(
+          D_2(a_1)a_2+(-1)^{a_1D_2}a_1D_2(a_2)
+        \big)\\
+& &
+    -(-1)^{D_1D_2}D_2
+    \big(
+      D_1(a_1)a_2+(-1)^{a_1D_1}a_1D_1(a_2)
+    \big)\\
+&=&
+    D_1D_2(a_1)a_2
+    +(-1)^{D_1(a_1+D_2)}
+    {\color{red}
+      D_2(a_1)D_1(a_2)
+    }\\
+& &
+    +(-1)^{a_1D_2}
+    \big[
+      {\color{blue}
+        D_1(a_1)D_2(a_2)
+      }
+      +(-1)^{a_1D_1}
+      a_1D_1D_2(a_2)
+    \big]\\
+& &
+    -(-1)^{D_1D_2}
+    \Big[
+      D_2D_1(a_1)a_2
+      +(-1)^{D_2(D_1+a_1)}
+      {\color{blue}
+        D_1(a_1)D_2(a_2)
+      }\\
+& &
+    +(-1)^{a_1D_1}
+    \big(
+      {\color{red}
+        D_2(a_1)D_1(a_2)
+      }
+      +(-1)^{D_2a_1}a_1D_2D_1(a_2)
+    \big)
+    \Big]\\
+&=&
+    \big[
+      D_1D_2-(-1)^{D_1D_2}D_2D_1
+    \big](a_1)a_2\\
+& &
+    +(-1)^{a_1(D_1+D_2)}a_2
+    \big[
+      D_1D_2-(-1)^{D_1D_2}D_2D_1
+    \big](a_2)\\
+&=&
+    [D_1,D_2](a_1)a_2
+    +(-1)^{a_1(D_1+D_2)}a_1[D_1,D_2](a_2)
+\end{eqnarray*}
+可见$[D_1,D_2]$确实是次数为
+$(\deg D_1+\deg D_2)$的超导子，证毕。
+\end{proof}\vs
+
+%We have natural forgetful functor
+最后简要介绍一下函子性：
+我们有遗忘函子
+\begin{eqnarray*}
+\Assalgcat{\bbZ}{K}   &\to& \Modcat{\bbZ}{K}\\
+\Commualgcat{\bbZ}{K} &\to& \Modcat{\bbZ}{K}
+\end{eqnarray*}
+%whose left adjoints are called "free objects".
+
+我们考虑该函子的左伴随“自由分次结合代数”
+以及“自由分次交换代数”，
+即范畴论当中的
+{\color{gray}“普遍真理”（呵呵呵呵呵呵）}：
+
+{\begin{center}
+\Large 自由是遗忘的左伴随
+\end{center}}
+
+\begin{definition}（张量代数or自由分次结合代数）
+
+设$V$为分次$K$-模，定义分次$K$-模
+ %, define the tensor algebra
+$$T(V):=%K\oplus V\oplus V^{\ten a}\oplus\cdots=
+\bigoplus_{n\geq 0}V^{\ten n}$$
+%with algebra structure given by $\ten$:
+其中$V^{\ten 0}:=K$；
+并且张量积“$\ten$”给出了$T(V)$的乘法结构：
+$$(v_1\ten\cdots\ten v_p)\ten(v_{p+1}\ten\cdots\ten v_{p+q})
+=v_1\ten\cdots\ten v_{p+q}$$
+从而使得$(T(V),\ten)$为分次结合代数，
+称之为由$V$生成的\textbf{自由分次结合代数}。
+\end{definition}
+
+这的确是一种非常“自由”的构造方式。
+并且容易验证$T$的函子性：
+\begin{eqnarray*}
+T:\Modcat{\bbZ}{K}&\to& \Assalgcat{\bbZ}{K}\\
+V&\mapsto& T(V)
+\end{eqnarray*}
+%\begin{prop}
+%$T$ is the left adjoint of
+%$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+%\end{prop}
+%这个显然，不证了。
+
+同样，我们可以考虑自由生成的分次交换代数：
+
+\begin{definition}（自由分次交换代数）
+
+设$V$为分次$K$-模，定义分次$K$-模
+ %, define the tensor algebra
+$$\Sym(V):=%K\oplus V\oplus V^{\ten a}\oplus\cdots=
+\bigoplus_{n\geq 0}\Sym^n(V)$$
+%with algebra structure given by $\ten$:
+其中$\Sym^0(V):=K$；
+并且对称张量积“$\odot$”给出了$\Sym(V)$的乘法结构：
+$$(v_1\odot\cdots\odot v_p)\odot
+(v_{p+1}\odot\cdots\odot v_{p+q})
+=v_1\odot\cdots\odot v_{p+q}$$
+从而使得$(\Sym(V),\odot)$为分次结合代数，
+称之为由$V$生成的\textbf{自由分次交换代数}。
+\end{definition}
+
+也容易验证$\Sym$的函子性：
+\begin{eqnarray*}
+\Sym:\Modcat{\bbZ}{K} &\to& \Commualgcat{\bbZ}{K}\\
+V &\mapsto& \Sym(V)
+\end{eqnarray*}
+
+%\begin{prop}
+%$Sym$ is the left adjoint of
+%$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+%\end{prop}
+\begin{prop}（伴随对）
+对于任意分次$K$-模$V$，以及分次结合$K$-代数$A$、
+分次交换$K$-代数$B$，注意$A,B$首先是分次$K$-模：
+
+（1）存在（关于$V$、$A$）自然的一一对应
+$$\Hom_{\Modcat{\bbZ}{K}}(V,A)\cong
+\Hom_{\Assalgcat{\bbZ}{K}}(T(V),A)$$
+
+（2）存在（关于$V$、$B$）自然的一一对应
+$$\Hom_{\Modcat{\bbZ}{K}}(V,B)\cong
+\Hom_{\Commualgcat{\bbZ}{K}}(\Sym(V),B)$$
+\end{prop}
+\begin{proof}
+易证，从略。
+\end{proof}
+用范畴论的语言，此性质表明，
+函子$T$与$\Sym$分别为相应的遗忘函子的左伴随。
+或者还可以表述为如下泛性质，看图即可：
+$$
+  \xymatrix{
+      V \ar@{^{(}->}[r]  \ar[rd]_{\forall f}
+    & T(V)\ar@{.>}[d]^{\exists !}
+  \\
+    & A
+  }
+\quad\quad
+  \xymatrix{
+      V \ar@{^{(}->}[r]  \ar[rd]_{\forall f}
+    & \Sym(V)\ar@{.>}[d]^{\exists !}
+  \\
+    & B
+  }
+$$
+
+\begin{prop}%(if $V$ is a graded $K$-module)
+设$V$为分次$K$-模，$M$为$K$-模，则有一一对应
+$$\Der_0(T(V),M)\cong\Hom_K(V,M)$$
+\end{prop}
+\begin{proof}
+这个也几乎显然，从略。
+\end{proof}
+%In particular,
+%$$\Der(T(V),T(V))\cong\Hom(V,T(V))$$
 
 \section{多重切向量场与Schouten-Nijenhuis括号}
 
-\begin{definition}
-$A$ is a $\bbZ$-graded algebra,$A=\bigoplus\limits_{k\in\bbZ}A_k$,
-such that
-$$A_k\cdot A_l\subseteq A_{k+l}$$
-and associative.
+众所周知，对于光滑流形$X$，
+$X$上的微分形式$\Omg\updot_X$配以外积$\wedge$
+构成分次交换代数（若再考虑外微分$\td$，还有微分分次代数结构）。
+本节我们介绍另一重要的经典例子：光滑流形上的多重切向量场，
+并给出其上的李超代数结构：Schouten-Nijenhuis括号。
 
-$A$ is graded commutative if
-$$a_k\cdot a_l=(-1)^{kl}a_la_k$$
+%\begin{example}
+%(1)$(\Omg_X\updot,\wedge)$ is a graded commutative algebra.
+%(2) $\text{PV}_X:=\Gamma(X,\wedge^*TX)$poly vector field,
+%is graded commutative alg.
+%\end{example}
+
+\begin{definition}（多重切向量场）
+对于光滑流形$X$，称$X$的切丛的外积丛
+$\wedgeform{*}(TX)$的截面为\textbf{多重切向量场}
+（polyvector field）。
+\index{polyvector field\kong 多重切向量场}
+并且记
+$$\PV_X:=\Gamma(X,\wedgeform{*}(TX))$$
+为多重切向量场之全体。
 \end{definition}
 
-\begin{definition}
-$\mfkg$ is a graded Lie algebra(super Lie algebra)
-if
+$\PV_X$有显然的$C^{\infty}(X)$-模结构。
+与微分形式类似，容易定义$\PV_X$上的外积$\wedge$，
+使得$(\PV_X,\wedge)$为分次交换$C^{\infty}(X)$-代数，
+其分次由以下给出：
+$$\PV_X=\bigoplus_{k\geq 0}\PV^k_X$$
+其中$\PV^k_X$中的元素形如
+$$\xi_1\wedge\xi_2\wedge\cdots\wedge\xi_k$$
+的$C^{\infty}(X)$-线性组合，
+其中$\xi_i$为$X$上的光滑切向量场。
+称$\PV^k_X$中的元素为\textbf{$k$-向量}。
 
-(1) $\mfkg=\bigoplus\limits_{k\in\bbZ}\mfkg_k$
+回顾$X$的切向量场的李括号$[,]$运算，
+这给出了切向量场的李代数结构；
+接下来我们企图将李括号运算延拓到多重切向量场上，
+从而得到$\PV_X[1]$的李超代数结构。
+（注意这里要平移一下分次，使得把切向量场视为零次元。）
 
-(2) Lie bracket $[,] \mfkg_k\times\mfkg_l\mapsto\mfkg_{k+l}$
-which is graded skew-symmetric
-$$[a,b]=-(-1)^{\deg a\deg b}[b,a]$$
+\begin{definition}（Schouten-Nijenhuis 括号）
+\index{Schouten-Nijenhuis 括号}
 
-(3)Graded Jacobi identity
-$$[[a,b],c]=[a,[b,c]]-(-1)^{\deg a\deg b}[b,[a,c]]$$
+对于光滑流形$X$，定义$\PV_X$上的$C^{\infty}$双线性映射
+$$\{,\}:\PV^p_X\times \PV^q_X\to \PV^{p+q-1}_X$$
+$$\{\xi,\eta\}=\sum_{i,j}(-1)^{i+j}[\xi_i,\eta_j]\wedge
+(\xi_1\wedge\cdots\wedge\widehat{\xi_i}\wedge\cdots\wedge\xi_p)
+\wedge(\eta_1\wedge\cdots\wedge\widehat{\eta_j}\wedge\cdots\wedge\eta_q)$$
+其中
+\begin{eqnarray*}
+\xi=\xi_1\wedge...\wedge\xi_p\quad\quad
+\eta=\eta_1\wedge...\wedge\eta_q
+\end{eqnarray*}
 \end{definition}
+%Check:
+容易看出，若$\xi,\eta$为通常的切向量，
+则$\{\xi,\eta\}$正是通常的李括号$[\xi,\eta]$.
 
 
-\begin{example}
-(1)$(\Omg_X\updot,\wedge)$ is a graded commutative algebra.
-
-(2) $\text{PV}_X:=\Gamma(X,\wedge^*TX)$poly vector field,
-is graded commutative alg.
-\end{example}
-
-Schousten-Nijenhuis bracket$\{,\}$：
-
-$$\{,\}:PV^p\times PV^q\to PV^{p+q-1}$$
-
-$$\xi=\xi_1\wedge...\wedge\xi_p$$
-$$\eta=\eta_1\wedge...\wedge\eta_q$$
-
-then
-
-$$\{\xi,\eta\}=\sum_{i,j}(-1)^{i+j}[\xi_1,\eta_j]
-\xi_1\wedge...\widehat{\xi_i}...\xi_p\wedge\eta_1...\widehat{\eta_j}...\eta_q$$
-
-Check:
-
-(1) $\{,\}$ is well-defined and coordinate independent.(HW)
+%(1) $\{,\}$ is well-defined and coordinate independent.(HW)
 
 (2) $\{\xi,\eta\}=-(-1)^{(\deg\xi-1)(\deg\eta-1)}\{\eta,\xi\}$
 %%%%%%%%%Details%%%%%%
 
-\begin{notation}
-$A$ is graded, then $(A[1])_n:=A_{n-1}$ shifted gradation...
-\end{notation}
+%\begin{notation}
+%$A$ is graded, then $(A[1])_n:=A_{n-1}$ shifted gradation...
+%\end{notation}
 
-So, $PV_X[1]$ is a graded Lie algebra, and
-$$(PV_X[1])_0=T_X$$
-is a Lie algebra.
+%So, $PV_X[1]$ is a graded Lie algebra, and
+%$$(PV_X[1])_0=T_X$$
+%is a Lie algebra.
 
 (3) graded  Leibnitz rule
 $$\{\alpha,\beta\wedge\gamma\}
@@ -264,155 +1040,13 @@ this is  the analogue of Schouten-Nijenhuis bracket.
 %%%%%%%%%%%%%%%%下周一，周坚代课%%&%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%下周二，随堂考试%%%%%%%%%%%%%%%%%%%%%
 
-\textbf{Coalgebra and homotopy associativity}
+%\textbf{Coalgebra and homotopy associativity}
 
-We will talk with the category
-$\bbZ$-graded $K$-modules
-$$Mod_k^{\bbZ}$$
-
-object: $C=\bigoplus\limits_{k\in\bbZ}C_k$
-
-morphism:$f:C\to D$ is said to have degree $n$ if
-$$f:C_k\to C_{k+n}$$
-
-$$\Hom(C,D):=\bigoplus_n(C,D)_n$$
-(i.e. degree$=n$)
-where
-$$\Hom(C,D)_n=\bigoplus_m\Hom(C_m,D_{m+n})$$
-
-now,$C,D\in Mod_{K}^{\bbZ}$
-$$(C\ten D)_n:=\sum_{m+l=n}C_m\ten D_l$$
-we define the flip
-$$\tau:C\downdot\ten D\downdot\to D\downdot\ten C\downdot$$
-$$c_m\ten d_l\mapsto(-1)^{ml}d_l\ten c_m$$
-
-$\rightsquigarrow$ Koszul sign rule:
-
-Eg. $f\in\Hom(C,D)$,$g\in\Hom(C',D')$,then
-$$(f\ten g)(x\ten y)=(-1)^{|g||x|}f(x)g(y)$$
-
-$C\downdot$ graded $K$-module. Graded duality??
-$$C^*_n:=\Hom(C_{-n},K)$$
-$$C^*\downdot:=\bigoplus_n C_n^*$$
-
-A complex is $\bbZ$- graded $K$-module
-$$\cdots\to C_{-1}\xra{\td}C_0\xra{\td}C_1\xra{\td}C_2\to\cdots$$
-$\deg\td=1$，$\td^2=0$.
-
-Complex $(C\downdot,\td)\rightsquigarrow$dual complex
-$(C\downdot^*,\td^*)$is the dual of
-$C_{-(n+1)}\xra{\td}C_{-n}$.
-
-Shift
-
-$(C\downdot,\td)\rightsquigarrow(C\downdot[1])$
-$$(C\downdot[1])_n:=C_{n+1}$$
-differential$=-\td$
-
-$(C\downdot,\td_C)$ and $(D\downdot,\td_D)$,then
-$(C\downdot \ten D\downdot,\td)$
-$$\td:C_p\ten D_q\to C_{p+1}\ten D_q\oplus C_p\ten D_{q+1}$$
-$$\td=\td_C\ten 1+(-1)^p1\ten \td_D$$
-
-$A$ graded $K$-algebra,
-$$A=\bigoplus_nA_n\in Mod_K^{\bbZ}$$
-$$m:A\ten A\to A$$
-degree of $m$ is $0$.
-
-satisfying associativity
-%%%%%结合性%%%%%%%%
-
-Category of associative graded $K$-algebra
-$$Ass-alg_K^{\bbZ}$$
-
-$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative"
-if
-
-%%%%%%分次交换%%%%%%%%%
-
-A differential graded $K$-algebra $(A\downdot,\td)$
-$\td(\alpha\cdot\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha\td\beta$
-
-%%%%分次微分%%%%%%%
-
-$V$ is a graded $K$-module, then define
-$$Sym^m(V)=V^{\ten m}\big/\sim$$
-where
-$$\alpha\ten\beta\sim(-1)^{|\alpha||\beta|}\beta\ten\alpha$$
-
-and define
-$$\wedgeform{m}(V):=V^{\ten m}\big/\sim$$
-where
-$$\alpha\ten\beta\sim-(-1)^{|\alpha||\beta|}\beta\ten\alpha$$
-
-If $V=V_0$, then $Sym^n(V_0)$ is the usual symmetric tensor,
-and $\wedgeform{n}(V_0)$ exterior.
-
-HW:%%必考！！
-
-$$Sym^n(V\downdot[1])\cong\wedgeform{n}(V)[n]$$
-here $[n]=([1])^{n\text{times}}$
-
-%%非常重要！！！%
-
-We have natural forgetful functor
-$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
-$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
-
-whose left adjoints are called "free objects".
-
-\begin{definition}
- $V\in Mod_K^{\bbZ}$, define the tensor algebra
-$$T(V):=K\oplus V\oplus V^{\ten a}\oplus\cdots=\bigoplus_{n\geq 0}V^{\ten n}$$
-with algebra structure given by $\ten$:
-$$(v_1\ten...\ten v_p)\cdot((v_{p+1}\ten...\ten v_{p+q}))
-=v_1\ten...\ten v_{p+q}$$
-\end{definition}
-
-$$T:Mod_K^{\bbZ}\to Ass-alg_K^{\bbZ}$$
-$$V\mapsto T(V)$$
-
-\begin{prop}
-$T$ is the left adjoint of
-$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
-\end{prop}
-这个显然，不证了。
-
-\begin{definition}
-$V\in Mod_K^{\bbZ}$, we define $Sym(V)$ by
-$$Sym(V):=\bigoplus_{m\geq 0}^n(V)$$
-$$Sym:Mod_K^{\bbZ}\to Commu-alg_K^{\bbZ}$$
-\end{definition}
-
-\begin{prop}
-$Sym$ is the left adjoint of
-$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
-\end{prop}
-
-Let $A\in Ass-alg_K^{\bbZ}$,$M$ is a (graded) bi-module,
-a derivation
-$$D:A\to M$$
-is a $K$-linear map ,and satisfies
-$$D(ab)=D(a)b\pm aD(b)$$
-%也可以考虑导子的degre. 不过一般都是degree0 的
-%涉及正负号时，Koszul rule
-
-%%%%导子图%%%%%%%%
-
-\begin{prop}(if $V$ is a graded $K$-module)
-$$\Der(T(V),M)\cong\Hom(V,M)$$
-\end{prop}
-
-In particular,
-$$\Der(T(V),T(V))\cong\Hom(V,T(V))$$
-
-Check:If $D_1,D_2\in\Der(A,A)$,then
-$$[D_1,D_2]:=D_1\circ D_2-(-1)^{|D_1||D_2|}D_2\circ D_1$$
-is also a (graded) derivation.
-
-i.e. $(\Der(A,A),[-,-])$ is a graded Lie algebra.
+\section{余代数与同伦结合性}
 
 \textbf{Co-algebra}
+%%%%%结合性%%%%%%%%
+%%%%%%分次交换%%%%%%%%%
 
 \begin{definition}
 $C\downdot\in Mod_K^{\bbZ}$ is a graded coalgebra over $K$，
