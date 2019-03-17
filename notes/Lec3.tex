@@ -206,7 +206,9 @@ $$\td_{[l]}=(-1)^l\td$$
 \td:C_p\ten D_q &\to& C_{p+1}\ten D_q\oplus C_p\ten D_{q+1}\\
 \td &=&\td_C\ten 1+(-1)^p1\ten \td_D
 \end{eqnarray*}
+\label{分次上链复形的张量积-def}
 \end{definition}
+
 仍然要注意正负号。
 容易验证$\td\circ\td=0$，从而
 $((C\ten D)\downdot,\td)$确实为分次上链复形。
@@ -830,25 +832,53 @@ $$\xi_1\wedge\xi_2\wedge\cdots\wedge\xi_k$$
 \begin{definition}（Schouten-Nijenhuis 括号）
 \index{Schouten-Nijenhuis 括号}
 
-对于光滑流形$X$，定义$\PV_X$上的$C^{\infty}$双线性映射
-$$\{,\}:\PV^p_X\times \PV^q_X\to \PV^{p+q-1}_X$$
-$$\{\xi,\eta\}=\sum_{i,j}(-1)^{i+j}[\xi_i,\eta_j]\wedge
-(\xi_1\wedge\cdots\wedge\widehat{\xi_i}\wedge\cdots\wedge\xi_p)
-\wedge(\eta_1\wedge\cdots\wedge\widehat{\eta_j}\wedge\cdots\wedge\eta_q)$$
-其中
+对于光滑流形$X$，定义$\PV_X$上的$\bbR$-双线性映射
 \begin{eqnarray*}
-\xi=\xi_1\wedge...\wedge\xi_p\quad\quad
-\eta=\eta_1\wedge...\wedge\eta_q
+\{,\}:\PV^p_X\times \PV^q_X &\to& \PV^{p+q-1}_X\\
+\{f,g\}     &=&0\\
+\{f,\xi\}   &=&   (-1)^{p}\{\xi,f\}=
+                  \sum_{k=1}^p(-1)^{k}
+                  \xi_k(f)(\cdots\wedge\widehat{\xi_k}
+                  \wedge\cdots)\\
+\{\xi,\eta\}&=& \sum_{1\leq i\leq p\atop 1\leq j\leq q}(-1)^{i+j}
+                  [\xi_i,\eta_j]\wedge
+                  (\cdots\wedge\widehat{\xi_i}
+                  \wedge\cdots)
+                  \wedge(\cdots\wedge\widehat{\eta_j}
+                  \wedge\cdots)
+\end{eqnarray*}
+其中任意$f,g\in C^{\infty}(X)=\PV^0_X$以及
+\begin{eqnarray*}
+\xi=\xi_1\wedge\cdots\wedge\xi_p\quad\quad
+\eta=\eta_1\wedge\cdots\wedge\eta_q
 \end{eqnarray*}
 \end{definition}
 %Check:
-容易看出，若$\xi,\eta$为通常的切向量，
-则$\{\xi,\eta\}$正是通常的李括号$[\xi,\eta]$.
+我们需要验证$\{,\}$的良定性：
+与$\xi,\eta$的代表元的选取无关。
+这只需暴力验证即可。从略。
 
+\begin{prop}（Schouten-Nijenhuis括号的性质）
+
+对于光滑流形$X$，则$(\PV_X,\{,\})$满足如下性质：
+
+（1）若$\xi,\eta\in\PV^1_X$为通常的切向量场，则
+$$\{\xi,\eta\}=[\xi,\eta]$$
+
+（2）对任意$p,q\geq 0$，
+任意$\xi\in\PV^p_X$以及$\eta\in\PV_X^q$，成立
+$$\{\xi,\eta\}=-(-1)^{(p-1)(q-1)}\{\eta,\xi\}$$
+
+（3）对任意$p,q,r\geq 0$，
+任意$\xi\in\PV^p_X$以及$\eta\in\PV_X^q,\phi\in\PV_X^r$，成立
+$$\{\xi,\eta\wedge\phi\}=\{\xi,\eta\}\wedge\phi
++(-1)^{(p-1)q}\eta\wedge\{\xi,\phi\}$$
+\label{Schouten-Nijenhuis公理-prop}
+\end{prop}
 
 %(1) $\{,\}$ is well-defined and coordinate independent.(HW)
 
-(2) $\{\xi,\eta\}=-(-1)^{(\deg\xi-1)(\deg\eta-1)}\{\eta,\xi\}$
+%(2) $\{\xi,\eta\}=-(-1)^{(\deg\xi-1)(\deg\eta-1)}\{\eta,\xi\}$
 %%%%%%%%%Details%%%%%%
 
 %\begin{notation}
@@ -859,125 +889,749 @@ $$\{\xi,\eta\}=\sum_{i,j}(-1)^{i+j}[\xi_i,\eta_j]\wedge
 %$$(PV_X[1])_0=T_X$$
 %is a Lie algebra.
 
-(3) graded  Leibnitz rule
-$$\{\alpha,\beta\wedge\gamma\}
-=\{\alpha,\beta\}\gamma+(-1)^{(\deg\alpha-1)\deg\beta}
-\beta\{\alpha,\gamma\}$$
-(挪之前的分次)
+%(3) graded  Leibnitz rule
+%$$\{\alpha,\beta\wedge\gamma\}
+%=\{\alpha,\beta\}\gamma+(-1)^{(\deg\alpha-1)\deg\beta}
+%\beta\{\alpha,\gamma\}$$
+%(挪之前的分次)
 
-\begin{prop}
+%\begin{prop}
 
-(1)$(PV,\wedge)$ graded algebra
+%(1)$(PV,\wedge)$ graded algebra
 
-(2)$(PV[1],\{,\})$ graded Lie alg
+%(2)$(PV[1],\{,\})$ graded Lie alg
 
-(3) (1)(2)is compactible(Leibnitz rule)
+%(3) (1)(2)is compactible(Leibnitz rule)
 
+%\end{prop}
+
+\begin{proof}
+（1）（2）容易验证，从略；
+（3）暴力验证，建议使用数学归纳法。从略。
+\end{proof}
+
+事实上，这三条性质可作为Schouten-Nijenhuis括号的公理：
+满足此性质的括号如果存在，只能如此定义。
+例如，对任意的$f\in\PV^0_X=C^{\infty}(X)$，
+以及$\xi,\eta\in\PV^1_X$，如果$\{,\}$满足上述三条性质，那么
+$$\{\eta,f\xi\}=\{\eta,f\wedge\xi\}=
+\{\eta,f\}\xi+(-1)^{(1-1)\times 0}f\{\eta,\xi\}
+=\{\eta,f\}\xi+f[\eta,\xi]$$
+但另一方面，又有
+$$\{\eta,f\xi\}=[\eta,f\xi]=\eta(f)\xi+f[\eta,\xi]$$
+比较两式，从而必有
+$$\{\eta,f\}=\eta(f)$$
+再反复使用超莱布尼茨法则（3）
+以及超反称性（2），
+即可得到$\{,\}$的完整定义。
+
+\begin{prop}对于光滑流形$X$，
+Schouten-Nijenhuis括号$\{,\}$满足如下超雅可比恒等式：
+对任意$p,q,r\geq0$以及任意
+$\xi\in\PV^p_X,\,\eta\in\PV_X^q,\,\phi\in\PV_X^r$，成立
+$$
+  \{\xi,\{\eta,\phi\}\}=
+  \{\{\xi,\eta\},\phi\}+(-1)^{(p-1)(q-1)}
+  \{\eta,\{\xi,\phi\}\}
+$$
+从而$(\PV_X[1],\{,\})$构成李超代数。
 \end{prop}
 
-Gerstenhaber algebra(Wiki, HW)
-(in physics, Classical BV algebra)
+\begin{proof}我们打算详细写出过程。
+在证明的过程中，我们将反复使用性质
+\ref{Schouten-Nijenhuis公理-prop}.
+对任意的$p,q,r>0$，任取
+$$\xi=\xi_1\wedge\cdots\wedge\xi_p\in\PV_X^p$$
+$$\eta=\eta_1\wedge\cdots\wedge\eta_q\in\PV_X^q$$
+$$\phi=\phi_1\wedge\cdots\wedge\phi_r\in\PV^r_X$$
+$$f,g,h\in\PV^0_X=C^{\infty}(X)$$
+为方便书写，我们引入如下记号：
+$$\begin{array}{rclr}
+   \overline{\xi_i} &:=&
+   \xi_1\wedge\cdots\wedge\widehat{\xi_i}\wedge\cdots\wedge\xi_p
+   &\forall \,1\leq i\leq p
+\\
+   \overline{\eta_j} &:=&
+   \eta_1\wedge\cdots\wedge\widehat{\eta_j}\wedge\cdots\wedge\eta_q
+   &\forall \,1\leq j\leq q
+\\
+   \overline{\phi_k} &:=&
+   \phi_1\wedge\cdots\wedge\widehat{\phi_k}\wedge\cdots\wedge\phi_r
+   &\forall \,1\leq k\leq r
+\end{array}$$
+我们将对$p$归纳。
+
+\textbf{预备情形}：若$p=q=r=0$，则结论平凡。
+若$p,q,r$当中恰有两个为$0$，不妨$p=q=0$，此时$r>0$，从而任取
+$f,g\in\PV^0_X$以及$\phi\in\PV^r_X$，此时的超雅可比恒等式为
+$$\{f,\{g,\phi\}\}+\{g,\{f,\phi\}\}=0$$
+注意到
+$$\{f,\phi\}=\sum_{k=1}^r(-1)^k\phi_k(f)\overline{\phi_k}$$
+从而有
+\begin{eqnarray*}
+     \{f,\{g,\phi\}\}
+&=&  \{f,
+         \sum_{k=1}^r
+           (-1)^k\phi_k(g)\overline{\phi_k}
+     \}\\
+&=&
+     \sum_{k=1}^r\phi_k(g)
+       \left(
+         \sum_{j<k}(-1)^j
+           \phi_j(f)\overline{\phi_{jk}}
+        +\sum_{j>k}(-1)^{j+1}
+           \phi_j(f)\overline{\phi_{kj}}
+       \right)\\
+&=&
+     \sum_{1\leq i<j\leq r}(-1)^{i+j}
+       \big[
+         \phi_i(g)\phi_j(f)-\phi_j(g)\phi_i(f)
+       \big]
+       \overline{\phi_{ij}}
+\end{eqnarray*}
+其中对于$j<k$，简写记号
+$$\overline{\phi_{jk}}
+:=\cdots\wedge\widehat{\phi_j}
+\wedge\cdots\wedge\widehat{\phi_k}\wedge\cdots$$
+注意观察上式关于$f,g$的反对称性，
+容易发现$\{f,\{g,\phi\}\}=-\{g,\{f,\phi\}\}$，从而证毕。
+
+于是，我们在接下来的证明中，
+不妨$p,q,r$当中为零的至多只有一个。\vs
+
+
+\textbf{$p$的起始步：}现在开始对$p$归纳，
+首先考虑起始步$p=0$.由之前讨论，不妨$q,r>0$.
+任取$f\in\PV^0_X$，只需证
+$$\{f,\{\eta,\phi\}\}=\{\{f,\eta\},\phi\}
++(-1)^{q-1}\{\eta,\{f,\phi\}\}\eqno{(*)}$$
+
+暴力展开验证之，注意到
+\begin{eqnarray*}
+     \{f,\{\eta,\phi\}\}
+&=&
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \{
+           f
+          ,
+           [\eta_j,\phi_k]
+           \wedge\overline{\eta_j}
+           \wedge\overline{\phi_k}
+         \}\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k](f)
+               \overline{\eta_j}
+         \wedge\overline{\phi_k}\\
+& &
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k]\wedge
+         \{
+           f
+         ,
+           \overline{\eta_j}\wedge\overline{\phi_k}
+         \}
+\end{eqnarray*}
+再打开$(*)$的右边：
+\begin{eqnarray*}
+     \{\{f,\eta\},\phi\}
+&=&
+     \sum_{j=1}^q(-1)^j
+       \{\eta_j(f)\overline{\eta_j},\phi\}\\
+&=&
+     \sum_{j=1}^q(-1)^j
+       \Big[
+         (-1)^{(q-1)(r-1)}
+         \{\eta_j(f),\phi\}\wedge
+         \overline{\eta_j}
+        +\eta_j(f)\{\overline{\eta_j},\phi\}
+       \Big]\\
+&=&
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \phi_k(\eta_j(f))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+\end{eqnarray*}
+\begin{eqnarray*}
+     (-1)^{q-1}\{\eta,\{f,\phi\}\}
+&=&
+     (-1)^{q-1}
+     \sum_{k=1}^r(-1)^k
+       \{\eta,\phi_k(f)\overline{\phi_k}\}\\
+&=&
+     (-1)^{q-1}
+     \sum_{k=1}^r(-1)^k
+       \Big[
+         \{\eta,\phi_k(f)\}\wedge
+         \overline{\phi_k}
+        +(-1)^{q-1}
+         \phi_k(f)\{\overline{\eta,\overline{\phi_k}}\}
+       \Big]\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \eta_j(\phi_k(f))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}
+\end{eqnarray*}
+因此有
+\begin{eqnarray*}
+     \{\{f,\eta\},\phi\}+(-1)^{q-1}\{\eta,\{f,\phi\}\}
+&=&
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         (\phi_k(\eta_j(f))-\eta_j(\phi_k(f)))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k](f)
+               \overline{\eta_j}
+         \wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}\\
+\end{eqnarray*}
+
+与$(*)$式比较，只需要再验证恒等式
+$$
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k]\wedge
+         \{
+           f
+         ,
+           \overline{\eta_j}\wedge\overline{\phi_k}
+         \}
+ =
+     \sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}
+$$
+即可。而这只需将式子中的Schouten-Nijenhuis括号暴力展开，
+并且适当更改求和指标即可，从略。
+{\color{red}（不太想写了，打字好累2333）}\vs
+
+
+\textbf{$p$的归纳步：}
+如果该命题对$p$成立，则考虑
+$$\xi':=\xi_0\wedge\xi\in\PV_X^{p+1}$$
+其中任意$\xi_0\in\PV^0_X$. 我们只需证
+$$\{\xi',\{\eta,\phi\}\}=
+\{\{\xi',\eta\},\phi\}
++(-1)^{p(q-1)}\{\eta,\{\xi',\phi\}\}\eqno{(**)}$$
+注意反复使用$\{,\}$的超反对称性、超莱布尼茨法则，
+以及关于$p$的归纳假设，我们简单（但暴力）验证如下：
+\begin{eqnarray*}
+     \text{$(**)$左边}
+&=&
+     \{\xi_0\wedge\xi,\{\eta,\phi\}\}\\
+&=&
+     (-1)^p\xi\wedge
+     \{
+       \xi_0
+      ,
+       \{
+          \eta
+        ,
+          \phi
+       \}
+     \}+\xi_0\wedge
+     \{
+       \xi
+      ,
+       \{\eta,\phi\}
+     \}\\
+&=&
+     (-1)^p\xi\wedge
+     \Big(
+       \{\{\xi_0,\eta\},\phi\}
+      +\{\eta,\{\xi_0,\phi\}\}
+     \Big)\\
+& &
+    +\xi_0\wedge
+     \Big(
+       \{\{\xi,\eta\},\phi\}
+      +(-1)^{(p-1)(q-1)}
+       \{\eta,\{\xi,\phi\}\}
+     \Big)
+\end{eqnarray*}
+其中最后一步等号用到了归纳假设。
+再看$(**)$右边，需要格外小心正负号：
+\begin{eqnarray*}
+     \text{$(**)$右边}
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}
+     \{\phi,\{\eta,\xi_0\wedge\xi\}\}
+    -(-1)^{p(q-1)+p(r-1)}
+     \{\eta,\{\phi,\xi_0\wedge\xi\}\}\\
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}
+     \Big\{
+       \phi
+     ,
+       {\eta,\xi_0}\wedge\xi
+      +(-1)^{q-1}\xi_0\wedge\{\eta,\xi\}
+     \Big\}\\
+& &
+    -(-1)^{p(q+r)}
+     \Big\{
+            \eta
+     ,
+            \{\phi,\xi_0\}\wedge\xi
+           +(-1)^{r-1}
+            \xi_0\wedge\{\phi,\xi\}
+     \Big\} \\
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}\\
+& &
+     \Big[
+       \{\phi,\{\eta,\xi_0\}\}\wedge\xi
+      +(-1)^{(r-1)q}
+        {\color{red}
+         \{\eta,\xi_0\}\wedge\{\phi,\xi\}
+        }\\
+& &
+       \quad
+      +(-1)^{q-1}
+       \big(
+         {\color{blue}
+           \{\phi,\xi_0\}\wedge\{\eta,\xi\}
+         }
+        +(-1)^{r-1}
+         \xi_0\wedge\{\phi,\{\eta,\xi\}\}
+       \big)
+     \Big]\\
+& &
+     -(-1)^{p(q+r)}
+     \Big[
+       \{\eta,\{\phi,\xi_0\}\}\wedge\xi
+      +(-1)^{(q-1)r}
+       {\color{blue}
+         \{\phi,\xi_0\}\wedge\{\eta,\xi\}
+       }\\
+& &
+       \quad
+      +(-1)^{r-1}
+       \big(
+         {\color{red}
+           \{\eta,\xi_0\}\wedge\{\phi,\xi\}
+         }
+        +(-1)^{q-1}
+         \xi_0\wedge\{\eta,\{\phi,\xi\}\}
+       \big)
+     \Big]\\
+&=&
+     (-1)^p\xi\wedge
+     \Big(
+       \{\{\xi_0,\eta\},\phi\}
+      +\{\eta,\{\xi_0,\phi\}\}
+     \Big)\\
+& &
+    +\xi_0\wedge
+     \Big(
+       \{\{\xi,\eta\},\phi\}
+      +(-1)^{(p-1)(q-1)}
+       \{\eta,\{\xi,\phi\}\}
+     \Big)\\
+&=&
+     \text{$(**)$左边}
+\end{eqnarray*}
+从而$(**)$两边相等，归纳完毕。
+\end{proof}
+
+归纳步当中主要是在验证正负号。
 
 
 \section{Shuffle乘积}
 
-\begin{definition}
-Let $S_n$ be the symmetric group, A (p,q)-Shuffle is
- a permutation $\sigma\in S_{p+q}$ such that
- $$\sigma(1)<\sigma(2)<...<\sigma(p)$$
-  $$\sigma(p+1)<\sigma(p+2)<...<\sigma(q)$$
-Let
-$$Sh_{p,q}:=\text{ all the $p,q$-Shuffle}$$
+对于$n\geq 1$，我们记$S_n$为$n$元对称群。
+
+\begin{definition}（$(p,q)$-Shuffle）
+
+对于正整数$p,q$，称$\sgm\in S_{p+q}$为一个
+\textbf{$p,q$-Shuffle}，如果满足
+%Let $S_n$ be the symmetric group, A (p,q)-Shuffle is
+% a permutation $\sigma\in S_{p+q}$ such that
+$$\sigma(1)<\sigma(2)<...<\sigma(p)$$
+$$\sigma(p+1)<\sigma(p+2)<...<\sigma(q)$$
+%Let
+全体$(p,q)$-Shuffle构成的集合记为$\Sh_{p,q}$.
 \end{definition}
 
-Let $A,A'$ be to $K$-algebras,
-$M,M'$ are $A,A'$-bimodule. We define the Shuffle product $\times$
+{\color{purple}
+笔者建议将“Shuffle”意译为“\textbf{洗牌}”——
+因为$\Sh_{p,q}$中的置换，好比将$p+q$张扑克牌
+分为$p$张、$q$张两组来洗牌。
+}
 
-$$C_p(A,M)\times C_q(A',M')\to C_{p+q}(A\ten A',M\ten M')$$
+容易知道，集合$\Sh_{p,q}$的元素个数为
+$$\frac{(p+q)!}{p!q!}$$
 
-$$(m,a_1,...,a_p)\times(m',a_1',...,a_q')\mapsto
+回到Hochschild链复形。
+我们已经知道，$\HH\downdot(A)$
+是通常的光滑流形的微分形式$\Omg\updot_X$的非交换版本。
+而对于微分形式$\Omg\updot_X$，
+其上有外积$\wedge$使之构成分次交换代数；
+我们也企图去定义非交换版本的外积。
+
+%Let $A,A'$ be to $K$-algebras,
+%$M,M'$ are $A,A'$-bimodule. We define the Shuffle product $\times$
+
+\begin{definition}（Shuffle 乘积）
+\index{shuffle product}%%这屌东西怎么翻译呀
+
+设$A,A'$为$K$-代数，$M,M'$分别为双$A,A'$-模，
+我们定义如下的运算$\times$，称之为\textbf{Shuffle乘积}：
+\begin{eqnarray*}
+C_p(A,M)\times C_q(A',M')&\to& C_{p+q}(A\ten A',M\ten M')\\
+(m,a_1,...,a_p)\times(m',a_1',...,a_q')&\mapsto&
 \sum_{\sigma\in Sh_{p,q}}
   (-1)^{|\sigma|}
   (m\ten m',\sigma(a_1,...,a_p,a_1',...,a_q'))
-$$
+\end{eqnarray*}
+其中$|\sgm|:=\sgn\sgm$为置换的符号，
+$(m,a_1,...,a_n):=m\ten a_1\ten\cdots\ten a_n$为简单的记法；
+并且置换群$S_{p+q}$在$A^{\ten (p+q)}$上的作用为
+$$\sigma(a_1,...,a_q')
+:=(a_{\sigma^{-1}(1)},...,a_{\sgm^{-1}(q')})$$
+\end{definition}
 
-Here $\sigma(a_1,...,a_p,a_1',...,a_q')=(a_{\sigma^{-1}(1)})$
 %要取逆。。。因为是左作用%
+注意在这里，群$S_{p+q}$在$A^{\ten(p+q)}$上的作用方式，
+下角标中出现的是“$\sgm^{-1}$”，如此规定是为了保证
+$S_{p+q}$的作用是左作用。
 
-\begin{prop}
-The Shuffle product $\times$ is compatible with
-Hochschild differential $b$: i.e.
+还要注意一点，$A,A'$以及$M,M'$并不被假定有分次结构，
+$A\ten A'$在$M\ten M'$上的模作用是通常的
+$$(a\ten a').(m\ten m')=(a.m)\ten(a'.m')$$
+右模作用也类似，并不会出正负号，Koszul符号法则在此平凡。
 
-$$b(x\times y=b(x)\times y+(-1)^{\deg x}x\times b(y)$$
+还要注意，
+$$C_{p+q}(A\ten A',M\ten M')
+\cong (M\ten M')\ten (A\ten A')^{\ten(p+q)}$$
+之中元素“$(m\ten m',a_1,...,a_p,a_1',...,a_q')$”
+里面的“$a_i$”应该是$a_i\ten 1\in A\ten A'$，
+以及“$a_j'$”应该是$1\ten a_j'\in A\ten A'$.
+
+还要注意$A\ten A'$的乘法满足$a_ia_j'=a_j'a_i$交换。
+
+\begin{prop}（Shuffle乘积与Hochschild边缘算子相容）
+%The Shuffle product $\times$ is compatible with
+%Hochschild differential $b$: i.e.
+
+记号同上，则对于任意$x\in C_p(A,M)$，$y\in C_q(A',M')$，成立
+$$b(x\times y)=
+b(x)\times y+(-1)^{\deg x}
+x\times b(y)$$
+其中$b:C\downdot\to C_{\bullet-1}$
+为相应Hochschild链复形各自的边缘算子。
 \end{prop}
 
-%%%%%%%又画图了%%%%%%
-%读论文就是将非人话翻译成人话的过程，
-%写论文就是将人话写成非人话的过程。
-%                               ——李思
+\begin{proof}当然是暴力验证了，
+我们尽可能使用简练的记号。令
+$$x=m \ten(a_1 ,...,a_p )$$
+$$y=m'\ten(a_1',...,a_q')$$
+首先看$b(x\times y)$，我们按张量缩并的位置，
+以及$A\ten A'$当中的“元素类型”
+（形如$1\ten A'$或是$A\ten 1$）来分类，强行将它打开：
+\begin{eqnarray*}
+     b(x\times y)
+&=&
+     b\sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+        (m\ten m')\ten \sgm(a_1,...,a_p,a_1',...,a_q')\\
+&=&
+     (m.a_1\ten m')\ten
+     \sum_{\sgm\in\Sh_{p-1,q}}(-1)^{|\sgm|}
+       \sgm(a_2,...,a_p,a_1',...,a_q')\\
+& &
+    +(m\ten m'.a_1')\ten
+     \sum_{\sgm\in\Sh_{p,q-1}}(-1)^{|\sgm|+p}
+       \sgm(a_1,...,a_p,a_2',...,a_q')\\
+& &
+    +\sum_{i=1}^{p+q-1}(-1)^i(m\ten m')\ten
+       \Bigg[
+         \sum_{1\leq\alpha<\beta\leq p
+           \atop\sgm\in\Sh_{p-2,q}}
+             (-1)^{|\sgm|+\alpha+\beta-1}
+               \sgm(...,\underbrace{(a_{\alpha}a_{\beta})}
+                        _{\text{第$i,i+1$个}},...)\\
+& &
+         {\color{red}
+         \quad\quad
+        +\sum_{1\leq\alpha \leq p,\, 1\leq\gamma\leq q
+           \atop\sgm\in\Sh_{p-1,q-1}}
+             (-1)^{|\sgm|+\alpha+\gamma+p-1}
+               \sgm(...,\underbrace{(a_{\alpha}a_{\gamma}')}
+                        _{\text{第$i,i+1$个}},...)
+         }\\
+& &
+         {\color{red}
+         \quad\quad
+        +\sum_{1\leq\alpha \leq p,\, 1\leq\gamma\leq q
+           \atop\sgm\in\Sh_{p-1,q-1}}
+             (-1)^{|\sgm|+\alpha+\gamma+p}
+               \sgm(...,\underbrace{(a_{\gamma}'a_{\alpha})}
+                        _{\text{第$i,i+1$个}},...)
+         }\\
+& &
+         \quad\quad
+        +\sum_{1\leq\gamma<\delta\leq q
+           \atop\sgm\in\Sh_{p,q-2}}
+             (-1)^{|\sgm|+(\gamma+p)+(\delta+p)-1}
+               \sgm(...,\underbrace{(a_{\gamma}'a_{\delta}')}
+                        _{\text{第$i,i+1$个}},...)
+       \Bigg]\\
+& &
+    +(-1)^{p+q}(a_n.m\ten m')
+     \sum_{\sgm\in\Sh_{p-1,q}}
+       (-1)^{|\sgm|+q}
+       (a_1,...,a_{p-1},a_1',...,a_q')\\
+& &
+    +(-1)^{p+q}(m\ten a_n'.m')
+     \sum_{\sgm\in\Sh_{p,q-1}}
+       (-1)^{|\sgm|}
+       (a_1,...,a_p,a_1',...,a_{q-1}')\\
+&=&
+     [m.a_1\ten(a_2,...,a_p)]\times y
+    +(-1)^px\times[m'.a_1'\ten(a_2',...,a_q')]\\
+& &
+    +\left(
+       \sum_{i=1}^{p-1}(-1)^i
+         m\ten(a_1,...,a_ia_{i+1},...,a_p)
+     \right)\times y\\
+& &
+    +(-1)^px\times
+     \left(
+       \sum_{i=1}^{q-1}(-1)^i
+         m'\ten(a_1',...,a_i'a_{i+1}',...,a_q')
+     \right)\\
+& &
+    +(-1)^p[a_p.m\ten (a_1,...,a_{p-1})]\times y
+    +(-1)^{p+q}x\times[a_q'.m'\ten(a_1',...,a_{q-1}')]\\
+&=&
+    b(x)\times y+(-1)^px\times b(y)
+\end{eqnarray*}
+从而证毕。
+\end{proof}
 
-%“我写的公式也不一定对。。。但基本上是对的，up to sign”
-
-\begin{cor}
-we get a chain complex map
+\begin{cor}对于$K$-代数$A,A'$，
+若$M,M'$分别为双$A,A'$-模，则Shuffle乘积诱导了
+链映射：%we get a chain complex map
 $$C\downdot(A,M)\ten C\downdot(A',M')
-\to
-C\downdot(A\ten A',M\ten M')$$
-
-pass to homology, we get
-
+\xra{\times} C\downdot(A\ten A',M\ten M')$$
+并且该链映射诱导了Hochschild同调的同态%pass to homology, we get
 $$H\downdot(A,M)\ten H\downdot(A',M')
-\to
+\xra{\times}
 H\downdot(A\ten A',M\ten M')$$
-
-In particular,
-$$C\downdot(A)\ten C\downdot(A')\to C\downdot(A\ten A')$$
 \end{cor}
 
-\begin{thm}(K\"{u}nneth Forumla)
+\begin{proof}
+仅仅是将
+$$b(x\times y)=
+b(x)\times y+(-1)^{\deg x}
+x\times b(y)$$
+换了一种说法。注意链复形张量积
+$$C\downdot(A,M)\ten C\downdot(A',M')$$
+的边缘算子服从与定义
+\ref{分次上链复形的张量积-def}
+类似的规则。Shuffle乘积在Hochschild
+同调的下降的良定性也易证。
+\end{proof}
 
-Assume $a,A'$ are flat over $K$,
-then Shuffle product gives an isomorphism
-$$\HH\downdot(A)\ten\HH\downdot(A')\cong\HH\downdot(A\ten A')$$
+特别地，当$M=A,M'=A'$时%In particular,
+Shuffle乘积诱导了同态：
+$$\HH\downdot(A)\ten \HH\downdot(A')
+\xra{\times} \HH\downdot(A\ten A')$$
+
+\begin{thm}（K\"{u}nneth 公式）%Forumla)
+
+%Assume $a,A'$ are flat over $K$,
+%then Shuffle product gives an isomorphism
+如果$K$-代数$A,A'$作为$K$-模都是平坦的，
+那么Shuffle乘积诱导的Hochschild同调之间的同态
+$$\HH\downdot(A)\ten\HH\downdot(A')
+\xra{\times}\HH\downdot(A\ten A')$$
+为同构。
 \end{thm}
+\begin{proof}
+代数拓扑中的标准证明。从略。
+\end{proof}
+
+注意我们总是假定$A,A'$是投射$K$-模，
+从而自然满足平坦性。
 
 %不证了，标准的证明
+%%%%%%%代数映射%%%%%%%搞定
 
-Functoriality:
+\begin{prop}
+%Let $A$ be a commutative associative algebra, then
+若$K$-代数$A$是交换的，则Shuffle乘积诱导了
+$\HH\downdot(A)$ %is a graded commutative algebra.
+的$K$-代数结构，并且$(\HH\downdot(A),\times)$
+是分次交换的。
+\end{prop}
+这就回到了通常交换的情形了。
+事实上Shuffle乘积的几何意义为微分形式的外积。
 
-$$\fai:A\to B$$
-is a map of $K$-algebra, then
+\begin{proof}对于任意的$K$-代数$A$，注意
+张量积$A\ten A$也有$K$-代数结构。断言：
+\begin{eqnarray*}
+\pi:A\ten A&\to& A\\
+a\ten b&\mapsto& ab
+\end{eqnarray*}
+为$K$-代数同态当且仅当$A$是交换代数。
+于是当$A$交换时，考虑$K$-代数同态$A\ten A\xra{\pi}A$，
+由Hochschild同调的函子性，该同态诱导了
+$$\HH\downdot(A\ten A)\xra{\HH\downdot(\pi)}\HH\downdot(A)$$
+再注意Shuffle乘积诱导
+$$\HH\downdot(A)\ten\HH\downdot(A)\xra{\times}\HH\downdot(A\ten A)$$
+将上述两个同态复合，即得到分次$K$-代数
+$(\HH\downdot(A),\times)$.
 
-$$\fai\downdot:C\downdot(A)\to C\downdot(B)$$
+容易验证此代数为分次交换的，验证如下：
+对任意$p,q\geq 0$以及$a_0,a_1,...,a_p\in A$，
+$a_0',a_1',...,a_q'\in A$，有
+\begin{eqnarray*}
+& &
+     [a_0\ten(a_1,...,a_p)]
+     \times[a_0'\ten(a_1',...,a_q')]\\
+&=&
+     (a_0a_0')\ten
+     \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+       \sgm(a_1,...,a_p;a_1',...,a_q')\\
+&=&
+     (a_0'\ten a_0)\ten
+     \sum_{\sgm\in\Sh_{q,p}}
+       (-1)^{|\sgm|+pq}
+       \sgm(a_1',...,a_q';a_1,...,a_p)\\
+&=&
+     (-1)^{pq}
+     [a_0'\ten(a_1',...,a_q')]
+     \times[a_0\ten(a_1,...,a_p)]
+\end{eqnarray*}
+从而分次交换。
+\end{proof}
 
-induces
+%HW: 
+\begin{prop}（Shuffle乘积是非交换版本的外积）
+%If $A=K[x^i]$, then
 
-$$\fai:\HH\downdot(A)\to \HH\downdot(B)$$
-%%%%%%%代数映射%%%%%%%5
-
-\begin{cor}
-Let $A$ be a commutative associative algebra, then
-$(\HH\downdot(A),\times)$ is a graded commutative algebra.
-\end{cor}
-
-HW: If $A=K[x^i]$, then
+若$A=K[x^1,...,x^n]$为多项式代数，则有$K$-代数同构
 $$(\HH\downdot(A),\times)\cong(\Omg_A\updot,\wedge)$$
+\end{prop}
+
+\begin{proof}
+回顾性质\ref{C[x^i]的循环同调}当中的双复形同态
+$$\Phi:(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+\to(\Omg\updot_A,0,\td)$$
+
+首先，容易验证Shuffle乘积可下降至
+$$\overline{C}\downdot(A)\ten\overline{C}\downdot(A)
+\xra{\times}\overline{C}\downdot(A)$$
+从而我们只需要验证对于任意$x\in\overline{C}_p(A)$以及
+$y\in\overline{C}_q(A)$，成立
+$$\Phi(x\times y)=\Phi(x)\wedge\Phi(y)$$
+
+对任意的$p,q\geq 0$，以及
+$x=a_0\ten(\overline{a_1},...,\overline{a_p})\in\overline{C}_p(A)$，
+$y=a_0'\ten(\overline{a_1}',...,\overline{a_q}';)\in\overline{C}_q(A)$，
+从而
+\begin{eqnarray*}
+     \Phi(x\times y)
+&=&
+     \Phi\left(
+            a_0a_0'\ten
+            \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+              \sgm(\overline{a_1},...,\overline{a_p};
+                   \overline{a_1}',...,\overline{a_q}')
+         \right)\\
+&=&
+     \frac{1}{(p+q)!}a_0a_0'
+     \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+       \sgm(\td a_1\wedge\cdots\wedge \td a_p
+         \wedge \td a_1'\wedge\cdots\wedge\td a_q')\\
+&=&
+     \frac{1}{p!q!}
+     a_0a_0'\td a_1\wedge\cdots\wedge \td a_p
+     \wedge \td a_1'\wedge\cdots\wedge\td a_q'\\
+& &
+     \\
+     \Phi(x)\wedge\Phi(y)
+&=&
+     \left(
+       \frac{1}{p!}
+       a_0\td a_1\wedge\cdots\wedge \td a_p
+     \right)
+     \wedge
+     \left(
+       \frac{1}{q!}
+       a_0'\td a_1'\wedge\cdots\wedge \td a_q'
+     \right)\\
+&=&
+     \frac{1}{p!q!}
+     a_0a_0'\td a_1\wedge\cdots\wedge \td a_p
+     \wedge \td a_1'\wedge\cdots\wedge\td a_q'
+\end{eqnarray*}
+从而得证。
+\end{proof}
+
 
 \section{Cup乘积}
-
-$$C\updot(A,A)=\bigoplus_p(C^p(A,A))$$
+对于$K$-代数$A$，回顾Hochschild上链复形
+$$C\updot(A):=C\updot(A,A)=\bigoplus_{p\geq 0}C^p(A,A)$$
+我们将介绍$C\updot(A)$上的代数结构：cup乘积。
 
 %%%%%%%%%%%%%树%%%%%%%%%
 
-\begin{definition}
-For $f\in C^p(A,A)$,$g\in C^q(A,A)$. Define cup product
-$$f\cup g\in C^{p+q}(A,A)$$
+\begin{definition}（Cup乘积）
 %%%%%%%shadiao%%%%
+\index{cup product}
+
+设$A$为$K$-代数，定义\textbf{cup乘积}
+$$\cup:C\updot(A)\ten C\updot(A)\to C\updot(A)$$
+如下：%For 
+对任意的$f\in C^p(A)$，$g\in C^q(A)$，% Define cup product
+\begin{eqnarray*}
+f\cup g &\in& C^{p+q}(A)\\
+(f\cup g)(a_1,...,a_p;a_{p+1},...,a_q)
+&=&
+(-1)^{pq}f(a_1,...,a_p)g(a_{p+1},...,a_{p+q})
+\end{eqnarray*}
 \end{definition}
 
-\begin{prop}
-Cup product is compatible with Hochschild differential $\p$:
+我们已经知道，Hochschild上同调是“非交换版本的多重切向量场”。
+注意多重切向量场具有外积运算，而cup乘积则是“非交换版本的外积”。
+我们将去说明这一点。
 
+\begin{prop}（cup乘积与Hochschild微分的相容性）
+%Cup product is compatible with Hochschild differential $\p$:
+
+对于$K$-代数$A$，任意$f,g\in C\updot(A)$，成立
 $$\p(f\cup g)=(\p f)\cup g+(-1)^{\deg f}f\cup\p g$$
 \end{prop}
 
@@ -993,6 +1647,8 @@ $$(H\updot(A,A),\cup)\cong (PV_A,\wedge)$$
 
 \section{Gerstenhaber 乘积}
 \textbf{Gerstenhaber algebra(自己查定义)}
+Gerstenhaber algebra(Wiki, HW)
+(in physics, Classical BV algebra)
 
 \begin{definition}Gershenhaber product
 $$C^{p}(A,A)\times C^q(A,A)\to C^{p+q-1}(A,A)$$
