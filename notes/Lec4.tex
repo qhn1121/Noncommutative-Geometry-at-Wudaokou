@@ -1,0 +1,532 @@
+%%%%%%%%%%%%2019.3.12第三周Mon%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%下周一，周坚代课%%&%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%下周二，随堂考试%%%%%%%%%%%%%%%%%%%%%
+
+%\textbf{Coalgebra and homotopy associativity}
+
+\chapter{余代数与同伦结合性}
+
+%\textbf{Co-algebra}
+%%%%%结合性%%%%%%%%
+%%%%%%分次交换%%%%%%%%%
+\section{余代数与分次余代数}
+首先简要回顾一下\textbf{余代数}（co-algebra）
+\index{co-algebra\kong 余代数}
+的概念。对于$K$-代数$A$，$A$上的乘法$m:A\ten A\to A$的结合性
+可用如下交换图来描述：
+
+$$
+  \xymatrixcolsep{5pc}
+  \xymatrixrowsep{5pc}
+  \xymatrix{
+     A\ten A\ten A  \ar[r]^-{m\ten 1}  \ar[d]^-{1\ten m}
+    &A\ten A                           \ar[d]^-m
+  \\
+     A\ten A        \ar[r]^-m
+    &A
+  }
+$$
+
+将上述图表中的箭头全部反向，即得到\textbf{余结合律}的概念：
+对于$K$-模$A$，以及$K$-模同态$\yc:A\to A\ten A$，
+若以下图表交换
+$$
+  \xybigcol
+  \xybigrow
+  \xymatrix{
+    A          \ar[r]^{\yc}   \ar[d]^{\yc}
+   &A\ten A                   \ar[d]^{\yc\ten 1}
+  \\
+    A\ten A    \ar[r]^{1\ten\yc}
+   &A\ten A\ten A
+  }
+$$
+则称$\yc$满足\textbf{余结合律}，
+%此时称$(A,\yc)$为\textbf{余代数}（co-algebra）。
+运算“$\yc$”称为\textbf{余乘}（co-product）.
+\index{co-product\kong 余乘}
+类似地我们可以谈论\textbf{余交换律}，
+乘法$m:A\ten A\to A$与余乘$\yc:A\to A\ten A$的交换律、
+余交换律分别由以下交换图表描述：
+$$
+  \xybigrow
+  \xymatrix{
+    A\ten A \ar[rr]^{\tau}  \ar[dr]^m
+    &&
+    A\ten A \ar[dl]_{m}
+  \\
+    &A&
+  }
+\quad\quad
+  \xybigrow
+  \xymatrix{
+    A\ten A
+    &&
+    A\ten A \ar[ll]_{\tau}
+  \\
+    &A \ar[ul]_{\yc}\ar[ur]^{\yc}
+    &
+  }
+$$
+其中$\tau: x\ten y\mapsto y\ten x$为$A\ten A$的对合自同构。
+
+对于$K$-代数$A$，我们总是假定$A$含幺。
+事实上，存在唯一的$K$-代数同态
+$$i:K\to A$$
+而$A$的\textbf{幺元}$1\in A$即为$1\in K$在该同态下的像。
+在此意义下，我们不妨重新定义什么是$A$的幺元：
+称$K$-模同态$i:K\to A$为$A$的幺元，如果以下图表交换：
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+     &
+       A\ar@{=}[ld]_{\cong}\ar@{=}[rd]^{\cong}
+     &
+  \\
+       K\ten A  \ar[r]^{i\ten 1}
+     & A\ten A  \ar[u]_{m}
+     & A\ten K  \ar[l]_{1\ten i}
+  }
+$$
+
+将以上图表的箭头全部反向，
+则得到\textbf{余幺元}（co-unit）
+\index{co-unit\kong 余幺元}
+的概念：对于配以余乘$\yc$的$K$-模$A$，
+称$K$-模同态$\veps:A\to K$为关于$\yc$的
+\textbf{余幺元}，如果以下图表交换：
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+     &
+       A\ar@{=}[ld]_{\cong}\ar@{=}[rd]^{\cong}\ar[d]^{\yc}
+     &
+  \\
+       K\ten A
+     & A\ten A  \ar[l]_{\veps\ten 1}\ar[r]^{1\ten \veps}
+     & A\ten K
+  }
+$$
+
+对于$K$-模$A$，若$A$配以（满足余结合律的）余乘$\yc$，
+以及关于该余乘的余幺元$\veps:A\to K$，则称
+$(A,\yc,\veps)$为$K$-\textbf{余代数}。
+
+若$(A,\yc_A)$与$(B,\yc_B)$都为$K$-余代数，称$K$-模同态
+$\fai:A\to B$为$K$-\textbf{余代数同态}，如果对任意$x\in A$，成立
+$$\yc_B(\fai(x))=\fai(\yc_A(x))$$
+
+\begin{rem}%If
+若$(A,\triangle)$ 为$K$-余代数，%is a co-algebra, then
+考虑对偶映射$\yc^*:(A\ten A)^*\to A^*$，则
+$(A^*,\triangle^*)$ %is an algebra
+具有如下$K$-代数结构：
+$$A^*\ten A^*\to(A\ten A)^*\xra{\triangle^*}A^*$$
+\end{rem}
+%%%%%见图%%%%%%%5
+
+用反变函子$\Hom(-,K)$翻转余代数图表的箭头而已；
+但是要注意，对一个代数取对偶，未必能得到余代数。
+也就是说，某种意义下余代数比代数包含更多的信息。
+
+现在我们谈论余代数的分次版本。
+
+\begin{definition}（分次余代数）
+%$C\downdot\in Mod_K^{\bbZ}$ is a graded coalgebra over $K$，
+%if there is a coproduct ($\deg=0$)
+%$$\triangle:C\to C\ten C$$
+%%%coproduct%%%%%%%
+\index{graded co-algebra\kong 分次余代数}
+
+设$A=\bigoplus\limits_{k\in\bbZ}A_k$为分次$K$-模，
+$\yc:A\to A\ten A$为$A$的余乘（满足余结合律），
+称$(A,\yc)$为\textbf{分次余代数}（graded co-algebra），
+若$\yc$与$A$的分次满足以下相容性：任意$k\in\bbZ$，
+$$\yc(A_k)\subseteq (A\ten A)_k$$
+\end{definition}
+
+我们自然也可以谈论$\yc$的\textbf{分次余交换性}，
+见下述交换图（与非分次情形完全一样）：
+$$
+\xybigrow
+  \xymatrix{
+    A\ten A
+    &&
+    A\ten A \ar[ll]_{\tau}
+  \\
+    &A \ar[ul]_{\yc}\ar[ur]^{\yc}
+    &
+  }
+$$
+不过要注意，这里的$\tau$为分次对合自同构
+（见定义\ref{分次对合自同构}），服从Koszul符号法则：
+$$\tau: x\ten y\mapsto (-1)^{xy}y\ten x$$
+
+
+%counit$\veps:C\to K$ satisfying
+%%%%%%%%counit%%%%%%%%%
+\begin{definition}（余超导子）%co-derivation
+
+对于分次$K$-余代数$A$，以及$d\in\bbZ$，
+称次数为$d$的分次$K$-模同态$\delta:A\to A$
+为$d$次\textbf{齐次余超导子}，若以下图表交换
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+      A  \ar[r]^{\delta}  \ar[d]_{\yc}
+    & A  \ar[d]^{\yc}
+  \\
+      A\ten A \ar[r]^-{\delta\ten 1+1\ten\delta}
+    & A\ten A
+  }
+$$
+即满足“\textbf{余莱布尼茨法则}”。
+%$\delta: C\to C$ satisfying
+%%%%%co-Leibnitz rule%%%%%%%
+\end{definition}
+注意到上述图表默认Koszul符号法则。
+记$A$的$d$次齐次余超导子之全体为$\Coder(A)_d$，
+以及
+$$\Coder(A):=\bigoplus_{d\in\bbZ}\Coder(A)_d$$
+称其中的元素为\textbf{余超导子}。
+与超导子类似，余超导子之全体也有李超代数结构：
+
+\begin{prop}对于$K$-余代数$A$，
+%$Coder(C)$ is a graded Lie algebra, where
+以及齐次余超导子$D_1,D_2\in\Coder(A)$，定义
+$$[D_1,D_2]:=D_1\circ D_2-(-1)^{D_1D_2}D_2\circ D_1$$
+则$[D_1,D_2]\in\Coder(A)$，进而$(\Coder(A),[,])$
+构成李超代数。
+\end{prop}
+\begin{proof}
+与分次代数的超导子完全类似，直接验证即可，从略。
+\end{proof}
+
+有了余超导子，可以相应地去定义\textbf{微分分次余代数}
+（differential graded co-algebra）：
+\index{differential graded co-algebra\kong 微分分次余代数}
+%A differential graded co-algebra is a co-algebra
+%$C$ with a co-derivation $\delta:C\to C$ such that
+%$\deg\delta=1$ and $\delta^2=0$.
+
+\begin{definition}（微分分次余代数）
+对于$K$-余代数$A$，
+以及满足$\delta^2=0$的$1$次齐次余超导子$\delta$，
+则称$(A,\delta)$为微分分次余代数。
+\end{definition}
+
+类似地，微分分次余代数自然可以视为分次上链复形。
+
+\begin{rem}（(co-)augmentation）
+\index{augmentation}%我也不知道这屌东西该怎么中（人）文（话）说
+
+（1）对于$K$-代数$A$，我们把从$A$到$K$的$K$-模同态称为augmentation；
+
+（2）对于$K$-余代数$A$，我们把从$K$到$A$的$K$-模同态称为co-augmentation
+\end{rem}
+
+与“幺元”的箭头刚好相反。
+{\color{purple}笔者建议将augmentation意译为“赋值”。}
+
+%co-augmentation
+
+%(Recall:
+%$A$:$K$-algebra. augmentation is an algebra morphism
+%$A\to K$.)
+%Co-algebra $(C,\triangle)$ is called co-augmentation if
+%there is a co-algebra map $K\to C$.
+
+%%%%%%co-algebra的同态怎么定义？自行脑补%%%%%%%%%%
+
+%$(C,\triangle)$ is co-commutative,if
+%%%%co-commutative%%%%%%
+
+\begin{example}%$V\in Mod_K^{\bbZ}$,
+设$V$为分次$K$-模，%$$T^c(V):=\bigoplus_{n\geq 0}V^{\ten n}$$
+考虑张量代数$T(V):\bigoplus\limits_{n\geq 0}V^{\ten n}$，定义
+\begin{eqnarray*}
+\triangle:T(V)&\to& T(V)\ten T(V)\\
+v_1\ten\cdots\ten v_n&\mapsto&
+\sum_{i=0}^n(v_1\ten\cdots\ten v_i)\ten(v_{i+1}\ten\cdots\ten v_n)
+\end{eqnarray*}
+则$(T(V),\yc)$构成余代数。
+\end{example}
+%Check:$\triangle$ is a co-product, and what is its dual?
+容易验证如此$\yc$满足余结合律：
+\begin{eqnarray*}
+& & (\yc\ten 1)\circ\yc(v_1\ten\cdots\ten v_n)\\
+&=&
+     \sum_{0\leq i\leq j\leq n}
+          (a_1\ten\cdots\ten a_{i})
+          \ten(a_{i+1}\ten\cdots\ten a_{j})
+          \ten(a_{j+1}\ten\cdots\ten a_n)\\
+&=&
+     (1\ten\yc)\circ\yc(v_1\ten\cdots\ten v_n)
+\end{eqnarray*}
+并且配以余幺元$\veps:$
+$$
+\veps\big|_{V^{\ten n}}=
+\left\{
+  \begin{array}{ll}
+     0      &  \text{如果} n>0\\
+     \id_K  &  \text{如果} n=0
+  \end{array}
+\right.
+$$
+
+\begin{rem}%$$\overline{T^c}(V):=\bigoplus_{n\geq 1}V^{\ten n}$$
+$T(V)$还有另一个余乘结构$\overline{\yc}$
+$$\overline{\triangle}(v_1\ten...\ten v_n)
+:=
+\sum_{i=1}^{n-1}(v_1\ten\cdots\ten v_i)\ten(v_{i+1}\cdots v_n)$$
+%$\overline{T^c}(V)$ is a co-product on $\overline{T^c}(V)$.
+\end{rem}
+这也是容易验证的。不过这个余乘结构不存在余幺元。
+
+%$Coder(C)$ is all the co-derivation....
+
+\section{结合性}
+%\textbf{Associativity.}
+
+$$\bullet:A\ten A\to A$$
+$\Longrightarrow$
+$$m:A[1]\ten A[1]\to A[1]$$
+$$sa_1\ten sa_2\mapsto(-1)^{|a_1|+1}s(a_1a_2)$$
+
+Observation:
+Associativity of $\bullet\Longleftrightarrow[m,m]=0$
+
+%%%%%叼~~%%%%%
+
+%%%%%%%%%%2019.3.18第四周 周一%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%李思出差，别人代课%%%%%%%%%%%%%%%%%%%
+
+\textbf{Poisson structure and quantization}
+
+Motiration
+
+Classical Mechanics
+
+Phase space$(X,\omg)\rightsquigarrow$ Sympletic mfd
+
+observables: $C^{\infty}(X)$: smooth function
+
+Poisson bracket: 
+$C^{\infty}(X)\ten X^{\infty}(X)\to C^{\infty}(X)$
+
+Dynamics - Hamiltionian function $H\in C^{\infty}(X)$
+s.t. $\frac{\td f}{\td t}=\{H,f\}$.
+
+
+Quantum Picture:
+
+Hilbert space
+$$\frac{\td A_t}{\td t}=\frac{i}{\hbar}[\hat{H},A_t]$$
+
+Associative algebra.
+
+$A_{\infty}$-method and Hochcshild homology
+
+\textbf{Goal: Formality thm(Kontsevich)}
+
+Now, let us begin...
+
+\vs
+
+\textbf{Poisson bracket}
+
+\begin{definition}
+let $X$ be a smooth manifold, a Poisson bracket 
+on $C^{\infty}(X)$ is  a $\bbR$-linear 
+$$\{,\}:C^{\infty}(X)\times C^{\infty}(X)\to C^{\infty}(X)$$
+sarisfies
+
+skew symmetry
+
+Leibnitz rule
+
+Jacobi identity
+\end{definition}
+
+Poisson tensor:
+$P\in\Gamma(X,\wedgeform{2}TX)=\PV_X^2$ s.t.
+$$\{f,g\}=\langle P, \td f\wedge \td g\rangle$$
+$$=P^{ij}(\p_i f\p_jg-\p_ig\p_jf)$$
+
+Check: Jacobi identity $\iff[P,P]=0$, where 
+$[,]$ is Schouten-Nijenhuis bracket.
+
+\begin{definition}
+A Poisson manifold is a pair $(X,P)$ such that 
+$[P,P]=0$ for some $P\in\PV_X^2$.
+\end{definition}
+(geometry of classical mechanics)
+
+\begin{example}
+if $(X,\omg)$ is a sympletic manifold, 
+$$\omg=\frac{1}{2}\omg_{ij}\td x^i\wedge\td x^{j}$$
+such that $\omg$ is non-degenerated ,$\omg_{ij}=-\omg_{ji}$,
+then
+$$\omg^{-1}:=\frac{1}{2}\omg^{ij}\p_i\wedge\p_j$$
+is a Poisson bracket.where $(\omg^{ij}):=(\omg_{ij})^{-1}$
+\end{example}
+
+\begin{example}
+Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual, 
+$$[,]:\mfkg\times\mfkg\to\mfkg$$
+then 
+$$P_{\mfkg}\in \mfkg\ten\wedgeform{2}\mfkg$$
+(locally)
+if $\{e^i\}$ is a basis of $\mfkg$, $\{e_i\}$ its dual,
+$$[e^i,e^j]=C^{ij}_ke^k$$
+then
+$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
+check: it satisfies Jacobi identity, i.e. 
+$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
+\end{example}
+
+\begin{rem}
+$P_{\mfkg}$ is not invertible $\iff$ 
+$\mfkg^*$ is not sympletic.
+\end{rem}
+
+\textbf{Star product:}
+
+\begin{definition}
+A star product $*$ on a Possion mfd $(X,P)$ 
+is a $\bbR[[\hbar]]$-linear map
+$$C^{\infty}(X)[[\hbar]]\times C^{\infty}(X)[[\hbar]]\to C^{\infty}(X)[[\hbar]]$$
+$$f*g\mapsto \sum_{k\geq 0}\hbar^kC_k(f,g)$$
+such that:
+
+(1) $*$ is associative
+
+(2) $f*g=fg\mod \hbar$
+
+(3) $\frac{1}{2}(f*g-g*f)=\hbar\{f,g\}\mod\hbar^2$
+
+(4) $C_k(f,g)=C_k^{i_1...i_l;j_i,...,j_m}(\p_{i_1}...\p_{i_l}f)
+(\p_{j_1}...\p_{j_m}g)$, where $C_k^{...}$ is in $C^{\infty}(X)$.
+(bi-differential operator)
+\vs
+
+
+then, $(C^{\infty},*)$ is the \textbf{deformation quantization} on $(X,P)$.
+\end{definition}
+
+the first non-commutativity of $*$ is given 
+by Poosson bracket.
+
+Fundamental Question:
+[Dewilde lemote 1983] for a Poisson manifold, is there $\exists$
+a deformation quantization?
+
+[Fedosov 1983,1994]
+
+\begin{example}
+$(C^{\infty}(X),\{,\})\rightsquigarrow(C^{\infty(X)[[\hbar]]},*)$
+
+$$X=\bbR^m$$
+Poisson bracket
+$$P=P^{ij}\p_i\wedge\p_j$$
+where $P^{ij}\in\bbR$ are constant.
+then we define
+
+%$$f*g:=\exp{\frac{\hbar}{2}P^{ij}\frac{\p}{\p y_i}\frac{\p}{\p z_j}}\big|_{y=z=x}f(y)g(z)$$
+%%%%%%%此处有图%%%%%55
+\end{example}
+
+
+%%%%见笔记%%%
+
+
+\begin{example}
+when $\bbR^m=\bbR^{2n}$ even dimension, $\{x^1,...,x^n;p_1,...,p_n\}$,
+$$P=\sum\pp{p_i}\wedge\pp{x^i}$$
+then Moyal product becomes Weyl algebra and
+$$[x^i,p_j]=x^i*p_j-p_j*x^i=\hbar\delta_{ij}$$
+\end{example}
+
+\begin{example}
+$\mfkg$ Lie algebra, $X=\mfkg^*$,$P_{\mfkg}$，
+consider (quantum) universal evenloping algebra
+$$\mcalU_{\hbar}(\mfkg)=\bigoplus_{k}\mfkg^{k}[[\hbar]]\big/\sim$$ 
+
+the relation is 
+$$a\ten b-b\ten a=\hbar[a,b]$$
+
+$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=1}$$
+is universal evenloping algebra.
+
+$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=0}=\Sym\updot(\mfkg)$$
+
+\end{example}
+
+PBW theorem:
+there is a vector space bijienction:
+$$\Phi:\Sym\updot(\mfkg)[[\hbar]]\to\mcalU_{\hbar}(\mfkg)$$
+%%%%PBW%%%55
+
+$\mcalU_{\hbar}(\mfkg)$ has a natural associative algebra 
+structure by $\ten$, $\Phi^{*}(\ten)$ defines an associative algebra structure on 
+$\Sym\updot(\mfkg)[[\hbar]]=:\mcalO(X)[[\hbar]]$
+
+Check: it is a deformation quantization of $(X,P_{\mfkg})$.
+
+\begin{example}
+$M$ is a mfd, $X=T^*M$ cotangent bundle, which admits a sympletic structure
+$$\omg=\sum\td x^i\wedge\td p_i$$
+$$\mcalO(X)=\Gamma(M,\Sym\updot(TM))$$ 
+\end{example}
+
+$f\in\mcalO(X)$,
+$$f=f(x,p)=\sum_{I}f_I(X)p^{I}(X)$$
+and $\omg^{-1}$ Poisson bracket $\{,\}$ is a Poisson algebra.
+
+$D_X$ differential operator on $X$.
+$\exists$ filtration by its order 
+$$D_X^{(0)}\subseteq D_X^{(1)}\subseteq...\subseteq D_X^{(m)}...$$
+(consists of $\sum A^{i_1...i_k}\p_{i_1}...\p_{i_k}$)
+
+Check:
+$$[D_X^{(m)},D_X^{(n)}]\subseteq D_X^{(m+n-1)}$$
+$$D_X^{(m)}\circ D_X^{(n)}\subseteq D_X^{(m+n)}$$
+$$(D_X,\circ)\text{ is associative}$$
+
+
+\begin{definition}
+$$D_X^{\hbar}:=\bigoplus_{m\geq 0}D^{(k)}_X\hbar^m\subseteq D_X[\hbar]$$
+is a $\bbR[\hbar]$-module
+\end{definition}
+
+HW: what is $k$ in Def above?????
+
+(such that $D_X^{\hbar}$ can be understood as a Deformation Quantization of 
+$(\mcalO(X),\{,\})$ over ring $\bbR[\hbar]$.
+
+\begin{example}(Quantum torus)
+
+Let $V=\bbZ^n$ ,define the algebra 
+$$e^{V}:=\{e^v|v\in V\}$$
+with 
+$$e^{v_1}e^{v_2}:=e^{v_1+v_2}$$
+then
+$e^V$ is algebra function on $(\bbC^*)^n=\bbC[z_1^{\pm 1},...,z_n^{\pm 1}]$.
+
+Let $\omg:V\times V\to \bbZ$ skew symmetric bilinear form
+$$e^{v_1}*_{\hbar}e^{v_2}=e^{\hbar\omg(v_1,v_2)}e^{v_1+v_2}$$
+check: associativity and it is a D.Q. of Poisson bracket 
+$$\{e^{v_1},e^{v_2}\}=\omg(v_1,v_2)e^{v_1+v_2}$$ 
+
+
+
+\end{example}
+
+
+
+
+
+

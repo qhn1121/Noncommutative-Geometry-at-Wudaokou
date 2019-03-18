@@ -159,11 +159,15 @@
 \newcommand*{\xra}{\xrightarrow}
 \newcommand*{\xla}{\xleftarrow}
 
+\newcommand*{\xybigrow}{\xymatrixrowsep{5pc}}   %交换图排版专用
+\newcommand*{\xybigcol}{\xymatrixcolsep{5pc}}   %增大行、列间距
 
-\newcommand*{\p}{\partial}
-\newcommand*{\td}{\mathrm{d}}
-\newcommand*{\pbar}{\overline{\partial}}
-\newcommand*{\ten}{\otimes}
+\newcommand*{\pz}{\text{---}}                   %破折号
+\newcommand*{\yc}{\triangle}                    %余代数的乘法，co-product
+\newcommand*{\p}{\partial}                      %偏微分、边缘算子partial
+\newcommand*{\td}{\mathrm{d}}                   %微分算子d
+\newcommand*{\pbar}{\overline{\partial}}        %Dolbeaut算子partial-bar
+\newcommand*{\ten}{\otimes}                     %张量积tensor product
 \newcommand*{\bigten}{\bigotimes}
 \newcommand*{\op}{^{\text{op}}}
 \newcommand*{\downdot}{_{\bullet}}
@@ -173,11 +177,13 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\lbar}[1]{\overline{#1}}    %比较长的上横线
+
 \newcommand*{\Choose}[2]
   {\left[{
       #1 \atop
       #2
-  }\right]}           %快速输入小型方括号组合数
+  }\right]}                              %快速输入小型方括号组合数
 
 \newcommand*{\bbar}[1]
   {\overline{#1}}
@@ -208,13 +214,14 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\ev}{ev}         %evaluation
 \DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Coder}{Coder}   %Co-derivation  并不是“码农”的意思
+\DeclareMathOperator{\coker}{coker}   %co-kernel      余核
 \DeclareMathOperator{\HC}{HC}         %Hochschild Cyclic (co)homology
 \DeclareMathOperator{\HH}{HH}         %Hochschild (co)homology
 \DeclareMathOperator{\Der}{Der}
 \DeclareMathOperator{\End}{End}       %Endomorphism
 \DeclareMathOperator{\Inn}{Inn}
 \DeclareMathOperator{\Inv}{Inv}
-\DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\per}{per}       %periodic cyclic complex
 \DeclareMathOperator{\PV}{PV}         %Polyvector field
 \DeclareMathOperator{\Sh}{Sh}

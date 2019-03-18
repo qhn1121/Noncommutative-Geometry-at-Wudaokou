@@ -98,6 +98,7 @@ $$(M\ten N)_k:=\bigoplus_{p,q\in\bbZ\atop p+q=k}
 容易验证这给出了$M\ten N$的分次$K$-模结构。
 
 \begin{definition}
+\label{分次对合自同构}
 对于分次$K$-模$M,N$，定义如下分次$K$-模同态：
 \begin{eqnarray*}
 \tau:M\ten N&\to& N\ten M\\
@@ -106,7 +107,8 @@ x\ten y&\mapsto&(-1)^{\deg x\deg y}y\ten x
 其中$x,y$分别为$M,N$中的任意的齐次元。
 \end{definition}
 
-这是一个次数为$0$的齐次$K$-模同构。
+这是一个次数为$0$的齐次$K$-模同构，
+称之为\textbf{分次对合自同构}。
 注意这里的正负号。
 
 %we define the flip
@@ -545,7 +547,7 @@ $$
 
 \begin{definition}（超导子）
 
-对于分次$K$代数$A$，以及$d\in\bbZ$，
+对于分次$K$代数$A$以及$d\in\bbZ$，
 称次数为$d$的分次$K$-模同态
 $$D:A\to A$$
 为次数为$d$的\textbf{超导子}，
@@ -562,8 +564,9 @@ $$\Der(A,A):=\bigoplus_{d\in\bbZ}\Der(A,A)_d$$
 
 $$
   \xymatrixcolsep{5pc}
+  \xybigrow
   \xymatrix{
-       A\ten A  \ar[r]^-{D\ten 1+1\ten\td}  \ar[d]^-m
+       A\ten A  \ar[r]^-{D\ten 1+1\ten D}   \ar[d]^-m
      & A\ten A                              \ar[d]^-m
   \\
        A        \ar[r]^-{D}
@@ -1537,7 +1540,7 @@ $a_0',a_1',...,a_q'\in A$，有
 从而分次交换。
 \end{proof}
 
-%HW: 
+%HW:
 \begin{prop}（Shuffle乘积是非交换版本的外积）
 %If $A=K[x^i]$, then
 
@@ -1601,7 +1604,7 @@ $y=a_0'\ten(\overline{a_1}',...,\overline{a_q}';)\in\overline{C}_q(A)$，
 \end{proof}
 
 
-\section{Cup乘积}
+\section{Cup乘积与Gerstenhaber括号（部分细节待补）}
 对于$K$-代数$A$，回顾Hochschild上链复形
 $$C\updot(A):=C\updot(A,A)=\bigoplus_{p\geq 0}C^p(A,A)$$
 我们将介绍$C\updot(A)$上的代数结构：cup乘积。
@@ -1614,14 +1617,15 @@ $$C\updot(A):=C\updot(A,A)=\bigoplus_{p\geq 0}C^p(A,A)$$
 
 设$A$为$K$-代数，定义\textbf{cup乘积}
 $$\cup:C\updot(A)\ten C\updot(A)\to C\updot(A)$$
-如下：%For 
+如下：%For
 对任意的$f\in C^p(A)$，$g\in C^q(A)$，% Define cup product
 \begin{eqnarray*}
 f\cup g &\in& C^{p+q}(A)\\
 (f\cup g)(a_1,...,a_p;a_{p+1},...,a_q)
 &=&
-(-1)^{pq}f(a_1,...,a_p)g(a_{p+1},...,a_{p+q})
-\end{eqnarray*}
+%(-1)^{pq}
+f(a_1,...,a_p)g(a_{p+1},...,a_{p+q})
+\end{eqnarray*}%李思讲的公式不对，cup乘积的定义式里没有(-1)^{pq}这项
 \end{definition}
 
 我们已经知道，Hochschild上同调是“非交换版本的多重切向量场”。
@@ -1635,155 +1639,197 @@ f\cup g &\in& C^{p+q}(A)\\
 $$\p(f\cup g)=(\p f)\cup g+(-1)^{\deg f}f\cup\p g$$
 \end{prop}
 
-%%%%%%%这岂不是吃屎%%%%%%%
+\begin{proof}
+暴力验证之。
+任取$a_0,a_1,...,a_{p+q}\in A$，成立
+\begin{eqnarray*}
+& &
+     [(\p f)\cup g+(-1)^p f\cup(\p g)]
+     (a_0\pz a_{p+q})\\
+&=&
+     a_0f(a_1\pz a_p)g(a_{p+1}\pz a_{p+q})\\
+& &
+    {\color{blue}
+    -\sum_{k=0}^{p-1}(-1)^k
+       f(\pz a_ka_{k+1}\pz)g(a_{p+1}\pz a_{p+q})
+    }\\
+& &
+     {\color{red}
+    -(-1)^pf(a_0\pz a_{p-1})a_p g(a_{p+1}\pz a_{p+q})
+     }\\
+& &
+     {\color{red}
+    +(-1)^pf(a_0\pz a_{p-1})a_p g(a_{p+1}\pz a_{p+q})
+     }\\
+& &
+     {\color{blue}
+    -(-1)^p\sum_{l=0}^{q-1}
+            f(a_0\pz a_{p-1})g(\pz a_{p+l}a_{p+l+1}\pz)
+     }\\
+& &
+    -(-1)^{p+q}
+    f(a_0\pz a_{p-1})g(a_p\pz a_{p+q-1})a_{p+q}\\
+&=&
+     a_0(f\cup g)(a_1\pz a_{p+q})\\
+& &
+     {\color{blue}
+    -\sum_{k=0}^{p+q-1}(-1)^k
+       (f\cup g)(\pz a_ka_{k+1}\pz)
+     }\\
+& &
+    -(-1)^{p+q}
+     (f\cup g)(a_0\pz a_{p+q-1})a_{p+q}\\
+&=&
+     \p(f\cup g)(a_0\pz a_{p+q})
+\end{eqnarray*}
+从而证毕。
+\end{proof}
 
-\begin{cor}
-There is a well-defined cup product
-$$\cup: H^p(A,A)\times H^{q}(A,A)\to H^{p+q}(A,A)$$
+%%%%%%%这岂不是吃屎%%%%%%%搞定，种了一片森林
+
+\begin{cor}%There is a well-defined cup product
+cup乘积诱导了如下同态：
+$$\HH^p(A)\times \HH^{q}(A)\xra{\cup} \HH^{p+q}(A)$$
 \end{cor}
+\begin{proof}
+易验证良定性，几乎显然。
+\end{proof}
+容易验证如此的cup乘积是结合的
+（之前Shuffle乘积的结合性也可直接看出来），
+于是我们得到分次结合$K$-代数$(\HH\updot(A),\cup)$。
+事实上，该$K$-代数是分次交换的，这从cup乘积当中很难看出来
+（似乎非常不显然），我们下一节给出证明。
 
-HW: If $A=\bbC[x^i]$,then
-$$(H\updot(A,A),\cup)\cong (PV_A,\wedge)$$
+\begin{rem}%HW: If $A=\bbC[x^i]$,then
+我们已经知道，Hochschild上同调是“非交换版本的多重切向量场”；
+而cup乘积即为“多重切向量场的外积”的非交换版本。具体地，若
+$A=K[x^1,...,x^n]$为多项式环，则有$K$-代数同构
+$$(\HH\updot(A),\cup)\cong (\PV_A,\wedge)$$
+\end{rem}
 
-\section{Gerstenhaber 乘积}
-\textbf{Gerstenhaber algebra(自己查定义)}
-Gerstenhaber algebra(Wiki, HW)
-(in physics, Classical BV algebra)
+我们知道，$\PV_X$上不仅有外积结构，
+还有Schouten-Nijenhuis括号；
+我们也要给出后者的非交换版本，
+使得$\HH\updot(A)$为Gerstenhaber代数：
 
-\begin{definition}Gershenhaber product
-$$C^{p}(A,A)\times C^q(A,A)\to C^{p+q-1}(A,A)$$
-$$(f,g)\to f\circ g$$
+\begin{definition}(Gerstenhaber代数)
 
+设$(A,\cdot)$为分次交换$K$-代数，
+$A=\bigoplus\limits_{k\in\bbZ}A^k$为其分次，并配以$K$-双线性映射
+\begin{eqnarray*}
+\{,\}:A^p\ten A^q&\to& A^{p+q-1}
+\end{eqnarray*}
+称$(A,\cdot,\{,\})$为\textbf{Gerstenhaber代数}，
+\index{Gerstenhaber algebra}
+若$\{,\}$满足以下公理：
+
+（1）$(A,\cdot)$为分次结合代数；
+
+（2）$(A[1],\{,\})$为李超代数；
+
+（3）相容性：对$A$中的任意齐次元$x,y,z$，成立
+$$\{x,yz\}=\{x,y\}z+(-1)^{(x-1)y}y\{x,z\}$$
+\end{definition}
+例如光滑流形$X$上$(\PV_X,\wedge,\{,\})$，
+即多重切向量场、外积、Schouten-Nijenhuis括号，
+构成Gerstenhaber代数。
+
+Gerstenhaber代数在物理学中常被称为“\textbf{经典BV代数}”
+（classical BV algebra）.
+\index{classical BV algebra\kong 经典BV代数}
+
+%\section{Gerstenhaber 乘积}
+%\textbf{Gerstenhaber algebra(自己查定义)}
+%Gerstenhaber algebra(Wiki, HW)
+%(in physics, Classical BV algebra)
+
+
+\begin{definition}（Gerstenhaber 乘积）
+\index{Gerstenhaber product}
+
+对于$K$-代数$A$，定义$C\updot(A)$上的$K$-双线性运算
+$$\circ:C^{p}(A)\times C^q(A)\to C^{p+q-1}(A)$$
+如下：对任意$a_1,a_2,...,a_{p+q-1}\in A$，
+以及$f\in C^p(A),g\in C^q(A)$，
+$$(f\circ g)(a_1\pz a_{p+q-1})
+:=\sum_{i=1}^p(-1)^{(i-1)(q-1)}
+    f(\pz a_{i-1},g(a_i\pz a_{i+q-1}),a_{i+q}\pz)$$
+运算“$\circ$”称为\textbf{Gerstenhaber乘积}。
 %%%%%%%Gerstenhaber%%%%%%%%%5
 \end{definition}
 
+容易验证如此定义的$C\updot(A)$上的
+$K$-双线性运算$\circ$是结合的。
+
+
 \begin{prop}
-$$\p(f\circ g)-(\p f)\circ g-(-1)^{\deg g-1}f\circ\p g
-=\pm(f\cup g-(-1)^{\deg f\deg g}g\cup f)$$
-$$=\text{the failure of $\circ$ being a chain map
-is measured bu the commutativity of cup product}$$
+\label{the failure of circ being a chain map}
+对任意$f\in C^p(A),g\in C^q(A)$，成立
+$$\p(f\circ g)-(\p f)\circ g-(-1)^{p-1}f\circ\p g
+=\pm[(f\cup g)-(-1)^{pq}(g\cup f)]$$
 \end{prop}
+%$$=\text{the failure of $\circ$ being a chain map
+%is measured bu the commutativity of cup product}$$
 
 \begin{proof}
-%%%%%%%暴力计算，需要画很多图，从略%%%%%%55
-HW
+%%%%%%%暴力计算，需要画很多图，从略%%%%%%55%HW
+{\text{purple}
+非常暴力的计算验证，等号右边的符号暂时没算清。从略。
+}
 \end{proof}
 
-\begin{cor}
-$(\H\updot(A,A),\cup)$ is a graded commutative algebra.
+\textbf{以后抽空补上}。上述等式的右边为“
+the failure of $\circ$ being a chain map 
+measured by the commutativity of cup product”.
+
+(虽说上述等式右边的正负号暂时没算清楚)
+但此结果已经暂时足够用了：
+
+\begin{cor}对于$K$-代数$A$，
+$(\HH\updot(A),\cup)$% is a graded commutative algebra.
+是分次交换的。
 \end{cor}
 
 \begin{proof}
-Omit.
+利用性质\ref{the failure of circ being a chain map}，
+几乎显然。
 \end{proof}
+
+$(\HH\updot(A),\cup)$的分次交换性是一个十分深刻的结论。
 
 %%注记：很深刻的结论。。。。%%%
 %%
 
-\begin{definition}(Cerstenhaber bracket)
+\begin{definition}（Gerstenhaber括号）
 $$\{f,g\}=f\circ g-(-1)^{(f-1)(g-1)}g\circ f$$
 %这是非交换版本的NR括号
 \end{definition}
 
-\begin{prop}
+
+\begin{prop}对于任意$f,g\in C\updot(A)$为齐次元，成立
 $$\p\{f,g\}=\{\p f,g\}\pm\{f,\p g\}$$
-and induces
-$\{,\}$ defines on $H\updot(A,A)$.
-this is  the analogue of Schouten-Nijenhuis bracket.
 \end{prop}
+\begin{proof}
+{\color{red}
+（待补）
+}
+\end{proof}
 
-%%%%%%%%%%%%2019.3.12第三周Mon%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%下周一，周坚代课%%&%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%下周二，随堂考试%%%%%%%%%%%%%%%%%%%%%
-
-%\textbf{Coalgebra and homotopy associativity}
-
-\section{余代数与同伦结合性}
-
-\textbf{Co-algebra}
-%%%%%结合性%%%%%%%%
-%%%%%%分次交换%%%%%%%%%
-
-\begin{definition}
-$C\downdot\in Mod_K^{\bbZ}$ is a graded coalgebra over $K$，
-if there is a coproduct ($\deg=0$)
-$$\triangle:C\to C\ten C$$
-%%%coproduct%%%%%%%
-\end{definition}
-
-counit$\veps:C\to K$ satisfying
-%%%%%%%%counit%%%%%%%%%
-
-co-derivation
-
-$\delta: C\to C$ satisfying
-%%%%%co-Leibnitz rule%%%%%%%
-
-A differential graded co-algebra is a co-algebra
-$C$ with a co-derivation $\delta:C\to C$ such that
-$\deg\delta=1$ and $\delta^2=0$.
-
-co-augmentation
-
- (Recall:
- $A$:$K$-algebra. augmentation is an algebra morphism
-$A\to K$.)
-
-Co-algebra $(C,\triangle)$ is called co-augmentation if
-there is a co-algebra map $K\to C$.
-%%%%%%co-algebra的同态怎么定义？自行脑补%%%%%%%%%%
-
-$(C,\triangle)$ is co-commutative,if
-%%%%co-commutative%%%%%%
-
-\begin{rem}
-If $(C,\triangle)$ is a co-algebra, then
-$(C^*,\triangle^*)$ is an algebra
-$$A\ten A=C^*\ten C^*\to(C\ten C)^*\xra{\triangle^*}C^*=A$$
-\end{rem}
-%%%%%见图%%%%%%%5
-
-\begin{example}
-$V\in Mod_K^{\bbZ}$,
-$$T^c(V):=\bigoplus_{n\geq 0}V^{\ten n}$$
-$$\triangle:T(V)\to T(V)\ten T(V)$$
-$$v_1\ten...\ten v_n\mapsto
-\sum_{i=0}^n(v_1\ten...\ten v_i)\ten(v_{i+1}\ten...\ten v_n)$$
-\end{example}
-
-Check:$\triangle$ is a co-product, and what is its dual?
-
-\begin{example}
-$$\overline{T^c}(V):=\bigoplus_{n\geq 1}V^{\ten n}$$
-$$\overline{\triangle}(v_1\ten...\ten v_n)
-=
-\sum_{i=1}^{n-1}(v_1\ten...\ten v_i)\ten(v_{i+1}\ten v_n)$$
-
-$\overline{T^c}(V)$ is a co-product on $\overline{T^c}(V)$.
-\end{example}
-
-$Coder(C)$ is all the co-derivation....
+于是，Gerstenhaber括号$\{,\}$可下降到$\HH\updot(A)$上，
+这是非交换版本的Schouten-Nijenhuis括号。
 
 \begin{prop}
-$Coder(C)$ is a graded Lie algebra, where
-$$[D_1,D_2]=D_1\circ D_2-(-1)^{|D_1||D_2|}D_2\circ D_1$$
+对于$K$-代数$A$，$(\HH\updot(A),\cup,\{,\})$
+构成Gerstenhaber代数。
 \end{prop}
+\begin{proof}
+{\color{red}
+（待补）}
+\end{proof}
 
-\textbf{Associativity.}
-
-$$\bullet:A\ten A\to A$$
-$\Longrightarrow$
-$$m:A[1]\ten A[1]\to A[1]$$
-$$sa_1\ten sa_2\mapsto(-1)^{|a_1|+1}s(a_1a_2)$$
-
-Observation:
-Associativity of $\bullet\Longleftrightarrow[m,m]=0$
-
-%%%%%叼~~%%%%%
-
-
-
-
+%and induces
+%$\{,\}$ defines on $H\updot(A,A)$.
+%this is  the analogue of Schouten-Nijenhuis bracket.
 
 
 
