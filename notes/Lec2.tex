@@ -1,1594 +1,2205 @@
-\chapter{循环同调}
+%%%%%%%%%%2019.3.11 Mon 第三周%%%%%%%%
+\chapter{乘积}
 
-与上一章一样，我们仍假设$K$为特征零的含幺交换环，
-$A$为$K$-代数，且作为$K$-模是投射的。
-不过，在本章我们新增一条假定：
-$$\bbQ\inj K$$
-也就是说，有理数域能够嵌入到$K$中。
-（事实上，任何特征零的域都满足此假定。）
+%\textbf{Product}
 
-\section{Connes复形$C^{\lmd}\downdot(A)$}
-%Cyclic homology%
-%$\HH\downdot(A)\rightsquigarrow$noncommutative differential forms.
-%$$B\dashleftarrow\text{de rham}$$
+%Recall:
+%Commutative                 non-Commutative
 
-回顾对于$K$-代数$A$，若$A$交换，
-则其Hochschild同调$\HH\downdot(A)$
-可以被理解为“空间”$A$上的“微分形式”。
-本节我们进一步研究$\HH\downdot(A)$.
+%polyvectorfield             $(C\updot(A,A),\p)$
 
-\begin{notation}
-对于$K$-代数$A$，双$A$-模$M=A$.
-考虑其Hochschild链复形$C\downdot(A):=C\downdot(A,A)$：
-$$C_n(A):=C_n(A,A)\cong A^{\ten n+1}$$
-(回顾定义\ref{Hochschild链复形-def}).我们考虑群
-$\bbZ/(n+1)\bbZ$在$C_n(A)$上的如下左$K$-作用：
-记$\bbZ/(n+1)\bbZ$的生成元为$\lmd$，则
-\begin{eqnarray*}
-\lmd:C_n(A)&\to&C_n(A)\\
-a_0\ten a_1\ten\cdots\ten a_n
-&\mapsto&
-(-1)^na_n\ten a_0\ten\cdots\ten a_{n-1}
-\end{eqnarray*}
-考虑$C_n(A)$模掉此群作用，所得的商$K$-模记为
-$$C^{\lmd}_n(A):=C_n(A)/(1-\lmd)$$
-其中的元素称之为\textbf{循环余不变量}
-（cyclic co-invariant）。
-\index{cyclic co-invariant\kong 循环余不变量}
+%differential form           $(C\downdot(A,A),b)$
+
+%$(\Omg_X\updot)$            $(C\downdot(A),b,\mcalB)$
+%%%%%%%%%%%
+
+%cyclic homology  $H\downdot(C\downdot(A)[u^{-1}],b+u\mcalB)$
+
+%negative homology  $H\downdot(C\downdot(A)[u],b+u\mcalB)$
+
+%periodic homology  (analogue of de Rham cohomology)
+%5$H\downdot(C\downdot(A)(u),b+u\mcalB)$
+
+%Today:
+
+\section{分次模与Koszul符号法则}
+
+本节我们集中起来澄清一些关于分次模、分次代数的概念，
+并且力图阐明分次代数中出现的正负号。
+这里的“分次”如不加说明，指的都是$\bbZ$-分次。
+
+首先我们考虑分次$K$-模。
+
+\begin{definition}（分次$K$-模范畴）
+
+（1）称$K$-模$M$为（$\bbZ$-）\textbf{分次$K$-模}
+（graded $K$-module），
+\index{graded $K$-module\kong 分次$K$-模}
+若$M$具有如下分次结构：
+$$M=\bigoplus_{k\in\bbZ}M_k$$
+
+（2）若$M,N$为分次$K$-模，称$K$-模同态$f:M\to N$
+为次数为$d$的\textbf{齐次$K$-模同态}，
+若对于任意$n\in \bbZ$，成立
+$$f(M_n)\subseteq N_{n+d}$$
+\end{definition}
+
+对于分次代数，我们可以定义\textbf{齐次元}，
+以及齐次元的\textbf{次数}，不再赘述。
+对于齐次元$a\in A$，将$a$的次数记为$\deg a$，
+或者简记为$|a|$.
+
+平凡的例子：通常的$K$-模自然有分次$K$-模结构——
+只需将该模中的任何元素都认为是$0$次齐次元。
+
+我们还可以谈论以分次$K$-模为对象的范畴：
+
+\begin{notation}（分次$K$-模范畴）
+对于分次$K$-模$M,N$，对任意$d\in\bbZ$，记
+$$\Hom(M,N)_d:=\bigoplus_{n\in\bbZ}\Hom(M_n,N_{n+d})$$
+即次数为$d$的分次$K$模同态之全体。再记
+$$\Hom(M,N):=\bigoplus_{d\in\bbZ}\Hom(M,N)_d$$
+称这里面的元素为分次$K$-模同态。
+
+我们考虑如下分次$K$-模范畴，记为$\Modcat{\bbZ}{K}$：
+
+（1）$\Obj=$全体分次$K$-模；
+
+（2）$\Mor(M,N)=\Hom(M,N)$为分次$K$-模同态。
 \end{notation}
 
-%cyclic group action
-%$$C\downdot(A,A)=C\downdot(A)=A\ten A$$
-%$$C_n(A)=A^{\ten n+1}$$
-%we consider the $\bbZ/(n+1)\bbZ$ acting on $C_n A$,
-%$$\lmd: C_n(A)\to C_n(A)$$
-%$$a_0\ten a_1\ten...\ten a_n\mapsto
-%(-1)^na_n
-%\ten a_0\ten...\ten a_{n-1}$$
-%then $\lmd$ is generator,
-%$$\lmd^{n+1}=(-1)^{n(n+1)}=1$$
-%Let
-%$$C^{\lmd}\downdot(A):=C\downdot(A)/(1-\lmd)$$
-%cyclic co-invariant.
+注意对任何分次$K$-模$M,N$，
+$\Hom(M,N)$自然有分次$K$-模结构，其中的$d$次齐次元
+即为$M$到$N$的次数为$d$的齐次同态。
 
-容易验证，
-$$\lmd^{n+1}a_0\ten a_1\ten\cdots\ten a_n=
-(-1)^{n(n+1)}a_0\ten a_1\ten\cdots\ten a_n
-=a_0\ten a_1\ten\cdots\ten a_n$$
-即$\lmd^{n+1}=\id$.可见这的确是$\bbZ/(n+1)\bbZ$的作用。
+%We will talk with the category
+%$\bbZ$-graded $K$-modules
+%$$Mod_k^{\bbZ}$$
 
-回顾Bar-复形，我们可以直观地视为“直线上依次排列质点，相邻两两碰撞”；
-而在这里，商掉$\lmd$循环作用后，直观地更像是“圆周上排列质点”。
+%object: $C=\bigoplus\limits_{k\in\bbZ}C_k$
 
-我们将说明，Hochschild链复形$C\downdot(A)$的边缘算子$b$，
-沿商映射$C\downdot(A)\surj C^{\lmd}\downdot(A)$下降，诱导了
-$C\downdot^{\lmd}(A)$的链复形结构（称之为Connes复形）。
+%morphism:$f:C\to D$ is said to have degree $n$ if
+%$$f:C_k\to C_{k+n}$$
 
-%\begin{prop}
-%对于$K$代数$A$，定义$b‘:C_{n}(A)\to C_{n-1}(A)$诱导了
-%$C^{\lmd}\downdot$的链复形结构。
-%Hochschild differential $b$(on $C\downdot(A)$) induces a
-%differential on $C\downdot(A)/(1-\lmd)$
-%\end{prop}
+%$$\Hom(C,D):=\bigoplus_n(C,D)_n$$
+%(i.e. degree$=n$)
+%where
+%$$\Hom(C,D)_n=\bigoplus_m\Hom(C_m,D_{m+n})$$
+对于两个分次$K$-模，它们作为$K$-模的张量积，
+也有自然的分次结构：
 
-%\begin{proof}
+\begin{definition}（分次$K$-模的张量积）
+对于分次$K$-模$M,N$，则张量积$M\ten N$自然有如下分次结构：
+$$M\ten N=\bigoplus_{k\in\bbZ}(M\ten N)_k$$
+其中
+$$(M\ten N)_k:=\bigoplus_{p,q\in\bbZ\atop p+q=k}
+                  M_p\ten N_q$$
+\end{definition}
+容易验证这给出了$M\ten N$的分次$K$-模结构。
 
-%事实上，我们定义$b‘:C^{\lmd}_n(A)\to C_n^{\lmd}(A)$如下：
-%\begin{eqnarray*}
-%b’:C^{\lmd}_n(A)&\to& C_n^{\lmd}(A)\\
-%\overline{
-%   a_0\ten a_1\ten\cdots\ten a_n
-%         }
-%&\mapsto&
-%   \sum_{k=0}^{n-1}(-1)^k
-%       \overline{
-%         a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots a_n
-%       }\\
-%&&
-%   +(-1)^n\overline{
-%     (a_{n+1}a_0)\ten a_1\ten\cdots\ten a_n
-%         }
-%\end{eqnarray*}
-%即$b:C_n(A)\to C_{n-1}(A)$沿商映射的下降。
-%（回顾Hochschild链复形的边缘算子$b$的显式表达，见
-%定义\ref{Hochschild链复形-def}的下方，令$M=A$以及$m=a_0$.）
-
-%我们需要验证如此$b'$是良定的，
-%即与$\lmd$作用等价类代表元选取无关。
-%{\color{purple}（直观感觉比较显然，但还是暴力验证一下吧）}
-
-%Let us define
-%$$b':C\downdot(A)\to C_{\bullet-1}(A)$$
-%$$b'(a_0\ten...\ten a_n)
-%=a_0a_1\ten a_2\ten...\pm...\pm a_0\ten a_1\ten...\ten a_{n-1}a_n$$
-
-%(($C\downdot(A),b')=(B\downdot A\to A)$)
-
-%claim that
-%$$(1-\lmd)b'=b(1-\lmd)$$
-
-%$$[b,\lmd]=(1-\lmd)(b-b')$$
-
-%In particular, $b:\im(1-\lmd)\mapsto\im(1-\lmd)$
-
-%"proof":
-%%%%%%%%%%画圈圈%%%%%%%%%%%555
-
-%为此只需验证对于任意$n\geq 1$，以及任意$\omg\in C_n(A)$，
-%$$(1-\lmd)(\omg)=0\Rightarrow(1-\lmd)\circ b(\omg)=0$$
-
-%\end{proof}
-
-\begin{lemma}
-对于$K$-代数$A$，我们定义算子
-$b':C\downdot(A)\to C_{\bullet-1}(A)$如下:
+\begin{definition}
+\label{分次对合自同构}
+对于分次$K$-模$M,N$，定义如下分次$K$-模同态：
 \begin{eqnarray*}
-b':C_{n}(A)&\to&C_{n-1}(A)\\
-a_0\ten a_1\ten\cdots\ten a_n&\mapsto&
-\sum_{k=0}^{n-1}(-1)^{k}
-a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n
+\tau:M\ten N&\to& N\ten M\\
+x\ten y&\mapsto&(-1)^{\deg x\deg y}y\ten x
 \end{eqnarray*}
-则成立：
-
-（1）$b'\circ b'=0$,
-
-（2）对任意$n\geq 1$，则以下图表交换：
-$$\xymatrix{
-     C_n(A) \ar[d]^{1-\lmd} \ar[r]^{b'}
-   & C_{n-1}(A)\ar[d]^{1-\lmd}
-\\
-     C_n(A) \ar[r]^b
-   & C_{n-1}(A)
-}$$
-\end{lemma}
-
-\begin{proof}
-注意到有同构$C_n(A)\cong B_nA(\cong A^{\ten n+1})$，
-其中$B\downdot A$为Bar-复形；容易看出这里定义的$b'$在此同构下，正是
-Bar复形当中的边缘算子，从而$b'\circ b'=0$，
-也就是说$(C\downdot(A),b')$是一个链复形，
-并且同构于Bar-复形$(B\downdot A, b)$.
-（这里有轻微的记号混用：Bar-复形$(B\downdot A, b)$当中的“$b$”
-并不是本引理当中Hochschild链复形$(C\downdot(A),b)$当中的“$b$”，
-前者在此是临时记号。）\vs
-
-我们再来看（2）.回顾$b:C_n(A)\to C_{n-1}(A)$的显式表达式
-（见定义\ref{Hochschild链复形-def}的下方，并且令其中$M=a$以及$m=a_0$）
-（注意此图中的$b$与$b'$并不是同一个映射，它们的具体表达式相差一项），
-直接验算之：
-\begin{eqnarray*}
-& & (1-\lmd)\circ b'
-        \big(
-             a_0\ten a_1\ten\cdots\ten a_n
-        \big)\\
-&=&
-    (1-\lmd)\left(
-               \sum_{k=0}^{n-1}(-1)^k
-                   a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n
-            \right)\\
-&=&
-    \sum_{k=0}^{n-1}(-1)^k
-         a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n\\
-& &
-    +\sum_{k=0}^{n-2}(-1)^{k+n}
-         a_n\ten a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_{n-1}\\
-& &
-    -(a_{n-1}a_n)\ten a_0\ten\cdots\ten a_{n-2}\\
-&=&
-    b(a_0\ten a_1\ten\cdots\ten a_n)
-    -(-1)^n(a_na_0)\ten a_1\ten\cdots\ten a_{n-1}\\
-& &
-    +(-1)^n
-    \sum_{k=0}^{n-1}(-1)^k
-        a_n\ten a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_{n-1}\\
-& &
-    -(a_{n-1}a_n)\ten a_0\ten\cdots\ten a_{n-2}\\
-&=&
-    b\big(
-       a_0\ten a_1\ten\cdots\ten a_n
-       -(-1)^na_n\ten a_0\ten\cdots\ten a_{n-1}
-     \big)\\
-&=&
-    b\circ(1-\lmd)(a_0\ten a_1\ten\cdots\ten a_n)
-\end{eqnarray*}
-
-也就是说，
-$$(1-\lmd)\circ b'=b\circ(1-\lmd)$$
-从而此图表交换，证毕。
-\end{proof}
-
-此图表的交换关系也可改写为
-$$[b,\lmd]=(1-\lmd)\circ(b-b')$$
-其中$[b,\lmd]:=b\circ\lmd-\lmd\circ b$.\vs
-
-此引理给出了链复形$(C\downdot(A),b')$与
-$(C\downdot(A),b)$之间的链映射：
-$$(1-\lmd)\downdot:(C\downdot(A),b')\to(C\downdot(A),b)$$
-然而注意到
-$$C_n^{\lmd}(A):=C_n(A)/(1-\lmd)=\coker (1-\lmd)_n$$
-于是我们（在由$K$-模链复形构成范畴当中）
-考虑链映射$(1-\lmd)\downdot$的余核，
-这给出了$C\downdot^{\lmd}(A)$的链复形结构：
-
-\begin{definition}（Connes复形）
-\index{Connes' complex\kong Connes复形}
-对于$K$-代数$A$，考虑链映射
-$$(1-\lmd)\downdot:(C\downdot(A),b')\to(C\downdot(A),b)$$
-的余核链复形
-$$(C\downdot^{\lmd}(A),b^{\lmd}):=\coker[(1-\lmd)\downdot]$$
-称其为\textbf{Connes复形}。并且记
-$$H^{\lmd}\downdot(A):=H\downdot(C\downdot^{\lmd}(A))$$
-称之为$A$的\textbf{循环同调}（cyclic homology）.
-\index{cyclic homology\kong 循环同调}
+其中$x,y$分别为$M,N$中的任意的齐次元。
 \end{definition}
 
-也就是说，有如下的交换图表：
+这是一个次数为$0$的齐次$K$-模同构，
+称之为\textbf{分次对合自同构}。
+注意这里的正负号。
 
-$$\xymatrix{
-     \cdots \ar[r]
-   & C_{n+1}\ar[r]^{b'}  \ar[d]^{1-\lmd}
-   & C_{n  }\ar[r]^{b'}  \ar[d]^{1-\lmd}
-   & C_{n-1}\ar[r]       \ar[d]^{1-\lmd}
-   & \cdots
-\\
-     \cdots \ar[r]
-   & C_{n+1}\ar[r]^{b }  \ar@{->>}[d]
-   & C_{n  }\ar[r]^{b }  \ar@{->>}[d]
-   & C_{n-1}\ar[r]       \ar@{->>}[d]
-   & \cdots
-\\
-     \cdots \ar[r]
-   & C_{n+1}^{\lmd}\ar[r]^{b^{\lmd}} \ar[d]
-   & C_{n  }^{\lmd}\ar[r]^{b^{\lmd}} \ar[d]
-   & C_{n-1}^{\lmd}\ar[r]            \ar[d]
-   & \cdots
-\\
-   &0
-   &0
-   &0
-   &
-}$$
-此交换图表每一横行都为链复形，其中第三横行为Connes复形；
-每一列都是右短正合的。
-并且容易知道：Connes复形的边缘算子$b^{\lmd}$
-正是Hochschild链复形的边缘算子$b$沿商映射
-$C\downdot(A)\surj C^{\lmd}\downdot(A)$的下降。
+%we define the flip
+%$$\tau:C\downdot\ten D\downdot\to D\downdot\ten C\downdot$$
+%$$c_m\ten d_l\mapsto(-1)^{ml}d_l\ten c_m$$
 
-%so, $b$ acts on $C^{\lmd}\downdot(A)=C\downdot(A)/(1-\lmd)$
-%,called \textbf{Connes' complex}
-%$$H^{\lmd}\downdot(A)=H\downdot(C^{\lmd}\downdot(A),b)$$
+%$\rightsquigarrow$ Koszul sign rule:
+\begin{notation}（Kuszul符号法则）
 
-\section{循环双复形$CC\ddowndot(A)$}
-
-\begin{lemma}（平均算子）对于任意$K$-代数$A$，以及$n\geq 0$，
-引入平均算子$\mathcal{N}:C_n(A)\to C_n(A)$：
-$$\mcalN:=1+\lmd+\lmd^2+\cdots+\lmd^n$$
-则此算子满足以下性质：
-
-（1）$b'\mcalN=\mcalN b$
-
-（2）$(1-\lmd)\mcalN=\mcalN(1-\lmd)=0$.
-此外，如果有理数域$\bbQ\hookrightarrow K$，
-那么对于任意$n\geq 0$，以下链复形是正合的：
-$$\cdots\to
-C_n(A)\xra{\mcalN}C_n(A)\xra{1-\lmd}
-C_n(A)\xra{\mcalN}C_n(A)\xra{1-\lmd}
-C_n(A)\surj C_n^{\lmd}(A)\to 0
-$$
-%Introduce
-%$$\mathcal{N}:C_n(A)\to C_n(A)$$
-\label{循环双复形的行正合性-lemma}
-\end{lemma}
-%%%%%%%%%%%平均算子%%%%%%%%%'
-
-%\begin{prop}
-%$$b'\mathcal{N}=Nb$$
-%\end{prop}
-
-%we have an exact sequence
-%%%%%%%平均算子‘%%%%%%'
-\begin{proof}（1）任意固定$n\geq 1$，
-为了区分算子在不同空间的作用，
-我们采用临时记号
-$$\left\{\begin{array}{l}
-\lmd:C_n(A)\to C_n(A)\\
-\overline{\lmd}:C_{n-1}(A)\to C_{n-1}(A)
-\end{array}\right.\quad
-\left\{\begin{array}{l}
-\mcalN:=1+\lmd+\cdots+\lmd^n\\
-\overline{\mcalN}:=1+\overline{\lmd}+\cdots+\overline{\lmd}^{n-1}
-\end{array}\right.$$
-则在此记号下我们需要证$b'\mcalN=\overline{\mcalN}b$.
-
-定义缩并算子
+设$M,M',N,N'$均为分次$K$-模，
+则自然有如下的分次$K$-模同态：
 \begin{eqnarray*}
-s:C_n(A)&\to& C_{n-1}(A)\\
-a_0\ten a_1\ten\cdots\ten a_n
-&\mapsto&
-(a_0a_1)\ten\cdots\ten a_n
+\Hom(M,N)\ten\Hom(M',N')&\to&\Hom(M\ten M',N\ten N')\\
+(f\ten g)(m\ten m')&:=&(-1)^{\deg g\deg m}f(m)\ten g(m')
 \end{eqnarray*}
-则容易验证（稍微注意一下正负号，确实都是正号）
-$$
-b =\sum\limits_{k=0}^n    \overline{\lmd}^ks\lmd^{-k}\quad\quad
-b'=\sum\limits_{k=0}^{n-1}\overline{\lmd}^ks\lmd^{-k}
-$$
-于是有
-$$
-b'\mcalN=
-  \left(
-    \sum_{k=0}^{n-1}
-      \overline{\lmd}^ks\lmd^{-k}
-  \right)
-  \left(
-    \sum_{l=0}^{n  }
-      \lmd^l
-  \right)
-=
- \sum_{0\leq k\leq n-1
-       \atop
-       0\leq l\leq n}
-     \overline{\lmd}^ks\lmd^l
-$$
-同理也有
-$$\overline{\mcalN}b
-=\sum_{0\leq k\leq n-1
-       \atop
-       0\leq l\leq n}
-     \overline{\lmd}^ks\lmd^l$$
-从而$b'\mcalN=\overline{\mcalN}b$.
+其中$f,g,m,m'$分别为$\Hom(M,N),\Hom(M',N'),M,M'$当中的任意齐次元。
+\label{Koszul符号法则-notation}
+\end{notation}
 
-（2）给定$n\geq 0$，注意到$\lmd^{n+1}=1$，从而
-$$(1-\lmd)\mcalN=(1-\lmd)(1+\lmd+\cdots+\lmd^n)=1-\lmd^{n+1}=0$$
-同理$\mcalN(1-\lmd)=0$.因此该图表是链复形，只需再验证正合性。
+依然注意正负号。以后我们总是
+默认$f\ten g$在$m\ten m'$上如此作用。
 
-现在假设$\bbQ$是$K$的子环。我们构造如下链同伦：
+我们还可以定义分次$K$-模的对偶模
+（与通常的对偶模仍然在正负号上有些区别）：
 
-$$\xymatrix{
-   \cdots \ar[r]
-  &C_n(A) \ar[r]^{\mcalN} \ar[d]^{\id}
-  &C_n(A) \ar[r]^{1-\lmd} \ar[d]^{\id} \ar[ld]_g
-  &C_n(A) \ar[r]^{\mcalN} \ar[d]^{\id} \ar[ld]_f
-  &C_n(A) \ar[r]^{      } \ar[d]^{\id} \ar[ld]_g
-  &\cdots
-\\
-   \cdots \ar[r]
-  &C_n(A) \ar[r]^{\mcalN}
-  &C_n(A) \ar[r]^{1-\lmd}
-  &C_n(A) \ar[r]^{\mcalN}
-  &C_n(A) \ar[r]^{      }
-  &\cdots
-}$$
-其中$f,g:C_n(A)\to C_n(A)$定义为
-$$\left\{\begin{array}{l}
-f:=\frac{1}{n+1}(\lmd^{n-1}+2\lmd^{n-2}+3\lmd^{n-3}+\cdots+n)\\
-g:=\frac{1}{n+1}
-\end{array}\right.$$
-（利用了$\bbQ\inj K$）则容易验证
-$$f(1-\lmd)+\mcalN g=g\mcalN+(1-\lmd)f=1$$
-从而证毕。
-\end{proof}
-
-特别地，当$K$为域时（注意我们总假定$\ch K=0$）成立正合性。
-链同伦$f,g$的构造来自于（关于变元$\lmd$的多项式的）
-欧几里得辗转相除法。
-
-%\begin{definition}
-%the cyclic bi-complex $CC\downdot(A)$
-%%%%%%%双复形%%%%%%
-%\end{definition}
-
-由此引理，我们可构造出如下的\textbf{循环双复形}
-（cyclic bicomplex），记为$CC\ddowndot(A)$：
-\index{cyclic bicomplex\kong 循环双复形}
-
-$$\xymatrix{
-   \vdots \ar[d]^b
-  &\vdots \ar[d]^{-b'}
-  &\vdots \ar[d]^b
-  &\vdots \ar[d]^{-b'}
-  &
-\\
-   C_2(A) \ar[d]^b
-  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &C_2(A) \ar[d]^b     \ar[l]_{\mcalN}
-  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &\cdots              \ar[l]
-\\
-   C_1(A) \ar[d]^b
-  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &C_1(A) \ar[d]^b     \ar[l]_{\mcalN}
-  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &\cdots              \ar[l]
-\\
-   C_0(A)
-  &C_0(A)   \ar[l]_{1-\lmd}
-  &C_0(A)   \ar[l]_{\mcalN}
-  &C_0(A)   \ar[l]_{1-\lmd}
-  &\cdots   \ar[l]
-}$$
-其中对于任意$p,q\geq 0$，
-$CC_{p,q}(A)=C_p(A)$为该图表的从下往上第$p$行，
-从左往右第$q$列的节点；此图表的偶数列与奇数列为
-$(C\downdot (A),b)$与$(C\downdot (A),-b')$交替。
-并且注意到，此图表不是交换的，而是对于其中每一个方框
-都满足\textbf{反交换性}。\vs
-
-我们回顾一些同调代数工具：
-
-\begin{definition}（双复形的全复形）
-
-对于任意的含幺交换环K（这里暂时不必假定$\ch K=0$），
-以及$K$-模双复形$(A\ddowndot,\td,\p)$：
-$$\xymatrix{
-    \vdots  \ar[d]
-  & \vdots  \ar[d]
-  & \vdots  \ar[d]
-  &
-\\
-    A_{2,0} \ar[d]^{\td_{2,0}}
-  & A_{2,1} \ar[d]^{\td_{2,1}}  \ar[l]_{\p_{2,1}}
-  & A_{2,2} \ar[d]^{\td_{2,2}}  \ar[l]_{\p_{2,2}}
-  & \cdots                      \ar[l]
-\\
-    A_{1,0} \ar[d]^{\td_{1,0}}
-  & A_{1,1} \ar[d]^{\td_{1,1}}  \ar[l]_{\p_{1,1}}
-  & A_{1,2} \ar[d]^{\td_{1,2}}  \ar[l]_{\p_{1,2}}
-  & \cdots                      \ar[l]
-\\
-    A_{0,0}
-  & A_{0,1}   \ar[l]_{\p_{2,1}}
-  & A_{0,2}   \ar[l]_{\p_{2,2}}
-  & \cdots    \ar[l]
-}$$
-即：
-$$\left\{\begin{array}{l}
-\td_{p,q}:A_{p,q}\to A_{p-1,q}\\
-\p_{p,q }:A_{p,q}\to A_{p,q-1}
-\end{array}\right.
-$$
-使得该图表每一行、每一列都是链复形，并且满足反交换关系
-$$\p_{p-1,q}\circ\td_{p,q}+\td_{p,q-1}\circ\p_{p,q}=0$$
-
-则我们定义双复形$A\ddowndot$的\textbf{全复形}（total complex）
-\index{total complex\kong 全复形}
-$(\Tot\downdot(A\ddowndot),d)$如下：
-$$\left\{\begin{array}{rcl}
-\Tot_n(A\ddowndot)&:=&\bigoplus\limits_{p+q=n}A_{p,q}\\
-d_n&:=&\sum\limits_{p+q=n}(\td_{p,q}+\p_{p,q})
-\end{array}\right.$$
+%Eg. $f\in\Hom(C,D)$,$g\in\Hom(C',D')$,then
+%$$(f\ten g)(x\ten y)=(-1)^{|g||x|}f(x)g(y)$$
+\begin{definition}（分次对偶模）
+对于分次$K$-模$M$，定义
+$$M^*:=\bigoplus_{n\in\bbZ}M^{*}_n$$
+其中
+$$M^*_n:=\Hom(M_{-n},\bbZ)$$
 \end{definition}
+易知$M^*$具有分次$K$-模结构，
+并且有自然的配对
+$$M^*_n\times M_{-n}\to K$$
 
-对于两个双复形$A\ddowndot$与$A'\ddowndot$，
-我们可以去定义双复形之间的态射$f\ddowndot:A\ddowndot\to A'\ddowndot$，
-进而考虑双复形范畴。双复形的态射自然诱导了相应的全复形之间的链映射，
-也就是说$\Tot$具有函子性。我们还有以下同调代数工具：
+%$C\downdot$ graded $K$-module. Graded duality??
+%$$C^*_n:=\Hom(C_{-n},K)$$
+%$$C^*\downdot:=\bigoplus_n C_n^*$$
 
-\begin{lemma}设$f\ddowndot:A\ddowndot\to A'\ddowndot$为双复形之间的态射。
-如果对于任意$n\geq 0$，链映射
-$$f_{n,\bullet}:A_{n,\bullet}\to A'_{n,\bullet}$$
-为拟同构（quasi-isomorphism），
-\index{quasi-isomorphism\kong 拟同构}
-（即它诱导的任意阶同调对象之间的态射均为同构），
-那么链映射
-$$\Tot\downdot(f\ddowndot):
-\Tot\downdot(A\ddowndot)\to\Tot\downdot(A'\ddowndot)$$
-也为拟同构。
-\label{双复形的全复形-同调代数机器-lemma}
-\end{lemma}
-
-\begin{proof}
-同调代数工具，承认之。
-\end{proof}
-
-我们回到循环双复形$CC\ddowndot(A)$.由上述同调代数工具，
-我们可以给出循环同调
-$H^{\lmd}\downdot(A):=H\downdot(C^{\lmd}\downdot(A))$
-的另一种定义：
-
-\begin{thm}对于$K$-代数$A$，假设$\bbQ\inj K$，记
-$$HC\downdot(A):=H\downdot(\Tot\downdot(CC\ddowndot(A)))$$
-为$A$的循环双复形的全复形的同调，那么有自然的同构
-$$HC\downdot(A)\cong H^{\lmd}\downdot(A)$$
-\end{thm}
-
-\begin{proof}
-对于循环双复形$CC\ddowndot(A)$，
-我们再考虑另一个双复形$CC'\ddowndot(A)$如下：
-$$\xymatrix{
-   \vdots \ar[d]
-  &\vdots \ar[d]
-  &\vdots \ar[d]
-  &\vdots \ar[d]
-  &
-\\
-   C_2^{\lmd}(A)  \ar[d]^{b_2^{\lmd}}
-  &0 \ar[d]  \ar[l]
-  &0 \ar[d]  \ar[l]
-  &0 \ar[d]  \ar[l]
-  &\cdots    \ar[l]
-\\
-   C_1^{\lmd}(A)  \ar[d]^{b_1^{\lmd}}
-  &0 \ar[d]  \ar[l]
-  &0 \ar[d]  \ar[l]
-  &0 \ar[d]  \ar[l]
-  &\cdots    \ar[l]
-\\
-   C_0^{\lmd}(A)
-  &0  \ar[l]
-  &0  \ar[l]
-  &0  \ar[l]
-  &\cdots    \ar[l]
-}$$
-考虑双复形之间的态射
-$$f\ddowndot:CC\ddowndot(A)\to CC'\ddowndot(A)$$
-其中$f_{n,0}:C_n(A)\to C_n^{\lmd}(A)$为商映射。
-由引理\ref{循环双复形的行正合性-lemma}
-知$CC\ddowndot(A)$的每一行都是正合的，
-从而容易验证$f\ddowndot$满足引理
-\ref{双复形的全复形-同调代数机器-lemma}
-的使用条件，因此我们有同构
-$$
-H\downdot(\Tot\downdot(CC\ddowndot(A)))\cong
-H\downdot(\Tot\downdot(CC'\ddowndot(A)))
-$$
-上式左边，由定义，即为$HC\downdot(A)$；
-而再注意到$\Tot\downdot(CC'\ddowndot)$正是Connes复形$C^{\lmd}\downdot$，
-从而上式右边为循环同调$H^{\lmd}\downdot(A)$.
-\end{proof}
-
-也就是说，循环同调（Connes复形的同调）
-自然同构于循环双复形的全复形的同调。
-
-%Let $\text{Tot}(CC\downdot(A))$ be the total complex of $CC\downdot(A)$
-%with a natural map of complexs
-%$$\text{Tot}(CC\downdot(A))\to C^{\lmd}\downdot(A)$$
-%is a quasi-isomorphism.
-%$$HC\downdot(A):=H\downdot(\text{Tot}(CC\downdot(A)))
-%\cong H^{\lmd}\downdot(A)$$
-
-%Intuitively, we can delete "exact sequence" and get rid of 蓝色框框，
-
-%%%%%%%同调代数工具%%%%%%%
-
-\section{Connes算子$\mcalB$}
-
-%%%%%%%%%%%%%%%%2019.3.5 TUE 第二周%%%%%%%%%%%%%%%%%
-我们将给出循环同调的更多等价定义方式，
-并计算一些具体例子。
-本节均假定$\bbQ\inj K$（甚至直接把$K$当成特征零的域）。
-我们需要更多的同调代数工具：
-
-\begin{lemma}（杀掉可缩复形）
-\label{杀掉可缩复形引理-lemma}
-
-对于$K$-模链复形
-$$\cdots\to
-A_{n+1}\oplus B_{n+1}\xra{\td}
-A_n\oplus B_n\xra{\td}
-A_{n-1}\oplus B_{n-1}\to\cdots$$
-其中
-$$\td=
-\begin{pmatrix}
-\alpha & \beta \\
-\gamma & \delta
-\end{pmatrix}$$
-并且$(B\downdot,\delta)$是可缩链复形，其同伦逆
-$$h:B\downdot\to B_{\bullet+1}$$
-使得$h\delta+\delta h=1$.那么下述图表交换：
-
-$$
-\xymatrix{
-   \cdots   \ar[r]
- & A_{n+1}  \ar[r]^{\alpha-\beta h\gamma} \ar[d]^\fai
- & A_{n  }  \ar[r]^{\alpha-\beta h\gamma} \ar[d]^\fai
- & A_{n-1}  \ar[r]^{                    } \ar[d]^\fai
- & \cdots
-\\
-   \cdots                 \ar[r]
- & A_{n+1}\oplus B_{n+1}  \ar[r]^{\td}
- & A_{n  }\oplus B_{n  }  \ar[r]^{\td}
- & A_{n-1}\oplus B_{n-1}  \ar[r]
- & \cdots
-}
-$$
-并且此图表的每一行都为链复形，并且链映射
-$$\fai:=
-\begin{pmatrix}
-1\\
--h\gamma
-\end{pmatrix}$$
-为拟同构。
-\end{lemma}
-
-\begin{proof}
-注意到$\delta^2=0$，以及
-$$0=\td^2
-   =\begin{pmatrix}
-       \alpha &\beta\\
-       \gamma &\delta
-    \end{pmatrix}^2
-   =
-    \begin{pmatrix}
-       \alpha^2+\beta\gamma
-      &\alpha\beta+\beta\gamma\\
-       \gamma\alpha+\delta\gamma
-      &\gamma\beta+\delta^2
-    \end{pmatrix}
-$$
-从而我们有
-$$
-\left\{\begin{array}{rcl}
-\alpha^2&=&-\beta\gamma\\
-\alpha\beta&=&-\beta\delta\\
-\gamma\alpha&=&-\delta\gamma\\
-\gamma\beta&=&0
-\end{array}\right.
-$$
-再注意到$h\delta+\delta h=1$，
-直接计算验证可知$\fai\downdot$
-的确为链复形之间的链映射。细节略。
-
-再注意链映射
-$$\fai\downdot:
-(A\downdot,\alpha-\beta h\gamma)\to
-(A\downdot\oplus B\downdot,\td)$$
-为单射，并且其余核
-$$\coker\fai\downdot\cong
-(B\downdot,\delta)$$
-是正合的，因此$\fai\downdot$为拟同构。
-\end{proof}
-
-这个引理的功能是，如果给定的链复形
-$(A\downdot\oplus B\downdot,\td)$当中
-“含有正合的部分”$(B\downdot,\delta)$，
-那我们可以把这个“正合的部分”剔除掉，
-得到一个“不那么冗余”的链复形$(A\downdot,\alpha-\beta h\delta)$，
-并且此复形与原来的复形的各阶同调自然同构。\vs
-
-我们将此引理用于循环双复形$CC\ddowndot(A)$
-的全复形$\Tot\downdot(CC\ddowndot(A))$上。
-回顾$CC\ddowndot(A)$为如下双复形：
-
-$$\xymatrix{
-   \vdots \ar[d]^b
-  &\vdots \ar[d]^{-b'}
-  &\vdots \ar[d]^b
-  &\vdots \ar[d]^{-b'}
-  &
-\\
-   C_2(A) \ar[d]^b
-  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &C_2(A) \ar[d]^b     \ar[l]_{\mcalN}
-  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &\cdots              \ar[l]
-\\
-   C_1(A) \ar[d]^b
-  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &C_1(A) \ar[d]^b     \ar[l]_{\mcalN}
-  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
-  &\cdots              \ar[l]
-\\
-   C_0(A)
-  &C_0(A)   \ar[l]_{1-\lmd}
-  &C_0(A)   \ar[l]_{\mcalN}
-  &C_0(A)   \ar[l]_{1-\lmd}
-  &\cdots   \ar[l]
-}$$
-
-注意到该双复形的第偶数列为Hochschild链复形（链映射$b$），
-第奇数列为Bar-复形（链映射$-b'$）.
-注意Bar-复形是正合的，并且有同伦逆
-\begin{eqnarray}
-h:C_n(A)&\to&C_{n+1}(A)\\
-a_0\ten a_{1}\ten\cdots\ten a_{n}&\mapsto&
-1\ten a_0\ten a_{1}\ten\cdots\ten a_{n}
-\end{eqnarray}
-使得$b'h+hb'=1$.
-
-现在，注意到
-\begin{eqnarray*}
-\Tot_n(CC\ddowndot(A))&=&
-  \left(
-    \bigoplus_{p+q=n\atop\text{$q$为偶数}}
-      CC_{p,q}(A)
-  \right)
-  \oplus
-  \left(
-    \bigoplus_{p+q=n\atop\text{$q$为奇数}}
-      CC_{p,q}(A)
-  \right)\\
-&=:&
-  X_n\oplus Y_n
-\end{eqnarray*}
-也就是说，我们把循环双复形$CC\ddowndot(A)$
-的全复形$(\Tot\downdot(CC\ddowndot(A)),\td)$写为:
-$$\cdots\to
-X_{n+1}\oplus Y_{n+1}\xra{\td}
-X_n\oplus Y_n\xra{\td}
-X_{n-1}\oplus Y_{n-1}\to\cdots$$
-边缘算子矩阵$\td=
-\begin{pmatrix}
-\alpha  &\beta\\
-\gamma  &\delta
-\end{pmatrix}$
-留给读者。但是要注意$(Y\downdot,\delta)$的正合性
-是由Bar-复形$(C\downdot(A),-b')$的正合性所诱导的；
-$\delta$也存在同伦逆，仍记为$h$.
-
-综上，对$\Tot\downdot(CC\ddowndot(A))$
-使用引理\ref{杀掉可缩复形引理-lemma}，我们得到以下结果：
-
-\begin{prop}
-对于$K$-代数$A$，考虑以下双复形$\mcalB\ddowndot(A)$:
-$$\xymatrix{
-    \vdots \ar[d]
-  & \vdots \ar[d]
-  & \vdots \ar[d]
-\\
-    A^{\ten 3}  \ar[d]^b
-  & A^{\ten 2}  \ar[d]^b  \ar[l]_{\mcalB}
-  & A^{      }            \ar[l]_{\mcalB}
-\\
-    A^{\ten 2}  \ar[d]^b
-  & A^{      }            \ar[l]_{\mcalB}
-  &
-\\
-    A
-  &
-  &
-}$$
-此图表的最左下角为第$0$行$0$列，右下角空白处都为$0$，具体地，
-$$
-\mcalB_{p,q}(A)=
-\left\{\begin{array}{ll}
-   CC_{p-q,2q}(A) & p\geq q\\
-   0              & p<    q
-\end{array}\right.
-$$
-（也就是说，$\mcalB\ddowndot$的结点是由
-将循环双复形$CC\ddowndot(A)$的第奇数列（Bar-复形）
-都删掉，再将原来第$2l$列整体向左、上各平移$l$格所得）
-其中\textbf{Connes算子}$\mcalB:C_n(A)\to C_{n+1}(A)$
-\index{Connes' operator\kong Connes算子}
-定义为以下的复合：
-$$\xymatrix{
-    C_{n+1}(A) \ar[d]^b
-  & C_{n+1}(A) \ar[d]^{-b'} \ar@/_/[l]_{1-\lmd}
-  & C_{n+1}(A) \ar[d]^{b  } \ar[l]_{\mcalN}
-\\
-    C_{n  }(A)
-  & C_{n  }(A) \ar[l]_{1-\lmd} \ar@/^/[u]^{h}
-  & C_{n  }(A) \ar@/^/[l]_{\mcalN}
-}$$
-
-$$\mcalB:=(1-\lmd)h \mcalN$$
-那么，存在自然的双复形单同态
-$$\mcalB\ddowndot(A)\inj CC\ddowndot(A)$$
-并且其诱导的全复形的链映射
-$$\Tot\downdot(\mcalB\ddowndot(A))
-\inj\Tot\downdot(CC\ddowndot(A))$$
-为拟同构。
-\label{Connes算子与循环同调-prop}
-\end{prop}
-
-\begin{proof}
-只需注意到
-$$\Tot_n(\mcalB\ddowndot)
-=\left(
-    \bigoplus_{p+q=n\atop\text{$q$为偶数}}
-      CC_{p,q}(A)
-  \right)
-\inj
- \Tot_n(CC\ddowndot(A))$$
-直接使用引理\ref{杀掉可缩复形引理-lemma}，细节从略。
-但是要验证$\mcalB\ddowndot(A)$的确是双复形，
-即需要验证反交换关系
-$$\mcalB\circ b+b\circ\mcalB$$
-而这是容易的，验证如下：
-\begin{eqnarray*}
-\mcalB\circ b &=& (1-\lmd)h\mcalN b
-               =  (1-\lmd)hb'\mcalN\\
-              &=& (1-\lmd)(1-b'h)\mcalN
-               =  (1-\lmd)\mcalN-(1-\lmd)b'h\mcalN\\
-              &=& -b(1-\lmd)h\mcalN
-               =  -b\circ\mcalB
-\end{eqnarray*}
-从而证毕。
-\end{proof}
-
-于是我们得到循环同调的又一等价定义：
-$$H^{\lmd}\downdot(A)\cong
-H\downdot(\Tot\downdot(\mcalB\ddowndot))$$
-
-我们可以将链复形$\Tot\downdot(\mcalB\ddowndot)$
-适当改写，使得形式更加美观：
-
-
-%\textbf{Cyclic v.s. de Rham}
-
-%Last time "Cyclic homology"
-
-%$$\lmd:a_0\ten...\ten a_n\mapsto(-1)^n a_n\ten a_1\ten...\ten a_{n+1}$$
-
-%$H^{\lmd}\downdot(A)=H\downdot(C\downdot(A)/(1-\lmd),b)$
-
-%$\mcalN:C_n(A)\to C_n(A)$
-
-%$\mcalN=1+\lmd+...+\lmd^n$
-
-%$HC\downdot(A)=\text{Tot}\text{(cyclic bi-complex)}$
-%%%%昨天的双复形%%%%%
-
-%Today：
-
-%\begin{prop}
-%$$B\circ b+b\circ B=0$$
-%where $B$ is Connes' operator
-%\end{prop}
-
-%Easy to check.
-
-\begin{prop}对于$K$-代数$A$，以及形式变元$u$，考虑如下链复形：
-$$(CC\downdot(A),b+u\mcalB)$$
-其中
-$$CC_n(A):=(C\downdot(A)[u^{-1}])_n
-:=\bigoplus_{k=0}^{\infty}
-   u^{-k}C_{n-2k}(A)$$
-（注意这是有限直和）换句话说，我们给定以下分次
-$$\deg(b)=-1,\quad\deg(B)=1,\quad\deg(u)=-2$$
-
-那么此链复形的同调自然同构于循环同调：
-$$H\downdot(CC\downdot(A),b+uB)\cong H\downdot^{\lmd}(A)$$
-%$(b+uB)^2=0$
-%where $u$ is a formal variable.
-\end{prop}
-
-\begin{proof}
-这个几乎显然。注意到
-\begin{eqnarray*}
-  \Tot_n(\mcalB\ddowndot(A))&=&
-  \bigoplus_{k=0}^{\infty}
-    \mcalB_{n-k,k}(A)
-=
-  \bigoplus_{k=0}^{\infty}
-    C_{n-2k}(A)
-\\
-  CC_n(A)&=&
-  \bigoplus_{k=0}^{\infty}
-    u^{-k}C_{n-2k}(A)
-\end{eqnarray*}
-于是有自然的链复形同构
-\begin{eqnarray*}
-  \Tot\downdot(\mcalB\ddowndot(A))&\to& CC\downdot(A)\\
-  \mcalB_{n-k,k}(A)&\mapsto& u^{-k}C_{n-2k}(A)
-\end{eqnarray*}
-容易验证此对应也保持相应的边缘算子。证毕。
-\end{proof}
-
-注意，我们还可以考虑$(CC\downdot(A),b)$，
-它与$(CC\downdot(A),b+u\mcalB)$具有不同的边缘算子：
-前者的同调我们早已知道是Hochschild同调，
-而后者的同调为循环同调。
-
-\begin{rem}（复几何的背景）
-
-%\textbf{Hodge theory}
-
-%A complex m.f.d., $X$， complex(or algebraic) geometry,
-%has an operator $\pbar$;
-
-%topology: consider de-rham operator $\td=\p+\pbar$.
-
-%Consider $\td_u:=\pbar+u\p$, called "Hodge filtration".
-%A bridge between "topology" and "complex geometry".
-
-%"Stability condition".
-
-对于复流形$X$，它作为光滑流形，有外微分算子$\td$；
-再注意到它的复结构，有算子$\pbar\,$——
-前者代表拓扑，而后代表复几何。它们之间有关系
-$$\td=\pbar+\p$$
-并且满足
-$$\p^2=\pbar^2=0\quad\p\pbar+\pbar\p=0$$
-
-我们考虑以下“拓扑与复几何之间的桥梁”：
-$$\td_u:=\pbar+u\p$$
-称此算子为霍奇滤链（Hodge filtration）
-\index{Hodge filtration\kong 霍奇滤链}，
-其中$0\leq u\leq 1$.注意$\td_u$满足稳定性条件
-$\td_u^2=0$，即$\pbar$与$\td$
-的“过渡”的任何一个“中间状态”都仍为外微分算子。
+\begin{rem}（分次K-模上链复形）
+%A complex is $\bbZ$- graded $K$-module
+对于分次$K$-模$C$，以及$\td\in\Hom(C,C)_1$，
+即次数为$1$的齐次同态。如果$\td\circ\td=0$，则自然有$K$-模上链复形：
+$$\cdots\to C_{-1}\xra{\td}C_0\xra{\td}C_1\xra{\td}C_2\to\cdots$$
+%$\deg\td=1$，$\td^2=0$.
 \end{rem}
+这是我们在同调代数当中早已熟知的。
+我们以后就将上链复形与带有$\td$的分次$K$-模等同。
+本节我们采用上链复形的语言（即$\deg\td=1$），
+链复形（$\deg\p=-1$）的情形完全类似。
 
-{\color{gray}
-所以，似乎可以如下粗暴地对应？
+这里讲到的“上链复形”，与通常同调代数当中的
+上链复形在各种操作上都会可能相差正负号；
+为了区分，我们称这里的“上链复形”为“\textbf{分次上链复形}”。
 
-$$\begin{tabular}{|c|c|}
-\hline
-  复几何                  &   非交换几何       \\
-\hline
-  复流形$X$               &   $K$-代数$A$      \\
-  $\Omg_X\updot$          &   $CC\downdot(A)$  \\
-  $\pbar$                 &   $b$              \\
-  $\p$                    &   $u\mcalB$        \\
-  $\td$                   &   $b+u\mcalB$      \\
-  $H_{\text{DR}}\updot(X)$&   $H^{\lmd}\downdot(A)$\\
-  $H\updot_{\pbar}(X)$    &   $\HH\downdot(A)$ \\
-  \hline
-\end{tabular}$$
+我们还可以考虑分次上链复形
+$(C\downdot,\td)$的分次对偶，仍为分次上链复形：
+$$\cdots\to C_{-1}^*\xra{\td^*}C_0^*
+\xra{\td^*}C_1^*\xra{\td^*}C_2^*\to\cdots$$
 
-这格表格似乎不太对吧，应该是
-Hochschild同调$\HH\downdot(A)$对应于“非交换版本的”
-微分形式$\Omg\updot$，从之前的例子能看出来。
-}
+%Complex $(C\downdot,\td)\rightsquigarrow$dual complex
+%$(C\downdot^*,\td^*)$is the dual of
+%$C_{-(n+1)}\xra{\td}C_{-n}$.
+%Shift
 
-\begin{definition}（周期循环同调与负循环同调）
-对于$K$-代数$A$，与$CC\downdot(A)$类似，我们还可以去定义以下：
+\begin{definition}（分次上链复形的平移）
+对于分次$K$-模上链复形$(C\downdot,\td)$，
+定义分次上链复形
+$(C\downdot[1],\td_{[1]})$如下：
+$$(C\downdot[1])_n:=C_{n+1}$$
+并且微分算子$\td_{[1]}$使得下图交换：
+$$\xymatrix{
+   (C[1])_n \ar[r]^{\td_{[1]}}  \ar@{=}[d]
+  &(C[1])_{n+1}               \ar@{=}[d]
+\\
+   C_{n+1}  \ar[r]^{-\td}
+  &C_{n+2}
+}$$
+%differential$=-\td$
+\end{definition}
+注意$\td_{[1]}$当中的负号。
+类似地，对任意$l\in\bbZ$，可以去定义$l$-平移
+$(C[l]\downdot,\td_{[l]})$，特别注意符号
+$$\td_{[l]}=(-1)^l\td$$
 
-%\textbf{ homology}
+对于一般的分次$K$-模，我们也可以考虑其平移，
+这无非是重新规定齐次元的次数。
 
-（1）定义\textbf{周期循环复形}（periodic cyclic complex）
-\index{periodic cyclic complex\kong 周期循环复形}
-$$CC^{\per}\downdot(A):=
-(C\downdot(A)(\!(u)\!),b+u\mcalB)$$
-该复形的同调
-$$\HC^{\per}\downdot(A):=H\downdot(CC^{\per}\downdot(A),b+uB)$$
-%is called periodic cyclic homology.
-称之为\textbf{周期循环同调}（periodic cyclic homology）。\vs
+\begin{definition}（分次上链复形的张量积）
 
-（2）定义\textbf{负循环复形}（negative cyclic complex）
-\index{negative cyclic complex\kong 负循环复形}
-$$CC^-\downdot(A):=(C\downdot(A)[\![u]\!],b+uB)$$
-该复形的同调
-$$\HC^-\downdot(A):=H\downdot(CC^{-}\downdot(A),b+uB)$$
-称之为\textbf{负循环同调}（negative cyclic homology）。
+对于分次上链复形$(C\downdot,\td_C)$与$(D\downdot,\td_D)$，
+定义$(C\ten D)\downdot$的分次上链复形结构$\td$如下：
+%$(C\downdot \ten D\downdot,\td)$
+\begin{eqnarray*}
+\td:C_p\ten D_q &\to& C_{p+1}\ten D_q\oplus C_p\ten D_{q+1}\\
+\td &=&\td_C\ten 1+(-1)^p1\ten \td_D
+\end{eqnarray*}
+\label{分次上链复形的张量积-def}
 \end{definition}
 
-注意上述定义当中的“$[\![u]\!]$”
-是指关于形式变元$u$的形式幂级数，
-而“$(\!(u)\!)$”为关于$u$的Laurent级数。由定义，显然有
-$$CC\downdot(A)\cong CC^{\per}\downdot(A)/CC^-\downdot(A)$$
+仍然要注意正负号。
+容易验证$\td\circ\td=0$，从而
+$((C\ten D)\downdot,\td)$确实为分次上链复形。
 
-至此，我们定义出了$CC\downdot(A),
-CC\downdot^{\per}(A)$以及$CC\downdot^-(A)$。
-事实上，这三者都有深刻的物理背景，见下表：
+对于分次$K$-模，我们仍可以谈论对称张量、反对称张量：
+
+\begin{definition}设$V$为分次$K$-模，对任意$m\geq0$，
+
+（1）定义$m$阶\textbf{超对称张量空间}如下：
+%$V$ is a graded $K$-module, then define
+$$\Sym^m(V)=V^{\ten m}\big/\sim$$
+其中等价关系$\sim$由以下生成：
+对任意齐次元$\alpha,\beta\in V$，
+$$\alpha\ten\beta\sim(-1)^{\deg\alpha\deg\beta}\beta\ten\alpha$$
+
+（2）定义$m$阶\textbf{超反称张量空间}如下：
+$$\wedgeform{m}(V):=V^{\ten m}\big/\sim$$
+其中等价关系$\sim$由以下生成：
+对任意齐次元$\alpha,\beta\in V$，
+$$\alpha\ten\beta\sim-(-1)^{\deg\alpha\deg\beta}\beta\ten\alpha$$
+\end{definition}
+
+若$V=V_0$为通常的$K$-模，则$Sym^n(V_0)$
+与$\wedgeform{n}(V_0)$即为通常的对称张量、外张量。
+
+%我们记
+%$$\Sym(V):=\bigoplus_{m\geq 0}\Sym^m(V)$$
+%$$\wedgeform{*}(V):=\bigoplus_{m\geq 0}\wedgeform{m}(V)$$
+%则它们有自然的分次$K$-模结构。
+对于分次$K$-模$V$，以及任意的$m\geq 0$，
+$\Sym^m(V)$有以下自然的分次$K$-模结构：
+$$\Sym^m(V)=\bigoplus_{d\in\bbZ}
+\big[\Sym^m(V)\big]_d$$
+$$\big[\Sym^m(V)\big]_d
+:=\Span_K\left\{
+           v_1\odot v_2\odot\cdots\odot v_m
+           \big|\sum\limits_{i=1}^n\deg v_i=d
+         \right\}
 $$
-  \begin{tabular}{|c|l|l|}
-  \hline
-    非交换几何中的对象    &   几何、物理背景            &  几何、物理背景     \\
-  \hline
-    $CC\downdot^{per}(A)$ &   open-closed string states &  de-Rham cohomology \\
-    $CC\downdot(A)$       &   open string states        &  gauge theory       \\
-    $CC^-\downdot(A)$     &   closed string states      &  gravity            \\
-  \hline
-  \end{tabular}
-$$
-其中特别注意，周期循环同调是de-Rham上同调的“非交换版本”，
-我们将在后文举例说明。
-%$$CC\downdot^{per}\rightsquigarrow\text{}
-%\text{open-closed string states}$$
+超反称张量空间$\wedgeform{m}(V)$
+也有完全类似的分次$K$-模结构。
 
-%$$CC\downdot(A)\rightsquigarrow
-%\text{open string states}\leftrightsquigarrow\text{gauge theory}$$
+回顾分次$K$-模的平移，以下结果十分重要：
 
-%$$CC^-\downdot(A)\rightsquigarrow
-%\text{closed string states}\leftrightsquigarrow\text{gravity}$$
+%If $V=V_0$, then $Sym^n(V_0)$ is the usual symmetric tensor,
+%and $\wedgeform{n}(V_0)$ exterior.
 
-\section{一些例子}
-
-%Why "$B$" is like de-rham differential?
-
-回顾约化Bar-复形$\overline{B}\downdot(A)$
-（见定义\ref{约化Bar复形-def}），
-我们可以类似地通过约化Bar-复形来构造类似的“循环双复形”：
-在$K\inj A$的条件下，考虑约化Hochschild链复形
-$$\overline{C}_n(A):=
-\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
-{\color{gray}
-类似去定义循环算子$\lmd:\overline{C}_n(A)\to\overline{C}_n(A)$，
-其显式表达式与非约化情形完全相同；以及平均算子
-$$\mcalN:\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
-}
-{\color{red}
-可惜是错的，类似于此前的$\lmd,\mcalN$并不良定。比如
-$$0=\lmd(0)=\lmd(a_0\ten \overline{1})=-1\ten\overline{\lmd}\neq 0$$
-}
-
-但是，Connes算子$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$
-是有意义的，运算规则与非约化情形完全相同，具体地，
-\begin{eqnarray*}
-    \mcalB(a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})
-&=& \widetilde{(1-\lmd)}h\widetilde{\mcalN}
-    (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
-&=& \widetilde{(1-\lmd)}h
-      \left(
-        \sum_{k=0}^n(-1)^{n(n+1-k)}
-          a_k\ten \overline{a_{k+1}}\ten\cdots\ten\overline{a_n}
-          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
-      \right)\\
-&=&   \widetilde{(1-\lmd)}
-      \left(
-        \sum_{k=0}^n(-1)^{n(n+1-k)}
-          1\ten\overline{a_k}\ten \overline{a_{k+1}}
-          \ten\cdots\ten\overline{a_n}
-          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
-      \right)\\
-&=&   \sum_{k=0}^n(-1)^{nk}
-        1\ten\overline{a_k}\ten \overline{a_{k+1}}
-         \ten\cdots\ten\overline{a_n}
-         \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
-\end{eqnarray*}
-其中$a_{-1}:=a_n$.
-%%%%%%%%%Reduced complex%%%%%%%%%
-
-%$$B:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
-%$$a_0\ten\overline{a_1}\ten...\ten\overline{a_n}
-%\mapsto\sum_i\pm1\ten\overline{a_i}
-%\ten\cdots\ten\overline{a_n}\ten...\ten\overline{a_{i-1}}$$
-
-\begin{prop}对于$K$-代数$A$，假设$K\inj A$，
-则有如下双复形$\overline{\mcalB}\ddowndot(A)$：
-$$\xymatrix{
-    \vdots \ar[d]
-  & \vdots \ar[d]
-  & \vdots \ar[d]
-\\
-    A\ten\overline{A}^{\ten 2}  \ar[d]^b
-  & A\ten\overline{A}^{      }  \ar[d]^b  \ar[l]_{\mcalB}
-  & A^{      }                            \ar[l]_{\mcalB}
-\\
-    A\ten\overline{A}^{      }  \ar[d]^b
-  & A^{      }                            \ar[l]_{\mcalB}
-  &
-\\
-    A
-  &
-  &
-}$$
-记此双复形的全复形为$\overline{CC}\downdot(A)
-:=\Tot\downdot(\overline{\mcalB}\ddowndot(A))$，则有自然同构
-$$H^{\lmd}\downdot(A)\cong H\downdot(\overline{CC}\downdot(A))$$
+%HW:%%下周二必考！！
+\begin{prop}对于分次$K$-模$V$，
+以及任意$n\geq0$，则有分次$K$-模同构:
+$$\Sym^n(V[1])\cong(\wedgeform{n}(V))[n]$$
+%here $[n]=([1])^{n\text{times}}$
 \end{prop}
+%%非常重要！！！%
 
-也就是说，在$K\inj A$的条件下，
-我们可以用约化版本的双复形来计算循环同调。
+\begin{proof}对于任意$d\in\bbZ$，
+首先看看它们的齐次分量$(\Sym^n(V[1]))_d$
+与$\big((\wedgeform{n}(V))[n]\big)_d$中的元素具有何种形式。
+我们用$v_1,...,v_n$表示$V$中的$d_1,...,d_n$
+次齐次元，根据定义容易验证
+$$(\Sym^n(V[1]))_d=
+\Span_K \{v_1\odot v_2\odot\cdots\odot v_n|
+d_1+d_2+\cdots d_n=n+d\}$$
+$$\big((\wedgeform{n}(V))[n]\big)_d=
+\Span_K \{v_1\wedge v_2\wedge\cdots\wedge v_n|
+d_1+d_2+\cdots d_n=n+d\}$$
+从而它们都为$(V^{\ten n})_{n+d}$的商模。
 
-\begin{proof}
-考虑商映射$\pi\downdot:C\downdot(A,A)
-\surj\overline{C}\downdot(A,A)$自然诱导的双复形同态
-$$\pi\ddowndot:
-\mcalB\ddowndot(A)\surj\overline{\mcalB}\ddowndot(A)$$
+考虑$K$-模自同构
+\begin{eqnarray*}
+\Phi_{n,d}:(V^{\ten n})_{n+d}&\to&(V^{\ten n})_{n+d}\\
+v_1\ten v_2\ten\cdots\ten v_n
+&\mapsto&(-1)^{d_1+2d_2+\cdots+nd_n}
+v_1\ten v_2\ten\cdots\ten v_n
+\end{eqnarray*}
+断言该自同构$\Phi_{n,d}$诱导了模同构
+\begin{eqnarray*}
+\fai_{n,d}:(\Sym^n(V[1]))_d&\to&
+\big((\wedgeform{n}(V))[n]\big)_d\\
+v_1\odot v_2\odot\cdots\odot v_n
+&\mapsto&(-1)^{d_1+2d_2+\cdots+nd_n}
+v_1\wedge v_2\wedge\cdots\wedge v_n
+\end{eqnarray*}
 
-注意$\pi\ddowndot$限制在双复形的每一列上，
-都为相应链复形的拟同构（这里使用了引理
-\ref{约化Hoschild复形与拟同构-lemma}），
-因此根据引理\ref{双复形的全复形-同调代数机器-lemma}，
-其诱导的全复形之间的同态
-$$
-\Tot\downdot(\mcalB\ddowndot(A))
-\surj\Tot\downdot(\overline{\mcalB}\ddowndot(A))$$
-为拟同构。再注意性质
-\ref{Connes算子与循环同调-prop}，
-上式左边的同调即为循环同调，从而证毕。
+为此，只需要验证$\fai_{n,d}$的良定性
+（与代表元选取无关）。若$\fai_{n,d}$良定，
+则容易构造其逆映射，进而命题得证。
+
+特别注意，$\Sym^n(V[1])$作为$V^{\ten n}$的商模，
+商掉的等价关系由
+$$x\ten y\sim(-1)^{(\deg x-1)(\deg y-1)}y\ten x$$
+生成，这直接由定义验证（{\color{red}要特别小心}）；
+而$(\wedgeform{n}(V))[n]$作为$V^{\ten n}$的商模，
+商掉的等价关系由
+$$x\ten y\sim-(-1)^{\deg x\deg y}y\ten x$$
+生成。于是只需验证对任意$1\leq l\leq n_1$，成立
+\begin{eqnarray*}
+&&
+    \Phi_{n,d}\Big(
+                 \cdots( v_{l}\ten v_{l+1}
+                   -(-1)^{(d_l-1)(d_{l+1}-1)}v_{l+1}\ten v_{l}
+                 )\cdots
+              \Big)\\
+&=&
+    (-1)^{\sum\limits_{i=1}^nid_i}
+    \Big(
+      \cdots(
+        v_l\ten v_{l+1}-(-1)^{(d_l-1)(d_{l+1}-1)-d_{l+1}+d_l}
+        v_{l+1}\ten v_{l}
+      )\cdots
+    \Big)\\
+&=&
+    (-1)^{\sum\limits_{i=1}^nid_i}
+    \Big(
+      \cdots(
+        v_l\ten v_{l+1}+(-1)^{d_ld_{l+1}}
+        v_{l+1}\ten v_{l}
+      )\cdots
+    \Big)\\
+&\equiv& 0\in ((\wedgeform{n}(V))[n])_d
+\end{eqnarray*}
+
+
 \end{proof}
 
-与非约化情形类似，我们也可以
-$$\Tot\downdot(\overline{\mcalB}\ddowndot(A))\cong
-\overline{C}\downdot(A)[u^{-1}],b+u\mcalB)$$
-甚至去定义“约化周期循环同调”、
-“约化负循环同调”，此处不再赘述。\vs
 
-本节接下来给出循环同调的一些典型的计算实例。
+\section{分次代数与分次李代数}
+\begin{definition}（分次结合代数）
+对于结合$K$-代数$A$：
+\label{分次结合代数-def}
+%$A$ is a $\bbZ$-graded algebra,$A=\bigoplus\limits_{k\in\bbZ}A_k$,
+%such that
+%$$A_k\cdot A_l\subseteq A_{k+l}$$
+%and associative.
 
-\begin{example}
-对于环$K$，设$K$-代数$A=K$，那么其循环同调
+（1）称$A$为（$\bbZ$-）\textbf{分次结合代数}（associative graded algebra），
+\index{graded algebra\kong 分次代数}
+若$A$具有分次$K$-模结构：
+$$A=\bigoplus_{n\in\bbZ}A_n$$
+并且与乘法相容：对任意$k,l\in\bbZ$，有
+$$A_k\cdot A_l\subseteq A_{k+l}$$
+
+（2）若$A$为分次结合代数，
+称$A$为\textbf{分次交换代数}，
+若$A$还满足以下\textbf{分次交换性}：
+对任意$a_k\in A_k,a_l\in A_l$，
+$$a_k\cdot a_l=(-1)^{kl}a_l\cdot a_k$$
+
+%$A$ is graded commutative if
+%$$a_k\cdot a_l=(-1)^{kl}a_la_k$$
+\end{definition}
+
+特别注意分次交换性的正负号。
+分次交换代数的典型例子是，
+光滑流形$X$上的微分形式$\Omg\updot_X$，
+配以外积运算$\wedge$.
+
+不过注意，多项式代数$K[x^1,...,x^n]$自然有分次结构，
+是分次代数，但它不满足分次交换性。
+{\color{blue}（仅仅是“交换的分次代数”23333）}
+
+\begin{definition}（\textbf{分次李代数}）
+\index{graded Lie algebra\kong 分次李代数}
+\index{Lie super algebra\kong 李超代数}
+
+$K$-代数$(\mfkg,[,])$ 称为\textbf{分次李代数}
+（graded Lie algebra），
+或者\textbf{李超代数}(Lie super algebra)，如果以下满足：
+
+（1） $\mfkg$具有分次
+$\mfkg=\bigoplus\limits_{k\in\bbZ}\mfkg_k$，
+使得对任意$k,l\in\bbZ$，成立
+$$[\mfkg_k,\mfkg_l]\subseteq\mfkg_{k+l}$$
+
+（2） 乘法$[,]:\mfkg\times\mfkg\to\mfkg$满足如下\textbf{分次反交换性}：
+%which is graded skew-symmetric
+对$A$中任意齐次元$a,b$，成立
+$$[a,b]=-(-1)^{\deg a\deg b}[b,a]$$
+
+（3）对于$A$中任何齐次元$a,b,c$，成立如下\textbf{分次雅可比恒等式}：
+$$(-1)^{\deg b\deg c}[c,[a,b]]
+ +(-1)^{\deg c\deg a}[a,[b,c]]
+ +(-1)^{\deg a\deg b}[b,[c,a]]=0$$
+\end{definition}
+%Graded Jacobi identity
+%$$[[a,b],c]=[a,[b,c]]-(-1)^{\deg a\deg b}[b,[a,c]]$$
+
+我们可以将“分次”（graded）与“超”（super）进行同义词替换，
+比如“分次雅可比恒等式”也可以称为“超雅可比恒等式”，
+“分次交换性”可以称为“超交换性”等等，
+甚至将“分次线性空间”称为“超空间”。
+
+容易验证，超雅可比恒等式也可以改写为：
+$$[c,[a,b]]=
+[c,[a,b]]+(-1)^{\deg a\deg c}[a,[c,b]]$$
+
+也容易验证，对于李超代数$(A,[,])$，
+则$[,]$在$A$的零次分量$A_0$的限制，
+给出了$A_0$的李代数结构。
+回顾李代数的情形，
+李括号的雅可比恒等式反映了某种导子性质；
+而李超代数完全类似，
+上述超雅可比恒等式其实表明某种“超导子”性质。
+
+\begin{notation}为了省事，我们引入一个记号约定：
+对于分次代数或者分次李代数（以及后文将介绍的分次模），
+若$a$为其次元，我们简记
+$$(-1)^a:=(-1)^{\deg a}$$
+也就是说，$(-1)$的幂次当中出现齐次元的次数时，省略“$\deg$”。
+\end{notation}
+
+例如，李超代数的超雅可比恒等式可简记为
+$$(-1)^{bc}[c,[a,b]]
+ +(-1)^{ca}[a,[b,c]]
+ +(-1)^{ab}[b,[c,a]]=0$$
+或者
+$$[c,[a,b]]=
+[c,[a,b]]+(-1)^{ac}[a,[c,b]]$$
+
+\begin{lemma}（分次结合代数诱导分次李代数）
+
+设$(A,\cdot)$为分次结合代数，
+则其乘法自然诱导出$A$的分次李代数结构如下:
+定义
+\begin{eqnarray*}
+\quad[,]:A\times A &\to& A\\
+    \quad     [a,b]&:= & a\cdot b-(-1)^{ab}b\cdot a
+\end{eqnarray*}
+其中任意$a,b\in A$为齐次元。
+则$(A,[,])$构成分次李代数，
+并且与$(A,\cdot)$具有相同的分次。
+\label{分次结合代数诱导李超代数-lemma}
+\end{lemma}
+这与由通常的结合代数通过“对易子”得到李代数的方式类似，
+不过要稍微注意正负号。
+\begin{proof}
+直接暴力验证即可，从略。注意这里的
+$$(-1)^{ab}:=(-1)^{\deg a\deg b}=(-1)^{ba}$$
+为偷懒的记号。
+\end{proof}
+
+我们可以考虑以分次$K$-代数的范畴：
+
+\begin{definition}（分次结合代数范畴）
+%$A$ graded $K$-algebra,
+%$$A=\bigoplus_nA_n\in Mod_K^{\bbZ}$$
+%$$m:A\ten A\to A$$
+%degree of $m$ is $0$.
+%satisfying associativity
+%Category of associative graded $K$-algebra
+%$$Ass-alg_K^{\bbZ}$$
+
+我们定义如下的\textbf{分次结合$K$-代数范畴}，
+记为$\Assalgcat{\bbZ}{K}$：
+
+（1）$\Obj=$全体分次结合$K$-代数；
+
+（2）$\Mor$:对任意两个分次结合$K$-代数$A,B$，
+$$\Hom(A,B):=\bigoplus_{n\in\bbZ}(\Hom(A,B))_n$$
+其中
+$$(\Hom(A,B))_n:=\{f\text{为$K$-代数同态}|
+f(A_d)\subseteq B_{d+n}\,\forall d\in\bbZ\}$$
+$(\Hom(A,B))_n$当中的元素称之为$n$次齐次$K$-代数同态。
+\end{definition}
+
+%$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative" if
+类似地，考虑\textbf{分次交换代数范畴}，
+它是分次结合代数范畴的全子范畴，记为
+$$\Commualgcat{\bbZ}{K}$$
+
+\begin{definition}（分次双$A$-模）
+
+设$A=\bigoplus\limits_{n\in\bbZ}A_n$
+为分次结合$K$-代数，$M$为双$A$-模，
+称$M$为\textbf{分次双$A$-模}，
+若$M$配以分次$K$-模结构
+$$M=\bigoplus_{n\in\bbZ}M_n$$
+并且与$A$的模作用相容：对任意$p,q\in\bbZ$，
+$$A_p.M_q\subseteq M_{p+q}$$
+$$M_p.A_q\subseteq M_{p+q}$$
+\end{definition}
+
+然后对于两个分次双$A$-模$M,N$，
+也可以定义何为“分次双$A$-模同态”，
+并且从$M$到$N$的分次双$A$-模同态之全体，
+亦有自然的分次双$A$-模结构。
+
+特别地，对于分次$K$-代数$A$，
+$A$自身有自然的分次双$A$-模结构。
+
+%Let $A\in Ass-alg_K^{\bbZ}$,$M$ is a (graded) bi-module,
+%a derivation
+%$$D:A\to M$$
+%is a $K$-linear map ,and satisfies
+%$$D(ab)=D(a)b\pm aD(b)$$
+%也可以考虑导子的degre. 不过一般都是degree0 的
+%涉及正负号时，Koszul rule
+
+\begin{definition}（导子）
+对于分次$K$-代数$A$，以及分次双$A$-模$M$，
+称$K$-线性同态
+$$D:A\to M$$
+为$A$的一个取值于$M$的\textbf{导子}，
+若对$A$中的任何齐次元$a,b$，成立
+$$D(ab)=D(a).b+(-1)^a a.D(b)$$
+
+我们将$A$的取值于$M$的导子之全体记为$\Der_0(A,M)$.
+\end{definition}
+这个定义当中并没有用到$M$的分次。
+事实上对于一般的双$A$-模$M$，
+我们都可以如此谈论$\Der_0(A,M)$.
+
+导子的作用可以用如下交换图描述：
+
 $$
-H^{\lmd}_n(K)\cong
-  \left\{
-    \begin{array}{ll}
-      K & \text{$n$为偶数}\\
-      0 & \text{$n$为奇数}\\
-    \end{array}
-  \right.
+  \xymatrixcolsep{5pc}
+  \xymatrixrowsep{5pc}
+  \xymatrix{
+      A\ten A   \ar[r]^m    \ar[d]^{1\ten D+ D\ten 1}
+    & A                     \ar[d]^D
+  \\
+      A\ten M\oplus M\ten A \ar[r]^-m
+    & M
+  }
 $$
-%$\overline{A}=0$.
-%So,
-%$$\overline{A}\downdot A=A\ten "0"$$
-%$$b=0\quad B=0$$
-\end{example}
-我们早已具体计算出$K[x^1,x^2,...,x^n]$的Hochschild同调，
-特别地$\HH\downdot(K)$只有第零个是非平凡的（同构于$K$），
-其余都为$0$.不过，$H^{\lmd}\downdot(K)$与$\HH\downdot(K)$
-并不相同。
+其中$m$表示$A$中的乘法，
+然后特别注意$1\ten D$以及$D\ten 1$
+在$A\ten A$上的作用服从\textbf{Koszul符号法则}
+（回顾记号\ref{Koszul符号法则-notation}）.
 
-\begin{proof}我们采用最简便的方法去计算，
-当然采用约化循环双复形啦。在本例中，
-$$\overline{A}=K/K=0$$
-从而双复形$\overline{\mcalB}\ddowndot(K)$为以下：
+
+%%%%导子图%%%%%%%%搞定
+
+\begin{definition}（超导子）
+
+对于分次$K$代数$A$以及$d\in\bbZ$，
+称次数为$d$的分次$K$-模同态
+$$D:A\to A$$
+为次数为$d$的\textbf{超导子}，
+若满足如下的\textbf{超莱布尼茨法则}：
+对$A$中任何齐次元$a,b$，成立
+$$D(ab)=D(a)b+(-1)^{d\cdot\deg a}aD(b)$$
+
+记次数为$d$的超导子之全体为$\Der(A,A)_d$，并且记
+$$\Der(A,A):=\bigoplus_{d\in\bbZ}\Der(A,A)_d$$
+\end{definition}
+
+易知$\Der(A,A)$有自然的分次$K$-模结构。
+超导子$D$的作用可由如下交换图来描述：
+
+$$
+  \xymatrixcolsep{5pc}
+  \xybigrow
+  \xymatrix{
+       A\ten A  \ar[r]^-{D\ten 1+1\ten D}   \ar[d]^-m
+     & A\ten A                              \ar[d]^-m
+  \\
+       A        \ar[r]^-{D}
+     & A
+  }
+$$
+%%%%分次微分%%%%%%%搞定
+
+\begin{rem}（微分分次代数）对于$K$-代数$A$，
+以及次数为$1$的超导子$\td\in\Der(A,A)_1$，
+如果$\td^2=0$，则
+$(A,\td)$正是我们在之前
+（见定义\ref{微分分次代数-def}）
+定义的\textbf{微分分次代数}。
+\end{rem}
+分次微分代数$(A,\td)$自然可视为分次上链复形。
+当然我们也可以考虑次数为$-1$的超导子，
+亦可定义出类似版本的分次微分代数
+（不过我们更推荐使用上链复形的语言）。
+
+\begin{lemma}（由超导子构成的李超代数）
+
+对于分次$K$-代数$A$，
+若$D_1,D_2\in\Der(A,A)$为齐次的超导子，定义
+$$[D_1,D_2]:=D_1\circ D_2-(-1)^{D_1D_2}D_2\circ D_1$$
+则$[D_1,D_2]$是次数为$\deg D_1+\deg D_2$的超导子。
+从而我们定义了
+$$[,]:\Der(A,A)\times\Der(A,A)\to\Der(A,A)$$
+使得$(\Der(A,A),[,])$为李超代数。
+%i.e. $(\Der(A,A),[-,-])$ is a graded Lie algebra.
+\end{lemma}
+%A differential graded $K$-algebra $(A\downdot,\td)$
+%$\td(\alpha\cdot\beta)=(\td\alpha)\beta+(-1)^{|\alpha|}\alpha\td\beta$
+
+\begin{proof}对于齐次超导子$D_1,D_2$，
+只需要验证$[D_1,D_2]$仍然是超导子，然后由
+引理\ref{分次结合代数诱导李超代数-lemma}即可知
+$(\Der(A,A),[,])$为李超代数。
+
+暴力验证之（还是写一下过程吧），
+对$A$中任意齐次元$a_1,a_2$，有
+\begin{eqnarray*}
+& &
+     [D_1,D_2](a_1a_2)
+ =
+     \big(
+       D_1D_2-(-1)^{D_1D_2}
+     \big)
+     (a_1a_2)\\
+&=&
+     D_1\big(
+          D_2(a_1)a_2+(-1)^{a_1D_2}a_1D_2(a_2)
+        \big)\\
+& &
+    -(-1)^{D_1D_2}D_2
+    \big(
+      D_1(a_1)a_2+(-1)^{a_1D_1}a_1D_1(a_2)
+    \big)\\
+&=&
+    D_1D_2(a_1)a_2
+    +(-1)^{D_1(a_1+D_2)}
+    {\color{red}
+      D_2(a_1)D_1(a_2)
+    }\\
+& &
+    +(-1)^{a_1D_2}
+    \big[
+      {\color{blue}
+        D_1(a_1)D_2(a_2)
+      }
+      +(-1)^{a_1D_1}
+      a_1D_1D_2(a_2)
+    \big]\\
+& &
+    -(-1)^{D_1D_2}
+    \Big[
+      D_2D_1(a_1)a_2
+      +(-1)^{D_2(D_1+a_1)}
+      {\color{blue}
+        D_1(a_1)D_2(a_2)
+      }\\
+& &
+    +(-1)^{a_1D_1}
+    \big(
+      {\color{red}
+        D_2(a_1)D_1(a_2)
+      }
+      +(-1)^{D_2a_1}a_1D_2D_1(a_2)
+    \big)
+    \Big]\\
+&=&
+    \big[
+      D_1D_2-(-1)^{D_1D_2}D_2D_1
+    \big](a_1)a_2\\
+& &
+    +(-1)^{a_1(D_1+D_2)}a_2
+    \big[
+      D_1D_2-(-1)^{D_1D_2}D_2D_1
+    \big](a_2)\\
+&=&
+    [D_1,D_2](a_1)a_2
+    +(-1)^{a_1(D_1+D_2)}a_1[D_1,D_2](a_2)
+\end{eqnarray*}
+可见$[D_1,D_2]$确实是次数为
+$(\deg D_1+\deg D_2)$的超导子，证毕。
+\end{proof}\vs
+
+%We have natural forgetful functor
+最后简要介绍一下函子性：
+我们有遗忘函子
+\begin{eqnarray*}
+\Assalgcat{\bbZ}{K}   &\to& \Modcat{\bbZ}{K}\\
+\Commualgcat{\bbZ}{K} &\to& \Modcat{\bbZ}{K}
+\end{eqnarray*}
+%whose left adjoints are called "free objects".
+
+我们考虑该函子的左伴随“自由分次结合代数”
+以及“自由分次交换代数”，
+即范畴论当中的
+{\color{gray}“普遍真理”（呵呵呵呵呵呵）}：
+
+{\begin{center}
+\Large 自由是遗忘的左伴随
+\end{center}}
+
+\begin{definition}（张量代数or自由分次结合代数）
+
+设$V$为分次$K$-模，定义分次$K$-模
+ %, define the tensor algebra
+$$T(V):=%K\oplus V\oplus V^{\ten a}\oplus\cdots=
+\bigoplus_{n\geq 0}V^{\ten n}$$
+%with algebra structure given by $\ten$:
+其中$V^{\ten 0}:=K$；
+并且张量积“$\ten$”给出了$T(V)$的乘法结构：
+$$(v_1\ten\cdots\ten v_p)\ten(v_{p+1}\ten\cdots\ten v_{p+q})
+=v_1\ten\cdots\ten v_{p+q}$$
+从而使得$(T(V),\ten)$为分次结合代数，
+称之为由$V$生成的\textbf{自由分次结合代数}。
+\end{definition}
+
+这的确是一种非常“自由”的构造方式。
+并且容易验证$T$的函子性：
+\begin{eqnarray*}
+T:\Modcat{\bbZ}{K}&\to& \Assalgcat{\bbZ}{K}\\
+V&\mapsto& T(V)
+\end{eqnarray*}
+%\begin{prop}
+%$T$ is the left adjoint of
+%$$Ass-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+%\end{prop}
+%这个显然，不证了。
+
+同样，我们可以考虑自由生成的分次交换代数：
+
+\begin{definition}（自由分次交换代数）
+
+设$V$为分次$K$-模，定义分次$K$-模
+ %, define the tensor algebra
+$$\Sym(V):=%K\oplus V\oplus V^{\ten a}\oplus\cdots=
+\bigoplus_{n\geq 0}\Sym^n(V)$$
+%with algebra structure given by $\ten$:
+其中$\Sym^0(V):=K$；
+并且对称张量积“$\odot$”给出了$\Sym(V)$的乘法结构：
+$$(v_1\odot\cdots\odot v_p)\odot
+(v_{p+1}\odot\cdots\odot v_{p+q})
+=v_1\odot\cdots\odot v_{p+q}$$
+从而使得$(\Sym(V),\odot)$为分次结合代数，
+称之为由$V$生成的\textbf{自由分次交换代数}。
+\end{definition}
+
+也容易验证$\Sym$的函子性：
+\begin{eqnarray*}
+\Sym:\Modcat{\bbZ}{K} &\to& \Commualgcat{\bbZ}{K}\\
+V &\mapsto& \Sym(V)
+\end{eqnarray*}
+
+%\begin{prop}
+%$Sym$ is the left adjoint of
+%$$Commu-alg_K^{\bbZ}\to Mod_K^{\bbZ}$$
+%\end{prop}
+\begin{prop}（伴随对）
+对于任意分次$K$-模$V$，以及分次结合$K$-代数$A$、
+分次交换$K$-代数$B$，注意$A,B$首先是分次$K$-模：
+
+（1）存在（关于$V$、$A$）自然的一一对应
+$$\Hom_{\Modcat{\bbZ}{K}}(V,A)\cong
+\Hom_{\Assalgcat{\bbZ}{K}}(T(V),A)$$
+
+（2）存在（关于$V$、$B$）自然的一一对应
+$$\Hom_{\Modcat{\bbZ}{K}}(V,B)\cong
+\Hom_{\Commualgcat{\bbZ}{K}}(\Sym(V),B)$$
+\end{prop}
+\begin{proof}
+易证，从略。
+\end{proof}
+用范畴论的语言，此性质表明，
+函子$T$与$\Sym$分别为相应的遗忘函子的左伴随。
+或者还可以表述为如下泛性质，看图即可：
 $$
   \xymatrix{
-     \vdots \ar[d]
-    &\vdots \ar[d]
-    &\vdots \ar[d]
-    &\vdots \ar[d]
+      V \ar@{^{(}->}[r]  \ar[rd]_{\forall f}
+    & T(V)\ar@{.>}[d]^{\exists !}
   \\
-     0      \ar[d]
-    &0      \ar[d]   \ar[l]
-    &0      \ar[d]   \ar[l]
-    &K               \ar[l]
+    & A
+  }
+\quad\quad
+  \xymatrix{
+      V \ar@{^{(}->}[r]  \ar[rd]_{\forall f}
+    & \Sym(V)\ar@{.>}[d]^{\exists !}
   \\
-     0      \ar[d]
-    &0      \ar[d]   \ar[l]
-    &K               \ar[l]
-    &
+    & B
+  }
+$$
+
+\begin{prop}%(if $V$ is a graded $K$-module)
+设$V$为分次$K$-模，$M$为$K$-模，则有一一对应
+$$\Der_0(T(V),M)\cong\Hom_K(V,M)$$
+\end{prop}
+\begin{proof}
+这个也几乎显然，从略。
+\end{proof}
+%In particular,
+%$$\Der(T(V),T(V))\cong\Hom(V,T(V))$$
+
+
+\section{余代数与分次余代数}
+%\textbf{Co-algebra}
+%%%%%结合性%%%%%%%%
+%%%%%%分次交换%%%%%%%%%
+首先简要回顾一下\textbf{余代数}（co-algebra）
+\index{co-algebra\kong 余代数}
+的概念。对于$K$-代数$A$，$A$上的乘法$m:A\ten A\to A$的结合性
+可用如下交换图来描述：
+
+$$
+  \xymatrixcolsep{5pc}
+  \xymatrixrowsep{5pc}
+  \xymatrix{
+     A\ten A\ten A  \ar[r]^-{m\ten 1}  \ar[d]^-{1\ten m}
+    &A\ten A                           \ar[d]^-m
   \\
-     0      \ar[d]
-    &K               \ar[l]
-    &
-    &
+     A\ten A        \ar[r]^-m
+    &A
+  }
+$$
+
+将上述图表中的箭头全部反向，即得到\textbf{余结合律}的概念：
+对于$K$-模$A$，以及$K$-模同态$\yc:A\to A\ten A$，
+若以下图表交换
+$$
+  \xybigcol
+  \xybigrow
+  \xymatrix{
+    A          \ar[r]^{\yc}   \ar[d]^{\yc}
+   &A\ten A                   \ar[d]^{\yc\ten 1}
   \\
-     K
-    &
-    &
+    A\ten A    \ar[r]^{1\ten\yc}
+   &A\ten A\ten A
+  }
+$$
+则称$\yc$满足\textbf{余结合律}，
+%此时称$(A,\yc)$为\textbf{余代数}（co-algebra）。
+运算“$\yc$”称为\textbf{余乘}（co-product）.
+\index{co-product\kong 余乘}
+类似地我们可以谈论\textbf{余交换律}，
+乘法$m:A\ten A\to A$与余乘$\yc:A\to A\ten A$的交换律、
+余交换律分别由以下交换图表描述：
+$$
+  \xybigrow
+  \xymatrix{
+    A\ten A \ar[rr]^{\tau}  \ar[dr]^m
+    &&
+    A\ten A \ar[dl]_{m}
+  \\
+    &A&
+  }
+\quad\quad
+  \xybigrow
+  \xymatrix{
+    A\ten A
+    &&
+    A\ten A \ar[ll]_{\tau}
+  \\
+    &A \ar[ul]_{\yc}\ar[ur]^{\yc}
     &
   }
 $$
-其全复形$\overline{CC}\downdot(K)$为以下
-$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
-从而易求循环同调。
+其中$\tau: x\ten y\mapsto y\ten x$为$A\ten A$的对合自同构。
+
+对于$K$-代数$A$，我们总是假定$A$含幺。
+事实上，存在唯一的$K$-代数同态
+$$i:K\to A$$
+而$A$的\textbf{幺元}$1\in A$即为$1\in K$在该同态下的像。
+在此意义下，我们不妨重新定义什么是$A$的幺元：
+称$K$-模同态$i:K\to A$为$A$的幺元，如果以下图表交换：
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+     &
+       A\ar@{=}[ld]_{\cong}\ar@{=}[rd]^{\cong}
+     &
+  \\
+       K\ten A  \ar[r]^{i\ten 1}
+     & A\ten A  \ar[u]_{m}
+     & A\ten K  \ar[l]_{1\ten i}
+  }
+$$
+
+将以上图表的箭头全部反向，
+则得到\textbf{余幺元}（co-unit）
+\index{co-unit\kong 余幺元}
+的概念：对于配以余乘$\yc$的$K$-模$A$，
+称$K$-模同态$\veps:A\to K$为关于$\yc$的
+\textbf{余幺元}，如果以下图表交换：
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+     &
+       A\ar@{=}[ld]_{\cong}\ar@{=}[rd]^{\cong}\ar[d]^{\yc}
+     &
+  \\
+       K\ten A
+     & A\ten A  \ar[l]_{\veps\ten 1}\ar[r]^{1\ten \veps}
+     & A\ten K
+  }
+$$
+
+对于$K$-模$A$，若$A$配以（满足余结合律的）余乘$\yc$，
+以及关于该余乘的余幺元$\veps:A\to K$，则称
+$(A,\yc,\veps)$为$K$-\textbf{余代数}。
+
+若$(A,\yc_A)$与$(B,\yc_B)$都为$K$-余代数，称$K$-模同态
+$\fai:A\to B$为$K$-\textbf{余代数同态}，如果对任意$x\in A$，成立
+$$\yc_B(\fai(x))=\fai(\yc_A(x))$$
+
+\begin{rem}%If
+若$(A,\triangle)$ 为$K$-余代数，%is a co-algebra, then
+考虑对偶映射$\yc^*:(A\ten A)^*\to A^*$，则
+$(A^*,\triangle^*)$ %is an algebra
+具有如下$K$-代数结构：
+$$A^*\ten A^*\to(A\ten A)^*\xra{\triangle^*}A^*$$
+\end{rem}
+%%%%%见图%%%%%%%5
+
+用反变函子$\Hom(-,K)$翻转余代数图表的箭头而已；
+但是要注意，对一个代数取对偶，未必能得到余代数。
+也就是说，某种意义下余代数比代数包含更多的信息。
+
+现在我们谈论余代数的分次版本。
+
+\begin{definition}（分次余代数）
+%$C\downdot\in Mod_K^{\bbZ}$ is a graded coalgebra over $K$，
+%if there is a coproduct ($\deg=0$)
+%$$\triangle:C\to C\ten C$$
+%%%coproduct%%%%%%%
+\index{graded co-algebra\kong 分次余代数}
+
+设$A=\bigoplus\limits_{k\in\bbZ}A_k$为分次$K$-模，
+$\yc:A\to A\ten A$为$A$的余乘（满足余结合律），
+称$(A,\yc)$为\textbf{分次余代数}（graded co-algebra），
+若$\yc$与$A$的分次满足以下相容性：任意$k\in\bbZ$，
+$$\yc(A_k)\subseteq (A\ten A)_k$$
+\end{definition}
+
+我们自然也可以谈论$\yc$的\textbf{分次余交换性}，
+见下述交换图（与非分次情形完全一样）：
+$$
+\xybigrow
+  \xymatrix{
+    A\ten A
+    &&
+    A\ten A \ar[ll]_{\tau}
+  \\
+    &A \ar[ul]_{\yc}\ar[ur]^{\yc}
+    &
+  }
+$$
+不过要注意，这里的$\tau$为分次对合自同构
+（见定义\ref{分次对合自同构}），服从Koszul符号法则：
+$$\tau: x\ten y\mapsto (-1)^{xy}y\ten x$$
+
+
+%counit$\veps:C\to K$ satisfying
+%%%%%%%%counit%%%%%%%%%
+\begin{definition}（余超导子）%co-derivation
+
+对于分次$K$-余代数$A$，以及$d\in\bbZ$，
+称次数为$d$的分次$K$-模同态$\delta:A\to A$
+为$d$次\textbf{齐次余超导子}，若以下图表交换
+$$
+  \xybigrow
+  \xybigcol
+  \xymatrix{
+      A  \ar[r]^{\delta}  \ar[d]_{\yc}
+    & A  \ar[d]^{\yc}
+  \\
+      A\ten A \ar[r]^-{\delta\ten 1+1\ten\delta}
+    & A\ten A
+  }
+$$
+即满足“\textbf{余莱布尼茨法则}”。
+%$\delta: C\to C$ satisfying
+%%%%%co-Leibnitz rule%%%%%%%
+\end{definition}
+注意到上述图表默认Koszul符号法则。
+记$A$的$d$次齐次余超导子之全体为$\Coder(A)_d$，
+以及
+$$\Coder(A):=\bigoplus_{d\in\bbZ}\Coder(A)_d$$
+称其中的元素为\textbf{余超导子}。
+与超导子类似，余超导子之全体也有李超代数结构：
+
+\begin{prop}对于$K$-余代数$A$，
+%$Coder(C)$ is a graded Lie algebra, where
+以及齐次余超导子$D_1,D_2\in\Coder(A)$，定义
+$$[D_1,D_2]:=D_1\circ D_2-(-1)^{D_1D_2}D_2\circ D_1$$
+则$[D_1,D_2]\in\Coder(A)$，进而$(\Coder(A),[,])$
+构成李超代数。
+\end{prop}
+\begin{proof}
+与分次代数的超导子完全类似，直接验证即可，从略。
 \end{proof}
 
-当然我们也可以按照循环同调最原始的定义去计算，
-其实也不难算，如下：
+有了余超导子，可以相应地去定义\textbf{微分分次余代数}
+（differential graded co-algebra）：
+\index{differential graded co-algebra\kong 微分分次余代数}
+%A differential graded co-algebra is a co-algebra
+%$C$ with a co-derivation $\delta:C\to C$ such that
+%$\deg\delta=1$ and $\delta^2=0$.
 
-\begin{proof}[另一种计算方式]直接计算。此时，
-$$C_n(K)\cong K^{\ten n+1}\cong K$$
-我们记其生成元
-$$\veps_n:=\underbrace{1\ten 1\ten\cdots\ten 1}
-_{n+1\text{个}}\in C_n(K)$$
-容易验证算子$b$与算子$\lmd$的作用
-$$
-  b(\veps_n)=
-    \left\{
-      \begin{array}{ll}
-        \veps_{n-1} & \text{$n$为偶数} \\
-        0           & \text{$n$为奇数}
-      \end{array}
-    \right.
-\quad
-  \lmd(\veps_n)=
-    \left\{
-      \begin{array}{ll}
-        \veps_{n  } & \text{$n$为偶数} \\
-        -\veps_{n  }& \text{$n$为奇数}
-      \end{array}
-    \right.
-$$
-因此，易知Connes复形
-$C^{\lmd}\downdot(K):=C\downdot{K}/(1-\lmd)$具体如下：
-$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
-对它取同调，即得循环同调。
-\end{proof}
+\begin{definition}（微分分次余代数）
+对于$K$-余代数$A$，
+以及满足$\delta^2=0$的$1$次齐次余超导子$\delta$，
+则称$(A,\delta)$为微分分次余代数。
+\end{definition}
 
-%$$\overline\downdot(A)[]u^{-1}\rightsquigarrow HC_n(K)=
-%\left\{\begin{array}{ll}
-%K & \text{$n\geq 0$ even}\\
-%0 & \text{otherwise}
-%\end{array}\right.$$
-%$$K,Ku^{-1},Ku^{-2}...H\downdot(\bbC P^{\infty}=B\cup(1))$$
-%$$C^{\lmd}\downdot A=C\downdot(K)/(1-\lmd)$$
-%$$C_n(K):1\overbrace{\ten1\ten...\ten1}^{n}=:\veps_n$$
-%$$\lmd(\veps_n)=(-1)^n\veps_n$$
-%$$\left\{
-%\begin{matrix}
-%\veps\text{even is cyclic invariant}\\
-%\veps\text{odd$=0$ in} C\downdot^{\lmd}(K)
-%\end{matrix}
-%\right.$$
-%$$b(\veps_{2m})=\veps_{2m-1}$$
-%$$0=b\text{acts on} C^{\lmd}\downdot(K)$$
-%$$H^{\lmd}\downdot(K)=C\downdot^{\lmd}(K)=
-%K\veps_0\oplus K\veps_2\oplus...$$
+类似地，微分分次余代数自然可以视为分次上链复形。
 
-%compute it by 3 ways...
+\begin{rem}（(co-)augmentation）
+\index{augmentation}%我也不知道这屌东西该怎么中（人）文（话）说
 
-接下来，考虑$A=K[x^1,x^2,...,x^n]$为$n$元多项式环的情形，
-我们企图取计算$A$的循环同调。注意在之前
-我们已经使用Koszul复形求出了
-$A=K[x^1,x^2,...,x^n]$的Hochschild同调。
+（1）对于$K$-代数$A$，我们把从$A$到$K$的$K$-模同态称为augmentation；
 
-\begin{lemma}设$A=K[x^1,x^2,...,x^n]$为$n$元多项式环，
-考虑微分形式代数$\Omg_A\updot:=K[x^1,...,x^n;\td x^1,...\td x^n]$，
-注意$\Omg_A\updot$上有外积运算$\wedge$与外微分运算$\td$.
-考虑以下$K$-模同态
+（2）对于$K$-余代数$A$，我们把从$K$到$A$的$K$-模同态称为co-augmentation
+\end{rem}
+
+与“幺元”的箭头刚好相反。
+{\color{purple}笔者建议将augmentation意译为“赋值”。}
+
+%co-augmentation
+
+%(Recall:
+%$A$:$K$-algebra. augmentation is an algebra morphism
+%$A\to K$.)
+%Co-algebra $(C,\triangle)$ is called co-augmentation if
+%there is a co-algebra map $K\to C$.
+
+%%%%%%co-algebra的同态怎么定义？自行脑补%%%%%%%%%%
+
+%$(C,\triangle)$ is co-commutative,if
+%%%%co-commutative%%%%%%
+
+\begin{example}%$V\in Mod_K^{\bbZ}$,
+设$V$为分次$K$-模，%$$T^c(V):=\bigoplus_{n\geq 0}V^{\ten n}$$
+考虑张量代数$T(V):\bigoplus\limits_{n\geq 0}V^{\ten n}$，定义
 \begin{eqnarray*}
-\Phi:\overline{C}_p(A)&\to& \Omg^p_A\\
-a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p}
-&\mapsto& \frac{1}{p!}
-a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
+\triangle:T(V)&\to& T(V)\ten T(V)\\
+v_1\ten\cdots\ten v_n&\mapsto&
+\sum_{i=0}^n(v_1\ten\cdots\ten v_i)\ten(v_{i+1}\ten\cdots\ten v_n)
 \end{eqnarray*}
-则$\Phi$是良定的，并且成立：
+则$(T(V),\yc)$构成余代数。
+\end{example}
+%Check:$\triangle$ is a co-product, and what is its dual?
+容易验证如此$\yc$满足余结合律：
+\begin{eqnarray*}
+& & (\yc\ten 1)\circ\yc(v_1\ten\cdots\ten v_n)\\
+&=&
+     \sum_{0\leq i\leq j\leq n}
+          (a_1\ten\cdots\ten a_{i})
+          \ten(a_{i+1}\ten\cdots\ten a_{j})
+          \ten(a_{j+1}\ten\cdots\ten a_n)\\
+&=&
+     (1\ten\yc)\circ\yc(v_1\ten\cdots\ten v_n)
+\end{eqnarray*}
+并且配以余幺元$\veps:$
 $$
-  \left\{
-    \begin{array}{l}
-       \Phi\circ b=0\\
-       \Phi\circ\mcalB=\td\circ\Phi
-    \end{array}
-  \right.
+\veps\big|_{V^{\ten n}}=
+\left\{
+  \begin{array}{ll}
+     0      &  \text{如果} n>0\\
+     \id_K  &  \text{如果} n=0
+  \end{array}
+\right.
 $$
-其中$b:\overline{C}_p(A)\to\overline{C}_{p-1}(A)$
-为约化Hochschild复形的边缘算子，
-$\mcalB:\overline{C}_{p-1}(A)\to\overline{C}_{p}(A)$
-为约化的Connes算子。
-%Explicitly, we define
-\label{Hochschild-Konstant-Rosenberg算子-lemma}
-\end{lemma}
+
+\begin{rem}%$$\overline{T^c}(V):=\bigoplus_{n\geq 1}V^{\ten n}$$
+$T(V)$还有另一个余乘结构$\overline{\yc}$
+$$\overline{\triangle}(v_1\ten...\ten v_n)
+:=
+\sum_{i=1}^{n-1}(v_1\ten\cdots\ten v_i)\ten(v_{i+1}\cdots v_n)$$
+%$\overline{T^c}(V)$ is a co-product on $\overline{T^c}(V)$.
+\end{rem}
+这也是容易验证的。不过这个余乘结构不存在余幺元。
+
+%$Coder(C)$ is all the co-derivation....
+
+\section{多重切向量场与Schouten-Nijenhuis括号}
+
+众所周知，对于光滑流形$X$，
+$X$上的微分形式$\Omg\updot_X$配以外积$\wedge$
+构成分次交换代数（若再考虑外微分$\td$，还有微分分次代数结构）。
+本节我们介绍另一重要的经典例子：光滑流形上的多重切向量场，
+并给出其上的李超代数结构：Schouten-Nijenhuis括号。
+
+%\begin{example}
+%(1)$(\Omg_X\updot,\wedge)$ is a graded commutative algebra.
+%(2) $\text{PV}_X:=\Gamma(X,\wedge^*TX)$poly vector field,
+%is graded commutative alg.
+%\end{example}
+
+\begin{definition}（多重切向量场）
+对于光滑流形$X$，称$X$的切丛的外积丛
+$\wedgeform{*}(TX)$的截面为\textbf{多重切向量场}
+（polyvector field）。
+\index{polyvector field\kong 多重切向量场}
+并且记
+$$\PV_X:=\Gamma(X,\wedgeform{*}(TX))$$
+为多重切向量场之全体。
+\end{definition}
+
+$\PV_X$有显然的$C^{\infty}(X)$-模结构。
+与微分形式类似，容易定义$\PV_X$上的外积$\wedge$，
+使得$(\PV_X,\wedge)$为分次交换$C^{\infty}(X)$-代数，
+其分次由以下给出：
+$$\PV_X=\bigoplus_{k\geq 0}\PV^k_X$$
+其中$\PV^k_X$中的元素形如
+$$\xi_1\wedge\xi_2\wedge\cdots\wedge\xi_k$$
+的$C^{\infty}(X)$-线性组合，
+其中$\xi_i$为$X$上的光滑切向量场。
+称$\PV^k_X$中的元素为\textbf{$k$-向量}。
+
+回顾$X$的切向量场的李括号$[,]$运算，
+这给出了切向量场的李代数结构；
+接下来我们企图将李括号运算延拓到多重切向量场上，
+从而得到$\PV_X[1]$的李超代数结构。
+（注意这里要平移一下分次，使得把切向量场视为零次元。）
+
+\begin{definition}（Schouten-Nijenhuis 括号）
+\index{Schouten-Nijenhuis 括号}
+\label{Schouten-Nijenhuis定义-def}
+
+对于光滑流形$X$，定义$\PV_X$上的$\bbR$-双线性映射
+\begin{eqnarray*}
+\{,\}:\PV^p_X\times \PV^q_X &\to& \PV^{p+q-1}_X\\
+\{f,g\}     &=&0\\
+\{f,\xi\}   &=&   (-1)^{p}\{\xi,f\}=
+                  \sum_{k=1}^p(-1)^{k}
+                  \xi_k(f)(\cdots\wedge\widehat{\xi_k}
+                  \wedge\cdots)\\
+\{\xi,\eta\}&=& \sum_{1\leq i\leq p\atop 1\leq j\leq q}(-1)^{i+j}
+                  [\xi_i,\eta_j]\wedge
+                  (\cdots\wedge\widehat{\xi_i}
+                  \wedge\cdots)
+                  \wedge(\cdots\wedge\widehat{\eta_j}
+                  \wedge\cdots)
+\end{eqnarray*}
+其中任意$f,g\in C^{\infty}(X)=\PV^0_X$以及
+\begin{eqnarray*}
+\xi=\xi_1\wedge\cdots\wedge\xi_p\quad\quad
+\eta=\eta_1\wedge\cdots\wedge\eta_q
+\end{eqnarray*}
+\end{definition}
+%Check:
+我们需要验证$\{,\}$的良定性：
+与$\xi,\eta$的代表元的选取无关。
+这只需暴力验证即可。从略。
+
+\begin{prop}（Schouten-Nijenhuis括号的性质）
+
+对于光滑流形$X$，则$(\PV_X,\{,\})$满足如下性质：
+
+（1）若$\xi,\eta\in\PV^1_X$为通常的切向量场，则
+$$\{\xi,\eta\}=[\xi,\eta]$$
+
+（2）对任意$p,q\geq 0$，
+任意$\xi\in\PV^p_X$以及$\eta\in\PV_X^q$，成立
+$$\{\xi,\eta\}=-(-1)^{(p-1)(q-1)}\{\eta,\xi\}$$
+
+（3）对任意$p,q,r\geq 0$，
+任意$\xi\in\PV^p_X$以及$\eta\in\PV_X^q,\phi\in\PV_X^r$，成立
+$$\{\xi,\eta\wedge\phi\}=\{\xi,\eta\}\wedge\phi
++(-1)^{(p-1)q}\eta\wedge\{\xi,\phi\}$$
+\label{Schouten-Nijenhuis公理-prop}
+\end{prop}
+
+%(1) $\{,\}$ is well-defined and coordinate independent.(HW)
+
+%(2) $\{\xi,\eta\}=-(-1)^{(\deg\xi-1)(\deg\eta-1)}\{\eta,\xi\}$
+%%%%%%%%%Details%%%%%%
+
+%\begin{notation}
+%$A$ is graded, then $(A[1])_n:=A_{n-1}$ shifted gradation...
+%\end{notation}
+
+%So, $PV_X[1]$ is a graded Lie algebra, and
+%$$(PV_X[1])_0=T_X$$
+%is a Lie algebra.
+
+%(3) graded  Leibnitz rule
+%$$\{\alpha,\beta\wedge\gamma\}
+%=\{\alpha,\beta\}\gamma+(-1)^{(\deg\alpha-1)\deg\beta}
+%\beta\{\alpha,\gamma\}$$
+%(挪之前的分次)
+
+%\begin{prop}
+
+%(1)$(PV,\wedge)$ graded algebra
+
+%(2)$(PV[1],\{,\})$ graded Lie alg
+
+%(3) (1)(2)is compactible(Leibnitz rule)
+
+%\end{prop}
 
 \begin{proof}
-$\Phi$的良定性，即$\overline{A}$中元素与代表元选取无关。
-而此代表元选取至多相差“常数项”（即$K$中元素），
-它在外微分$\td$的作用下为零。因此$\Phi$良定。
+（1）（2）容易验证，从略；
+（3）暴力验证，建议使用数学归纳法。从略。
+\end{proof}
 
-我们来验证$\Phi\circ b=0$.暴力验证如下：
+事实上，这三条性质可作为Schouten-Nijenhuis括号的公理：
+满足此性质的括号如果存在，只能如此定义。
+例如，对任意的$f\in\PV^0_X=C^{\infty}(X)$，
+以及$\xi,\eta\in\PV^1_X$，如果$\{,\}$满足上述三条性质，那么
+$$\{\eta,f\xi\}=\{\eta,f\wedge\xi\}=
+\{\eta,f\}\xi+(-1)^{(1-1)\times 0}f\{\eta,\xi\}
+=\{\eta,f\}\xi+f[\eta,\xi]$$
+但另一方面，又有
+$$\{\eta,f\xi\}=[\eta,f\xi]=\eta(f)\xi+f[\eta,\xi]$$
+比较两式，从而必有
+$$\{\eta,f\}=\eta(f)$$
+再反复使用超莱布尼茨法则（3）
+以及超反称性（2），
+即可得到$\{,\}$的完整定义。
+
+\begin{prop}对于光滑流形$X$，
+Schouten-Nijenhuis括号$\{,\}$满足如下超雅可比恒等式：
+对任意$p,q,r\geq0$以及任意
+$\xi\in\PV^p_X,\,\eta\in\PV_X^q,\,\phi\in\PV_X^r$，成立
+$$
+  \{\xi,\{\eta,\phi\}\}=
+  \{\{\xi,\eta\},\phi\}+(-1)^{(p-1)(q-1)}
+  \{\eta,\{\xi,\phi\}\}
+$$
+从而$(\PV_X[1],\{,\})$构成李超代数。
+\end{prop}
+
+\begin{proof}我们打算详细写出过程。
+在证明的过程中，我们将反复使用性质
+\ref{Schouten-Nijenhuis公理-prop}.
+对任意的$p,q,r>0$，任取
+$$\xi=\xi_1\wedge\cdots\wedge\xi_p\in\PV_X^p$$
+$$\eta=\eta_1\wedge\cdots\wedge\eta_q\in\PV_X^q$$
+$$\phi=\phi_1\wedge\cdots\wedge\phi_r\in\PV^r_X$$
+$$f,g,h\in\PV^0_X=C^{\infty}(X)$$
+为方便书写，我们引入如下记号：
+$$\begin{array}{rclr}
+   \overline{\xi_i} &:=&
+   \xi_1\wedge\cdots\wedge\widehat{\xi_i}\wedge\cdots\wedge\xi_p
+   &\forall \,1\leq i\leq p
+\\
+   \overline{\eta_j} &:=&
+   \eta_1\wedge\cdots\wedge\widehat{\eta_j}\wedge\cdots\wedge\eta_q
+   &\forall \,1\leq j\leq q
+\\
+   \overline{\phi_k} &:=&
+   \phi_1\wedge\cdots\wedge\widehat{\phi_k}\wedge\cdots\wedge\phi_r
+   &\forall \,1\leq k\leq r
+\end{array}$$
+我们将对$p$归纳。
+
+\textbf{预备情形}：若$p=q=r=0$，则结论平凡。
+若$p,q,r$当中恰有两个为$0$，不妨$p=q=0$，此时$r>0$，从而任取
+$f,g\in\PV^0_X$以及$\phi\in\PV^r_X$，此时的超雅可比恒等式为
+$$\{f,\{g,\phi\}\}+\{g,\{f,\phi\}\}=0$$
+注意到
+$$\{f,\phi\}=\sum_{k=1}^r(-1)^k\phi_k(f)\overline{\phi_k}$$
+从而有
 \begin{eqnarray*}
-&&   \Phi\circ b
-      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+     \{f,\{g,\phi\}\}
+&=&  \{f,
+         \sum_{k=1}^r
+           (-1)^k\phi_k(g)\overline{\phi_k}
+     \}\\
 &=&
-    \frac{1}{p!}
-    \Bigg(
-      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
- +
-      \sum_{k=1}^{p-1}(-1)^k
-        a_0\td a_1\wedge\cdots\wedge
-        \td(a_ka_{k+1})
-        \wedge\cdots\wedge\td a_{p}\\
-&&+
-      (-1)^pa_0a_p
-      \td a_1\wedge\cdots\wedge\td a_{p-1}
-    \Bigg)\\
+     \sum_{k=1}^r\phi_k(g)
+       \left(
+         \sum_{j<k}(-1)^j
+           \phi_j(f)\overline{\phi_{jk}}
+        +\sum_{j>k}(-1)^{j+1}
+           \phi_j(f)\overline{\phi_{kj}}
+       \right)\\
 &=&
-    \frac{1}{p!}
-    \Bigg(
-      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
- +
-      \sum_{k=1}^{p-1}(-1)^k
-        a_0a_k\td a_1\wedge\cdots\wedge
-        \widehat{\td a_k}
-        \wedge\cdots\wedge\td a_{p}\\
-&&+
-      \sum_{k=1}^{p-1}(-1)^k
-        a_0a_{k+1}\td a_1\wedge\cdots\wedge
-        \widehat{\td a_{k+1}}
-        \wedge\cdots\wedge\td a_{p}
- +
-      (-1)^pa_0a_p
-      \td a_1\wedge\cdots\wedge\td a_{p-1}
-    \Bigg)\\
+     \sum_{1\leq i<j\leq r}(-1)^{i+j}
+       \big[
+         \phi_i(g)\phi_j(f)-\phi_j(g)\phi_i(f)
+       \big]
+       \overline{\phi_{ij}}
+\end{eqnarray*}
+其中对于$j<k$，简写记号
+$$\overline{\phi_{jk}}
+:=\cdots\wedge\widehat{\phi_j}
+\wedge\cdots\wedge\widehat{\phi_k}\wedge\cdots$$
+注意观察上式关于$f,g$的反对称性，
+容易发现$\{f,\{g,\phi\}\}=-\{g,\{f,\phi\}\}$，从而证毕。
+
+于是，我们在接下来的证明中，
+不妨$p,q,r$当中为零的至多只有一个。\vs
+
+
+\textbf{$p$的起始步：}现在开始对$p$归纳，
+首先考虑起始步$p=0$.由之前讨论，不妨$q,r>0$.
+任取$f\in\PV^0_X$，只需证
+$$\{f,\{\eta,\phi\}\}=\{\{f,\eta\},\phi\}
++(-1)^{q-1}\{\eta,\{f,\phi\}\}\eqno{(*)}$$
+
+暴力展开验证之，注意到
+\begin{eqnarray*}
+     \{f,\{\eta,\phi\}\}
 &=&
-    0
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \{
+           f
+          ,
+           [\eta_j,\phi_k]
+           \wedge\overline{\eta_j}
+           \wedge\overline{\phi_k}
+         \}\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k](f)
+               \overline{\eta_j}
+         \wedge\overline{\phi_k}\\
+& &
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k]\wedge
+         \{
+           f
+         ,
+           \overline{\eta_j}\wedge\overline{\phi_k}
+         \}
+\end{eqnarray*}
+再打开$(*)$的右边：
+\begin{eqnarray*}
+     \{\{f,\eta\},\phi\}
+&=&
+     \sum_{j=1}^q(-1)^j
+       \{\eta_j(f)\overline{\eta_j},\phi\}\\
+&=&
+     \sum_{j=1}^q(-1)^j
+       \Big[
+         (-1)^{(q-1)(r-1)}
+         \{\eta_j(f),\phi\}\wedge
+         \overline{\eta_j}
+        +\eta_j(f)\{\overline{\eta_j},\phi\}
+       \Big]\\
+&=&
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \phi_k(\eta_j(f))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+\end{eqnarray*}
+\begin{eqnarray*}
+     (-1)^{q-1}\{\eta,\{f,\phi\}\}
+&=&
+     (-1)^{q-1}
+     \sum_{k=1}^r(-1)^k
+       \{\eta,\phi_k(f)\overline{\phi_k}\}\\
+&=&
+     (-1)^{q-1}
+     \sum_{k=1}^r(-1)^k
+       \Big[
+         \{\eta,\phi_k(f)\}\wedge
+         \overline{\phi_k}
+        +(-1)^{q-1}
+         \phi_k(f)\{\overline{\eta,\overline{\phi_k}}\}
+       \Big]\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         \eta_j(\phi_k(f))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}
+\end{eqnarray*}
+因此有
+\begin{eqnarray*}
+     \{\{f,\eta\},\phi\}+(-1)^{q-1}\{\eta,\{f,\phi\}\}
+&=&
+     \sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         (\phi_k(\eta_j(f))-\eta_j(\phi_k(f)))
+         \overline{\eta_j}\wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}\\
+&=&
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k](f)
+               \overline{\eta_j}
+         \wedge\overline{\phi_k}\\
+& &
+    +\sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}\\
 \end{eqnarray*}
 
-第二个等式$\Phi\circ\mcalB=\td\circ\Phi$
-也容易直接验证：一方面，
+与$(*)$式比较，只需要再验证恒等式
+$$
+    -\sum_{j=1}^q
+       \sum_{k=1}^r
+         (-1)^{j+k}
+         [\eta_j,\phi_k]\wedge
+         \{
+           f
+         ,
+           \overline{\eta_j}\wedge\overline{\phi_k}
+         \}
+ =
+     \sum_{j=1}^q(-1)^j
+       \eta_j(f)\{\overline{\eta_j},\phi\}
+    +\sum_{k=1}^r(-1)^k
+       \phi_k(f)\{\eta,\overline{\phi_k}\}
+$$
+即可。而这只需将式子中的Schouten-Nijenhuis括号暴力展开，
+并且适当更改求和指标即可，从略。
+{\color{red}（不太想写了，打字好累2333）}\vs
+
+
+\textbf{$p$的归纳步：}
+如果该命题对$p$成立，则考虑
+$$\xi':=\xi_0\wedge\xi\in\PV_X^{p+1}$$
+其中任意$\xi_0\in\PV^0_X$. 我们只需证
+$$\{\xi',\{\eta,\phi\}\}=
+\{\{\xi',\eta\},\phi\}
++(-1)^{p(q-1)}\{\eta,\{\xi',\phi\}\}\eqno{(**)}$$
+注意反复使用$\{,\}$的超反对称性、超莱布尼茨法则，
+以及关于$p$的归纳假设，我们简单（但暴力）验证如下：
 \begin{eqnarray*}
-&& \Phi\circ\mcalB
-     (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+     \text{$(**)$左边}
 &=&
-   \sum_{k=0}^p\frac{(-1)^{pk}}{(p+1)!}
+     \{\xi_0\wedge\xi,\{\eta,\phi\}\}\\
+&=&
+     (-1)^p\xi\wedge
+     \{
+       \xi_0
+      ,
+       \{
+          \eta
+        ,
+          \phi
+       \}
+     \}+\xi_0\wedge
+     \{
+       \xi
+      ,
+       \{\eta,\phi\}
+     \}\\
+&=&
+     (-1)^p\xi\wedge
      \Big(
-       \td a_k\wedge\td a_{k+1}\wedge\cdots\wedge\td a_p
+       \{\{\xi_0,\eta\},\phi\}
+      +\{\eta,\{\xi_0,\phi\}\}
+     \Big)\\
+& &
+    +\xi_0\wedge
+     \Big(
+       \{\{\xi,\eta\},\phi\}
+      +(-1)^{(p-1)(q-1)}
+       \{\eta,\{\xi,\phi\}\}
      \Big)
-     \wedge
+\end{eqnarray*}
+其中最后一步等号用到了归纳假设。
+再看$(**)$右边，需要格外小心正负号：
+\begin{eqnarray*}
+     \text{$(**)$右边}
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}
+     \{\phi,\{\eta,\xi_0\wedge\xi\}\}
+    -(-1)^{p(q-1)+p(r-1)}
+     \{\eta,\{\phi,\xi_0\wedge\xi\}\}\\
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}
+     \Big\{
+       \phi
+     ,
+       {\eta,\xi_0}\wedge\xi
+      +(-1)^{q-1}\xi_0\wedge\{\eta,\xi\}
+     \Big\}\\
+& &
+    -(-1)^{p(q+r)}
+     \Big\{
+            \eta
+     ,
+            \{\phi,\xi_0\}\wedge\xi
+           +(-1)^{r-1}
+            \xi_0\wedge\{\phi,\xi\}
+     \Big\} \\
+&=&
+     (-1)^{p(q-1)+(p+q-1)(r-1)}\\
+& &
+     \Big[
+       \{\phi,\{\eta,\xi_0\}\}\wedge\xi
+      +(-1)^{(r-1)q}
+        {\color{red}
+         \{\eta,\xi_0\}\wedge\{\phi,\xi\}
+        }\\
+& &
+       \quad
+      +(-1)^{q-1}
+       \big(
+         {\color{blue}
+           \{\phi,\xi_0\}\wedge\{\eta,\xi\}
+         }
+        +(-1)^{r-1}
+         \xi_0\wedge\{\phi,\{\eta,\xi\}\}
+       \big)
+     \Big]\\
+& &
+     -(-1)^{p(q+r)}
+     \Big[
+       \{\eta,\{\phi,\xi_0\}\}\wedge\xi
+      +(-1)^{(q-1)r}
+       {\color{blue}
+         \{\phi,\xi_0\}\wedge\{\eta,\xi\}
+       }\\
+& &
+       \quad
+      +(-1)^{r-1}
+       \big(
+         {\color{red}
+           \{\eta,\xi_0\}\wedge\{\phi,\xi\}
+         }
+        +(-1)^{q-1}
+         \xi_0\wedge\{\eta,\{\phi,\xi\}\}
+       \big)
+     \Big]\\
+&=&
+     (-1)^p\xi\wedge
      \Big(
-       \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{k-1}
+       \{\{\xi_0,\eta\},\phi\}
+      +\{\eta,\{\xi_0,\phi\}\}
+     \Big)\\
+& &
+    +\xi_0\wedge
+     \Big(
+       \{\{\xi,\eta\},\phi\}
+      +(-1)^{(p-1)(q-1)}
+       \{\eta,\{\xi,\phi\}\}
      \Big)\\
 &=&
-   \frac{1}{p!}
-     \td a_0\wedge\td a_1\wedge\cdots\wedge\td a_{n}
+     \text{$(**)$左边}
 \end{eqnarray*}
-而另一方面，
+从而$(**)$两边相等，归纳完毕。
+\end{proof}
+
+归纳步当中主要是在验证正负号。
+
+由于Schouten-Nijenhuis括号是切向量场李括号的“推广”，
+我们在以后更喜欢将它们都记作“[,]”（而“\{,\}”在以后常用来表示泊松括号）。
+
+
+\section{Shuffle乘积}
+
+对于$n\geq 1$，我们记$S_n$为$n$元对称群。
+
+\begin{definition}（$(p,q)$-Shuffle）
+
+对于正整数$p,q$，称$\sgm\in S_{p+q}$为一个
+\textbf{$p,q$-Shuffle}，如果满足
+%Let $S_n$ be the symmetric group, A (p,q)-Shuffle is
+% a permutation $\sigma\in S_{p+q}$ such that
+$$\sigma(1)<\sigma(2)<...<\sigma(p)$$
+$$\sigma(p+1)<\sigma(p+2)<...<\sigma(q)$$
+%Let
+全体$(p,q)$-Shuffle构成的集合记为$\Sh_{p,q}$.
+\end{definition}
+
+{\color{purple}
+笔者建议将“Shuffle”意译为“\textbf{洗牌}”——
+因为$\Sh_{p,q}$中的置换，好比将$p+q$张扑克牌
+分为$p$张、$q$张两组来洗牌。
+}
+
+容易知道，集合$\Sh_{p,q}$的元素个数为
+$$\frac{(p+q)!}{p!q!}$$
+
+回到Hochschild链复形。
+我们已经知道，$\HH\downdot(A)$
+是通常的光滑流形的微分形式$\Omg\updot_X$的非交换版本。
+而对于微分形式$\Omg\updot_X$，
+其上有外积$\wedge$使之构成分次交换代数；
+我们也企图去定义非交换版本的外积。
+
+%Let $A,A'$ be to $K$-algebras,
+%$M,M'$ are $A,A'$-bimodule. We define the Shuffle product $\times$
+
+\begin{definition}（Shuffle 乘积）
+\index{shuffle product}%%这屌东西怎么翻译呀
+
+设$A,A'$为$K$-代数，$M,M'$分别为双$A,A'$-模，
+我们定义如下的运算$\times$，称之为\textbf{Shuffle乘积}：
 \begin{eqnarray*}
-  \td\circ\Phi
-      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p})
-=
-    \frac{1}{p!}
-    \td(a_0\td a_{1}\wedge\cdots\wedge\td a_{p})
-=
-    \frac{1}{p!}
-    \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{p}
+C_p(A,M)\times C_q(A',M')&\to& C_{p+q}(A\ten A',M\ten M')\\
+(m,a_1,...,a_p)\times(m',a_1',...,a_q')&\mapsto&
+\sum_{\sigma\in Sh_{p,q}}
+  (-1)^{|\sigma|}
+  (m\ten m',\sigma(a_1,...,a_p,a_1',...,a_q'))
+\end{eqnarray*}
+其中$|\sgm|:=\sgn\sgm$为置换的符号，
+$(m,a_1,...,a_n):=m\ten a_1\ten\cdots\ten a_n$为简单的记法；
+并且置换群$S_{p+q}$在$A^{\ten (p+q)}$上的作用为
+$$\sigma(a_1,...,a_q')
+:=(a_{\sigma^{-1}(1)},...,a_{\sgm^{-1}(q')})$$
+\end{definition}
+
+%要取逆。。。因为是左作用%
+注意在这里，群$S_{p+q}$在$A^{\ten(p+q)}$上的作用方式，
+下角标中出现的是“$\sgm^{-1}$”，如此规定是为了保证
+$S_{p+q}$的作用是左作用。
+
+还要注意一点，$A,A'$以及$M,M'$并不被假定有分次结构，
+$A\ten A'$在$M\ten M'$上的模作用是通常的
+$$(a\ten a').(m\ten m')=(a.m)\ten(a'.m')$$
+右模作用也类似，并不会出正负号，Koszul符号法则在此平凡。
+
+还要注意，
+$$C_{p+q}(A\ten A',M\ten M')
+\cong (M\ten M')\ten (A\ten A')^{\ten(p+q)}$$
+之中元素“$(m\ten m',a_1,...,a_p,a_1',...,a_q')$”
+里面的“$a_i$”应该是$a_i\ten 1\in A\ten A'$，
+以及“$a_j'$”应该是$1\ten a_j'\in A\ten A'$.
+
+还要注意$A\ten A'$的乘法满足$a_ia_j'=a_j'a_i$交换。
+
+\begin{prop}（Shuffle乘积与Hochschild边缘算子相容）
+%The Shuffle product $\times$ is compatible with
+%Hochschild differential $b$: i.e.
+
+记号同上，则对于任意$x\in C_p(A,M)$，$y\in C_q(A',M')$，成立
+$$b(x\times y)=
+b(x)\times y+(-1)^{\deg x}
+x\times b(y)$$
+其中$b:C\downdot\to C_{\bullet-1}$
+为相应Hochschild链复形各自的边缘算子。
+\end{prop}
+
+\begin{proof}当然是暴力验证了，
+我们尽可能使用简练的记号。令
+$$x=m \ten(a_1 ,...,a_p )$$
+$$y=m'\ten(a_1',...,a_q')$$
+首先看$b(x\times y)$，我们按张量缩并的位置，
+以及$A\ten A'$当中的“元素类型”
+（形如$1\ten A'$或是$A\ten 1$）来分类，强行将它打开：
+\begin{eqnarray*}
+     b(x\times y)
+&=&
+     b\sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+        (m\ten m')\ten \sgm(a_1,...,a_p,a_1',...,a_q')\\
+&=&
+     (m.a_1\ten m')\ten
+     \sum_{\sgm\in\Sh_{p-1,q}}(-1)^{|\sgm|}
+       \sgm(a_2,...,a_p,a_1',...,a_q')\\
+& &
+    +(m\ten m'.a_1')\ten
+     \sum_{\sgm\in\Sh_{p,q-1}}(-1)^{|\sgm|+p}
+       \sgm(a_1,...,a_p,a_2',...,a_q')\\
+& &
+    +\sum_{i=1}^{p+q-1}(-1)^i(m\ten m')\ten
+       \Bigg[
+         \sum_{1\leq\alpha<\beta\leq p
+           \atop\sgm\in\Sh_{p-2,q}}
+             (-1)^{|\sgm|+\alpha+\beta-1}
+               \sgm(...,\underbrace{(a_{\alpha}a_{\beta})}
+                        _{\text{第$i,i+1$个}},...)\\
+& &
+         {\color{red}
+         \quad\quad
+        +\sum_{1\leq\alpha \leq p,\, 1\leq\gamma\leq q
+           \atop\sgm\in\Sh_{p-1,q-1}}
+             (-1)^{|\sgm|+\alpha+\gamma+p-1}
+               \sgm(...,\underbrace{(a_{\alpha}a_{\gamma}')}
+                        _{\text{第$i,i+1$个}},...)
+         }\\
+& &
+         {\color{red}
+         \quad\quad
+        +\sum_{1\leq\alpha \leq p,\, 1\leq\gamma\leq q
+           \atop\sgm\in\Sh_{p-1,q-1}}
+             (-1)^{|\sgm|+\alpha+\gamma+p}
+               \sgm(...,\underbrace{(a_{\gamma}'a_{\alpha})}
+                        _{\text{第$i,i+1$个}},...)
+         }\\
+& &
+         \quad\quad
+        +\sum_{1\leq\gamma<\delta\leq q
+           \atop\sgm\in\Sh_{p,q-2}}
+             (-1)^{|\sgm|+(\gamma+p)+(\delta+p)-1}
+               \sgm(...,\underbrace{(a_{\gamma}'a_{\delta}')}
+                        _{\text{第$i,i+1$个}},...)
+       \Bigg]\\
+& &
+    +(-1)^{p+q}(a_n.m\ten m')
+     \sum_{\sgm\in\Sh_{p-1,q}}
+       (-1)^{|\sgm|+q}
+       (a_1,...,a_{p-1},a_1',...,a_q')\\
+& &
+    +(-1)^{p+q}(m\ten a_n'.m')
+     \sum_{\sgm\in\Sh_{p,q-1}}
+       (-1)^{|\sgm|}
+       (a_1,...,a_p,a_1',...,a_{q-1}')\\
+&=&
+     [m.a_1\ten(a_2,...,a_p)]\times y
+    +(-1)^px\times[m'.a_1'\ten(a_2',...,a_q')]\\
+& &
+    +\left(
+       \sum_{i=1}^{p-1}(-1)^i
+         m\ten(a_1,...,a_ia_{i+1},...,a_p)
+     \right)\times y\\
+& &
+    +(-1)^px\times
+     \left(
+       \sum_{i=1}^{q-1}(-1)^i
+         m'\ten(a_1',...,a_i'a_{i+1}',...,a_q')
+     \right)\\
+& &
+    +(-1)^p[a_p.m\ten (a_1,...,a_{p-1})]\times y
+    +(-1)^{p+q}x\times[a_q'.m'\ten(a_1',...,a_{q-1}')]\\
+&=&
+    b(x)\times y+(-1)^px\times b(y)
+\end{eqnarray*}
+从而证毕。
+\end{proof}
+
+\begin{cor}对于$K$-代数$A,A'$，
+若$M,M'$分别为双$A,A'$-模，则Shuffle乘积诱导了
+链映射：%we get a chain complex map
+$$C\downdot(A,M)\ten C\downdot(A',M')
+\xra{\times} C\downdot(A\ten A',M\ten M')$$
+并且该链映射诱导了Hochschild同调的同态%pass to homology, we get
+$$H\downdot(A,M)\ten H\downdot(A',M')
+\xra{\times}
+H\downdot(A\ten A',M\ten M')$$
+\end{cor}
+
+\begin{proof}
+仅仅是将
+$$b(x\times y)=
+b(x)\times y+(-1)^{\deg x}
+x\times b(y)$$
+换了一种说法。注意链复形张量积
+$$C\downdot(A,M)\ten C\downdot(A',M')$$
+的边缘算子服从与定义
+\ref{分次上链复形的张量积-def}
+类似的规则。Shuffle乘积在Hochschild
+同调的下降的良定性也易证。
+\end{proof}
+
+特别地，当$M=A,M'=A'$时%In particular,
+Shuffle乘积诱导了同态：
+$$\HH\downdot(A)\ten \HH\downdot(A')
+\xra{\times} \HH\downdot(A\ten A')$$
+
+\begin{thm}（K\"{u}nneth 公式）%Forumla)
+
+%Assume $a,A'$ are flat over $K$,
+%then Shuffle product gives an isomorphism
+如果$K$-代数$A,A'$作为$K$-模都是平坦的，
+那么Shuffle乘积诱导的Hochschild同调之间的同态
+$$\HH\downdot(A)\ten\HH\downdot(A')
+\xra{\times}\HH\downdot(A\ten A')$$
+为同构。
+\end{thm}
+\begin{proof}
+代数拓扑中的标准证明。从略。
+\end{proof}
+
+注意我们总是假定$A,A'$是投射$K$-模，
+从而自然满足平坦性。
+
+%不证了，标准的证明
+%%%%%%%代数映射%%%%%%%搞定
+
+\begin{prop}
+%Let $A$ be a commutative associative algebra, then
+若$K$-代数$A$是交换的，则Shuffle乘积诱导了
+$\HH\downdot(A)$ %is a graded commutative algebra.
+的$K$-代数结构，并且$(\HH\downdot(A),\times)$
+是分次交换的。
+\end{prop}
+这就回到了通常交换的情形了。
+事实上Shuffle乘积的几何意义为微分形式的外积。
+
+\begin{proof}对于任意的$K$-代数$A$，注意
+张量积$A\ten A$也有$K$-代数结构。断言：
+\begin{eqnarray*}
+\pi:A\ten A&\to& A\\
+a\ten b&\mapsto& ab
+\end{eqnarray*}
+为$K$-代数同态当且仅当$A$是交换代数。
+于是当$A$交换时，考虑$K$-代数同态$A\ten A\xra{\pi}A$，
+由Hochschild同调的函子性，该同态诱导了
+$$\HH\downdot(A\ten A)\xra{\HH\downdot(\pi)}\HH\downdot(A)$$
+再注意Shuffle乘积诱导
+$$\HH\downdot(A)\ten\HH\downdot(A)\xra{\times}\HH\downdot(A\ten A)$$
+将上述两个同态复合，即得到分次$K$-代数
+$(\HH\downdot(A),\times)$.
+
+容易验证此代数为分次交换的，验证如下：
+对任意$p,q\geq 0$以及$a_0,a_1,...,a_p\in A$，
+$a_0',a_1',...,a_q'\in A$，有
+\begin{eqnarray*}
+& &
+     [a_0\ten(a_1,...,a_p)]
+     \times[a_0'\ten(a_1',...,a_q')]\\
+&=&
+     (a_0a_0')\ten
+     \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+       \sgm(a_1,...,a_p;a_1',...,a_q')\\
+&=&
+     (a_0'\ten a_0)\ten
+     \sum_{\sgm\in\Sh_{q,p}}
+       (-1)^{|\sgm|+pq}
+       \sgm(a_1',...,a_q';a_1,...,a_p)\\
+&=&
+     (-1)^{pq}
+     [a_0'\ten(a_1',...,a_q')]
+     \times[a_0\ten(a_1,...,a_p)]
+\end{eqnarray*}
+从而分次交换。
+\end{proof}
+
+%HW:
+\begin{prop}（Shuffle乘积是非交换版本的外积）
+%If $A=K[x^i]$, then
+
+若$A=K[x^1,...,x^n]$为多项式代数，则有$K$-代数同构
+$$(\HH\downdot(A),\times)\cong(\Omg_A\updot,\wedge)$$
+\end{prop}
+
+\begin{proof}
+回顾性质\ref{C[x^i]的循环同调}当中的双复形同态
+$$\Phi:(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+\to(\Omg\updot_A,0,\td)$$
+
+首先，容易验证Shuffle乘积可下降至
+$$\overline{C}\downdot(A)\ten\overline{C}\downdot(A)
+\xra{\times}\overline{C}\downdot(A)$$
+从而我们只需要验证对于任意$x\in\overline{C}_p(A)$以及
+$y\in\overline{C}_q(A)$，成立
+$$\Phi(x\times y)=\Phi(x)\wedge\Phi(y)$$
+
+对任意的$p,q\geq 0$，以及
+$x=a_0\ten(\overline{a_1},...,\overline{a_p})\in\overline{C}_p(A)$，
+$y=a_0'\ten(\overline{a_1}',...,\overline{a_q}';)\in\overline{C}_q(A)$，
+从而
+\begin{eqnarray*}
+     \Phi(x\times y)
+&=&
+     \Phi\left(
+            a_0a_0'\ten
+            \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+              \sgm(\overline{a_1},...,\overline{a_p};
+                   \overline{a_1}',...,\overline{a_q}')
+         \right)\\
+&=&
+     \frac{1}{(p+q)!}a_0a_0'
+     \sum_{\sgm\in\Sh_{p,q}}(-1)^{|\sgm|}
+       \sgm(\td a_1\wedge\cdots\wedge \td a_p
+         \wedge \td a_1'\wedge\cdots\wedge\td a_q')\\
+&=&
+     \frac{1}{p!q!}
+     a_0a_0'\td a_1\wedge\cdots\wedge \td a_p
+     \wedge \td a_1'\wedge\cdots\wedge\td a_q'\\
+& &
+     \\
+     \Phi(x)\wedge\Phi(y)
+&=&
+     \left(
+       \frac{1}{p!}
+       a_0\td a_1\wedge\cdots\wedge \td a_p
+     \right)
+     \wedge
+     \left(
+       \frac{1}{q!}
+       a_0'\td a_1'\wedge\cdots\wedge \td a_q'
+     \right)\\
+&=&
+     \frac{1}{p!q!}
+     a_0a_0'\td a_1\wedge\cdots\wedge \td a_p
+     \wedge \td a_1'\wedge\cdots\wedge\td a_q'
 \end{eqnarray*}
 从而得证。
 \end{proof}
 
-由此引理，我们即可去计算$A:=K[x^1,x^2,...,x^n]$的循环同调。
 
-\begin{prop}对于$A:=K[x^1,x^2,...,x^n]$，则其循环同调
-$$H^{\lmd}_n(A)\cong
-\left\{
-  \begin{array}{ll}
-    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
-    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
-  \end{array}
-\right.
-\label{C[x^i]的循环同调}
-$$
+\section{Cup乘积与Gerstenhaber括号（部分细节待补）}
+对于$K$-代数$A$，回顾Hochschild上链复形
+$$C\updot(A):=C\updot(A,A)=\bigoplus_{p\geq 0}C^p(A,A)$$
+我们将介绍$C\updot(A)$上的代数结构：cup乘积。
+
+%%%%%%%%%%%%%树%%%%%%%%%
+
+\begin{definition}（Cup乘积）
+%%%%%%%shadiao%%%%
+\index{cup product}
+
+设$A$为$K$-代数，定义\textbf{cup乘积}
+$$\cup:C\updot(A)\ten C\updot(A)\to C\updot(A)$$
+如下：%For
+对任意的$f\in C^p(A)$，$g\in C^q(A)$，% Define cup product
+\begin{eqnarray*}
+f\cup g &\in& C^{p+q}(A)\\
+(f\cup g)(a_1,...,a_p;a_{p+1},...,a_q)
+&=&
+%(-1)^{pq}
+f(a_1,...,a_p)g(a_{p+1},...,a_{p+q})
+\end{eqnarray*}%李思讲的公式不对，cup乘积的定义式里没有(-1)^{pq}这项
+\end{definition}
+
+我们已经知道，Hochschild上同调是“非交换版本的多重切向量场”。
+注意多重切向量场具有外积运算，而cup乘积则是“非交换版本的外积”。
+我们将去说明这一点。
+
+\begin{prop}（cup乘积与Hochschild微分的相容性）
+%Cup product is compatible with Hochschild differential $\p$:
+
+对于$K$-代数$A$，任意$f,g\in C\updot(A)$，成立
+$$\p(f\cup g)=(\p f)\cup g+(-1)^{\deg f}f\cup\p g$$
 \end{prop}
 
 \begin{proof}
-事实上，刚才的引理
-\ref{Hochschild-Konstant-Rosenberg算子-lemma}
-表明，$\Phi$诱导以下两个双复形之间的态射：
-$$
-  \begin{tabular}{cccc}
-    \xymatrix{
-       \vdots             \ar[d]
-      &\vdots             \ar[d]
-      &\vdots             \ar[d]
-    \\
-       \overline{C}_2(A)  \ar[d]^{b}
-      &\overline{C}_1(A)  \ar[d]^{b}  \ar[l]_{\mcalB}
-      &\overline{C}_0(A)              \ar[l]_{\mcalB}
-    \\
-       \overline{C}_1(A)  \ar[d]^{b}
-      &\overline{C}_0(A)              \ar[l]_{\mcalB}
-      &
-    \\
-       \overline{C}_0(A)
-      &
-      &
-    }
-      &&&
-    \xymatrix{
-       \vdots             \ar[d]
-      &\vdots             \ar[d]
-      &\vdots             \ar[d]
-    \\
-       \Omg^2_A  \ar[d]^{0}
-      &\Omg^1_A  \ar[d]^{0}  \ar[l]_{\td}
-      &\Omg^0_A              \ar[l]_{\td}
-    \\
-       \Omg^1_A  \ar[d]^{0}
-      &\Omg^0_A              \ar[l]_{\td}
-      &
-    \\
-       \Omg^0_A
-      &
-      &
-    }
-  \end{tabular}
-$$
-{\color{red}（按村儿里的规矩，此处应该有立方交换图）}
-
-其中左边为$\overline{\mcalB}\ddowndot(A)$，而
-右边的每一行均为de-Rham上链复形，每一列的边缘算子都为零。
-注意到$\Phi$是满射，以及我们早已用Koszul复形得到的
-$$H_n(\overline{C}\downdot(A))\cong\HH_n(A)
-\cong\Omg^n_A\cong H_n(\Omg\updot_A,0)$$
-从而双复形同态$\Phi$限制在每一列上都为拟同构，于是由引理
-\ref{双复形的全复形-同调代数机器-lemma}，立刻知道
-$$\Phi:\Tot\downdot(\overline{\mcalB}\ddowndot(A),b,\mcalB)
-\to\Tot\downdot(\Omg\updot_A,0,\td)$$
-为拟同构。上式左边的同调即为$A$的循环同调，
-而右边的同调可以直接计算。只需要注意到（Poincare引理）de-Rham复形
-$$\cdots\xra{\td}\Omg\updot(A)
-\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
-的（上）同调满足
-$$
-  H^n(\Omg\updot_A,\td)=
-  \left\{
-    \begin{array}{ll}
-      K  &  n=0\\
-      0  &  n>0
-    \end{array}
-  \right.
-$$
-因此容易计算出
-$$H^{\lmd}_n(A)\cong
-\left\{
-  \begin{array}{ll}
-    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
-    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
-  \end{array}
-\right.
-$$
-\end{proof}
-
-
-
-%$$\Phi:(\overline{C\downdot(A)},b)\to(\Omg^0(A),0)$$
-%si a chain map.
-%%%%%%Isildur%%%%%%%%
-
-%So, we have an isomorphism
-%$$\HH\downdot(A)\cong \Omg\updot (A)$$
-%,then $\HH\downdot(A)=\Omg\updot(A)=\bbC[x^i,\td x^i]$.
-
-%Check:
-%$$\Phi\circ B=\td\circ\Phi$$
-%%%%%%%这很明显吧%%%%%%%%%%%
-
-%So,
-
-%$$\Phi:(\overline(C)\downdot(A),b,B)\to(\Omg\updot(A),0,\td)$$
-
-%Cyclic homology,
-%$$\Phi:(\overline(C)\downdot(A),b+uB)\to
-%(\Omg\updot(A)[u^{-1}],u\td )$$
-
-%If $A=K[x^i]$
-%$$\cdots\xra{\td}\Omg\updot(A)
-%\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
-
-%then $$H\downdot(\Omg\updot(A),\td)=H_0=K$$
-%"Poincare lemma"
-
-%\begin{prop}
-%$$HC\downdot(K[x^i])=\frac{\Omg\updot(A)}
-%                    {d\Omg\updot(A)}
-%\oplus u^{-1}K[u^{-1}]$$
-
-%\end{prop}
-\begin{rem}
-容易知道，Connes算子
-$$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
-在$\ker b$上的限制，可以下降为Hochschild同调之间的同态
-$$\mcalB:\HH_n(A)\to\HH_{n+1}(A)$$
-\end{rem}
-Hochschild同调扮演的角色相当于微分形式，而此时Connes算子
-扮演的则是外微分。
-
-\begin{rem}
-双复形满同态
-$$\Phi:(\overline{\mcalB}\ddowndot(A),b,\mcalB)\surj
-(\Omg\updot_A,0,\td)
-$$
-其实是可裂（split）的。具体地，存在双复形同态
+暴力验证之。
+任取$a_0,a_1,...,a_{p+q}\in A$，成立
 \begin{eqnarray*}
-\eta:\Omg\updot(A)&\to&\overline{C}\downdot(A)\\
-a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
-&\mapsto&\sum_{\sigma\in S_p}(-1)^{\sgn \sigma}
-           a_0\ten a_{\sigma(1)}\ten\cdots\ten a_{\sigma(p)}
+& &
+     [(\p f)\cup g+(-1)^p f\cup(\p g)]
+     (a_0\pz a_{p+q})\\
+&=&
+     a_0f(a_1\pz a_p)g(a_{p+1}\pz a_{p+q})\\
+& &
+    {\color{blue}
+    -\sum_{k=0}^{p-1}(-1)^k
+       f(\pz a_ka_{k+1}\pz)g(a_{p+1}\pz a_{p+q})
+    }\\
+& &
+     {\color{red}
+    -(-1)^pf(a_0\pz a_{p-1})a_p g(a_{p+1}\pz a_{p+q})
+     }\\
+& &
+     {\color{red}
+    +(-1)^pf(a_0\pz a_{p-1})a_p g(a_{p+1}\pz a_{p+q})
+     }\\
+& &
+     {\color{blue}
+    -(-1)^p\sum_{l=0}^{q-1}
+            f(a_0\pz a_{p-1})g(\pz a_{p+l}a_{p+l+1}\pz)
+     }\\
+& &
+    -(-1)^{p+q}
+    f(a_0\pz a_{p-1})g(a_p\pz a_{p+q-1})a_{p+q}\\
+&=&
+     a_0(f\cup g)(a_1\pz a_{p+q})\\
+& &
+     {\color{blue}
+    -\sum_{k=0}^{p+q-1}(-1)^k
+       (f\cup g)(\pz a_ka_{k+1}\pz)
+     }\\
+& &
+    -(-1)^{p+q}
+     (f\cup g)(a_0\pz a_{p+q-1})a_{p+q}\\
+&=&
+     \p(f\cup g)(a_0\pz a_{p+q})
 \end{eqnarray*}
-使得$\Phi\circ\eta=\id$.
-\end{rem}
-
-容易验证（简单的组合技巧）$\eta$的确诱导了双复形同态
-$$\eta:(\Omg\updot_A,0,\td)\to
-(\overline{\mcalB}\ddowndot(A),b,\mcalB)
-$$
-
-\section{循环上同调}
-本章最后，简单介绍一下循环上同调（Cyclic cohomology）。
-%$$C_n(A)\cong A^{\ten n+1}$$
-对于双$A$-模$M$，
-回顾我们之前已经介绍的Hochschild上链复形
-$$C^n(A,M):=\Hom(A^{\ten n},A)$$
-特别地，当$M=A$时，我们给出以下记号:
-
-\begin{notation}对于$K$-代数$A$，以及$n\geq0$，
-我们记Hochschild上链复形
-$$C^n(A):=C^{n}(A,A)\cong\Hom(A^{\ten n},A)
-\cong\Hom(A^{\ten n+1},K)$$
-并且将该Hochschild上链复形的微分算子记为$b^*$.
-\end{notation}
-
-我们此前考虑同构$C_n(A)\cong A^{\ten n+1}$，
-而Hochschild上链复形$C^n(A)\cong\Hom(A^{\ten n+1},K)$
-恰为其对偶；微分算子$b^*$的作用即为$b$的对偶：
-即对任意$f\in C^n(A)\cong\Hom(A^{\ten n+1},K)$以及
-$\omg\in A^{\ten n+2}\cong C_{n+1}(A)$，成立
-$$(b^*f)(\omg)=f(b(\omg))$$
-
-与循环余不变量对偶，我们可以谈论循环不变量：
-
-\begin{definition}（循环不变量）
-
-对于$f\in C^n(A)$，称$f$为循环不变量
-（cyclic invariant），
-\index{cyclic invariant\kong 循环不变量}
-如果对任意的$a_0,...,a_n\in A$，成立
-$$f(a_0,a_1,...,a_n)=(-1)^nf(a_n,a_0,...,a_{n-1})$$
-记$C^n(A)$当中的循环不变量之全体为$C^n_{\lmd}(A)$.
-\end{definition}
-
-容易验证$b^*(C^{n}_{\lmd}(A))\subseteq C^{n+1}_{\lmd}(A)$，
-从而$(C\updot_{\lmd}(A),b^*)$为$(C\updot(A),b^*)$的子复形。
-（不必暴力验证了，由循环余不变量对偶过去就行）
-看图说话即可：
-
-$$
-  \xymatrix{
-     \cdots       \ar[r]
-    &C_n(A)       \ar[r]^{b'}   \ar[d]^{1-\lmd}
-    &C_{n-1}(A)   \ar[r]        \ar[d]^{1-\lmd}
-    &\cdots
-  \\
-     \cdots       \ar[r]
-    &C_n(A)       \ar[r]^{b }   \ar@{->>}[d]
-    &C_{n-1}(A)   \ar[r]        \ar@{->>}[d]
-    &\cdots
-  \\
-     \cdots       \ar[r]
-    &C_n^{\lmd}(A)\ar[r]        \ar[d]
-    &C_{n-1}^{\lmd}(A) \ar[r]   \ar[d]
-    &\cdots
-  \\
-    &0&0&
-  }
-\quad
-  \xymatrix{
-     \cdots
-    &C^n(A)       \ar[l]
-    &C^{n-1}(A)   \ar[l]_{b'^*}
-    &\cdots       \ar[l]
-  \\
-     \cdots
-    &C^n(A)       \ar[l]        \ar[u]^{1-\lmd^*}
-    &C^{n-1}(A)   \ar[l]^{b^*}  \ar[u]^{1-\lmd^*}
-    &\cdots       \ar[l]
-  \\
-     \cdots
-    &C^n_{\lmd}(A)\ar[l]        \ar@{^{(}->}[u]
-    &C^{n-1}_{\lmd}(A) \ar[l]   \ar@{^{(}->}[u]
-    &\cdots            \ar[l]
-  \\
-    &0\ar[u]
-    &0\ar[u]
-    &
-  }
-$$
-
-左图我们早已熟悉，注意它的每一列都是右正合的。
-将反变左正合函子$\Hom(-,K)$作用于左图即得到右图，
-右图的每一列都是左正合的。
-
-
-%cyclic cochains form a subcomplex
-%$$C_{\lmd}^n(A)\subseteq C^n(A)$$
-%which is dual to
-%$$C_n(A)\to C_n^{\lmd}(A)$$
-%$$b^*:C_{\lmd}^n(A)\to C_{\lmd}^{n+1}(A)$$
-
-\begin{definition}（循环上同调）
-对于$K$-代数$A$定义$A$的\textbf{循环上同调}
-（cyclic cohomology）
-\index{cyclic cohomology\kong 循环上同调}
-$$H\updot_{\lmd}(A):=\HC\updot(A)
-:=H\updot(C_{\lmd}\updot(A),d^*)$$
-\end{definition}
-
-作为例子，我们具体计算一下第零个循环上同调。
-
-\begin{example}对于$K$-代数$A$，则有
-$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
-\forall x,y\in A,f(xy)=f(yx)\}$$
-\end{example}
-
-\begin{proof}直接计算即可。
-只需考虑Hochschild上链复形
-$$0\to C^0_\lmd(A)\xra{b^*}C^1_{\lmd}(A)
-\xra{b^*}C^2_{\lmd}(A)\to\cdots$$
-易知$C^0_{\lmd}(A)=C^0(A)=\Hom(A,K)$，从而
-$$H^0_{\lmd}(A)=\ker(b^*:C^0(A)\to C^1(A))$$
-
-对于$f\in\Hom(A,K)$，若$b^*f=0$，则对于任意$x,y\in A$，有
-$$0=(b^*f)(x,y)=f(b(x\ten y))=f(xy-yx)=f(xy)-f(yx)$$
-从而可知
-$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
-\forall x,y\in A,f(xy)=f(yx)\}$$
+从而证毕。
 \end{proof}
 
-像$H^0_{\lmd}(A)$当中的线性算子那样，满足
-$$f(xy)=f(yx)\quad(\forall x,y\in A)$$
-的线性算子称之为\textbf{迹算子}。
+%%%%%%%这岂不是吃屎%%%%%%%搞定，种了一片森林
 
-高阶的循环上同调可被认为是“导出的”迹算子。
+\begin{cor}%There is a well-defined cup product
+cup乘积诱导了如下同态：
+$$\HH^p(A)\times \HH^{q}(A)\xra{\cup} \HH^{p+q}(A)$$
+\end{cor}
+\begin{proof}
+易验证良定性，几乎显然。
+\end{proof}
+容易验证如此的cup乘积是结合的
+（之前Shuffle乘积的结合性也可直接看出来），
+于是我们得到分次结合$K$-代数$(\HH\updot(A),\cup)$。
+事实上，该$K$-代数是分次交换的，这从cup乘积当中很难看出来
+（似乎非常不显然），我们下一节给出证明。
 
-%$$f\in C_{\lmd}^0(A):A\to K$$
-%$$b^*f\in C^1_{\lmd}(A)$$
-%$$b^*f(a_0,a_1)=f(b(a_0\ten a_1))=f(a_0a_1-a_1a_0)$$
-%$$b^*=0\iff f:A/[A,A]\to K$$
-%$f$ behaves like "trace".
-%$HC^0(A)$="trace operators"
+\begin{rem}%HW: If $A=\bbC[x^i]$,then
+我们已经知道，Hochschild上同调是“非交换版本的多重切向量场”；
+而cup乘积即为“多重切向量场的外积”的非交换版本。具体地，若
+$A=K[x^1,...,x^n]$为多项式环，则有$K$-代数同构
+$$(\HH\updot(A),\cup)\cong (\PV_A,\wedge)$$
+\end{rem}
+
+我们知道，$\PV_X$上不仅有外积结构，
+还有Schouten-Nijenhuis括号；
+我们也要给出后者的非交换版本，
+使得$\HH\updot(A)$为Gerstenhaber代数：
+
+\begin{definition}(Gerstenhaber代数)
+
+设$(A,\cdot)$为分次交换$K$-代数，
+$A=\bigoplus\limits_{k\in\bbZ}A^k$为其分次，并配以$K$-双线性映射
+\begin{eqnarray*}
+\{,\}:A^p\ten A^q&\to& A^{p+q-1}
+\end{eqnarray*}
+称$(A,\cdot,\{,\})$为\textbf{Gerstenhaber代数}，
+\index{Gerstenhaber algebra}
+若$\{,\}$满足以下公理：
+
+（1）$(A,\cdot)$为分次结合代数；
+
+（2）$(A[1],\{,\})$为李超代数；
+
+（3）相容性：对$A$中的任意齐次元$x,y,z$，成立
+$$\{x,yz\}=\{x,y\}z+(-1)^{(x-1)y}y\{x,z\}$$
+\end{definition}
+例如光滑流形$X$上$(\PV_X,\wedge,\{,\})$，
+即多重切向量场、外积、Schouten-Nijenhuis括号，
+构成Gerstenhaber代数。
+
+Gerstenhaber代数在物理学中常被称为“\textbf{经典BV代数}”
+（classical BV algebra）.
+\index{classical BV algebra\kong 经典BV代数}
+
+%\section{Gerstenhaber 乘积}
+%\textbf{Gerstenhaber algebra(自己查定义)}
+%Gerstenhaber algebra(Wiki, HW)
+%(in physics, Classical BV algebra)
+
+
+\begin{definition}（Gerstenhaber 乘积）
+\index{Gerstenhaber product}
+
+对于$K$-代数$A$，定义$C\updot(A)$上的$K$-双线性运算
+$$\circ:C^{p}(A)\times C^q(A)\to C^{p+q-1}(A)$$
+如下：对任意$a_1,a_2,...,a_{p+q-1}\in A$，
+以及$f\in C^p(A),g\in C^q(A)$，
+$$(f\circ g)(a_1\pz a_{p+q-1})
+:=\sum_{i=1}^p(-1)^{(i-1)(q-1)}
+    f(\pz a_{i-1},g(a_i\pz a_{i+q-1}),a_{i+q}\pz)$$
+运算“$\circ$”称为\textbf{Gerstenhaber乘积}。
+%%%%%%%Gerstenhaber%%%%%%%%%5
+\end{definition}
+
+%容易验证如此定义的$C\updot(A)$上的
+%$K$-双线性运算$\circ$是结合的。
+
+\begin{prop}
+\label{the failure of circ being a chain map}
+对任意$f\in C^p(A),g\in C^q(A)$，成立
+$$\p(f\circ g)-(\p f)\circ g-(-1)^{p-1}f\circ\p g
+=\pm[(f\cup g)-(-1)^{pq}(g\cup f)]$$
+\end{prop}
+%$$=\text{the failure of $\circ$ being a chain map
+%is measured bu the commutativity of cup product}$$
+
+\begin{proof}
+%%%%%%%暴力计算，需要画很多图，从略%%%%%%55%HW
+{\text{purple}
+非常暴力的计算验证，等号右边的符号暂时没算清。从略。
+}
+\end{proof}
+
+\textbf{以后抽空补上}。上述等式的右边为“
+the failure of $\circ$ being a chain map
+measured by the commutativity of cup product”.
+
+(虽说上述等式右边的正负号暂时没算清楚)
+但此结果已经暂时足够用了：
+
+\begin{cor}对于$K$-代数$A$，
+$(\HH\updot(A),\cup)$% is a graded commutative algebra.
+是分次交换的。
+\end{cor}
+
+\begin{proof}
+利用性质\ref{the failure of circ being a chain map}，
+几乎显然。
+\end{proof}
+
+$(\HH\updot(A),\cup)$的分次交换性是一个十分深刻的结论。
+
+%%注记：很深刻的结论。。。。%%%
+%%
+
+\begin{definition}（Gerstenhaber括号）
+$$\{f,g\}=f\circ g-(-1)^{(f-1)(g-1)}g\circ f$$
+%这是非交换版本的NR括号
+\end{definition}
+
+
+\begin{prop}对于任意$f,g\in C\updot(A)$为齐次元，成立
+$$\p\{f,g\}=\{\p f,g\}\pm\{f,\p g\}$$
+\end{prop}
+\begin{proof}
+{\color{red}
+（待补）
+}
+\end{proof}
+
+于是，Gerstenhaber括号$\{,\}$可下降到$\HH\updot(A)$上，
+这是非交换版本的Schouten-Nijenhuis括号。
+
+\begin{prop}
+对于$K$-代数$A$，$(\HH\updot(A),\cup,\{,\})$
+构成Gerstenhaber代数。
+\end{prop}
+\begin{proof}
+{\color{red}
+（待补）}
+\end{proof}
+
+%and induces
+%$\{,\}$ defines on $H\updot(A,A)$.
+%this is  the analogue of Schouten-Nijenhuis bracket.
+
+\section{结合性}
+
+%\textbf{Associativity.}
+用Gerstenhaber括号，可以给出乘法结合性的另一种描述：
+对于$K$-代数$A$，考虑$A$的乘法结构
+$$m:A\ten A\to A$$
+从而$m$自然视为$C^2(A)$中的元素。
+
+\begin{lemma}对于$K$-模$A$，以及$A$上的乘法结构
+$$m:A\ten A\to A$$
+那么$m$满足结合律当且仅当$\{m,m\}=0$.
+其中$\{,\}$为$C\updot(A)$上的Gerstenhaber括号。
+\end{lemma}
+\begin{proof}
+直接验证。注意到
+$$\{m,m\}=m\circ m-(-1)^{(2-1)(2-1)}m\circ m=2m\circ m$$
+其中“$\circ$”为Gerstenhaber乘积。
+于是对任意的$a_1,a_2,a_3\in A$，都有
+\begin{eqnarray*}
+     (m\circ m)(a_1,a_2,a_3)
+&=&
+     m(m(a_1,a_2),a_3)-m(a_1,m(a_2,a_3))\\
+& &
+     (a_1a_2)a_3-a_1(a_2a_3)
+\end{eqnarray*}
+因此$\{m,m\}=0$当且仅当$m$结合。
+\end{proof}
+
+%$$\bullet:A\ten A\to A$$
+%$\Longrightarrow$
+%$$m:A[1]\ten A[1]\to A[1]$$
+%$$\deg m=1$$
+%$$sa_1\ten sa_2\mapsto(-1)^{|a_1|+1}s(a_1a_2)$$
+%$$m\in\Coder(T^c(A[1]))$$
+
+%Observation:
+%Associativity of $\bullet\Longleftrightarrow[m,m]=0$
+
+%{\color{gray}
+%where $[,]$ is the Gerstenhaber product.（植树积）
+%}
+
+%%%%%叼~~%%%%%
+事实上，Hochschild上链复形$C\updot(A)$的微分算子
+$\p$也可以用Gerstenhaber括号来描述：
+\begin{lemma}设$A$为$K$-代数，其乘法为
+$$m:A\ten A\to A$$
+考虑$A$的Hochschild上链复形$(C\updot(A),\p)$，则有
+$$\p=\{-,m\}$$
+\end{lemma}
+\begin{proof}
+给定$q\geq 0$，对于任意的$f\in C^q(A)$，只需要验证$\p f=\{f,m\}$，
+其中$\{,\}$为Gerstenhaber括号。任取$a_0,a_1,...,a_q\in A$，
+一方面我们早已知道
+\begin{eqnarray*}
+  \p f(a_0,a_1,...,a_q)=
+  a_0f(a_1,...,a_q)
+  -\sum_{k=1}^{q-1}(-1)^k
+     f(a_0,...,(a_ka_{k+1}),...,a_q)
+  -(-1)^qf(a_0,a_1,...,a_{q-1})a_q
+\end{eqnarray*}
+另一方面，$\{f,m\}=f\circ m-(-1)^{q-1}m\circ f$，从而
+\begin{eqnarray*}
+     \{f,m\}(a_0,a_1,...,a_q)
+&=&
+     (f\circ m)(a_0,a_1,...,a_q)
+     -(-1)^{q-1}(m\circ f)(a_0,a_1,...,a_q)\\
+&=&
+     \sum_{k=0}^{q-1}(-1)^{k-1}
+       f(a_0,...,m(a_ka_{k+1}),...,a_n)\\
+& &
+    -(-1)^{q-1}
+     \big[
+       m(f(a_0,...,a_{q-1}),a_q)
+      +(-1)^qm(a_0,f(a_1,...,a_q))
+     \big]\\
+&=&
+     a_0f(a_1,...,a_q)
+    -\sum_{k=1}^{q-1}(-1)^k
+     f(a_0,...,(a_ka_{k+1}),...,a_q)
+    -(-1)^qf(a_0,a_1,...,a_{q-1})a_q
+\end{eqnarray*}
+因此$\p f=\{f,m\}$，得证。
+\end{proof}
+
 
 

@@ -1,7 +1,7 @@
 \chapter{Hochschild理论}
 \begin{center}
 “读论文就是将非人话翻译成人话的过程，
-写论文就是将人话写成非人话的过程。”              
+写论文就是将人话写成非人话的过程。”
 
 “我写的公式也不一定对。。。但基本上是对的，up to sign”
 \end{center}
@@ -595,10 +595,10 @@ $$\Inn(A,M):=\{\ad_m|m\in M\}\subseteq \Der(A,M)$$
 注意$\Inn(A,M)$与$\Der(A,M)$都有显然的$K$-模结构，
 且前者是后者的$K$-子模。
 
-\begin{prop}（$\HH^1(A,M)$的结构）
+\begin{prop}（$H^1(A,M)$的结构）
 
 对于双$A$-模$M$，成立
-$$\HH^1(A,M)\cong\frac{\Der(A,M)}{\Inn(A,M)}$$
+$$H^1(A,M)\cong\frac{\Der(A,M)}{\Inn(A,M)}$$
 \end{prop}
 我们称上式右边的集合当中的元素
 为$A$的取值于$M$的\textbf{外导子}（outer derivation）。
@@ -621,7 +621,7 @@ a_1.\fai(a_2)-\fai(a_1a_2)+\fai(a_1).a_2$$
 $$(\p^0m)(a)=a.m-m.a=-\ad_m(a)$$
 因此$\ker\p^0\cong\Inn(A,M)$.
 从而
-$$\HH^1(A,M)=\frac{\ker\p^1}{\im\p^0}
+$$H^1(A,M)=\frac{\ker\p^1}{\im\p^0}
 \cong\frac{\Der(A,M)}{\Inn(A,M)}$$
 \end{proof}
 
@@ -649,7 +649,7 @@ $$\HH^1(A)\cong\Der(A,A)$$
 
 \vsp
 
-我们再去考虑$\HH^2(A,M)$.对于任意的
+我们再去考虑$H^2(A,M)$.对于任意的
 $$\varphi\in C^2(A,M)=\Hom(A^{\ten 2},M)$$
 则对$a_0,a_1,a_2\in A$，成立
 $$\p\varphi(a_0,a_1,a_2)=
@@ -820,7 +820,7 @@ $$
 
 %%%%%%%%%%%2019.3.4 Mon 第2周%%%%%%%%%%%%
 
-\section{一些例子}
+\section{约化Bar复形}
 
 如果$K\inj A$为嵌入，那么我们可以更加方便地计算Hochschild
 （上）同调：
@@ -1181,6 +1181,1599 @@ $$H\downdot(\mathcal{U}(\mathfrak{g}),M)
 
 事实上，也可以考虑\textbf{群的同调}、\textbf{李代数上同调}，
 它们也有对应的Hochschild同调、上同调。
+
+
+
+\section{Connes复形$C^{\lmd}\downdot(A)$}
+%Cyclic homology%
+%$\HH\downdot(A)\rightsquigarrow$noncommutative differential forms.
+%$$B\dashleftarrow\text{de rham}$$
+
+与之前一样，我们仍假设$K$为特征零的含幺交换环，
+$A$为$K$-代数，且作为$K$-模是投射的。
+不过，在从本节开始我们再新增一条假定：
+$$\bbQ\inj K$$
+也就是说，有理数域能够嵌入到$K$中。
+（事实上，任何特征零的域都满足此假定。）
+
+回顾对于$K$-代数$A$，若$A$交换，
+则其Hochschild同调$\HH\downdot(A)$
+可以被理解为“空间”$A$上的“微分形式”。
+本节我们进一步研究$\HH\downdot(A)$.
+
+\begin{notation}
+对于$K$-代数$A$，双$A$-模$M=A$.
+考虑其Hochschild链复形$C\downdot(A):=C\downdot(A,A)$：
+$$C_n(A):=C_n(A,A)\cong A^{\ten n+1}$$
+(回顾定义\ref{Hochschild链复形-def}).我们考虑群
+$\bbZ/(n+1)\bbZ$在$C_n(A)$上的如下左$K$-作用：
+记$\bbZ/(n+1)\bbZ$的生成元为$\lmd$，则
+\begin{eqnarray*}
+\lmd:C_n(A)&\to&C_n(A)\\
+a_0\ten a_1\ten\cdots\ten a_n
+&\mapsto&
+(-1)^na_n\ten a_0\ten\cdots\ten a_{n-1}
+\end{eqnarray*}
+考虑$C_n(A)$模掉此群作用，所得的商$K$-模记为
+$$C^{\lmd}_n(A):=C_n(A)/(1-\lmd)$$
+其中的元素称之为\textbf{循环余不变量}
+（cyclic co-invariant）。
+\index{cyclic co-invariant\kong 循环余不变量}
+\end{notation}
+
+%cyclic group action
+%$$C\downdot(A,A)=C\downdot(A)=A\ten A$$
+%$$C_n(A)=A^{\ten n+1}$$
+%we consider the $\bbZ/(n+1)\bbZ$ acting on $C_n A$,
+%$$\lmd: C_n(A)\to C_n(A)$$
+%$$a_0\ten a_1\ten...\ten a_n\mapsto
+%(-1)^na_n
+%\ten a_0\ten...\ten a_{n-1}$$
+%then $\lmd$ is generator,
+%$$\lmd^{n+1}=(-1)^{n(n+1)}=1$$
+%Let
+%$$C^{\lmd}\downdot(A):=C\downdot(A)/(1-\lmd)$$
+%cyclic co-invariant.
+
+容易验证，
+$$\lmd^{n+1}a_0\ten a_1\ten\cdots\ten a_n=
+(-1)^{n(n+1)}a_0\ten a_1\ten\cdots\ten a_n
+=a_0\ten a_1\ten\cdots\ten a_n$$
+即$\lmd^{n+1}=\id$.可见这的确是$\bbZ/(n+1)\bbZ$的作用。
+
+回顾Bar-复形，我们可以直观地视为“直线上依次排列质点，相邻两两碰撞”；
+而在这里，商掉$\lmd$循环作用后，直观地更像是“圆周上排列质点”。
+
+我们将说明，Hochschild链复形$C\downdot(A)$的边缘算子$b$，
+沿商映射$C\downdot(A)\surj C^{\lmd}\downdot(A)$下降，诱导了
+$C\downdot^{\lmd}(A)$的链复形结构（称之为Connes复形）。
+
+%\begin{prop}
+%对于$K$代数$A$，定义$b‘:C_{n}(A)\to C_{n-1}(A)$诱导了
+%$C^{\lmd}\downdot$的链复形结构。
+%Hochschild differential $b$(on $C\downdot(A)$) induces a
+%differential on $C\downdot(A)/(1-\lmd)$
+%\end{prop}
+
+%\begin{proof}
+
+%事实上，我们定义$b‘:C^{\lmd}_n(A)\to C_n^{\lmd}(A)$如下：
+%\begin{eqnarray*}
+%b’:C^{\lmd}_n(A)&\to& C_n^{\lmd}(A)\\
+%\overline{
+%   a_0\ten a_1\ten\cdots\ten a_n
+%         }
+%&\mapsto&
+%   \sum_{k=0}^{n-1}(-1)^k
+%       \overline{
+%         a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots a_n
+%       }\\
+%&&
+%   +(-1)^n\overline{
+%     (a_{n+1}a_0)\ten a_1\ten\cdots\ten a_n
+%         }
+%\end{eqnarray*}
+%即$b:C_n(A)\to C_{n-1}(A)$沿商映射的下降。
+%（回顾Hochschild链复形的边缘算子$b$的显式表达，见
+%定义\ref{Hochschild链复形-def}的下方，令$M=A$以及$m=a_0$.）
+
+%我们需要验证如此$b'$是良定的，
+%即与$\lmd$作用等价类代表元选取无关。
+%{\color{purple}（直观感觉比较显然，但还是暴力验证一下吧）}
+
+%Let us define
+%$$b':C\downdot(A)\to C_{\bullet-1}(A)$$
+%$$b'(a_0\ten...\ten a_n)
+%=a_0a_1\ten a_2\ten...\pm...\pm a_0\ten a_1\ten...\ten a_{n-1}a_n$$
+
+%(($C\downdot(A),b')=(B\downdot A\to A)$)
+
+%claim that
+%$$(1-\lmd)b'=b(1-\lmd)$$
+
+%$$[b,\lmd]=(1-\lmd)(b-b')$$
+
+%In particular, $b:\im(1-\lmd)\mapsto\im(1-\lmd)$
+
+%"proof":
+%%%%%%%%%%画圈圈%%%%%%%%%%%555
+
+%为此只需验证对于任意$n\geq 1$，以及任意$\omg\in C_n(A)$，
+%$$(1-\lmd)(\omg)=0\Rightarrow(1-\lmd)\circ b(\omg)=0$$
+
+%\end{proof}
+
+\begin{lemma}
+对于$K$-代数$A$，我们定义算子
+$b':C\downdot(A)\to C_{\bullet-1}(A)$如下:
+\begin{eqnarray*}
+b':C_{n}(A)&\to&C_{n-1}(A)\\
+a_0\ten a_1\ten\cdots\ten a_n&\mapsto&
+\sum_{k=0}^{n-1}(-1)^{k}
+a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n
+\end{eqnarray*}
+则成立：
+
+（1）$b'\circ b'=0$,
+
+（2）对任意$n\geq 1$，则以下图表交换：
+$$\xymatrix{
+     C_n(A) \ar[d]^{1-\lmd} \ar[r]^{b'}
+   & C_{n-1}(A)\ar[d]^{1-\lmd}
+\\
+     C_n(A) \ar[r]^b
+   & C_{n-1}(A)
+}$$
+\end{lemma}
+
+\begin{proof}
+注意到有同构$C_n(A)\cong B_nA(\cong A^{\ten n+1})$，
+其中$B\downdot A$为Bar-复形；容易看出这里定义的$b'$在此同构下，正是
+Bar复形当中的边缘算子，从而$b'\circ b'=0$，
+也就是说$(C\downdot(A),b')$是一个链复形，
+并且同构于Bar-复形$(B\downdot A, b)$.
+（这里有轻微的记号混用：Bar-复形$(B\downdot A, b)$当中的“$b$”
+并不是本引理当中Hochschild链复形$(C\downdot(A),b)$当中的“$b$”，
+前者在此是临时记号。）\vs
+
+我们再来看（2）.回顾$b:C_n(A)\to C_{n-1}(A)$的显式表达式
+（见定义\ref{Hochschild链复形-def}的下方，并且令其中$M=a$以及$m=a_0$）
+（注意此图中的$b$与$b'$并不是同一个映射，它们的具体表达式相差一项），
+直接验算之：
+\begin{eqnarray*}
+& & (1-\lmd)\circ b'
+        \big(
+             a_0\ten a_1\ten\cdots\ten a_n
+        \big)\\
+&=&
+    (1-\lmd)\left(
+               \sum_{k=0}^{n-1}(-1)^k
+                   a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n
+            \right)\\
+&=&
+    \sum_{k=0}^{n-1}(-1)^k
+         a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_n\\
+& &
+    +\sum_{k=0}^{n-2}(-1)^{k+n}
+         a_n\ten a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_{n-1}\\
+& &
+    -(a_{n-1}a_n)\ten a_0\ten\cdots\ten a_{n-2}\\
+&=&
+    b(a_0\ten a_1\ten\cdots\ten a_n)
+    -(-1)^n(a_na_0)\ten a_1\ten\cdots\ten a_{n-1}\\
+& &
+    +(-1)^n
+    \sum_{k=0}^{n-1}(-1)^k
+        a_n\ten a_0\ten\cdots\ten(a_ka_{k+1})\ten\cdots\ten a_{n-1}\\
+& &
+    -(a_{n-1}a_n)\ten a_0\ten\cdots\ten a_{n-2}\\
+&=&
+    b\big(
+       a_0\ten a_1\ten\cdots\ten a_n
+       -(-1)^na_n\ten a_0\ten\cdots\ten a_{n-1}
+     \big)\\
+&=&
+    b\circ(1-\lmd)(a_0\ten a_1\ten\cdots\ten a_n)
+\end{eqnarray*}
+
+也就是说，
+$$(1-\lmd)\circ b'=b\circ(1-\lmd)$$
+从而此图表交换，证毕。
+\end{proof}
+
+此图表的交换关系也可改写为
+$$[b,\lmd]=(1-\lmd)\circ(b-b')$$
+其中$[b,\lmd]:=b\circ\lmd-\lmd\circ b$.\vs
+
+此引理给出了链复形$(C\downdot(A),b')$与
+$(C\downdot(A),b)$之间的链映射：
+$$(1-\lmd)\downdot:(C\downdot(A),b')\to(C\downdot(A),b)$$
+然而注意到
+$$C_n^{\lmd}(A):=C_n(A)/(1-\lmd)=\coker (1-\lmd)_n$$
+于是我们（在由$K$-模链复形构成范畴当中）
+考虑链映射$(1-\lmd)\downdot$的余核，
+这给出了$C\downdot^{\lmd}(A)$的链复形结构：
+
+\begin{definition}（Connes复形）
+\index{Connes' complex\kong Connes复形}
+对于$K$-代数$A$，考虑链映射
+$$(1-\lmd)\downdot:(C\downdot(A),b')\to(C\downdot(A),b)$$
+的余核链复形
+$$(C\downdot^{\lmd}(A),b^{\lmd}):=\coker[(1-\lmd)\downdot]$$
+称其为\textbf{Connes复形}。并且记
+$$H^{\lmd}\downdot(A):=H\downdot(C\downdot^{\lmd}(A))$$
+称之为$A$的\textbf{循环同调}（cyclic homology）.
+\index{cyclic homology\kong 循环同调}
+\end{definition}
+
+也就是说，有如下的交换图表：
+
+$$\xymatrix{
+     \cdots \ar[r]
+   & C_{n+1}\ar[r]^{b'}  \ar[d]^{1-\lmd}
+   & C_{n  }\ar[r]^{b'}  \ar[d]^{1-\lmd}
+   & C_{n-1}\ar[r]       \ar[d]^{1-\lmd}
+   & \cdots
+\\
+     \cdots \ar[r]
+   & C_{n+1}\ar[r]^{b }  \ar@{->>}[d]
+   & C_{n  }\ar[r]^{b }  \ar@{->>}[d]
+   & C_{n-1}\ar[r]       \ar@{->>}[d]
+   & \cdots
+\\
+     \cdots \ar[r]
+   & C_{n+1}^{\lmd}\ar[r]^{b^{\lmd}} \ar[d]
+   & C_{n  }^{\lmd}\ar[r]^{b^{\lmd}} \ar[d]
+   & C_{n-1}^{\lmd}\ar[r]            \ar[d]
+   & \cdots
+\\
+   &0
+   &0
+   &0
+   &
+}$$
+此交换图表每一横行都为链复形，其中第三横行为Connes复形；
+每一列都是右短正合的。
+并且容易知道：Connes复形的边缘算子$b^{\lmd}$
+正是Hochschild链复形的边缘算子$b$沿商映射
+$C\downdot(A)\surj C^{\lmd}\downdot(A)$的下降。
+
+%so, $b$ acts on $C^{\lmd}\downdot(A)=C\downdot(A)/(1-\lmd)$
+%,called \textbf{Connes' complex}
+%$$H^{\lmd}\downdot(A)=H\downdot(C^{\lmd}\downdot(A),b)$$
+
+\section{循环双复形$CC\ddowndot(A)$}
+
+\begin{lemma}（平均算子）对于任意$K$-代数$A$，以及$n\geq 0$，
+引入平均算子$\mathcal{N}:C_n(A)\to C_n(A)$：
+$$\mcalN:=1+\lmd+\lmd^2+\cdots+\lmd^n$$
+则此算子满足以下性质：
+
+（1）$b'\mcalN=\mcalN b$
+
+（2）$(1-\lmd)\mcalN=\mcalN(1-\lmd)=0$.
+此外，如果有理数域$\bbQ\hookrightarrow K$，
+那么对于任意$n\geq 0$，以下链复形是正合的：
+$$\cdots\to
+C_n(A)\xra{\mcalN}C_n(A)\xra{1-\lmd}
+C_n(A)\xra{\mcalN}C_n(A)\xra{1-\lmd}
+C_n(A)\surj C_n^{\lmd}(A)\to 0
+$$
+%Introduce
+%$$\mathcal{N}:C_n(A)\to C_n(A)$$
+\label{循环双复形的行正合性-lemma}
+\end{lemma}
+%%%%%%%%%%%平均算子%%%%%%%%%'
+
+%\begin{prop}
+%$$b'\mathcal{N}=Nb$$
+%\end{prop}
+
+%we have an exact sequence
+%%%%%%%平均算子‘%%%%%%'
+\begin{proof}（1）任意固定$n\geq 1$，
+为了区分算子在不同空间的作用，
+我们采用临时记号
+$$\left\{\begin{array}{l}
+\lmd:C_n(A)\to C_n(A)\\
+\overline{\lmd}:C_{n-1}(A)\to C_{n-1}(A)
+\end{array}\right.\quad
+\left\{\begin{array}{l}
+\mcalN:=1+\lmd+\cdots+\lmd^n\\
+\overline{\mcalN}:=1+\overline{\lmd}+\cdots+\overline{\lmd}^{n-1}
+\end{array}\right.$$
+则在此记号下我们需要证$b'\mcalN=\overline{\mcalN}b$.
+
+定义缩并算子
+\begin{eqnarray*}
+s:C_n(A)&\to& C_{n-1}(A)\\
+a_0\ten a_1\ten\cdots\ten a_n
+&\mapsto&
+(a_0a_1)\ten\cdots\ten a_n
+\end{eqnarray*}
+则容易验证（稍微注意一下正负号，确实都是正号）
+$$
+b =\sum\limits_{k=0}^n    \overline{\lmd}^ks\lmd^{-k}\quad\quad
+b'=\sum\limits_{k=0}^{n-1}\overline{\lmd}^ks\lmd^{-k}
+$$
+于是有
+$$
+b'\mcalN=
+  \left(
+    \sum_{k=0}^{n-1}
+      \overline{\lmd}^ks\lmd^{-k}
+  \right)
+  \left(
+    \sum_{l=0}^{n  }
+      \lmd^l
+  \right)
+=
+ \sum_{0\leq k\leq n-1
+       \atop
+       0\leq l\leq n}
+     \overline{\lmd}^ks\lmd^l
+$$
+同理也有
+$$\overline{\mcalN}b
+=\sum_{0\leq k\leq n-1
+       \atop
+       0\leq l\leq n}
+     \overline{\lmd}^ks\lmd^l$$
+从而$b'\mcalN=\overline{\mcalN}b$.
+
+（2）给定$n\geq 0$，注意到$\lmd^{n+1}=1$，从而
+$$(1-\lmd)\mcalN=(1-\lmd)(1+\lmd+\cdots+\lmd^n)=1-\lmd^{n+1}=0$$
+同理$\mcalN(1-\lmd)=0$.因此该图表是链复形，只需再验证正合性。
+
+现在假设$\bbQ$是$K$的子环。我们构造如下链同伦：
+
+$$\xymatrix{
+   \cdots \ar[r]
+  &C_n(A) \ar[r]^{\mcalN} \ar[d]^{\id}
+  &C_n(A) \ar[r]^{1-\lmd} \ar[d]^{\id} \ar[ld]_g
+  &C_n(A) \ar[r]^{\mcalN} \ar[d]^{\id} \ar[ld]_f
+  &C_n(A) \ar[r]^{      } \ar[d]^{\id} \ar[ld]_g
+  &\cdots
+\\
+   \cdots \ar[r]
+  &C_n(A) \ar[r]^{\mcalN}
+  &C_n(A) \ar[r]^{1-\lmd}
+  &C_n(A) \ar[r]^{\mcalN}
+  &C_n(A) \ar[r]^{      }
+  &\cdots
+}$$
+其中$f,g:C_n(A)\to C_n(A)$定义为
+$$\left\{\begin{array}{l}
+f:=\frac{1}{n+1}(\lmd^{n-1}+2\lmd^{n-2}+3\lmd^{n-3}+\cdots+n)\\
+g:=\frac{1}{n+1}
+\end{array}\right.$$
+（利用了$\bbQ\inj K$）则容易验证
+$$f(1-\lmd)+\mcalN g=g\mcalN+(1-\lmd)f=1$$
+从而证毕。
+\end{proof}
+
+特别地，当$K$为域时（注意我们总假定$\ch K=0$）成立正合性。
+链同伦$f,g$的构造来自于（关于变元$\lmd$的多项式的）
+欧几里得辗转相除法。
+
+%\begin{definition}
+%the cyclic bi-complex $CC\downdot(A)$
+%%%%%%%双复形%%%%%%
+%\end{definition}
+
+由此引理，我们可构造出如下的\textbf{循环双复形}
+（cyclic bicomplex），记为$CC\ddowndot(A)$：
+\index{cyclic bicomplex\kong 循环双复形}
+
+$$\xymatrix{
+   \vdots \ar[d]^b
+  &\vdots \ar[d]^{-b'}
+  &\vdots \ar[d]^b
+  &\vdots \ar[d]^{-b'}
+  &
+\\
+   C_2(A) \ar[d]^b
+  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &C_2(A) \ar[d]^b     \ar[l]_{\mcalN}
+  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &\cdots              \ar[l]
+\\
+   C_1(A) \ar[d]^b
+  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &C_1(A) \ar[d]^b     \ar[l]_{\mcalN}
+  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &\cdots              \ar[l]
+\\
+   C_0(A)
+  &C_0(A)   \ar[l]_{1-\lmd}
+  &C_0(A)   \ar[l]_{\mcalN}
+  &C_0(A)   \ar[l]_{1-\lmd}
+  &\cdots   \ar[l]
+}$$
+其中对于任意$p,q\geq 0$，
+$CC_{p,q}(A)=C_p(A)$为该图表的从下往上第$p$行，
+从左往右第$q$列的节点；此图表的偶数列与奇数列为
+$(C\downdot (A),b)$与$(C\downdot (A),-b')$交替。
+并且注意到，此图表不是交换的，而是对于其中每一个方框
+都满足\textbf{反交换性}。\vs
+
+我们回顾一些同调代数工具：
+
+\begin{definition}（双复形的全复形）
+
+对于任意的含幺交换环K（这里暂时不必假定$\ch K=0$），
+以及$K$-模双复形$(A\ddowndot,\td,\p)$：
+$$\xymatrix{
+    \vdots  \ar[d]
+  & \vdots  \ar[d]
+  & \vdots  \ar[d]
+  &
+\\
+    A_{2,0} \ar[d]^{\td_{2,0}}
+  & A_{2,1} \ar[d]^{\td_{2,1}}  \ar[l]_{\p_{2,1}}
+  & A_{2,2} \ar[d]^{\td_{2,2}}  \ar[l]_{\p_{2,2}}
+  & \cdots                      \ar[l]
+\\
+    A_{1,0} \ar[d]^{\td_{1,0}}
+  & A_{1,1} \ar[d]^{\td_{1,1}}  \ar[l]_{\p_{1,1}}
+  & A_{1,2} \ar[d]^{\td_{1,2}}  \ar[l]_{\p_{1,2}}
+  & \cdots                      \ar[l]
+\\
+    A_{0,0}
+  & A_{0,1}   \ar[l]_{\p_{2,1}}
+  & A_{0,2}   \ar[l]_{\p_{2,2}}
+  & \cdots    \ar[l]
+}$$
+即：
+$$\left\{\begin{array}{l}
+\td_{p,q}:A_{p,q}\to A_{p-1,q}\\
+\p_{p,q }:A_{p,q}\to A_{p,q-1}
+\end{array}\right.
+$$
+使得该图表每一行、每一列都是链复形，并且满足反交换关系
+$$\p_{p-1,q}\circ\td_{p,q}+\td_{p,q-1}\circ\p_{p,q}=0$$
+
+则我们定义双复形$A\ddowndot$的\textbf{全复形}（total complex）
+\index{total complex\kong 全复形}
+$(\Tot\downdot(A\ddowndot),d)$如下：
+$$\left\{\begin{array}{rcl}
+\Tot_n(A\ddowndot)&:=&\bigoplus\limits_{p+q=n}A_{p,q}\\
+d_n&:=&\sum\limits_{p+q=n}(\td_{p,q}+\p_{p,q})
+\end{array}\right.$$
+\end{definition}
+
+对于两个双复形$A\ddowndot$与$A'\ddowndot$，
+我们可以去定义双复形之间的态射$f\ddowndot:A\ddowndot\to A'\ddowndot$，
+进而考虑双复形范畴。双复形的态射自然诱导了相应的全复形之间的链映射，
+也就是说$\Tot$具有函子性。我们还有以下同调代数工具：
+
+\begin{lemma}设$f\ddowndot:A\ddowndot\to A'\ddowndot$为双复形之间的态射。
+如果对于任意$n\geq 0$，链映射
+$$f_{n,\bullet}:A_{n,\bullet}\to A'_{n,\bullet}$$
+为拟同构（quasi-isomorphism），
+\index{quasi-isomorphism\kong 拟同构}
+（即它诱导的任意阶同调对象之间的态射均为同构），
+那么链映射
+$$\Tot\downdot(f\ddowndot):
+\Tot\downdot(A\ddowndot)\to\Tot\downdot(A'\ddowndot)$$
+也为拟同构。
+\label{双复形的全复形-同调代数机器-lemma}
+\end{lemma}
+
+\begin{proof}
+同调代数工具，承认之。
+\end{proof}
+
+我们回到循环双复形$CC\ddowndot(A)$.由上述同调代数工具，
+我们可以给出循环同调
+$H^{\lmd}\downdot(A):=H\downdot(C^{\lmd}\downdot(A))$
+的另一种定义：
+
+\begin{thm}对于$K$-代数$A$，假设$\bbQ\inj K$，记
+$$HC\downdot(A):=H\downdot(\Tot\downdot(CC\ddowndot(A)))$$
+为$A$的循环双复形的全复形的同调，那么有自然的同构
+$$HC\downdot(A)\cong H^{\lmd}\downdot(A)$$
+\end{thm}
+
+\begin{proof}
+对于循环双复形$CC\ddowndot(A)$，
+我们再考虑另一个双复形$CC'\ddowndot(A)$如下：
+$$\xymatrix{
+   \vdots \ar[d]
+  &\vdots \ar[d]
+  &\vdots \ar[d]
+  &\vdots \ar[d]
+  &
+\\
+   C_2^{\lmd}(A)  \ar[d]^{b_2^{\lmd}}
+  &0 \ar[d]  \ar[l]
+  &0 \ar[d]  \ar[l]
+  &0 \ar[d]  \ar[l]
+  &\cdots    \ar[l]
+\\
+   C_1^{\lmd}(A)  \ar[d]^{b_1^{\lmd}}
+  &0 \ar[d]  \ar[l]
+  &0 \ar[d]  \ar[l]
+  &0 \ar[d]  \ar[l]
+  &\cdots    \ar[l]
+\\
+   C_0^{\lmd}(A)
+  &0  \ar[l]
+  &0  \ar[l]
+  &0  \ar[l]
+  &\cdots    \ar[l]
+}$$
+考虑双复形之间的态射
+$$f\ddowndot:CC\ddowndot(A)\to CC'\ddowndot(A)$$
+其中$f_{n,0}:C_n(A)\to C_n^{\lmd}(A)$为商映射。
+由引理\ref{循环双复形的行正合性-lemma}
+知$CC\ddowndot(A)$的每一行都是正合的，
+从而容易验证$f\ddowndot$满足引理
+\ref{双复形的全复形-同调代数机器-lemma}
+的使用条件，因此我们有同构
+$$
+H\downdot(\Tot\downdot(CC\ddowndot(A)))\cong
+H\downdot(\Tot\downdot(CC'\ddowndot(A)))
+$$
+上式左边，由定义，即为$HC\downdot(A)$；
+而再注意到$\Tot\downdot(CC'\ddowndot)$正是Connes复形$C^{\lmd}\downdot$，
+从而上式右边为循环同调$H^{\lmd}\downdot(A)$.
+\end{proof}
+
+也就是说，循环同调（Connes复形的同调）
+自然同构于循环双复形的全复形的同调。
+
+%Let $\text{Tot}(CC\downdot(A))$ be the total complex of $CC\downdot(A)$
+%with a natural map of complexs
+%$$\text{Tot}(CC\downdot(A))\to C^{\lmd}\downdot(A)$$
+%is a quasi-isomorphism.
+%$$HC\downdot(A):=H\downdot(\text{Tot}(CC\downdot(A)))
+%\cong H^{\lmd}\downdot(A)$$
+
+%Intuitively, we can delete "exact sequence" and get rid of 蓝色框框，
+
+%%%%%%%同调代数工具%%%%%%%
+
+\section{Connes算子$\mcalB$}
+
+%%%%%%%%%%%%%%%%2019.3.5 TUE 第二周%%%%%%%%%%%%%%%%%
+我们将给出循环同调的更多等价定义方式，
+并计算一些具体例子。
+本节均假定$\bbQ\inj K$（甚至直接把$K$当成特征零的域）。
+我们需要更多的同调代数工具：
+
+\begin{lemma}（杀掉可缩复形）
+\label{杀掉可缩复形引理-lemma}
+
+对于$K$-模链复形
+$$\cdots\to
+A_{n+1}\oplus B_{n+1}\xra{\td}
+A_n\oplus B_n\xra{\td}
+A_{n-1}\oplus B_{n-1}\to\cdots$$
+其中
+$$\td=
+\begin{pmatrix}
+\alpha & \beta \\
+\gamma & \delta
+\end{pmatrix}$$
+并且$(B\downdot,\delta)$是可缩链复形，其同伦逆
+$$h:B\downdot\to B_{\bullet+1}$$
+使得$h\delta+\delta h=1$.那么下述图表交换：
+
+$$
+\xymatrix{
+   \cdots   \ar[r]
+ & A_{n+1}  \ar[r]^{\alpha-\beta h\gamma} \ar[d]^\fai
+ & A_{n  }  \ar[r]^{\alpha-\beta h\gamma} \ar[d]^\fai
+ & A_{n-1}  \ar[r]^{                    } \ar[d]^\fai
+ & \cdots
+\\
+   \cdots                 \ar[r]
+ & A_{n+1}\oplus B_{n+1}  \ar[r]^{\td}
+ & A_{n  }\oplus B_{n  }  \ar[r]^{\td}
+ & A_{n-1}\oplus B_{n-1}  \ar[r]
+ & \cdots
+}
+$$
+并且此图表的每一行都为链复形，并且链映射
+$$\fai:=
+\begin{pmatrix}
+1\\
+-h\gamma
+\end{pmatrix}$$
+为拟同构。
+\end{lemma}
+
+\begin{proof}
+注意到$\delta^2=0$，以及
+$$0=\td^2
+   =\begin{pmatrix}
+       \alpha &\beta\\
+       \gamma &\delta
+    \end{pmatrix}^2
+   =
+    \begin{pmatrix}
+       \alpha^2+\beta\gamma
+      &\alpha\beta+\beta\gamma\\
+       \gamma\alpha+\delta\gamma
+      &\gamma\beta+\delta^2
+    \end{pmatrix}
+$$
+从而我们有
+$$
+\left\{\begin{array}{rcl}
+\alpha^2&=&-\beta\gamma\\
+\alpha\beta&=&-\beta\delta\\
+\gamma\alpha&=&-\delta\gamma\\
+\gamma\beta&=&0
+\end{array}\right.
+$$
+再注意到$h\delta+\delta h=1$，
+直接计算验证可知$\fai\downdot$
+的确为链复形之间的链映射。细节略。
+
+再注意链映射
+$$\fai\downdot:
+(A\downdot,\alpha-\beta h\gamma)\to
+(A\downdot\oplus B\downdot,\td)$$
+为单射，并且其余核
+$$\coker\fai\downdot\cong
+(B\downdot,\delta)$$
+是正合的，因此$\fai\downdot$为拟同构。
+\end{proof}
+
+这个引理的功能是，如果给定的链复形
+$(A\downdot\oplus B\downdot,\td)$当中
+“含有正合的部分”$(B\downdot,\delta)$，
+那我们可以把这个“正合的部分”剔除掉，
+得到一个“不那么冗余”的链复形$(A\downdot,\alpha-\beta h\delta)$，
+并且此复形与原来的复形的各阶同调自然同构。\vs
+
+我们将此引理用于循环双复形$CC\ddowndot(A)$
+的全复形$\Tot\downdot(CC\ddowndot(A))$上。
+回顾$CC\ddowndot(A)$为如下双复形：
+
+$$\xymatrix{
+   \vdots \ar[d]^b
+  &\vdots \ar[d]^{-b'}
+  &\vdots \ar[d]^b
+  &\vdots \ar[d]^{-b'}
+  &
+\\
+   C_2(A) \ar[d]^b
+  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &C_2(A) \ar[d]^b     \ar[l]_{\mcalN}
+  &C_2(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &\cdots              \ar[l]
+\\
+   C_1(A) \ar[d]^b
+  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &C_1(A) \ar[d]^b     \ar[l]_{\mcalN}
+  &C_1(A) \ar[d]^{-b'} \ar[l]_{1-\lmd}
+  &\cdots              \ar[l]
+\\
+   C_0(A)
+  &C_0(A)   \ar[l]_{1-\lmd}
+  &C_0(A)   \ar[l]_{\mcalN}
+  &C_0(A)   \ar[l]_{1-\lmd}
+  &\cdots   \ar[l]
+}$$
+
+注意到该双复形的第偶数列为Hochschild链复形（链映射$b$），
+第奇数列为Bar-复形（链映射$-b'$）.
+注意Bar-复形是正合的，并且有同伦逆
+\begin{eqnarray}
+h:C_n(A)&\to&C_{n+1}(A)\\
+a_0\ten a_{1}\ten\cdots\ten a_{n}&\mapsto&
+1\ten a_0\ten a_{1}\ten\cdots\ten a_{n}
+\end{eqnarray}
+使得$b'h+hb'=1$.
+
+现在，注意到
+\begin{eqnarray*}
+\Tot_n(CC\ddowndot(A))&=&
+  \left(
+    \bigoplus_{p+q=n\atop\text{$q$为偶数}}
+      CC_{p,q}(A)
+  \right)
+  \oplus
+  \left(
+    \bigoplus_{p+q=n\atop\text{$q$为奇数}}
+      CC_{p,q}(A)
+  \right)\\
+&=:&
+  X_n\oplus Y_n
+\end{eqnarray*}
+也就是说，我们把循环双复形$CC\ddowndot(A)$
+的全复形$(\Tot\downdot(CC\ddowndot(A)),\td)$写为:
+$$\cdots\to
+X_{n+1}\oplus Y_{n+1}\xra{\td}
+X_n\oplus Y_n\xra{\td}
+X_{n-1}\oplus Y_{n-1}\to\cdots$$
+边缘算子矩阵$\td=
+\begin{pmatrix}
+\alpha  &\beta\\
+\gamma  &\delta
+\end{pmatrix}$
+留给读者。但是要注意$(Y\downdot,\delta)$的正合性
+是由Bar-复形$(C\downdot(A),-b')$的正合性所诱导的；
+$\delta$也存在同伦逆，仍记为$h$.
+
+综上，对$\Tot\downdot(CC\ddowndot(A))$
+使用引理\ref{杀掉可缩复形引理-lemma}，我们得到以下结果：
+
+\begin{prop}
+对于$K$-代数$A$，考虑以下双复形$\mcalB\ddowndot(A)$:
+$$\xymatrix{
+    \vdots \ar[d]
+  & \vdots \ar[d]
+  & \vdots \ar[d]
+\\
+    A^{\ten 3}  \ar[d]^b
+  & A^{\ten 2}  \ar[d]^b  \ar[l]_{\mcalB}
+  & A^{      }            \ar[l]_{\mcalB}
+\\
+    A^{\ten 2}  \ar[d]^b
+  & A^{      }            \ar[l]_{\mcalB}
+  &
+\\
+    A
+  &
+  &
+}$$
+此图表的最左下角为第$0$行$0$列，右下角空白处都为$0$，具体地，
+$$
+\mcalB_{p,q}(A)=
+\left\{\begin{array}{ll}
+   CC_{p-q,2q}(A) & p\geq q\\
+   0              & p<    q
+\end{array}\right.
+$$
+（也就是说，$\mcalB\ddowndot$的结点是由
+将循环双复形$CC\ddowndot(A)$的第奇数列（Bar-复形）
+都删掉，再将原来第$2l$列整体向左、上各平移$l$格所得）
+其中\textbf{Connes算子}$\mcalB:C_n(A)\to C_{n+1}(A)$
+\index{Connes' operator\kong Connes算子}
+定义为以下的复合：
+$$\xymatrix{
+    C_{n+1}(A) \ar[d]^b
+  & C_{n+1}(A) \ar[d]^{-b'} \ar@/_/[l]_{1-\lmd}
+  & C_{n+1}(A) \ar[d]^{b  } \ar[l]_{\mcalN}
+\\
+    C_{n  }(A)
+  & C_{n  }(A) \ar[l]_{1-\lmd} \ar@/^/[u]^{h}
+  & C_{n  }(A) \ar@/^/[l]_{\mcalN}
+}$$
+
+$$\mcalB:=(1-\lmd)h \mcalN$$
+那么，存在自然的双复形单同态
+$$\mcalB\ddowndot(A)\inj CC\ddowndot(A)$$
+并且其诱导的全复形的链映射
+$$\Tot\downdot(\mcalB\ddowndot(A))
+\inj\Tot\downdot(CC\ddowndot(A))$$
+为拟同构。
+\label{Connes算子与循环同调-prop}
+\end{prop}
+
+\begin{proof}
+只需注意到
+$$\Tot_n(\mcalB\ddowndot)
+=\left(
+    \bigoplus_{p+q=n\atop\text{$q$为偶数}}
+      CC_{p,q}(A)
+  \right)
+\inj
+ \Tot_n(CC\ddowndot(A))$$
+直接使用引理\ref{杀掉可缩复形引理-lemma}，细节从略。
+但是要验证$\mcalB\ddowndot(A)$的确是双复形，
+即需要验证反交换关系
+$$\mcalB\circ b+b\circ\mcalB$$
+而这是容易的，验证如下：
+\begin{eqnarray*}
+\mcalB\circ b &=& (1-\lmd)h\mcalN b
+               =  (1-\lmd)hb'\mcalN\\
+              &=& (1-\lmd)(1-b'h)\mcalN
+               =  (1-\lmd)\mcalN-(1-\lmd)b'h\mcalN\\
+              &=& -b(1-\lmd)h\mcalN
+               =  -b\circ\mcalB
+\end{eqnarray*}
+从而证毕。
+\end{proof}
+
+于是我们得到循环同调的又一等价定义：
+$$H^{\lmd}\downdot(A)\cong
+H\downdot(\Tot\downdot(\mcalB\ddowndot))$$
+
+我们可以将链复形$\Tot\downdot(\mcalB\ddowndot)$
+适当改写，使得形式更加美观：
+
+
+%\textbf{Cyclic v.s. de Rham}
+
+%Last time "Cyclic homology"
+
+%$$\lmd:a_0\ten...\ten a_n\mapsto(-1)^n a_n\ten a_1\ten...\ten a_{n+1}$$
+
+%$H^{\lmd}\downdot(A)=H\downdot(C\downdot(A)/(1-\lmd),b)$
+
+%$\mcalN:C_n(A)\to C_n(A)$
+
+%$\mcalN=1+\lmd+...+\lmd^n$
+
+%$HC\downdot(A)=\text{Tot}\text{(cyclic bi-complex)}$
+%%%%昨天的双复形%%%%%
+
+%Today：
+
+%\begin{prop}
+%$$B\circ b+b\circ B=0$$
+%where $B$ is Connes' operator
+%\end{prop}
+
+%Easy to check.
+
+\begin{prop}对于$K$-代数$A$，以及形式变元$u$，考虑如下链复形：
+$$(CC\downdot(A),b+u\mcalB)$$
+其中
+$$CC_n(A):=(C\downdot(A)[u^{-1}])_n
+:=\bigoplus_{k=0}^{\infty}
+   u^{-k}C_{n-2k}(A)$$
+（注意这是有限直和）换句话说，我们给定以下分次
+$$\deg(b)=-1,\quad\deg(B)=1,\quad\deg(u)=-2$$
+
+那么此链复形的同调自然同构于循环同调：
+$$H\downdot(CC\downdot(A),b+uB)\cong H\downdot^{\lmd}(A)$$
+%$(b+uB)^2=0$
+%where $u$ is a formal variable.
+\end{prop}
+
+\begin{proof}
+这个几乎显然。注意到
+\begin{eqnarray*}
+  \Tot_n(\mcalB\ddowndot(A))&=&
+  \bigoplus_{k=0}^{\infty}
+    \mcalB_{n-k,k}(A)
+=
+  \bigoplus_{k=0}^{\infty}
+    C_{n-2k}(A)
+\\
+  CC_n(A)&=&
+  \bigoplus_{k=0}^{\infty}
+    u^{-k}C_{n-2k}(A)
+\end{eqnarray*}
+于是有自然的链复形同构
+\begin{eqnarray*}
+  \Tot\downdot(\mcalB\ddowndot(A))&\to& CC\downdot(A)\\
+  \mcalB_{n-k,k}(A)&\mapsto& u^{-k}C_{n-2k}(A)
+\end{eqnarray*}
+容易验证此对应也保持相应的边缘算子。证毕。
+\end{proof}
+
+注意，我们还可以考虑$(CC\downdot(A),b)$，
+它与$(CC\downdot(A),b+u\mcalB)$具有不同的边缘算子：
+前者的同调我们早已知道是Hochschild同调，
+而后者的同调为循环同调。
+
+\begin{rem}（复几何的背景）
+
+%\textbf{Hodge theory}
+
+%A complex m.f.d., $X$， complex(or algebraic) geometry,
+%has an operator $\pbar$;
+
+%topology: consider de-rham operator $\td=\p+\pbar$.
+
+%Consider $\td_u:=\pbar+u\p$, called "Hodge filtration".
+%A bridge between "topology" and "complex geometry".
+
+%"Stability condition".
+
+对于复流形$X$，它作为光滑流形，有外微分算子$\td$；
+再注意到它的复结构，有算子$\pbar\,$——
+前者代表拓扑，而后代表复几何。它们之间有关系
+$$\td=\pbar+\p$$
+并且满足
+$$\p^2=\pbar^2=0\quad\p\pbar+\pbar\p=0$$
+
+我们考虑以下“拓扑与复几何之间的桥梁”：
+$$\td_u:=\pbar+u\p$$
+称此算子为霍奇滤链（Hodge filtration）
+\index{Hodge filtration\kong 霍奇滤链}，
+其中$0\leq u\leq 1$.注意$\td_u$满足稳定性条件
+$\td_u^2=0$，即$\pbar$与$\td$
+的“过渡”的任何一个“中间状态”都仍为外微分算子。
+\end{rem}
+
+{\color{gray}
+所以，似乎可以如下粗暴地对应？
+
+$$\begin{tabular}{|c|c|}
+\hline
+  复几何                  &   非交换几何       \\
+\hline
+  复流形$X$               &   $K$-代数$A$      \\
+  $\Omg_X\updot$          &   $CC\downdot(A)$  \\
+  $\pbar$                 &   $b$              \\
+  $\p$                    &   $u\mcalB$        \\
+  $\td$                   &   $b+u\mcalB$      \\
+  $H_{\text{DR}}\updot(X)$&   $H^{\lmd}\downdot(A)$\\
+  $H\updot_{\pbar}(X)$    &   $\HH\downdot(A)$ \\
+  \hline
+\end{tabular}$$
+
+这格表格似乎不太对吧，应该是
+Hochschild同调$\HH\downdot(A)$对应于“非交换版本的”
+微分形式$\Omg\updot$，从之前的例子能看出来。
+}
+
+\begin{definition}（周期循环同调与负循环同调）
+对于$K$-代数$A$，与$CC\downdot(A)$类似，我们还可以去定义以下：
+
+%\textbf{ homology}
+
+（1）定义\textbf{周期循环复形}（periodic cyclic complex）
+\index{periodic cyclic complex\kong 周期循环复形}
+$$CC^{\per}\downdot(A):=
+(C\downdot(A)(\!(u)\!),b+u\mcalB)$$
+该复形的同调
+$$\HC^{\per}\downdot(A):=H\downdot(CC^{\per}\downdot(A),b+uB)$$
+%is called periodic cyclic homology.
+称之为\textbf{周期循环同调}（periodic cyclic homology）。\vs
+
+（2）定义\textbf{负循环复形}（negative cyclic complex）
+\index{negative cyclic complex\kong 负循环复形}
+$$CC^-\downdot(A):=(C\downdot(A)[\![u]\!],b+uB)$$
+该复形的同调
+$$\HC^-\downdot(A):=H\downdot(CC^{-}\downdot(A),b+uB)$$
+称之为\textbf{负循环同调}（negative cyclic homology）。
+\end{definition}
+
+注意上述定义当中的“$[\![u]\!]$”
+是指关于形式变元$u$的形式幂级数，
+而“$(\!(u)\!)$”为关于$u$的Laurent级数。由定义，显然有
+$$CC\downdot(A)\cong CC^{\per}\downdot(A)/CC^-\downdot(A)$$
+
+至此，我们定义出了$CC\downdot(A),
+CC\downdot^{\per}(A)$以及$CC\downdot^-(A)$。
+事实上，这三者都有深刻的物理背景，见下表：
+$$
+  \begin{tabular}{|c|l|l|}
+  \hline
+    非交换几何中的对象    &   几何、物理背景            &  几何、物理背景     \\
+  \hline
+    $CC\downdot^{per}(A)$ &   open-closed string states &  de-Rham cohomology \\
+    $CC\downdot(A)$       &   open string states        &  gauge theory       \\
+    $CC^-\downdot(A)$     &   closed string states      &  gravity            \\
+  \hline
+  \end{tabular}
+$$
+其中特别注意，周期循环同调是de-Rham上同调的“非交换版本”，
+我们将在后文举例说明。
+%$$CC\downdot^{per}\rightsquigarrow\text{}
+%\text{open-closed string states}$$
+
+%$$CC\downdot(A)\rightsquigarrow
+%\text{open string states}\leftrightsquigarrow\text{gauge theory}$$
+
+%$$CC^-\downdot(A)\rightsquigarrow
+%\text{closed string states}\leftrightsquigarrow\text{gravity}$$
+
+\section{循环同调的计算}
+
+%Why "$B$" is like de-rham differential?
+
+回顾约化Bar-复形$\overline{B}\downdot(A)$
+（见定义\ref{约化Bar复形-def}），
+我们可以类似地通过约化Bar-复形来构造类似的“循环双复形”：
+在$K\inj A$的条件下，考虑约化Hochschild链复形
+$$\overline{C}_n(A):=
+\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
+{\color{gray}
+类似去定义循环算子$\lmd:\overline{C}_n(A)\to\overline{C}_n(A)$，
+其显式表达式与非约化情形完全相同；以及平均算子
+$$\mcalN:\overline{C}_n(A,A)\cong A\ten\overline{A}^{\ten n}$$
+}
+{\color{red}
+可惜是错的，类似于此前的$\lmd,\mcalN$并不良定。比如
+$$0=\lmd(0)=\lmd(a_0\ten \overline{1})=-1\ten\overline{\lmd}\neq 0$$
+}
+
+但是，Connes算子$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$
+是有意义的，运算规则与非约化情形完全相同，具体地，
+\begin{eqnarray*}
+    \mcalB(a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})
+&=& \widetilde{(1-\lmd)}h\widetilde{\mcalN}
+    (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=& \widetilde{(1-\lmd)}h
+      \left(
+        \sum_{k=0}^n(-1)^{n(n+1-k)}
+          a_k\ten \overline{a_{k+1}}\ten\cdots\ten\overline{a_n}
+          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+      \right)\\
+&=&   \widetilde{(1-\lmd)}
+      \left(
+        \sum_{k=0}^n(-1)^{n(n+1-k)}
+          1\ten\overline{a_k}\ten \overline{a_{k+1}}
+          \ten\cdots\ten\overline{a_n}
+          \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+      \right)\\
+&=&   \sum_{k=0}^n(-1)^{nk}
+        1\ten\overline{a_k}\ten \overline{a_{k+1}}
+         \ten\cdots\ten\overline{a_n}
+         \ten\overline{a_0}\ten\cdots\ten\overline{a_{k-1}}
+\end{eqnarray*}
+其中$a_{-1}:=a_n$.
+%%%%%%%%%Reduced complex%%%%%%%%%
+
+%$$B:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
+%$$a_0\ten\overline{a_1}\ten...\ten\overline{a_n}
+%\mapsto\sum_i\pm1\ten\overline{a_i}
+%\ten\cdots\ten\overline{a_n}\ten...\ten\overline{a_{i-1}}$$
+
+\begin{prop}对于$K$-代数$A$，假设$K\inj A$，
+则有如下双复形$\overline{\mcalB}\ddowndot(A)$：
+$$\xymatrix{
+    \vdots \ar[d]
+  & \vdots \ar[d]
+  & \vdots \ar[d]
+\\
+    A\ten\overline{A}^{\ten 2}  \ar[d]^b
+  & A\ten\overline{A}^{      }  \ar[d]^b  \ar[l]_{\mcalB}
+  & A^{      }                            \ar[l]_{\mcalB}
+\\
+    A\ten\overline{A}^{      }  \ar[d]^b
+  & A^{      }                            \ar[l]_{\mcalB}
+  &
+\\
+    A
+  &
+  &
+}$$
+记此双复形的全复形为$\overline{CC}\downdot(A)
+:=\Tot\downdot(\overline{\mcalB}\ddowndot(A))$，则有自然同构
+$$H^{\lmd}\downdot(A)\cong H\downdot(\overline{CC}\downdot(A))$$
+\end{prop}
+
+也就是说，在$K\inj A$的条件下，
+我们可以用约化版本的双复形来计算循环同调。
+
+\begin{proof}
+考虑商映射$\pi\downdot:C\downdot(A,A)
+\surj\overline{C}\downdot(A,A)$自然诱导的双复形同态
+$$\pi\ddowndot:
+\mcalB\ddowndot(A)\surj\overline{\mcalB}\ddowndot(A)$$
+
+注意$\pi\ddowndot$限制在双复形的每一列上，
+都为相应链复形的拟同构（这里使用了引理
+\ref{约化Hoschild复形与拟同构-lemma}），
+因此根据引理\ref{双复形的全复形-同调代数机器-lemma}，
+其诱导的全复形之间的同态
+$$
+\Tot\downdot(\mcalB\ddowndot(A))
+\surj\Tot\downdot(\overline{\mcalB}\ddowndot(A))$$
+为拟同构。再注意性质
+\ref{Connes算子与循环同调-prop}，
+上式左边的同调即为循环同调，从而证毕。
+\end{proof}
+
+与非约化情形类似，我们也可以
+$$\Tot\downdot(\overline{\mcalB}\ddowndot(A))\cong
+\overline{C}\downdot(A)[u^{-1}],b+u\mcalB)$$
+甚至去定义“约化周期循环同调”、
+“约化负循环同调”，此处不再赘述。\vs
+
+本节接下来给出循环同调的一些典型的计算实例。
+
+\begin{example}
+对于环$K$，设$K$-代数$A=K$，那么其循环同调
+$$
+H^{\lmd}_n(K)\cong
+  \left\{
+    \begin{array}{ll}
+      K & \text{$n$为偶数}\\
+      0 & \text{$n$为奇数}\\
+    \end{array}
+  \right.
+$$
+%$\overline{A}=0$.
+%So,
+%$$\overline{A}\downdot A=A\ten "0"$$
+%$$b=0\quad B=0$$
+\end{example}
+我们早已具体计算出$K[x^1,x^2,...,x^n]$的Hochschild同调，
+特别地$\HH\downdot(K)$只有第零个是非平凡的（同构于$K$），
+其余都为$0$.不过，$H^{\lmd}\downdot(K)$与$\HH\downdot(K)$
+并不相同。
+
+\begin{proof}我们采用最简便的方法去计算，
+当然采用约化循环双复形啦。在本例中，
+$$\overline{A}=K/K=0$$
+从而双复形$\overline{\mcalB}\ddowndot(K)$为以下：
+$$
+  \xymatrix{
+     \vdots \ar[d]
+    &\vdots \ar[d]
+    &\vdots \ar[d]
+    &\vdots \ar[d]
+  \\
+     0      \ar[d]
+    &0      \ar[d]   \ar[l]
+    &0      \ar[d]   \ar[l]
+    &K               \ar[l]
+  \\
+     0      \ar[d]
+    &0      \ar[d]   \ar[l]
+    &K               \ar[l]
+    &
+  \\
+     0      \ar[d]
+    &K               \ar[l]
+    &
+    &
+  \\
+     K
+    &
+    &
+    &
+  }
+$$
+其全复形$\overline{CC}\downdot(K)$为以下
+$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
+从而易求循环同调。
+\end{proof}
+
+当然我们也可以按照循环同调最原始的定义去计算，
+其实也不难算，如下：
+
+\begin{proof}[另一种计算方式]直接计算。此时，
+$$C_n(K)\cong K^{\ten n+1}\cong K$$
+我们记其生成元
+$$\veps_n:=\underbrace{1\ten 1\ten\cdots\ten 1}
+_{n+1\text{个}}\in C_n(K)$$
+容易验证算子$b$与算子$\lmd$的作用
+$$
+  b(\veps_n)=
+    \left\{
+      \begin{array}{ll}
+        \veps_{n-1} & \text{$n$为偶数} \\
+        0           & \text{$n$为奇数}
+      \end{array}
+    \right.
+\quad
+  \lmd(\veps_n)=
+    \left\{
+      \begin{array}{ll}
+        \veps_{n  } & \text{$n$为偶数} \\
+        -\veps_{n  }& \text{$n$为奇数}
+      \end{array}
+    \right.
+$$
+因此，易知Connes复形
+$C^{\lmd}\downdot(K):=C\downdot{K}/(1-\lmd)$具体如下：
+$$\cdots\to 0\xra{0}K\xra{0}0\xra{0}K$$
+对它取同调，即得循环同调。
+\end{proof}
+
+%$$\overline\downdot(A)[]u^{-1}\rightsquigarrow HC_n(K)=
+%\left\{\begin{array}{ll}
+%K & \text{$n\geq 0$ even}\\
+%0 & \text{otherwise}
+%\end{array}\right.$$
+%$$K,Ku^{-1},Ku^{-2}...H\downdot(\bbC P^{\infty}=B\cup(1))$$
+%$$C^{\lmd}\downdot A=C\downdot(K)/(1-\lmd)$$
+%$$C_n(K):1\overbrace{\ten1\ten...\ten1}^{n}=:\veps_n$$
+%$$\lmd(\veps_n)=(-1)^n\veps_n$$
+%$$\left\{
+%\begin{matrix}
+%\veps\text{even is cyclic invariant}\\
+%\veps\text{odd$=0$ in} C\downdot^{\lmd}(K)
+%\end{matrix}
+%\right.$$
+%$$b(\veps_{2m})=\veps_{2m-1}$$
+%$$0=b\text{acts on} C^{\lmd}\downdot(K)$$
+%$$H^{\lmd}\downdot(K)=C\downdot^{\lmd}(K)=
+%K\veps_0\oplus K\veps_2\oplus...$$
+
+%compute it by 3 ways...
+
+接下来，考虑$A=K[x^1,x^2,...,x^n]$为$n$元多项式环的情形，
+我们企图取计算$A$的循环同调。注意在之前
+我们已经使用Koszul复形求出了
+$A=K[x^1,x^2,...,x^n]$的Hochschild同调。
+
+\begin{lemma}设$A=K[x^1,x^2,...,x^n]$为$n$元多项式环，
+考虑微分形式代数$\Omg_A\updot:=K[x^1,...,x^n;\td x^1,...\td x^n]$，
+注意$\Omg_A\updot$上有外积运算$\wedge$与外微分运算$\td$.
+考虑以下$K$-模同态
+\begin{eqnarray*}
+\Phi:\overline{C}_p(A)&\to& \Omg^p_A\\
+a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p}
+&\mapsto& \frac{1}{p!}
+a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
+\end{eqnarray*}
+则$\Phi$是良定的，并且成立：
+$$
+  \left\{
+    \begin{array}{l}
+       \Phi\circ b=0\\
+       \Phi\circ\mcalB=\td\circ\Phi
+    \end{array}
+  \right.
+$$
+其中$b:\overline{C}_p(A)\to\overline{C}_{p-1}(A)$
+为约化Hochschild复形的边缘算子，
+$\mcalB:\overline{C}_{p-1}(A)\to\overline{C}_{p}(A)$
+为约化的Connes算子。
+%Explicitly, we define
+\label{Hochschild-Konstant-Rosenberg算子-lemma}
+\end{lemma}
+
+\begin{proof}
+$\Phi$的良定性，即$\overline{A}$中元素与代表元选取无关。
+而此代表元选取至多相差“常数项”（即$K$中元素），
+它在外微分$\td$的作用下为零。因此$\Phi$良定。
+
+我们来验证$\Phi\circ b=0$.暴力验证如下：
+\begin{eqnarray*}
+&&   \Phi\circ b
+      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=&
+    \frac{1}{p!}
+    \Bigg(
+      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
+ +
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0\td a_1\wedge\cdots\wedge
+        \td(a_ka_{k+1})
+        \wedge\cdots\wedge\td a_{p}\\
+&&+
+      (-1)^pa_0a_p
+      \td a_1\wedge\cdots\wedge\td a_{p-1}
+    \Bigg)\\
+&=&
+    \frac{1}{p!}
+    \Bigg(
+      a_0a_1\td a_2\wedge\cdots\wedge\td a_p
+ +
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0a_k\td a_1\wedge\cdots\wedge
+        \widehat{\td a_k}
+        \wedge\cdots\wedge\td a_{p}\\
+&&+
+      \sum_{k=1}^{p-1}(-1)^k
+        a_0a_{k+1}\td a_1\wedge\cdots\wedge
+        \widehat{\td a_{k+1}}
+        \wedge\cdots\wedge\td a_{p}
+ +
+      (-1)^pa_0a_p
+      \td a_1\wedge\cdots\wedge\td a_{p-1}
+    \Bigg)\\
+&=&
+    0
+\end{eqnarray*}
+
+第二个等式$\Phi\circ\mcalB=\td\circ\Phi$
+也容易直接验证：一方面，
+\begin{eqnarray*}
+&& \Phi\circ\mcalB
+     (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_n})\\
+&=&
+   \sum_{k=0}^p\frac{(-1)^{pk}}{(p+1)!}
+     \Big(
+       \td a_k\wedge\td a_{k+1}\wedge\cdots\wedge\td a_p
+     \Big)
+     \wedge
+     \Big(
+       \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{k-1}
+     \Big)\\
+&=&
+   \frac{1}{p!}
+     \td a_0\wedge\td a_1\wedge\cdots\wedge\td a_{n}
+\end{eqnarray*}
+而另一方面，
+\begin{eqnarray*}
+  \td\circ\Phi
+      (a_0\ten\overline{a_1}\ten\cdots\ten\overline{a_p})
+=
+    \frac{1}{p!}
+    \td(a_0\td a_{1}\wedge\cdots\wedge\td a_{p})
+=
+    \frac{1}{p!}
+    \td a_0\wedge\td a_{1}\wedge\cdots\wedge\td a_{p}
+\end{eqnarray*}
+从而得证。
+\end{proof}
+
+由此引理，我们即可去计算$A:=K[x^1,x^2,...,x^n]$的循环同调。
+
+\begin{prop}对于$A:=K[x^1,x^2,...,x^n]$，则其循环同调
+$$H^{\lmd}_n(A)\cong
+\left\{
+  \begin{array}{ll}
+    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
+    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
+  \end{array}
+\right.
+\label{C[x^i]的循环同调}
+$$
+\end{prop}
+
+\begin{proof}
+事实上，刚才的引理
+\ref{Hochschild-Konstant-Rosenberg算子-lemma}
+表明，$\Phi$诱导以下两个双复形之间的态射：
+$$
+  \begin{tabular}{cccc}
+    \xymatrix{
+       \vdots             \ar[d]
+      &\vdots             \ar[d]
+      &\vdots             \ar[d]
+    \\
+       \overline{C}_2(A)  \ar[d]^{b}
+      &\overline{C}_1(A)  \ar[d]^{b}  \ar[l]_{\mcalB}
+      &\overline{C}_0(A)              \ar[l]_{\mcalB}
+    \\
+       \overline{C}_1(A)  \ar[d]^{b}
+      &\overline{C}_0(A)              \ar[l]_{\mcalB}
+      &
+    \\
+       \overline{C}_0(A)
+      &
+      &
+    }
+      &&&
+    \xymatrix{
+       \vdots             \ar[d]
+      &\vdots             \ar[d]
+      &\vdots             \ar[d]
+    \\
+       \Omg^2_A  \ar[d]^{0}
+      &\Omg^1_A  \ar[d]^{0}  \ar[l]_{\td}
+      &\Omg^0_A              \ar[l]_{\td}
+    \\
+       \Omg^1_A  \ar[d]^{0}
+      &\Omg^0_A              \ar[l]_{\td}
+      &
+    \\
+       \Omg^0_A
+      &
+      &
+    }
+  \end{tabular}
+$$
+{\color{red}（按村儿里的规矩，此处应该有立方交换图）}
+
+其中左边为$\overline{\mcalB}\ddowndot(A)$，而
+右边的每一行均为de-Rham上链复形，每一列的边缘算子都为零。
+注意到$\Phi$是满射，以及我们早已用Koszul复形得到的
+$$H_n(\overline{C}\downdot(A))\cong\HH_n(A)
+\cong\Omg^n_A\cong H_n(\Omg\updot_A,0)$$
+从而双复形同态$\Phi$限制在每一列上都为拟同构，于是由引理
+\ref{双复形的全复形-同调代数机器-lemma}，立刻知道
+$$\Phi:\Tot\downdot(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+\to\Tot\downdot(\Omg\updot_A,0,\td)$$
+为拟同构。上式左边的同调即为$A$的循环同调，
+而右边的同调可以直接计算。只需要注意到（Poincare引理）de-Rham复形
+$$\cdots\xra{\td}\Omg\updot(A)
+\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
+的（上）同调满足
+$$
+  H^n(\Omg\updot_A,\td)=
+  \left\{
+    \begin{array}{ll}
+      K  &  n=0\\
+      0  &  n>0
+    \end{array}
+  \right.
+$$
+因此容易计算出
+$$H^{\lmd}_n(A)\cong
+\left\{
+  \begin{array}{ll}
+    ({\Omg^n_A}\big/{\td\Omg^{n-1}_A})\oplus K &  \text{$n$为偶数}\\
+    {\Omg^n_A}\big/{\td\Omg^{n-1}_A}           &  \text{$n$为奇数}\\
+  \end{array}
+\right.
+$$
+\end{proof}
+
+
+
+%$$\Phi:(\overline{C\downdot(A)},b)\to(\Omg^0(A),0)$$
+%si a chain map.
+%%%%%%Isildur%%%%%%%%
+
+%So, we have an isomorphism
+%$$\HH\downdot(A)\cong \Omg\updot (A)$$
+%,then $\HH\downdot(A)=\Omg\updot(A)=\bbC[x^i,\td x^i]$.
+
+%Check:
+%$$\Phi\circ B=\td\circ\Phi$$
+%%%%%%%这很明显吧%%%%%%%%%%%
+
+%So,
+
+%$$\Phi:(\overline(C)\downdot(A),b,B)\to(\Omg\updot(A),0,\td)$$
+
+%Cyclic homology,
+%$$\Phi:(\overline(C)\downdot(A),b+uB)\to
+%(\Omg\updot(A)[u^{-1}],u\td )$$
+
+%If $A=K[x^i]$
+%$$\cdots\xra{\td}\Omg\updot(A)
+%\xra{\td}\Omg\updot(A)\xra{\td}\Omg\updot(A)\to 0$$
+
+%then $$H\downdot(\Omg\updot(A),\td)=H_0=K$$
+%"Poincare lemma"
+
+%\begin{prop}
+%$$HC\downdot(K[x^i])=\frac{\Omg\updot(A)}
+%                    {d\Omg\updot(A)}
+%\oplus u^{-1}K[u^{-1}]$$
+
+%\end{prop}
+\begin{rem}
+容易知道，Connes算子
+$$\mcalB:\overline{C}_n(A)\to\overline{C}_{n+1}(A)$$
+在$\ker b$上的限制，可以下降为Hochschild同调之间的同态
+$$\mcalB:\HH_n(A)\to\HH_{n+1}(A)$$
+\end{rem}
+Hochschild同调扮演的角色相当于微分形式，而此时Connes算子
+扮演的则是外微分。
+
+\begin{rem}
+双复形满同态
+$$\Phi:(\overline{\mcalB}\ddowndot(A),b,\mcalB)\surj
+(\Omg\updot_A,0,\td)
+$$
+其实是可裂（split）的。具体地，存在双复形同态
+\begin{eqnarray*}
+\eta:\Omg\updot(A)&\to&\overline{C}\downdot(A)\\
+a_0\td a_1\wedge\td a_2\wedge\cdots\wedge\td a_p
+&\mapsto&\sum_{\sigma\in S_p}(-1)^{\sgn \sigma}
+           a_0\ten a_{\sigma(1)}\ten\cdots\ten a_{\sigma(p)}
+\end{eqnarray*}
+使得$\Phi\circ\eta=\id$.
+\end{rem}
+
+容易验证（简单的组合技巧）$\eta$的确诱导了双复形同态
+$$\eta:(\Omg\updot_A,0,\td)\to
+(\overline{\mcalB}\ddowndot(A),b,\mcalB)
+$$
+
+\section{循环上同调}
+本章最后，简单介绍一下循环上同调（Cyclic cohomology）。
+%$$C_n(A)\cong A^{\ten n+1}$$
+对于双$A$-模$M$，
+回顾我们之前已经介绍的Hochschild上链复形
+$$C^n(A,M):=\Hom(A^{\ten n},A)$$
+特别地，当$M=A$时，我们给出以下记号:
+
+\begin{notation}对于$K$-代数$A$，以及$n\geq0$，
+我们记Hochschild上链复形
+$$C^n(A):=C^{n}(A,A)\cong\Hom(A^{\ten n},A)
+\cong\Hom(A^{\ten n+1},K)$$
+并且将该Hochschild上链复形的微分算子记为$b^*$.
+\end{notation}
+
+我们此前考虑同构$C_n(A)\cong A^{\ten n+1}$，
+而Hochschild上链复形$C^n(A)\cong\Hom(A^{\ten n+1},K)$
+恰为其对偶；微分算子$b^*$的作用即为$b$的对偶：
+即对任意$f\in C^n(A)\cong\Hom(A^{\ten n+1},K)$以及
+$\omg\in A^{\ten n+2}\cong C_{n+1}(A)$，成立
+$$(b^*f)(\omg)=f(b(\omg))$$
+
+与循环余不变量对偶，我们可以谈论循环不变量：
+
+\begin{definition}（循环不变量）
+
+对于$f\in C^n(A)$，称$f$为循环不变量
+（cyclic invariant），
+\index{cyclic invariant\kong 循环不变量}
+如果对任意的$a_0,...,a_n\in A$，成立
+$$f(a_0,a_1,...,a_n)=(-1)^nf(a_n,a_0,...,a_{n-1})$$
+记$C^n(A)$当中的循环不变量之全体为$C^n_{\lmd}(A)$.
+\end{definition}
+
+容易验证$b^*(C^{n}_{\lmd}(A))\subseteq C^{n+1}_{\lmd}(A)$，
+从而$(C\updot_{\lmd}(A),b^*)$为$(C\updot(A),b^*)$的子复形。
+（不必暴力验证了，由循环余不变量对偶过去就行）
+看图说话即可：
+
+$$
+  \xymatrix{
+     \cdots       \ar[r]
+    &C_n(A)       \ar[r]^{b'}   \ar[d]^{1-\lmd}
+    &C_{n-1}(A)   \ar[r]        \ar[d]^{1-\lmd}
+    &\cdots
+  \\
+     \cdots       \ar[r]
+    &C_n(A)       \ar[r]^{b }   \ar@{->>}[d]
+    &C_{n-1}(A)   \ar[r]        \ar@{->>}[d]
+    &\cdots
+  \\
+     \cdots       \ar[r]
+    &C_n^{\lmd}(A)\ar[r]        \ar[d]
+    &C_{n-1}^{\lmd}(A) \ar[r]   \ar[d]
+    &\cdots
+  \\
+    &0&0&
+  }
+\quad
+  \xymatrix{
+     \cdots
+    &C^n(A)       \ar[l]
+    &C^{n-1}(A)   \ar[l]_{b'^*}
+    &\cdots       \ar[l]
+  \\
+     \cdots
+    &C^n(A)       \ar[l]        \ar[u]^{1-\lmd^*}
+    &C^{n-1}(A)   \ar[l]^{b^*}  \ar[u]^{1-\lmd^*}
+    &\cdots       \ar[l]
+  \\
+     \cdots
+    &C^n_{\lmd}(A)\ar[l]        \ar@{^{(}->}[u]
+    &C^{n-1}_{\lmd}(A) \ar[l]   \ar@{^{(}->}[u]
+    &\cdots            \ar[l]
+  \\
+    &0\ar[u]
+    &0\ar[u]
+    &
+  }
+$$
+
+左图我们早已熟悉，注意它的每一列都是右正合的。
+将反变左正合函子$\Hom(-,K)$作用于左图即得到右图，
+右图的每一列都是左正合的。
+
+
+%cyclic cochains form a subcomplex
+%$$C_{\lmd}^n(A)\subseteq C^n(A)$$
+%which is dual to
+%$$C_n(A)\to C_n^{\lmd}(A)$$
+%$$b^*:C_{\lmd}^n(A)\to C_{\lmd}^{n+1}(A)$$
+
+\begin{definition}（循环上同调）
+对于$K$-代数$A$定义$A$的\textbf{循环上同调}
+（cyclic cohomology）
+\index{cyclic cohomology\kong 循环上同调}
+$$H\updot_{\lmd}(A):=\HC\updot(A)
+:=H\updot(C_{\lmd}\updot(A),d^*)$$
+\end{definition}
+
+作为例子，我们具体计算一下第零个循环上同调。
+
+\begin{example}对于$K$-代数$A$，则有
+$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
+\forall x,y\in A,f(xy)=f(yx)\}$$
+\end{example}
+
+\begin{proof}直接计算即可。
+只需考虑Hochschild上链复形
+$$0\to C^0_\lmd(A)\xra{b^*}C^1_{\lmd}(A)
+\xra{b^*}C^2_{\lmd}(A)\to\cdots$$
+易知$C^0_{\lmd}(A)=C^0(A)=\Hom(A,K)$，从而
+$$H^0_{\lmd}(A)=\ker(b^*:C^0(A)\to C^1(A))$$
+
+对于$f\in\Hom(A,K)$，若$b^*f=0$，则对于任意$x,y\in A$，有
+$$0=(b^*f)(x,y)=f(b(x\ten y))=f(xy-yx)=f(xy)-f(yx)$$
+从而可知
+$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
+\forall x,y\in A,f(xy)=f(yx)\}$$
+\end{proof}
+
+像$H^0_{\lmd}(A)$当中的线性算子那样，满足
+$$f(xy)=f(yx)\quad(\forall x,y\in A)$$
+的线性算子称之为\textbf{迹算子}。
+
+高阶的循环上同调可被认为是“导出的”迹算子。
+
+%$$f\in C_{\lmd}^0(A):A\to K$$
+%$$b^*f\in C^1_{\lmd}(A)$$
+%$$b^*f(a_0,a_1)=f(b(a_0\ten a_1))=f(a_0a_1-a_1a_0)$$
+%$$b^*=0\iff f:A/[A,A]\to K$$
+%$f$ behaves like "trace".
+%$HC^0(A)$="trace operators"
 
 
 
