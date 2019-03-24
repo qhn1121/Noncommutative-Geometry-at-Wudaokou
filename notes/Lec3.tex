@@ -290,33 +290,172 @@ $P\in\PV^2_X$满足$[P,P]=0$.
 %(geometry of classical mechanics)
 接下来看一些泊松流形的例子：
 
-\begin{example}
-if $(X,\omg)$ is a sympletic manifold,
+\begin{example}（辛流形）
+%if $(X,\omg)$ is a sympletic manifold,
+
+设$(X,\omg)$为辛流形，其中辛形式
 $$\omg=\frac{1}{2}\omg_{ij}\td x^i\wedge\td x^{j}$$
-such that $\omg$ is non-degenerated ,$\omg_{ij}=-\omg_{ji}$,
-then
+满足$\td\omg=0$，并且使得系数矩阵
+$(\omg_{ij})_{1\leq i,j\leq n}$在$X$上处处可逆、反对称。
+那么辛结构$\omg$自然诱导泊松结构
+%such that $\omg$ is non-degenerated ,$\omg_{ij}=-\omg_{ji}$,
+%then
 $$\omg^{-1}:=\frac{1}{2}\omg^{ij}\p_i\wedge\p_j$$
-is a Poisson bracket.where $(\omg^{ij}):=(\omg_{ij})^{-1}$
+其中矩阵$(\omg^{ij}):=(\omg_{ij})^{-1}$.
+%is a Poisson bracket.where $(\omg^{ij}):=(\omg_{ij})^{-1}$
 \end{example}
 
-\begin{example}
-Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual,
-$$[,]:\mfkg\times\mfkg\to\mfkg$$
-then
-$$P_{\mfkg}\in \mfkg\ten\wedgeform{2}\mfkg$$
-(locally)
-if $\{e^i\}$ is a basis of $\mfkg$, $\{e_i\}$ its dual,
+\begin{proof}
+我们只需验证雅可比恒等式
+$$
+  \omg^{is}\pfrac{\omg^{jk}}{u^s}
+ +\omg^{js}\pfrac{\omg^{ki}}{u^s}
+ +\omg^{ks}\pfrac{\omg^{ij}}{u^s}
+=0
+$$
+
+一方面注意到逆矩阵求导公式
+$\pfrac{\omg^{-1}}{u^s}=
+-\omg^{-1}\pfrac{\omg}{u^s}\omg^{-1}$，从而有
+$$\omg^{is}\pfrac{\omg^{jk}}{u^s}=-
+\omg^{is}\omg^{jm}\omg^{nk}\pfrac{\omg_{mn}}{u^s}$$
+对$i,j,k$轮换求和，有
+$$
+  \omg^{is}\pfrac{\omg^{jk}}{u^s}
+ +\omg^{js}\pfrac{\omg^{ki}}{u^s}
+ +\omg^{ks}\pfrac{\omg^{ij}}{u^s}
+=
+  \omg^{is}\omg^{jm}\omg^{kn}
+  \left(
+    \pfrac{\omg_{mn}}{u^s}
+   +\pfrac{\omg_{ns}}{u^m}
+   +\pfrac{\omg_{sm}}{u^n}
+  \right)
+$$
+
+另一方面，由于$\td\omg=0$，从而有
+\begin{eqnarray*}
+     0
+&=&   
+     \td(\omg_{ij}\td x^i\wedge\td x^j)\\
+&=&
+     \pfrac{\omg_{ij}}{u^k}\td x^i\wedge\td x^j\wedge\td x^k\\
+&=&
+     \sum_{i<j<k}
+   2\left(
+     \pfrac{\omg_{ij}}{u^k}
+    +\pfrac{\omg_{jk}}{u^i}
+    +\pfrac{\omg_{ki}}{u^j}
+   \right)
+   \td x^i\wedge\td x^j\wedge\td x^k
+\end{eqnarray*}
+因此有
+$$\pfrac{\omg_{ij}}{u^k}
+    +\pfrac{\omg_{jk}}{u^i}
+    +\pfrac{\omg_{ki}}{u^j}=0$$
+
+综上两方面，证毕。
+\end{proof}
+众所周知，这个例子来自经典力学。
+事实上，此泊松结构有如下不依赖局部坐标的表达方式：
+对任意$f\in C^{\infty}(X)$，存在唯一的切向量场$X_f$使得
+$$\td f+i_{X_f}(\omg)=0$$
+称此$X_f$为$f$的\textbf{哈密顿向量场}。
+于是，对于任意的$f,g\in C^{\infty}(X)$，
+辛结构$\omg$诱导的泊松括号满足
+$$\{f,g\}=\omg(X_f,X_g)$$
+以上是我们在经典力学中熟知的。
+
+
+\begin{example}（李代数的对偶）
+%Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual,
+%$$[,]:\mfkg\times\mfkg\to\mfkg$$
+
+设$(\mfkg,[,])$为（有限维）李代数，考虑$X:=\mfkg^*$为其对偶，
+取$\{e^1,e^2,...,e^n\}$为$\mfkg$的一组基，
+$\{e_1,e_2,...,e_n\}$为$\mfkg^*$当中相应的对偶基。
+用$X^i$来表示$X=\mfkg^*$中的点在基$\{e_i\}$下的坐标。
+记李代数$\mfkg$的结构常数为
 $$[e^i,e^j]=C^{ij}_ke^k$$
-then
-$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
-check: it satisfies Jacobi identity, i.e.
-$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
+那么我们给出$X=\mfkg^*$的泊松张量如下：
+$$P_{\mfkg}=\frac{1}{2}X^kC^{ij}_ke_i\wedge e_j$$
+则$(X,P_{\mfkg})$为泊松流形。
+
+%then
+%$$P_{\mfkg}\in \mfkg\ten\wedgeform{2}\mfkg$$
+%(locally)
+%if $\{e^i\}$ is a basis of $\mfkg$, $\{e_i\}$ its dual,
+
+%then
+%$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
+%check: it satisfies Jacobi identity, i.e.
+%$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
 \end{example}
 
-\begin{rem}
-$P_{\mfkg}$ is not invertible $\iff$
-$\mfkg^*$ is not sympletic.
-\end{rem}
+\begin{proof}
+先考虑$P$的良定性。事实上，上述泊松张量可以内蕴地写成如下：
+对任意$\xi\in X=\mfkg^*$，以及$f,g\in C^{\infty}(\mfkg^*)$，
+$$\{f,g\}|_{\xi}=\xi([\td f,\td g])$$
+其中$\td f \in T_{\xi}^*\mfkg^*\cong(\mfkg^*)^*\cong\mfkg$.
+局部坐标下，记$\xi=X^ie_i$，则
+\begin{eqnarray*}
+     \xi([\td f,\td g])
+&=&
+     \left\langle
+       X^ie_i
+     ,
+       [\pfrac{f}{X^j}e^j,\pfrac{g}{X^k}e^k]
+     \right\rangle\\
+&=&
+     X^iC^{ij}_k
+     \pfrac{f}{X^i}
+     \pfrac{g}{X^j}
+\end{eqnarray*}
+另一方面也容易验证上式右边也与以下相等：
+$$
+  \left\langle
+    \frac{1}{2}X^kC^{ij}_ke_i\wedge e_j
+  ,
+    \td f\wedge\td g
+  \right\rangle
+$$
+于是$P_{\mfkg}$良定（与局部坐标选取无关）。
+接下来验证它的确为泊松张量，局部坐标下暴力验证即可：注意到
+\begin{eqnarray*}
+     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
+=
+     P^{is}_{\mfkg}\pp{X^s}
+     \left(
+       X^tC_t^{jk}
+     \right)
+=
+     X^lC_l^{is}C_{s}^{jk}
+\end{eqnarray*}
+其中注意结构常数$C^{ij}_k$作为$X$上的函数，是常值的。
+对$i,j,k$轮换相加，有
+\begin{eqnarray*}
+     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
+    +P^{js}_{\mfkg}\pfrac{P^{ki}_{\mfkg}}{X^s}
+    +P^{ks}_{\mfkg}\pfrac{P^{ij}_{\mfkg}}{X^s}
+=
+     X^l
+     \left(
+       C^{is}_lC^{jk}_s
+      +C^{js}_lC^{ki}_s
+      +C^{ks}_lC^{ij}_s
+     \right)
+=0
+\end{eqnarray*}
+其中第二个等号是因为李代数$\mfkg$的雅可比恒等式。从而证毕。
+\end{proof}
+
+如此通过李代数对偶得到的泊松流形称为线性泊松流形。
+容易知道，$(P^{ij}_{\mfkg})$
+可逆当且仅当$P_{\mfkg}$可由$X$上的辛结构诱导。
+%\begin{rem}
+%$P_{\mfkg}$ is not invertible $\iff$
+%$\mfkg^*$ is not sympletic.
+%\end{rem}
 
 \section{星积}
 \textbf{Star product:}
