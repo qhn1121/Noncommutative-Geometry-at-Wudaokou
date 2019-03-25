@@ -367,7 +367,8 @@ $$\{f,g\}=\omg(X_f,X_g)$$
 以上是我们在经典力学中熟知的。
 
 
-\begin{example}（李代数的对偶）
+\begin{Example}（李代数的对偶）
+\label{李代数的对偶空间的泊松结构-example}
 %Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual,
 %$$[,]:\mfkg\times\mfkg\to\mfkg$$
 
@@ -390,12 +391,12 @@ $$P_{\mfkg}=\frac{1}{2}X^kC^{ij}_ke_i\wedge e_j$$
 %$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
 %check: it satisfies Jacobi identity, i.e.
 %$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
-\end{example}
+\end{Example}
 
 \begin{proof}
 先考虑$P$的良定性。事实上，上述泊松张量可以内蕴地写成如下：
 对任意$\xi\in X=\mfkg^*$，以及$f,g\in C^{\infty}(\mfkg^*)$，
-$$\{f,g\}|_{\xi}=\xi([\td f,\td g])$$
+$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([\td f,\td g])$$
 其中$\td f \in T_{\xi}^*\mfkg^*\cong(\mfkg^*)^*\cong\mfkg$.
 局部坐标下，记$\xi=X^ie_i$，则
 \begin{eqnarray*}
@@ -457,89 +458,371 @@ $$
 %$\mfkg^*$ is not sympletic.
 %\end{rem}
 
-\section{星积}
-\textbf{Star product:}
 
-\begin{definition}
-A star product $*$ on a Possion mfd $(X,P)$
-is a $\bbR[[\hbar]]$-linear map
-$$C^{\infty}(X)[[\hbar]]\times C^{\infty}(X)[[\hbar]]\to C^{\infty}(X)[[\hbar]]$$
-$$f*g\mapsto \sum_{k\geq 0}\hbar^kC_k(f,g)$$
-such that:
+此外注意到，$\mfkg$中的向量$v$自然视为$X=\mfkg^*$上的线性函数:
+对任意$\xi\in X=\mfkg^*$，
+$$v(\xi):=\langle\xi,v\rangle$$
+在此意义下，$\mfkg$的基向量$e^i$即为$X$上的坐标函数$X^i$.
 
-(1) $*$ is associative
+\begin{prop}对于有限维李代数$\mfkg$，
+任意$u,v\in\mfkg$视为$X$上的线性函数，则泊松括号满足
+$$\{u,v\}_{P_{\mfkg}}=[u,v]$$
+其中右端$[,]$为$\mfkg$中的李括号。
+\label{李代数对偶-李括号与泊松括号的关系-prop}
+\end{prop}
 
-(2) $f*g=fg\mod \hbar$
+\begin{proof}
+用泊松张量$P_{\mfkg}$的内蕴定义
+$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([f,g])$$
+来看，是显然的。
+\end{proof}
 
-(3) $\frac{1}{2}(f*g-g*f)=\hbar\{f,g\}\mod\hbar^2$
+\section{Moyal星积}
+%\textbf{Star product:}
+我们开始讨论形变量子化。
+{\color{red}（此处应该写几句introduction）}
 
-(4) $C_k(f,g)=C_k^{i_1...i_l;j_i,...,j_m}(\p_{i_1}...\p_{i_l}f)
-(\p_{j_1}...\p_{j_m}g)$, where $C_k^{...}$ is in $C^{\infty}(X)$.
-(bi-differential operator)
-\vs
+\begin{definition}（星积）
+%A star product $*$ on a Possion mfd $(X,P)$
+%is a $\bbR[[\hbar]]$-linear map
 
+对于泊松流形$(X,P)$，称$\bbR[\![\hbar]\!]$-双线性映射
+\begin{eqnarray*}
+C^{\infty}(X)\fps{\hbar}\times C^{\infty}(X)\fps{\hbar}
+&\to& C^{\infty}(X)\fps{\hbar}\\
+f\star g&\mapsto& \sum_{k\geq 0}C_k(f,g)\hbar^k
+\end{eqnarray*}
+为$(X,P)$上的\textbf{星积}（star product），
+\index{star product\kong 星积}
+%such that:
+如果$\star$是结合的，并且对对任意$f,g\in C^{\infty}(X)$，以下成立：
 
-then, $(C^{\infty},*)$ is the \textbf{deformation quantization} on $(X,P)$.
+%(1) 乘法$*$是结合的。 %is associative
+
+(1) $\hbar\to 0$时退化为通常的函数乘法：
+$$f\star g=fg\mod\hbar$$
+
+(2) $*$的“一阶非交换性”由泊松括号给出：
+$$f\star g-g\star f=\hbar\{f,g\}\mod\hbar^2$$
+%$$\frac{1}{2}(f*g-g*f)=\hbar\{f,g\}\mod\hbar^2$$
+%上一行被注掉的公式为笔记中的原始记载，我怀疑这个公式不对
+
+(3) 对于每个$k\geq 0$，$C_k$为双微分算子： 
+$$C_k(f,g)=\sum_{\max{\{l,m\}}=k}
+C_k^{i_1...i_l;j_1,...,j_m}(\p_{i_1}...\p_{i_l}f)
+(\p_{j_1}...\p_{j_m}g)$$
+其中系数$C_k^{i_1...i_l;j_1,...,j_m}\in C^{\infty}(X)$.
+%, where $C_k^{...}$ is in $C^{\infty}(X)$.
+%(bi-differential operator)
+%\vs
+%then, $(C^{\infty},*)$ is the \textbf{deformation quantization} on $(X,P)$.
 \end{definition}
 
-the first non-commutativity of $*$ is given
-by Poosson bracket.
+此时，也称$(C^{\infty}(X),\star)$为$(X,P)$的\textbf{形变量子化}
+(deformation quantization)。
+\index{deformation quantization\kong 形变量子化}
 
-Fundamental Question:
-[Dewilde lemote 1983] for a Poisson manifold, is there $\exists$
-a deformation quantization?
+%the first non-commutativity of $*$ is given
+%by Poosson bracket.
 
-[Fedosov 1983,1994]
+这里的$\hbar$为形式变元
+（物理背景为普朗克常量，这是心照不宣的）。
+由定义容易知道，对任意$f\in C^{\infty}(X)$，成立
+$$1\star f=f\star 1=f$$
+其中$1\in C^{\infty}(X)$为值恒为$1$的常值函数。
 
-\begin{example}
-$(C^{\infty}(X),\{,\})\rightsquigarrow(C^{\infty(X)[[\hbar]]},*)$
+此外，容易知道双微分算子
+$$C_0(f,g)=fg$$
+以及我们不妨
+$$C_1(f,g)=\{f,g\}$$
 
-$$X=\bbR^m$$
-Poisson bracket
-$$P=P^{ij}\p_i\wedge\p_j$$
-where $P^{ij}\in\bbR$ are constant.
-then we define
+一个基本的问题是，给定一个泊松流形$(X,P)$，
+它的形变量子化是否一定存在？
+回答此问题之前，我们先来看一些例子。
 
-%$$f*g:=\exp{\frac{\hbar}{2}P^{ij}\frac{\p}{\p y_i}\frac{\p}{\p z_j}}\big|_{y=z=x}f(y)g(z)$$
+%Fundamental Question:
+%[Dewilde lemote 1983] for a Poisson manifold, is there $\exists$
+%a deformation quantization?
+%[Fedosov 1983,1994]
+
+\begin{Example}（Moyal 乘积）
+%$(C^{\infty}(X),\{,\})\rightsquigarrow(C^{\infty(X)[[\hbar]]},*)$
+%$$X=\bbR^m$$
+%Poisson bracket
+设$X=\bbR^n$，并配以泊松张量
+$$P=P^{ij}\pp{x^i}\wedge\pp{x^j}$$
+其中$P^{ij}$皆为常数，则我们定义如下乘积：
+对任意$f,g\in C^{\infty}(X)$，
+%where $P^{ij}\in\bbR$ are constant.
+%then we define
+$$(f\star g)(x):=
+  \left.
+    e^{
+        \hbar P^{ij}
+        \frac{\p}{\p y_i}
+        \frac{\p}{\p z_j}
+      }
+    f(y)g(z)
+  \right|_{y=z=x}$$
+则$\star$给出了$(X,P)$的形变量子化。
 %%%%%%%此处有图%%%%%55
+\index{Moyal product}
+\end{Example}
+把算子指数打开，该星积$*$的定义式可以显式地写为
+$$
+  f\star g
+=
+  \sum_{k=0}^{\infty}
+    \frac{\hbar^k}{k!}
+    \sum_{i_1,...,i_k
+          \atop
+          j_1,...,j_k
+         }
+      P^{i_1j_1}P^{i_2j_2}\cdots P^{i_kj_k}
+      (\p_{i_1}\p_{i_2}\cdots\p_{i_k}f)
+      (\p_{j_1}\p_{j_2}\cdots\p_{j_k}g)
+$$
+容易验证如此定义的$\star$满足
+$$f\star g=fg+\frac{\hbar}{2}\{f,g\}+o(\hbar)$$
+我们只需要再验证$\star$满足结合律，证明如下：
+
+\begin{proof}直接将$(f\star g)\star h$暴力展开，
+对任意$m\geq 0$，计算$\hbar^m$的系数。
+
+为书写方便，引入一些记号：
+我们常用$I=(i_1,i_2,...,i_s)$来表示长度为$s$的多重指标，其中
+$i_1,...,i_s$取值于$\{1,2,...,n\}$，它们之中允许相同、计次序。
+设多重指标$|I|=|J|=s$，其中$I=(i_1,...,i_s)$以及$J=(j_1,...,j_s)$，
+则对于$f\in C^{\infty}(X)$，我们记
+$$\p_I(f):=\p_{i_1}\cdots\p_{i_s}f$$
+$$P^{I;J}:=P^{i_1j_1}P^{i_2j_2}\cdots P^{i_sj_s}$$
+以及，对于任意两个多重指标$|S|=s$以及$|T|=t$（允许$s\neq t$），
+则记$ST$为$S$与$T$的顺次连接（文字乘法），其长度为$s+t$。
+对于多重指标$S$，视它为序列，则可以考虑其子列$S'$，记为$S'\subseteq S$.
+
+在此记号下，$\star$的显式表达式为
+$$f\star g=\sum_{k=0}^{\infty}\frac{\hbar^k}{k!}
+\sum_{|I|=|J|=k}P^{I,J}(\p_If)(\p_Jg)$$
+
+现在，我们直接计算$(f\star g)\star h$的$\hbar^m$-系数，
+计算过程中会反复用到“算两次”的组合技巧：
+\begin{eqnarray*}
+     [(f\star g)\star h]_m
+&=&
+     \sum_{l=0}^m
+       \big(
+         (f\star g)_l\star h
+       \big)_{m-l}\\
+&=&
+     \sum_{l=0}^m
+       \frac{1}{l!}
+       \sum_{|I|=|J|=l}
+         P^{I;J}
+         \big(
+           (\p_If\p_Jg)\star h
+         \big)_{m-l}\\
+&=&
+     \sum_{l=0}^m
+       \frac{1}{l!(m-l)!}
+       \sum_{|I|=|J|=l}
+         \sum_{|R|=|S|=m-l}
+           P^{IR;JS}
+           \p_R(\p_If\p_Jg)(\p_Sh)\\
+&=&
+     \sum_{l=0}^m
+       \frac{1}{l!(m-l)!}
+       \sum_{|I|=|J|=l}
+         \sum_{|R|=m-l}
+           \sum_{R_1\subseteq R\atop R_2:=R\setminus R_1}
+             (\p_{IR_1}f)(\p_{JR_2}g)
+             \sum_{|S|=m-l}
+               P^{IR;JS}(\p_Sh)\\
+&=&
+     \sum_{l=0}^m
+       \frac{1}{l!(m-l)!}
+       \sum_{|I|=|J|=l}
+         \sum_{u+v=m-l}
+           \sum_{|R_1|=u\atop|R_2|=v}
+             \frac{(m-l)!}{u!v!}
+             (\p_{IR_1}f)(\p_{JR_2}g)
+             \sum_{|S|=m-l}
+               P^{IR;JS}(\p_Sh)\\
+&=&
+     \sum_{0\leq i,k\leq m\atop i+k\geq m}
+       \frac{1}{(m-i)!(i+k-m)!(m-k)!}
+       \sum_{|I|=i\atop |K|=k}
+         \sum_{|J_1|=m-k\atop |J_2|=m-i}
+           P^{IJ_2;J_1K}
+           (\p_If)(\p_{J_1J_2}g)(\p_Kh)
+\end{eqnarray*}
+容易观察出上式关于$f,h$的对称性：
+$$[(f\star g)\star h]_m=(-1)^m[(h\star g)\star f]_m$$
+此外也容易验证（也是从显式表达式直接看出来）
+$$(f\star g)_m=(-1)^m(g\star f)_m$$
+从而有
+\begin{eqnarray*}
+     [(f\star g)\star h]_m
+&=&
+     (-1)^m[(h\star g)\star f]_m\\
+&=&
+     (-1)^m
+     \sum_{l=0}^m
+       [(h\star g)_l\star f]_{m-l}\\
+&=&
+     (-1)^m
+     \sum_{l=0}^m
+       (-1)^{m-l}(-1)^l
+       [f\star(g\star h)_l]_{m-l}\\
+&=&
+    [f\star (g\star h)]_m
+\end{eqnarray*}
+从而证毕。
+\end{proof}
+
+{\color{blue}
+（似乎有更简单的方法？某些算子指数的性质直接秒掉？）
+}%%%%见笔记%%%？
+
+特别地，考虑经典力学“位置-动量”的经典情形：
+
+\begin{example}（Moyal-Weyl代数）
+%when $\bbR^m=\bbR^{2n}$ even dimension,
+ 
+设$X=\bbR^{2n}$为偶数维线性空间，
+坐标函数记为$\{x^1,...,x^n;p_1,...,p_n\}$，配以标准的泊松结构
+$$P=\sum_{i=1}^n\pp{x^i}\wedge\pp{p_i}$$
+则Moyal星积$\star$给出了
+$$A:=\bbR[x^1,...,x^n;p_1,...,p_n;\hbar]$$
+上的Weyl代数结构$\star:A\times A\to A$.
+%then Moyal product becomes Weyl algebra and
+%$$[x^i,p_j]=x^i*p_j-p_j*x^i=\hbar\delta_{ij}$$
 \end{example}
 
+例如，在此情形下，容易计算出
+$$x^i\star p_j=x^ip_j+\frac{1}{2}\hbar\delta^i_j$$
 
-%%%%见笔记%%%
+接下来再看另一个重要例子：李代数对偶$\mfkg^*$
+（见例子\ref{李代数的对偶空间的泊松结构-example}）
+的形变量子化。我们引入量子包络代数：
 
+\begin{definition}（量子包络代数）
+%$\mfkg$ Lie algebra, %$X=\mfkg^*$,$P_{\mfkg}$，
 
-\begin{example}
-when $\bbR^m=\bbR^{2n}$ even dimension, $\{x^1,...,x^n;p_1,...,p_n\}$,
-$$P=\sum\pp{p_i}\wedge\pp{x^i}$$
-then Moyal product becomes Weyl algebra and
-$$[x^i,p_j]=x^i*p_j-p_j*x^i=\hbar\delta_{ij}$$
-\end{example}
-
-\begin{example}
-$\mfkg$ Lie algebra, $X=\mfkg^*$,$P_{\mfkg}$，
-consider (quantum) universal evenloping algebra
-$$\mcalU_{\hbar}(\mfkg)=\bigoplus_{k}\mfkg^{k}[[\hbar]]\big/\sim$$
-
-the relation is
+设$\mfkg$为（有限维）李代数，
+我们定义$\mfkg$的\textbf{量子包络代数}
+（quantum enveloping algebra）
+\index{quantum enveloping algebra\kong 量子包络代数}
+$\mcalU_{\hbar}(\mfkg)$如下：
+%consider (quantum) universal enveloping algebra
+$$\mcalU_{\hbar}(\mfkg):=
+\bigoplus_{k\geq 0}\mfkg^{\ten k}\fps{\hbar}\big/\sim$$
+其中关系$\sim$为以下生成的理想：
+%the relation is
 $$a\ten b-b\ten a=\hbar[a,b]$$
+\end{definition}
+这里的$\hbar$依然是形式变元。
+注意到若$\hbar=0$时，得到的是对称张量代数$\Sym(\mfkg)$；
+$\hbar=1$时则为熟知的泛包络代数$\mcalU(\mfkg)$.
 
-$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=1}$$
-is universal evenloping algebra.
+%$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=1}$$
+%is universal enveloping algebra.
+%$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=0}=\Sym\updot(\mfkg)$$
 
-$$\mcalU_{\hbar}(\mfkg)\big|_{\hbar=0}=\Sym\updot(\mfkg)$$
+关于量子包络代数$\mcalU_{\hbar}(\mfkg)$，
+有以下\textbf{PBW定理}，我们述而不证：
 
-\end{example}
+\begin{prop}（量子包络代数的PBW定理）
 
-PBW theorem:
-there is a vector space bijienction:
-$$\Phi:\Sym\updot(\mfkg)[[\hbar]]\to\mcalU_{\hbar}(\mfkg)$$
+对于李代数$\mfkg$，则以下映射为线性双射：
+\begin{eqnarray*}
+\Phi:\Sym(\mfkg)\fps{\hbar} &\to& \mcalU_{\hbar}(\mfkg)\\
+x_1\ten\cdots\ten x_k &\mapsto&
+\frac{1}{k!}
+\sum_{\sgm\in S_k}
+x_{\sgm(1)}\ten\cdots\ten x_{\sgm(k)}          
+\end{eqnarray*}
+\end{prop}
+
+%PBW theorem:
+%there is a vector space bijienction:
 %%%%PBW%%%55
+%$\mcalU_{\hbar}(\mfkg)$ has a natural associative algebra
+%structure by $\ten$, $\Phi^{*}(\ten)$ 
+%defines an associative algebra structure on
 
-$\mcalU_{\hbar}(\mfkg)$ has a natural associative algebra
-structure by $\ten$, $\Phi^{*}(\ten)$ defines an associative algebra structure on
-$\Sym\updot(\mfkg)[[\hbar]]=:\mcalO(X)[[\hbar]]$
+\begin{proof}
+$Phi$的良定性显然，双射性的证明从略。
+\end{proof}
 
-Check: it is a deformation quantization of $(X,P_{\mfkg})$.
+注意量子包络代数$\mcalU_{\hbar}(\mfkg)$
+的乘法结构由张量运算$\ten$给出，
+考虑PBW定理中的$\Phi$，则$\Phi^*(\ten)$
+给出了$\Sym(\mfkg)\fps{\hbar}$的乘法结构，
+易知该乘法是结合的（需要check，不过比较容易），并且与
+$\Sym(\mfkg)\fps{\hbar}$上通常的乘法（张量运算$\ten$）不同。
+我们将结合代数$(\Sym(\mfkg)\fps{\hbar},\Phi^*(\ten))$记作
+$\mcalO(X)\fps{\hbar}$，其中$X=\mfkg^*$为李代数$\mfkg$的辛流形。
+
+注意到$\mfkg\cong(\mfkg^*)^*$中的元素可视为$X=\mfkg^*$上的线性函数，
+于是$\Sym(\mfkg)$中的元素为$X$中的多项式函数，
+这也是我们将$\Sym(\mfkg)$记为$\mcalO(X)$的原因。
+我们只考虑$X=\mfkg^*$上的多项式函数。
+
+%$\Sym\updot(\mfkg)[[\hbar]]=:\mcalO(X)[[\hbar]]$
+%Check: it is a deformation quantization of $(X,P_{\mfkg})$.
+
+\begin{Example}（李代数对偶$\mfkg^*$的形变量子化）
+
+对于（有限维）李代数$\mfkg$，记号承上，则
+$\mcalO(X)\fps{\hbar}$为泊松流形
+$(X,P_{\mfkg})$的形变量子化，
+其星积为$\Phi^{-1}(\ten)$.
+\end{Example}
+
+\begin{proof}
+记$\star:=\Phi^*(\ten)$，首先$\star$的结合性容易验证：
+对于任意的$x,y,z\in\Sym(\mfkg)$，则
+\begin{eqnarray*}
+(x\star y)\star z=\Phi^{-1}(\Phi(x)\ten\Phi(y))\star z
+=\Phi^{-1}\big((\Phi(x)\ten\Phi(y))\ten \Phi(z)\big)
+\end{eqnarray*}
+从而由$(\mcalU_{\hbar}(\mfkg),\ten)$的结合性，立得$\star$的结合性。
+
+接下来只需验证对任意$x,y\in\Sym(\mfkg)$，成立
+$$x\star y=xy+\frac{\hbar}{2}\{x,y\}_{P_{\mfkg}}+o(\hbar)$$
+
+现在对于任意$x,y\in\Sym(\mfkg)$，不妨
+$$x=x_1x_2\cdots x_p\quad y=y_1y_2\cdots y_q$$
+（对称张量积省略之，无非是函数的乘法）
+我们先考虑$p=q=1$的简单情形。此时
+\begin{eqnarray*}
+     x\star y
+&=&
+     \Phi^{-1}
+     (x\ten y)\\
+&=&
+     \Phi^{-1}
+     \left(
+       \frac{x\ten y+ y\ten x}{2}
+      +\frac{x\ten y- y\ten x}{2}
+     \right)\\
+&=&
+    xy+\Phi^{-1}
+    \left(
+      \frac{\hbar[x,y]}{2}
+    \right)\\
+&=&
+    xy+\frac{\hbar}{2}\{x,y\}_{P_{\mfkg}}
+\end{eqnarray*}
+从而得证（其中最后一个等式利用了性质
+\ref{李代数对偶-李括号与泊松括号的关系-prop}）。
+
+接下来看一般情形。
+{\color{red}
+一般情形待补
+\color{blue}
+估计还是暴力组合恒等式}
+\end{proof}
 
 \begin{example}
 $M$ is a mfd, $X=T^*M$ cotangent bundle, which admits a sympletic structure
@@ -586,10 +869,274 @@ $$e^{v_1}*_{\hbar}e^{v_2}=e^{\hbar\omg(v_1,v_2)}e^{v_1+v_2}$$
 check: associativity and it is a D.Q. of Poisson bracket
 $$\{e^{v_1},e^{v_2}\}=\omg(v_1,v_2)e^{v_1+v_2}$$
 
-
-
 \end{example}
 
 
+%%%%%%%%%%%%%2019.3.25第五周 Mon%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%李思回来了，好久不见%%%%%%%%%%%%%%%%%%%%%555
+
+Recall: $(X,P)$ Poisson mfd.$P=P^{ij}\p_i\wedge\p_j$
+Poisson bivector, $[P,P]=0$
+
+Poisson algebra $(C^{\infty}(X),\{,\}_P)$.
+
+Deformation quantization: find a quantized algebra,
+construct an associative product 
+$$C^{\infty}(X)\times C^{\infty}(X)\to\bbR\fps{\hbar}$$
+$$f\star g=\sum_{n=0}^{\infty}\hbar^n B_n(f,g)$$
+where $B_n$ is bi-differential operator.
+such that $\{,\}_P$ means the first order non-commutativity:
+$$f\star g-g\star f=\hbar\{f,g\}_P+o(\hbar)$$
+
+Canonical Quantization:$X=\bbR^n$,$\omg=\sum_{i=1}^n\td x^i\wedge\td p_i$.
+$$\omg^{-1}=P=\sum_i\p_{x^i}\wedge\p_{p_i}$$
+then (Moyal-Weyl)
+$$\{x^i,p_j\}=\delta_{j}^i\Longrightarrow[x^i,p_j]=\hbar\delta_j^i$$
+
+We discuss 2 problems:
+
+(1) Existence of deformations - quantization on any poisson manifolds.
+(Contsevich's solution using non-commutative method)
+
+(2) Deformation quantization on symplectic manifold
+$\rightsquigarrow$ Atiyah-Singer index Theorem.
+
+noncommutative \big/quantum field theory method.
+
+\section{Kontsevich量子化公式}
+\textbf{Kontsevich's formula}
+
+Let $X\subseteq\bbR^{2n}$, $P=\sum_{i,j}P^{ij}(x)\p_i\wedge\p_j$,
+where $P$ is Poisson tensor.
+
+Kontsevich gives an explicit formula:
+$$f\star_K g=\sum_{n\geq 0}\hbar^n B_n(f,g)$$
+as an quantization of $P$.
+
+$\Gamma$: a graph
+
+$\Gamma_0$: set of vertices of $\Gamma$
+
+$\Gamma_i$: set of edges/arrows of $\Gamma$
+
+(source,tail....)
+
+$e\in\Gamma_1$ is called a loop, if $s(e)=t(e)$
+
+$\{a,b\}$ is called a double arrow if $s(a)=s(b)$,$t(a)=t(b)$.
+
+%%%%%%%有一个简单例子，在笔记上%%%%%%%%%
+
+Given $n\geq 0$,m define $G_n$ to be the 
+set of graphs $\Gamma$ s.t.
+
+(1)$\Gamma_0=\{1,2,...,n\}\cup\{L,R\}$
+
+(2)$\Gamma_1=\{a_1,...,a_n;b_1,...,b_n\}$
+such that $s(a_i)=s(b_i)=i$
+
+(3) $\Gamma_1$ has no loops and double arrows.
+
+%%%%%%Ex2（一大堆图）%%%%%%
+\begin{definition}
+Let $\Gamma\in G_n$,we define 
+$$B_{\Gamma}(f,g)=
+    \sum
+      \prod_{k=1}^n
+      \left(
+        \prod_{a_m\atop t(a_m)=k}
+          \p_{a_m}
+        \prod_{b_l\atop t(b_l)=k}
+          \p_{b_l}
+        P^{a_kb_k'}
+      \right)
+      \left(
+        \prod_{a_m\atop t(a_m)=L}
+          \p_{a_m}
+        \prod_{b_l\atop t(b_l)=L}
+          \p_{b_l}
+        f
+      \right)
+      \left(
+        \prod_{a_m\atop t(a_m)=R}
+          \p_{a_m}
+        \prod_{b_l\atop t(b_l)=R}
+          \p_{b_l}
+        g
+      \right)
+$$
+a bi-differential operator .
+\end{definition}
+%%%%%%%%例子见笔记%%%%
 
 
+\begin{definition}
+$$B_n(f,g)=\sum_{\Gamma\in G_n}w_{\Gamma}B_{\Gamma}(f,g)$$
+where $w_{\Gamma}$ is defines as follows:
+
+consider hyperbolic plane $\bbH=\{\im z\geq 0\}$ with hyperbolic metric.
+$$\td s^2=\frac{\td x^2+\td y^2}{y^2}$$
+$\ell(p,q)$ is the geodesic connecting $p,q$. and $\fai(p,q)$ 
+be the angle from $\ell(p,q)$ to $\ell(p,\infty)$.
+$$\fai(p,q)=\arg\left(\frac{q-p}{q-\overline{p}}\right)$$
+%%%%%%%这个见笔记的图%%%%%%%%%%%%
+
+Let
+$$Comf_n(\bbH):=\{(p_1,...,p_n)\in\bbH|p_i\neq p_j\}$$
+For each arrow in $\Gamma$, 
+$$\fai_e:Conf_n(\bbH)\to\bbR$$
+$$\fai_e(p_1,...,p_n)\mapsto
+\fai{s(e),t(e)}$$
+\end{definition}
+
+\begin{definition}
+$$
+  w_{\gamma}=\frac{1}{2(\pi)^n}
+  \int_{Conf_n(\bbH)}
+    \wedge_{i=1}^n(\td\fai_{a_i}\wedge\td\fai_{b_i})
+$$
+check: it is convergent.
+\end{definition}
+
+\begin{thm}(Kontsevich)
+
+The formula
+$$f\star_{K}g=
+\sum_{n\geq 0}\hbar^n
+  B_n(f,g)=
+\sum_{n\geq 0}\hbar^n
+  \sum_{\Gamma\in G_n}w_{\Gamma}B_{\Gamma}(f,g)
+  $$
+gives a deformation quantization of $P$
+\end{thm}
+
+\begin{rem}
+if $P^{ij}$ is constant, then this is Moyal product.
+(也就是说，这是Moyal pruduct 的推广)
+结合性很不显然2333333
+
+以后会解释这个公式的来历。物理背景+非交换技术.... 
+\end{rem}
+
+index theorem:
+
+Symplectic case: $(X,\omg)$ symplectic mfd, 
+$P=\omg^{-1}$
+
+Fedosov: a single geometric way to get deformation quantization and the classification by 
+$$\omg_{\hbar}=-\omg+\hbar\omg_1+\hbar^2\omg_2+\cdots$$
+where 
+$$\omg_i\in H^2(X,\bbR)$$
+
+\begin{definition}
+ the trace map
+$$\tau: c^{\infty}(X)\to \bbR\Ls{\hbar}$$
+satisfying
+$$\tau(f\star g)=\tau(g\star f)$$
+$$\Longrightarrow \tau\in \HH^0(C^{\infty}(x)\fps{\hbar})$$
+
+Fedosov/Nest Tsygar: canonical trace
+
+such that
+$$\tau(f)=\frac{1}{(2\pi\hbar)^n}
+\int_X
+  \frac{\omg^n}{n!}
+  (f+O(\hbar))$$
+\end{definition}
+
+注意记号：
+$$\HH^i(A):=H^i(A,A^*)$$
+
+
+\begin{thm}(Fedosov/Nest-Tsygan)
+
+$$\tau(1)=\int_X e^{w_{\hbar}/\hbar}\Ahat(X)$$
+(algebraic index thm)
+where $\Ahat$ is the genus of $X$,
+$$\Ahat(X):=
+\det\nolimits^{1/2}\frac{R/2}{\sinh(R/2)}$$
+$R$ is the curvature of $T_X$.
+\end{thm}
+
+Goal: explain both 1 and 2 from
+
+non-commutative Hochschild theory
+
+quantum- field theory
+
+%%%%现在开始正课，刚才的故事讲完了%%%
+
+\section{量子场论基础}
+\textbf{Some basis of QFT}
+
+a physics system always consists of 
+$$\mcalS:\mcalE\to\bbR$$
+where $\mcalE$ is the space of field( of infinity dimension)
+
+$\mcalS$ : actional functional%作用量
+
+Classical physics:
+$$Cirt(\mcalS)=\{\delta s=0\}$$
+
+Quantum physics:
+$$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
+"path integral", $\theta$ is a function on $\mcalE$("observable"). 
+
+\begin{example}
+$$\mcalE= C^{\infty}(X)$$
+$$\mcalS[\fai]=\int_X|\nabla\fai|^2\quad\fai\in C^{\infty}(X)$$
+(scalar field theory)
+$$\delta\mcalS=0\Longrightarrow\Delta\fai=0$$
+\end{example}
+
+\begin{example}
+$$\mcalE=\{\text{connections on $E\to X$}\}$$
+$$F_A=\td A+\frac{1}{2}[A,A]$$
+curvature
+$$YM[A]=\int_XF_A\wedge*F_A$$
+is called Yang-Mills functional.
+\end{example}
+
+\begin{example}($\sigma$-module)
+$$\mcalE=map(\Sigma,X)$$
+...
+\end{example}
+
+\begin{example}(Gravity)
+$$\mcalE=\{\text{metrics on $X$}\}$$
+\end{example}
+以上是四种很经典的例子。
+
+Problem: How to construct 
+$$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
+
+We introduce a different method:BV method
+(Batalin-Vilkovisky)
+
+Philosophy: measure theory$\int_X\mapsto$ Homology theory.....
+
+Calculus 
+$$\int_X:\Omg_X\updot\to\bbR$$
+where $X$ is compact oriented manifold of dimension $n$,
+
+Observe:
+$$H^n_{DR}(X)=H^n(\Omg\updot,\td)\cong\bbR$$
+$$\int_X:\Omg^n\to H^n_{DR}\cong\bbR$$
+$$\alpha\mapsto[\alpha]$$
+
+$$\rightsquigarrow\int_X=H_{DR}^n$$
+$$(\Omg\updot(X),\td)\rightsquigarrow\text{measure}$$
+
+Question:how to $\int_X=H^n\quad n\to\infty$? 
+
+
+
+
+
+
+
+
+
+
+
+ 
