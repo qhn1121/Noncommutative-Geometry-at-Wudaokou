@@ -9,6 +9,7 @@
 \newtheorem{mydefinition}[mythm]{定义}
 \newtheorem{mynotation}[mythm]{记号}
 \newtheorem{example}[mythm]{例子}
+\newtheorem{PreImportantExample}[mythm]{重要例子}
 \newtheorem{rem}[mythm]{注记}
 \newtheorem{mycor}[mythm]{推论}
 \newtheorem{claim}[mythm]{断言}
@@ -58,6 +59,12 @@
   {\definecolor{shadecolor}{RGB}{\notationcolor}
     \begin{shaded}\begin{mynotation}}
   {\end{mynotation}\end{shaded}
+  \chapterbackgroundcolor}
+
+\newenvironment{Example}
+  {\definecolor{shadecolor}{RGB}{\examplecolor}
+    \begin{shaded}\begin{PreImportantExample}}
+  {\end{PreImportantExample}\end{shaded}
   \chapterbackgroundcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,11 +142,17 @@
 \newcommand*{\mfksp}{\mathfrak{sp}}
 
 \newcommand*{\bfk}{\boldsymbol{k}}
+\newcommand*{\bfu}{\boldsymbol{u}}
+\newcommand*{\bfv}{\boldsymbol{v}}
 
 \newcommand*{\Ahat}{\hat{A}}
 \newcommand*{\Bhat}{\hat{B}}
 \newcommand*{\Chat}{\hat{C}}
 \newcommand*{\Dhat}{\hat{D}}
+\newcommand*{\Ehat}{\hat{E}}
+\newcommand*{\Fhat}{\hat{F}}
+\newcommand*{\Ghat}{\hat{G}}
+\newcommand*{\Hhat}{\hat{H}}
 
 \newcommand*{\zbar}{\bar{z}}            %complex number
 \newcommand*{\wbar}{\bar{w}}
@@ -175,9 +188,11 @@
 \newcommand*{\updot}{^{\bullet}}
 \newcommand*{\wedgeform}{\bigwedge\nolimits^}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand*{\lbar}[1]{\overline{#1}}    %比较长的上横线
+
+\newcommand*{\fps}[1]{[\![#1]\!]}        %Formal power series形式幂级数
+\newcommand*{\Ls}[1]{(\!(#1)\!)}         %Laurent series     洛朗级数
 
 \newcommand*{\Choose}[2]
   {\left[{
@@ -218,9 +233,10 @@
 \DeclareMathOperator{\coker}{coker}   %co-kernel      余核
 \DeclareMathOperator{\HC}{HC}         %Hochschild Cyclic (co)homology
 \DeclareMathOperator{\HH}{HH}         %Hochschild (co)homology
-\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\DR}{DR}         %De-Rham
+\DeclareMathOperator{\Der}{Der}       %Derivation        导子
 \DeclareMathOperator{\End}{End}       %Endomorphism
-\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Inn}{Inn}       %Inner Derivation  内导子
 \DeclareMathOperator{\Inv}{Inv}
 \DeclareMathOperator{\per}{per}       %periodic cyclic complex
 \DeclareMathOperator{\PV}{PV}         %Polyvector field
@@ -239,16 +255,17 @@
 \DeclareMathOperator{\Mor}{Mor}       %Morphism
 \DeclareMathOperator{\Obj}{Obj}
 \DeclareMathOperator{\Sym}{Sym}       %Symmetry
-\DeclareMathOperator{\Ass}{Ass}
-\DeclareMathOperator{\Commu}{Commu}
-\DeclareMathOperator{\alg}{alg}
+\DeclareMathOperator{\Ass}{Ass}       %Associated Prime
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%以下是范畴论记号%%%%%%%%%%%%%%%%%%%%
-\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Commu}{\mathsf{Commu}}
+\DeclareMathOperator{\alg}{\mathsf{alg}}
+\DeclareMathOperator{\Mod}{\mathsf{Mod}}
 
 \newcommand*{\Modcat}[2]
-    {\underline{\Mod^{#1}_{#2}}}
+    {\Mod^{#1}_{#2}}
 \newcommand*{\Assalgcat}[2]
-    {\underline{\Ass\!\text{-}\!\alg^{#1}_{#2}}}
+    {\mathsf{Ass}\!\text{-}\!\alg^{#1}_{#2}}
 \newcommand*{\Commualgcat}[2]
-    {\underline{\Commu\!\text{-}\!\alg^{#1}_{#2}}} 
+    {\Commu\!\text{-}\!\alg^{#1}_{#2}} 
