@@ -290,7 +290,7 @@ $P\in\PV^2_X$满足$[P,P]=0$.
 %(geometry of classical mechanics)
 接下来看一些泊松流形的例子：
 
-\begin{example}（辛流形）
+\begin{Example}（由辛结构诱导的泊松结构）
 %if $(X,\omg)$ is a sympletic manifold,
 
 设$(X,\omg)$为辛流形，其中辛形式
@@ -303,7 +303,7 @@ $(\omg_{ij})_{1\leq i,j\leq n}$在$X$上处处可逆、反对称。
 $$\omg^{-1}:=\frac{1}{2}\omg^{ij}\p_i\wedge\p_j$$
 其中矩阵$(\omg^{ij}):=(\omg_{ij})^{-1}$.
 %is a Poisson bracket.where $(\omg^{ij}):=(\omg_{ij})^{-1}$
-\end{example}
+\end{Example}
 
 \begin{proof}
 我们只需验证雅可比恒等式
@@ -336,7 +336,7 @@ $$
 另一方面，由于$\td\omg=0$，从而有
 \begin{eqnarray*}
      0
-&=&   
+&=&
      \td(\omg_{ij}\td x^i\wedge\td x^j)\\
 &=&
      \pfrac{\omg_{ij}}{u^k}\td x^i\wedge\td x^j\wedge\td x^k\\
@@ -364,120 +364,94 @@ $$\td f+i_{X_f}(\omg)=0$$
 于是，对于任意的$f,g\in C^{\infty}(X)$，
 辛结构$\omg$诱导的泊松括号满足
 $$\{f,g\}=\omg(X_f,X_g)$$
-以上是我们在经典力学中熟知的。
+以上是我们在经典力学中熟知的。下一个例子更“接近”经典力学：
 
+\begin{Example}（光滑流形余切丛上的典范辛结构）
 
-\begin{Example}（李代数的对偶）
-\label{李代数的对偶空间的泊松结构-example}
-%Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual,
-%$$[,]:\mfkg\times\mfkg\to\mfkg$$
-
-设$(\mfkg,[,])$为（有限维）李代数，考虑$X:=\mfkg^*$为其对偶，
-取$\{e^1,e^2,...,e^n\}$为$\mfkg$的一组基，
-$\{e_1,e_2,...,e_n\}$为$\mfkg^*$当中相应的对偶基。
-用$X^i$来表示$X=\mfkg^*$中的点在基$\{e_i\}$下的坐标。
-记李代数$\mfkg$的结构常数为
-$$[e^i,e^j]=C^{ij}_ke^k$$
-那么我们给出$X=\mfkg^*$的泊松张量如下：
-$$P_{\mfkg}=\frac{1}{2}X^kC^{ij}_ke_i\wedge e_j$$
-则$(X,P_{\mfkg})$为泊松流形。
-
-%then
-%$$P_{\mfkg}\in \mfkg\ten\wedgeform{2}\mfkg$$
-%(locally)
-%if $\{e^i\}$ is a basis of $\mfkg$, $\{e_i\}$ its dual,
-
-%then
-%$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
-%check: it satisfies Jacobi identity, i.e.
-%$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
+设$M$为$n$维光滑流形，$X:=T^*M$为$X$的余切丛，
+则定义$X$上的\textbf{典范$1$-形式}$\theta\in\Omg^1_X$为：
+$$\theta|_{(\bfx,\bfp)}(\bfv,\xi):=\langle \bfp,\bfv\rangle$$
+其中$(\bfx,\bfp)\in X$，
+$(\bfv,\xi)\in T_{(\bfx,\bfp)}(X)$，
+以及$\bfv\in T_{\bfx}M$.
+记$X$上的$2$-形式
+$$\omg:=-\td\theta$$
+称$\omg$为$T^*M$上的\textbf{典范辛形式}。
 \end{Example}
 
-\begin{proof}
-先考虑$P$的良定性。事实上，上述泊松张量可以内蕴地写成如下：
-对任意$\xi\in X=\mfkg^*$，以及$f,g\in C^{\infty}(\mfkg^*)$，
-$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([\td f,\td g])$$
-其中$\td f \in T_{\xi}^*\mfkg^*\cong(\mfkg^*)^*\cong\mfkg$.
-局部坐标下，记$\xi=X^ie_i$，则
+考虑$X=T^*M$的局部坐标$(x^1,x^2,...,x^n;p_1,p_2,...,p_n)$，其中
+$x^i$为$M$上的局部坐标。则容易知道典范$1$-形式
+$\theta$与典范辛形式$\omg$在该局部坐标下的表达式分别为
+$$\theta=\sum_{i=1}^np_i\td x^i$$
+$$\omg=\sum_{i=1}^n\td x^i\wedge\td p_i$$
+
+上述$\omg$给出了余切丛$T^*M$的辛流形结构，该辛结构诱导泊松结构，
+于是我们可以谈论$X=T^*M$上的泊松括号。
+
+\begin{rem}
+记号承上，则存在典范的线性同态
 \begin{eqnarray*}
-     \xi([\td f,\td g])
-&=&
-     \left\langle
-       X^ie_i
-     ,
-       [\pfrac{f}{X^j}e^j,\pfrac{g}{X^k}e^k]
-     \right\rangle\\
-&=&
-     X^iC^{ij}_k
-     \pfrac{f}{X^i}
-     \pfrac{g}{X^j}
+\fai:\Gamma(M,TM)&\to& C^{\infty}(X)\\
+\fai(\eta)|_{(\bfx,\bfp)}&=&\langle\bfp,\eta\rangle
 \end{eqnarray*}
-另一方面也容易验证上式右边也与以下相等：
-$$
-  \left\langle
-    \frac{1}{2}X^kC^{ij}_ke_i\wedge e_j
-  ,
-    \td f\wedge\td g
-  \right\rangle
-$$
-于是$P_{\mfkg}$良定（与局部坐标选取无关）。
-接下来验证它的确为泊松张量，局部坐标下暴力验证即可：注意到
-\begin{eqnarray*}
-     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
-=
-     P^{is}_{\mfkg}\pp{X^s}
-     \left(
-       X^tC_t^{jk}
-     \right)
-=
-     X^lC_l^{is}C_{s}^{jk}
-\end{eqnarray*}
-其中注意结构常数$C^{ij}_k$作为$X$上的函数，是常值的。
-对$i,j,k$轮换相加，有
-\begin{eqnarray*}
-     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
-    +P^{js}_{\mfkg}\pfrac{P^{ki}_{\mfkg}}{X^s}
-    +P^{ks}_{\mfkg}\pfrac{P^{ij}_{\mfkg}}{X^s}
-=
-     X^l
-     \left(
-       C^{is}_lC^{jk}_s
-      +C^{js}_lC^{ki}_s
-      +C^{ks}_lC^{ij}_s
-     \right)
-=0
-\end{eqnarray*}
-其中第二个等号是因为李代数$\mfkg$的雅可比恒等式。从而证毕。
-\end{proof}
+\label{切向量场视为余切丛上的光滑函数}
+\end{rem}
 
-如此通过李代数对偶得到的泊松流形称为线性泊松流形。
-容易知道，$(P^{ij}_{\mfkg})$
-可逆当且仅当$P_{\mfkg}$可由$X$上的辛结构诱导。
-%\begin{rem}
-%$P_{\mfkg}$ is not invertible $\iff$
-%$\mfkg^*$ is not sympletic.
-%\end{rem}
+即，通过“非常自然的方式”，将底流形$M$上的切向量场
+视为余切丛$X=T^*M$上的光滑函数。该线性同态可以自然延拓到
+切丛的对称张量丛的截面上：
+$$\fai:\Gamma(M,\Sym(TM))\to C^{\infty}(X)$$
+无非是“函数的相乘”而已。
 
-
-此外注意到，$\mfkg$中的向量$v$自然视为$X=\mfkg^*$上的线性函数:
-对任意$\xi\in X=\mfkg^*$，
-$$v(\xi):=\langle\xi,v\rangle$$
-在此意义下，$\mfkg$的基向量$e^i$即为$X$上的坐标函数$X^i$.
-
-\begin{prop}对于有限维李代数$\mfkg$，
-任意$u,v\in\mfkg$视为$X$上的线性函数，则泊松括号满足
-$$\{u,v\}_{P_{\mfkg}}=[u,v]$$
-其中右端$[,]$为$\mfkg$中的李括号。
-\label{李代数对偶-李括号与泊松括号的关系-prop}
+\begin{prop}
+设$M$为光滑流形，考虑$X=T^*M$上的典范辛结构，
+$\fai:\Gamma(M,TM)\to C^{\infty}(X)$同上，
+则对$M$的任意的切向量场$f,g$，成立
+$$\fai([f,g])=-\{\fai(f),\fai(g)\}$$
+其中左边“$[,]$”为$M$上的切向量场的李括号，
+右边$\{,\}$为辛流形$X$上的泊松括号。
 \end{prop}
 
 \begin{proof}
-用泊松张量$P_{\mfkg}$的内蕴定义
-$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([f,g])$$
-来看，是显然的。
+局部坐标下验证。取$X$的局部坐标$(x^1,...,x^n;p_1,...,p_n)$，记
+$$f=f^i\pp{x^i},\quad g=g^i\pp{x^i}$$
+则容易知道
+$$\fai(f)=f^i(\bfx)p_i,\quad \fai(g)=g^i(\bfx)p_i$$
+注意$X$上的泊松张量
+$$P=\pp{x^i}\wedge\pp{p_i}$$
+因此有
+\begin{eqnarray*}
+     \{\fai(f),\fai(g)\}
+&=&
+     \Langle
+       \pp{x^s}\wedge\pp{p_s}
+     ,
+       \td\fai(f)\wedge\td\fai(g)
+     \Rangle\\
+&=&
+     \left(
+       g^s\pfrac{f^i}{x^s}
+      -f^s\pfrac{g^i}{x^s}
+     \right)
+     p_i
+\end{eqnarray*}
+而另一方面，
+$$[f,g]=
+\left(
+  f^s\pfrac{g^i}{x^s}
+ -g^s\pfrac{f^i}{x^s}
+\right)\pp{x^i}
+\quad\Longrightarrow\quad
+\fai([f,g])=
+\left(
+  f^s\pfrac{g^i}{x^s}
+ -g^s\pfrac{f^i}{x^s}
+\right)p_i
+$$
+从而$\fai([f,g])=-\{\fai(f),\fai(g)\}$，得证。
 \end{proof}
 
-\section{Moyal星积}
+\section{形变量子化与Moyal星积}
 %\textbf{Star product:}
 我们开始讨论形变量子化。
 {\color{red}（此处应该写几句introduction）}
@@ -507,7 +481,7 @@ $$f\star g-g\star f=\hbar\{f,g\}\mod\hbar^2$$
 %$$\frac{1}{2}(f*g-g*f)=\hbar\{f,g\}\mod\hbar^2$$
 %上一行被注掉的公式为笔记中的原始记载，我怀疑这个公式不对
 
-(3) 对于每个$k\geq 0$，$C_k$为双微分算子： 
+(3) 对于每个$k\geq 0$，$C_k$为双微分算子：
 $$C_k(f,g)=\sum_{\max{\{l,m\}}=k}
 C_k^{i_1...i_l;j_1,...,j_m}(\p_{i_1}...\p_{i_l}f)
 (\p_{j_1}...\p_{j_m}g)$$
@@ -536,9 +510,21 @@ $$C_0(f,g)=fg$$
 以及我们不妨
 $$C_1(f,g)=\{f,g\}$$
 
-一个基本的问题是，给定一个泊松流形$(X,P)$，
-它的形变量子化是否一定存在？
-回答此问题之前，我们先来看一些例子。
+一个基本的问题是，任给一个泊松流形$(X,P)$，
+它的形变量子化是否一定存在？答案是肯定的，
+Kontsevich用非交换几何的工具给出了证明——这也是我们在后文要详细介绍的。
+对于辛流形的特殊情况，形变量子化的存在性相对比较容易证明，
+据说辛流形的形变量子化与Atiyah-Singer指标定理有联系。
+
+%(1) Existence of deformations - quantization on any poisson manifolds.
+%(Kontsevich's solution using non-commutative method)
+
+%(2) Deformation quantization on symplectic manifold
+%$\rightsquigarrow$ Atiyah-Singer index Theorem.
+
+%noncommutative \big/quantum field theory method.
+
+我们先来看一些例子：
 
 %Fundamental Question:
 %[Dewilde lemote 1983] for a Poisson manifold, is there $\exists$
@@ -687,7 +673,7 @@ $$(f\star g)_m=(-1)^m(g\star f)_m$$
 
 \begin{example}（Moyal-Weyl代数）
 %when $\bbR^m=\bbR^{2n}$ even dimension,
- 
+
 设$X=\bbR^{2n}$为偶数维线性空间，
 坐标函数记为$\{x^1,...,x^n;p_1,...,p_n\}$，配以标准的泊松结构
 $$P=\sum_{i=1}^n\pp{x^i}\wedge\pp{p_i}$$
@@ -700,6 +686,322 @@ $$A:=\bbR[x^1,...,x^n;p_1,...,p_n;\hbar]$$
 
 例如，在此情形下，容易计算出
 $$x^i\star p_j=x^ip_j+\frac{1}{2}\hbar\delta^i_j$$
+
+事实上，星积$\star$可以抽象为如下的代数版本
+（不一定要局限于辛流形上的函数）：
+
+\begin{definition}（代数版本的形变量子化）
+
+设$(A,\cdot,\{,\})$为\textbf{泊松代数}（Poisson algebra）
+\index{Poisson algebra\kong 泊松代数}，
+即$(A,\cdot)$为含幺交换结合$K$-代数，
+$(A,\{,\})$为李代数，并且满足莱布尼茨法则
+$$\{f,gh\}=\{f,g\}h+g\{f,h\}$$
+称$K\fps{\hbar}$-双线性映射
+$$\star :A\fps{\hbar}\times A\fps{\hbar}\to A\fps{\hbar}$$
+为$(A,\cdot,\{,\})$的形变量子化，
+如果$\star$满足结合性，以及对任意$f,g\in A$，
+$$f\star g=fg+\frac{\hbar}{2}\{f,g\}+o(\hbar)$$
+\end{definition}
+
+明显地，$A$的几何背景为辛流形上的光滑函数环。
+
+\begin{notation}
+%$M$ is a mfd, $X=T^*M$ cotangent bundle, which admits a sympletic structure
+设$M$为光滑流形，$X=T^*M$为$M$的余切丛，配以典范辛结构
+$$\omg=\sum\td x^i\wedge\td p_i$$
+我们记
+$$\mcalO(X)=\Gamma(M,\Sym(TM))$$
+注意$\mcalO(X)$中的元素可视为$X$上的光滑函数
+（见注记\ref{切向量场视为余切丛上的光滑函数}），
+它配以$X$上的泊松括号构成泊松代数。
+我们考虑$(\mcalO(X),\{,\})$的形变量子化。
+\end{notation}
+
+{\color{red}
+（这里有坑待填）}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\color{gray}
+%$f\in\mcalO(X)$,
+%$$f=f(x,p)=\sum_{I}f_I(X)p^{I}(X)$$
+%and $\omg^{-1}$ Poisson bracket $\{,\}$ is a Poisson algebra.
+
+$D_X$ differential operator on $X$.
+$\exists$ filtration by its order
+$$D_X^{(0)}\subseteq D_X^{(1)}\subseteq...\subseteq D_X^{(m)}...$$
+(consists of $\sum A^{i_1...i_k}\p_{i_1}...\p_{i_k}$)
+
+Check:
+$$[D_X^{(m)},D_X^{(n)}]\subseteq D_X^{(m+n-1)}$$
+$$D_X^{(m)}\circ D_X^{(n)}\subseteq D_X^{(m+n)}$$
+$$(D_X,\circ)\text{ is associative}$$
+
+%\begin{definition}
+$$D_X^{\hbar}:=\bigoplus_{m\geq 0}D^{(k)}_X\hbar^m\subseteq D_X[\hbar]$$
+is a $\bbR[\hbar]$-module
+%\end{definition}
+
+HW: what is $k$ in Def above?????
+
+(such that $D_X^{\hbar}$ can be understood as a Deformation Quantization of
+$(\mcalO(X),\{,\})$ over ring $\bbR[\hbar]$.)
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+我们再看一个重要例子：
+
+%\begin{example}(Quantum torus)
+%Let $V=\bbZ^n$ ,define the algebra
+%$$e^{V}:=\{e^v|v\in V\}$$
+%with
+%$$e^{v_1}e^{v_2}:=e^{v_1+v_2}$$
+%then
+%$e^V$ is algebra function on $(\bbC^*)^n=\bbC[z_1^{\pm 1},...,z_n^{\pm 1}]$.
+%Let $\omg:V\times V\to \bbZ$ skew symmetric bilinear form
+%$$e^{v_1}*_{\hbar}e^{v_2}=e^{\hbar\omg(v_1,v_2)}e^{v_1+v_2}$$
+%check: associativity and it is a D.Q. of Poisson bracket
+%$$\{e^{v_1},e^{v_2}\}=\omg(v_1,v_2)e^{v_1+v_2}$$
+%\end{example}
+
+\begin{Example}（环面泊松代数）
+
+考虑如下的$\bbR$-代数
+$$e^V:=\Span_{\bbR}\{e^{\bfv}|\bfv=(v^1,...,v^n)\in\bbZ^n\}$$
+并且定义乘法
+$$e^{\bfv_1}e^{\bfv_2}=e^{\bfv_1+\bfv_2}$$
+则$(e^V,\cdot)$为含幺交换结合$\bbR$-代数。
+令$\omg$为$\bbR^n$上的一个反对称双线性型，定义
+\begin{eqnarray*}
+\{,\}:e^V\times e^V &\to& e^V\\
+\{e^{\bfv_1},e^{\bfv2}\}&\mapsto&\omg(\bfv_1,\bfv_2)e^{\bfv_1+\bfv_2}
+\end{eqnarray*}
+则$(e^V,\cdot,\{\})$构成泊松代数。
+\end{Example}
+
+\begin{proof}
+只需验证$\{,\}$的雅可比恒等式与莱布尼茨法则。
+对任意$x,y,z\in\bbZ^n$，有
+\begin{eqnarray*}
+     \{e^x,e^ye^z\}
+&=&
+     \{e^x,e^{y+z}\}\\
+&=&
+     \omg(x,y+z)e^{x+y+z}\\
+&=&
+     \omg(x,y)e^{x+y}e^z
+    +\omg(x,z)e^{x+z}e^y\\
+&=&
+     \{e^x,e^y\}e^z
+    +e^y\{e^x,e^z\}
+\end{eqnarray*}
+从而莱布尼茨法则成立。再看雅可比恒等式：
+\begin{eqnarray*}
+     \{\{e^x,e^y\},e^z\}
+&=&
+     \omg(x,y)\{e^{x+y},e^z\}\\
+&=&
+     \omg(x,y)\omg(x+y,z)e^{x+y+z}\\
+&=&
+     [\omg(x,y)\omg(y,z)-\omg(z,x)\omg(x,y)
+     ]e^{x+y+z}
+\end{eqnarray*}
+之后对$x,y,z$轮换求和，立刻得到。
+\end{proof}
+
+注意到这里的$\omg$可以是退化的。考虑标准环面
+$$T^{n}:=\{(z_1,z_2,...,z_n)\in\bbC^n|z_i\in\bbC,\,|z_i|=1\}$$
+则注意到$e^V$中的元素可以通过以下方式视为$T^n$上的光滑函数：
+\begin{eqnarray*}
+e^V&\inj&C^{\infty}(T^n)\\
+\bfv=(v_1,v_2,...,v_n)
+&\mapsto&
+z_1^{v_1}z_2^{v_2}\cdots z_n^{v_n}
+\end{eqnarray*}
+
+容易知道$e^V$在函数空间$C^{\infty}(T^n)$当中稠密，这是
+傅里叶展开的标准技术。
+%，从而再由一些泛函的手段，
+%可将$\{,\}$唯一延拓到$C^{\infty}(T^n)\times C^{\infty}(T^n)$上。
+%（说得可能不对？？）
+
+我们考虑泊松代数$(e^V,\{,\})$的形变量子化：
+
+\begin{prop}
+记号承上，记$\hbar$为形式变元，
+定义$\bbR\fps[\hbar]$-双线性映射
+\begin{eqnarray*}
+\star : e^V\fps{\hbar}\times e^V\fps{\hbar} &\to& e^V\fps{\hbar}\\
+e^x\star e^y &:=& e^{\hbar\omg(x,y)}e^{x+y}
+\end{eqnarray*}
+则$(e^V\fps{\hbar},\star)$为$(e^V,\{,\})$的形变量子化。
+\end{prop}
+\begin{proof}
+这几乎是显然的。首先对任意$x,y,z\in\bbZ^n$，有
+\begin{eqnarray*}
+     (e^x\star e^y)\star e^z
+=
+     e^{\hbar\omg(x,y)}e^{x+y}\star e^z
+=
+     e^{\hbar(\omg(x,y)+\omg(x+y,z))}e^{x+y+z}
+\end{eqnarray*}
+再直接验证$e^x\star(e^y\star e^z)$即可证明结合性。
+
+另一方面，
+\begin{eqnarray*}
+     e^x\star e^y
+&=&
+     e^{\hbar\omg(x,y)}e^{x+y}\\
+&=&
+     e^{x+y}+\frac{1}{2}\hbar\omg(x,y)e^{x+y}+o(\hbar)\\
+&=&
+     e^xe^y+\frac{1}{2}\hbar\{e^x,e^y\}+o(\hbar)
+\end{eqnarray*}
+从而证毕。
+\end{proof}
+
+
+%%%%%%%%%%%%%2019.3.25第五周 Mon%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%李思回来了，好久不见%%%%%%%%%%%%%%%%%%%%%555
+
+%Recall: $(X,P)$ Poisson mfd.$P=P^{ij}\p_i\wedge\p_j$
+%Poisson bivector, $[P,P]=0$
+
+%Poisson algebra $(C^{\infty}(X),\{,\}_P)$.
+
+%Deformation quantization: find a quantized algebra,
+%construct an associative product
+%$$C^{\infty}(X)\times C^{\infty}(X)\to\bbR\fps{\hbar}$$
+%$$f\star g=\sum_{n=0}^{\infty}\hbar^n B_n(f,g)$$
+%where $B_n$ is bi-differential operator.
+%such that $\{,\}_P$ means the first order non-commutativity:
+%$$f\star g-g\star f=\hbar\{f,g\}_P+o(\hbar)$$
+
+%Canonical Quantization:$X=\bbR^n$,$\omg=\sum_{i=1}^n\td x^i\wedge\td p_i$.
+%$$\omg^{-1}=P=\sum_i\p_{x^i}\wedge\p_{p_i}$$
+%then (Moyal-Weyl)
+%$$\{x^i,p_j\}=\delta_{j}^i\Longrightarrow[x^i,p_j]=\hbar\delta_j^i$$
+
+%We discuss 2 problems:
+
+
+
+
+\section{重要例子：李代数的对偶}
+
+本节给出泊松流形的重要例子：
+有限维李代数的对偶空间上的典范泊松结构——
+并且探讨其形变量子化。
+
+\begin{Example}（李代数的对偶）
+\label{李代数的对偶空间的泊松结构-example}
+%Let $\mfkg$ is a Lie algebra, $X:=\mfkg^*$ its dual,
+%$$[,]:\mfkg\times\mfkg\to\mfkg$$
+
+设$(\mfkg,[,])$为（有限维）李代数，考虑$X:=\mfkg^*$为其对偶，
+取$\{e^1,e^2,...,e^n\}$为$\mfkg$的一组基，
+$\{e_1,e_2,...,e_n\}$为$\mfkg^*$当中相应的对偶基。
+用$X^i$来表示$X=\mfkg^*$中的点在基$\{e_i\}$下的坐标。
+记李代数$\mfkg$的结构常数为
+$$[e^i,e^j]=C^{ij}_ke^k$$
+那么我们给出$X=\mfkg^*$的泊松张量如下：
+$$P_{\mfkg}=\frac{1}{2}X^kC^{ij}_ke_i\wedge e_j$$
+则$(X,P_{\mfkg})$为泊松流形。
+
+%then
+%$$P_{\mfkg}\in \mfkg\ten\wedgeform{2}\mfkg$$
+%(locally)
+%if $\{e^i\}$ is a basis of $\mfkg$, $\{e_i\}$ its dual,
+
+%then
+%$$P_{\mfkg}=X^kC^{ij}_k\p_i\wedge\p_j$$
+%check: it satisfies Jacobi identity, i.e.
+%$(\mfkg^*,P_{\mfkg})$ is a Possion manifold.
+\end{Example}
+
+\begin{proof}
+先考虑$P$的良定性。事实上，上述泊松张量可以内蕴地写成如下：
+对任意$\xi\in X=\mfkg^*$，以及$f,g\in C^{\infty}(\mfkg^*)$，
+$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([\td f,\td g])$$
+其中$\td f \in T_{\xi}^*\mfkg^*\cong(\mfkg^*)^*\cong\mfkg$.
+局部坐标下，记$\xi=X^ie_i$，则
+\begin{eqnarray*}
+     \xi([\td f,\td g])
+&=&
+     \left\langle
+       X^ie_i
+     ,
+       [\pfrac{f}{X^j}e^j,\pfrac{g}{X^k}e^k]
+     \right\rangle\\
+&=&
+     X^iC^{ij}_k
+     \pfrac{f}{X^i}
+     \pfrac{g}{X^j}
+\end{eqnarray*}
+另一方面也容易验证上式右边也与以下相等：
+$$
+  \left\langle
+    \frac{1}{2}X^kC^{ij}_ke_i\wedge e_j
+  ,
+    \td f\wedge\td g
+  \right\rangle
+$$
+于是$P_{\mfkg}$良定（与局部坐标选取无关）。
+接下来验证它的确为泊松张量，局部坐标下暴力验证即可：注意到
+\begin{eqnarray*}
+     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
+=
+     P^{is}_{\mfkg}\pp{X^s}
+     \left(
+       X^tC_t^{jk}
+     \right)
+=
+     X^lC_l^{is}C_{s}^{jk}
+\end{eqnarray*}
+其中注意结构常数$C^{ij}_k$作为$X$上的函数，是常值的。
+对$i,j,k$轮换相加，有
+\begin{eqnarray*}
+     P^{is}_{\mfkg}\pfrac{P^{jk}_{\mfkg}}{X^s}
+    +P^{js}_{\mfkg}\pfrac{P^{ki}_{\mfkg}}{X^s}
+    +P^{ks}_{\mfkg}\pfrac{P^{ij}_{\mfkg}}{X^s}
+=
+     X^l
+     \left(
+       C^{is}_lC^{jk}_s
+      +C^{js}_lC^{ki}_s
+      +C^{ks}_lC^{ij}_s
+     \right)
+=0
+\end{eqnarray*}
+其中第二个等号是因为李代数$\mfkg$的雅可比恒等式。从而证毕。
+\end{proof}
+
+如此通过李代数对偶得到的泊松流形称为线性泊松流形。
+容易知道，$(P^{ij}_{\mfkg})$
+可逆当且仅当$P_{\mfkg}$可由$X$上的辛结构诱导。
+%\begin{rem}
+%$P_{\mfkg}$ is not invertible $\iff$
+%$\mfkg^*$ is not sympletic.
+%\end{rem}
+
+
+此外注意到，$\mfkg$中的向量$v$自然视为$X=\mfkg^*$上的线性函数:
+对任意$\xi\in X=\mfkg^*$，
+$$v(\xi):=\langle\xi,v\rangle$$
+在此意义下，$\mfkg$的基向量$e^i$即为$X$上的坐标函数$X^i$.
+
+\begin{prop}对于有限维李代数$\mfkg$，
+任意$u,v\in\mfkg$视为$X$上的线性函数，则泊松括号满足
+$$\{u,v\}_{P_{\mfkg}}=[u,v]$$
+其中右端$[,]$为$\mfkg$中的李括号。
+\label{李代数对偶-李括号与泊松括号的关系-prop}
+\end{prop}
+
+\begin{proof}
+用泊松张量$P_{\mfkg}$的内蕴定义
+$$\{f,g\}_{P_{\mfkg}}(\xi)=\xi([f,g])$$
+来看，是显然的。
+\end{proof}
 
 接下来再看另一个重要例子：李代数对偶$\mfkg^*$
 （见例子\ref{李代数的对偶空间的泊松结构-example}）
@@ -739,7 +1041,7 @@ $\hbar=1$时则为熟知的泛包络代数$\mcalU(\mfkg)$.
 x_1\ten\cdots\ten x_k &\mapsto&
 \frac{1}{k!}
 \sum_{\sgm\in S_k}
-x_{\sgm(1)}\ten\cdots\ten x_{\sgm(k)}          
+x_{\sgm(1)}\ten\cdots\ten x_{\sgm(k)}
 \end{eqnarray*}
 \end{prop}
 
@@ -747,11 +1049,11 @@ x_{\sgm(1)}\ten\cdots\ten x_{\sgm(k)}
 %there is a vector space bijienction:
 %%%%PBW%%%55
 %$\mcalU_{\hbar}(\mfkg)$ has a natural associative algebra
-%structure by $\ten$, $\Phi^{*}(\ten)$ 
+%structure by $\ten$, $\Phi^{*}(\ten)$
 %defines an associative algebra structure on
 
 \begin{proof}
-$Phi$的良定性显然，双射性的证明从略。
+$\Phi$的良定性显然，双射性的证明从略。
 \end{proof}
 
 注意量子包络代数$\mcalU_{\hbar}(\mfkg)$
@@ -824,84 +1126,7 @@ $$x=x_1x_2\cdots x_p\quad y=y_1y_2\cdots y_q$$
 估计还是暴力组合恒等式}
 \end{proof}
 
-\begin{example}
-$M$ is a mfd, $X=T^*M$ cotangent bundle, which admits a sympletic structure
-$$\omg=\sum\td x^i\wedge\td p_i$$
-$$\mcalO(X)=\Gamma(M,\Sym\updot(TM))$$
-\end{example}
 
-$f\in\mcalO(X)$,
-$$f=f(x,p)=\sum_{I}f_I(X)p^{I}(X)$$
-and $\omg^{-1}$ Poisson bracket $\{,\}$ is a Poisson algebra.
-
-$D_X$ differential operator on $X$.
-$\exists$ filtration by its order
-$$D_X^{(0)}\subseteq D_X^{(1)}\subseteq...\subseteq D_X^{(m)}...$$
-(consists of $\sum A^{i_1...i_k}\p_{i_1}...\p_{i_k}$)
-
-Check:
-$$[D_X^{(m)},D_X^{(n)}]\subseteq D_X^{(m+n-1)}$$
-$$D_X^{(m)}\circ D_X^{(n)}\subseteq D_X^{(m+n)}$$
-$$(D_X,\circ)\text{ is associative}$$
-
-
-\begin{definition}
-$$D_X^{\hbar}:=\bigoplus_{m\geq 0}D^{(k)}_X\hbar^m\subseteq D_X[\hbar]$$
-is a $\bbR[\hbar]$-module
-\end{definition}
-
-HW: what is $k$ in Def above?????
-
-(such that $D_X^{\hbar}$ can be understood as a Deformation Quantization of
-$(\mcalO(X),\{,\})$ over ring $\bbR[\hbar]$.
-
-\begin{example}(Quantum torus)
-
-Let $V=\bbZ^n$ ,define the algebra
-$$e^{V}:=\{e^v|v\in V\}$$
-with
-$$e^{v_1}e^{v_2}:=e^{v_1+v_2}$$
-then
-$e^V$ is algebra function on $(\bbC^*)^n=\bbC[z_1^{\pm 1},...,z_n^{\pm 1}]$.
-
-Let $\omg:V\times V\to \bbZ$ skew symmetric bilinear form
-$$e^{v_1}*_{\hbar}e^{v_2}=e^{\hbar\omg(v_1,v_2)}e^{v_1+v_2}$$
-check: associativity and it is a D.Q. of Poisson bracket
-$$\{e^{v_1},e^{v_2}\}=\omg(v_1,v_2)e^{v_1+v_2}$$
-
-\end{example}
-
-
-%%%%%%%%%%%%%2019.3.25第五周 Mon%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%李思回来了，好久不见%%%%%%%%%%%%%%%%%%%%%555
-
-Recall: $(X,P)$ Poisson mfd.$P=P^{ij}\p_i\wedge\p_j$
-Poisson bivector, $[P,P]=0$
-
-Poisson algebra $(C^{\infty}(X),\{,\}_P)$.
-
-Deformation quantization: find a quantized algebra,
-construct an associative product 
-$$C^{\infty}(X)\times C^{\infty}(X)\to\bbR\fps{\hbar}$$
-$$f\star g=\sum_{n=0}^{\infty}\hbar^n B_n(f,g)$$
-where $B_n$ is bi-differential operator.
-such that $\{,\}_P$ means the first order non-commutativity:
-$$f\star g-g\star f=\hbar\{f,g\}_P+o(\hbar)$$
-
-Canonical Quantization:$X=\bbR^n$,$\omg=\sum_{i=1}^n\td x^i\wedge\td p_i$.
-$$\omg^{-1}=P=\sum_i\p_{x^i}\wedge\p_{p_i}$$
-then (Moyal-Weyl)
-$$\{x^i,p_j\}=\delta_{j}^i\Longrightarrow[x^i,p_j]=\hbar\delta_j^i$$
-
-We discuss 2 problems:
-
-(1) Existence of deformations - quantization on any poisson manifolds.
-(Contsevich's solution using non-commutative method)
-
-(2) Deformation quantization on symplectic manifold
-$\rightsquigarrow$ Atiyah-Singer index Theorem.
-
-noncommutative \big/quantum field theory method.
 
 \section{Kontsevich量子化公式}
 \textbf{Kontsevich's formula}
@@ -927,7 +1152,7 @@ $\{a,b\}$ is called a double arrow if $s(a)=s(b)$,$t(a)=t(b)$.
 
 %%%%%%%有一个简单例子，在笔记上%%%%%%%%%
 
-Given $n\geq 0$,m define $G_n$ to be the 
+Given $n\geq 0$,m define $G_n$ to be the
 set of graphs $\Gamma$ s.t.
 
 (1)$\Gamma_0=\{1,2,...,n\}\cup\{L,R\}$
@@ -939,7 +1164,7 @@ such that $s(a_i)=s(b_i)=i$
 
 %%%%%%Ex2（一大堆图）%%%%%%
 \begin{definition}
-Let $\Gamma\in G_n$,we define 
+Let $\Gamma\in G_n$,we define
 $$B_{\Gamma}(f,g)=
     \sum
       \prod_{k=1}^n
@@ -976,14 +1201,14 @@ where $w_{\Gamma}$ is defines as follows:
 
 consider hyperbolic plane $\bbH=\{\im z\geq 0\}$ with hyperbolic metric.
 $$\td s^2=\frac{\td x^2+\td y^2}{y^2}$$
-$\ell(p,q)$ is the geodesic connecting $p,q$. and $\fai(p,q)$ 
+$\ell(p,q)$ is the geodesic connecting $p,q$. and $\fai(p,q)$
 be the angle from $\ell(p,q)$ to $\ell(p,\infty)$.
 $$\fai(p,q)=\arg\left(\frac{q-p}{q-\overline{p}}\right)$$
 %%%%%%%这个见笔记的图%%%%%%%%%%%%
 
 Let
 $$Comf_n(\bbH):=\{(p_1,...,p_n)\in\bbH|p_i\neq p_j\}$$
-For each arrow in $\Gamma$, 
+For each arrow in $\Gamma$,
 $$\fai_e:Conf_n(\bbH)\to\bbR$$
 $$\fai_e(p_1,...,p_n)\mapsto
 \fai{s(e),t(e)}$$
@@ -1015,17 +1240,17 @@ if $P^{ij}$ is constant, then this is Moyal product.
 (也就是说，这是Moyal pruduct 的推广)
 结合性很不显然2333333
 
-以后会解释这个公式的来历。物理背景+非交换技术.... 
+以后会解释这个公式的来历。物理背景+非交换技术....
 \end{rem}
 
 index theorem:
 
-Symplectic case: $(X,\omg)$ symplectic mfd, 
+Symplectic case: $(X,\omg)$ symplectic mfd,
 $P=\omg^{-1}$
 
-Fedosov: a single geometric way to get deformation quantization and the classification by 
+Fedosov: a single geometric way to get deformation quantization and the classification by
 $$\omg_{\hbar}=-\omg+\hbar\omg_1+\hbar^2\omg_2+\cdots$$
-where 
+where
 $$\omg_i\in H^2(X,\bbR)$$
 
 \begin{definition}
@@ -1069,7 +1294,7 @@ quantum- field theory
 \section{量子场论基础}
 \textbf{Some basis of QFT}
 
-a physics system always consists of 
+a physics system always consists of
 $$\mcalS:\mcalE\to\bbR$$
 where $\mcalE$ is the space of field( of infinity dimension)
 
@@ -1080,7 +1305,7 @@ $$Cirt(\mcalS)=\{\delta s=0\}$$
 
 Quantum physics:
 $$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
-"path integral", $\theta$ is a function on $\mcalE$("observable"). 
+"path integral", $\theta$ is a function on $\mcalE$("observable").
 
 \begin{example}
 $$\mcalE= C^{\infty}(X)$$
@@ -1107,7 +1332,7 @@ $$\mcalE=\{\text{metrics on $X$}\}$$
 \end{example}
 以上是四种很经典的例子。
 
-Problem: How to construct 
+Problem: How to construct
 $$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
 
 We introduce a different method:BV method
@@ -1115,7 +1340,7 @@ We introduce a different method:BV method
 
 Philosophy: measure theory$\int_X\mapsto$ Homology theory.....
 
-Calculus 
+Calculus
 $$\int_X:\Omg_X\updot\to\bbR$$
 where $X$ is compact oriented manifold of dimension $n$,
 
@@ -1127,7 +1352,247 @@ $$\alpha\mapsto[\alpha]$$
 $$\rightsquigarrow\int_X=H_{DR}^n$$
 $$(\Omg\updot(X),\td)\rightsquigarrow\text{measure}$$
 
-Question:how to $\int_X=H^n\quad n\to\infty$? 
+Question:how to $\int_X=H^n\quad n\to\infty$?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%2019.3.26星期二 第五周%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%讲一些物理想法
+
+\textbf{Feynman Diagram}
+
+recall:
+$$D^n_{DR}=\int_X:\Omg\updot(X)\to\bbR$$
+what if $n\to \infty$?
+
+Different philosophy:
+
+Let $\PV\updot(X):=\Gamma(X,\wedgeform{*}TX)$,
+$\Omg$ be a volume form($n$-form) on $X$,then
+$$f\mapsto\int_Xf\Omg$$
+
+$$\PV^k(X)\xra{\dashv\Omg}\Omg^{n-k}(X)$$
+is a 1-1 coorespondence.
+%%%%缩并%%%%%%%
+
+$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
+$$\yc\leftrightarrow \td$$
+this "$\yc$" is called "divergence operator w.r.t the volume form".
+when $x\in\PV^1(X)$,check: $\yc(v)=\div_{\Omg}v$.
+
+$$\td^2=0\Rightarrow\yc^2=0$$
+
+$$\PV^n\xra{\yc}\PV^{n-1}\xra{\yc}\PV^{n-2}\to\cdots$$
+$\yc$ is also called "BV operator".
+
+$$\int_{BV}:=H_0(\yc)$$
+good news: $0$ doesn't depend on $\dim(X)$!
+(so, we can $n\to\infty$???)
+
+\textbf{Difficulty}: when $n\to\infty$, we need to construct $\yc$.
+
+\begin{example}
+Let $X$ is a manifold of finite dimension, $\dim X=n$, 
+local coordinate $\{x^1,...,x^n\}$ in $\mcalU\subseteq X$, 
+volume form
+$$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge\td x^n$$
+
+$$\Omg\updot(\mcalU):=C^{\infty}(\mcalU)[\td x^1,...,\td x^n]$$
+where $\td x^i\wedge\td x^j=-\td x^j\wedge\td x^i$.
+
+$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\p_1,...,\p_n]$
+ where $\p^i\wedge\p^j=-\p^j\wedge\p^i$.
+\end{example}
+
+introduce grassman variables $\theta_1,...,\theta_n$,
+($\theta _i\cong \p_i$)
+
+define 
+$$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\theta_1,...,\theta_n]$$
+
+%%%%%%%非交换的微积分%%%%%%%%
+
+\begin{prop}
+$$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge \td x^n$$
+$$\PV=C^{\infty}(u)[\theta_1,...,\theta_n]$$
+then
+
+$$\yc_{\Omg}=\sum_{i}\pp{x^i}\pp{\theta_i}
+-\sum_{i}\p_if(x)\pp{\theta_i}$$
+
+(Odd Laplacian)
+(这是BV算子的等价定义。。。)
+\end{prop}
+
+\begin{proof}
+%笔记里找
+\end{proof}
+
+
+\begin{definition}
+Given $\yc_{\Omg}$(BV operator), we define
+$$\{,\}:\PV\times\PV\to\P$$
+$$\{\alpha,\beta\}:=
+\yc_{\Omg}(\alpha\wedge\beta)-(\yc_{\Omg}\alpha)\wedge\beta-
+(-1)^{|\alpha|}\alpha\wedge\yc_{\Omg}\beta$$
+the failure of $\yc_{\Omg}$ being a derivation. 
+\end{definition}
+Check: $\{,\}$ is a Schouten-Nijenhuis bracket(up to sign).
+(independent of the choice of $f(x)$)
+
+In particular,$\{,\}$ is independent of choice of $\Omg$.
+
+\textbf{Quantization}
+
+$$\{,\}\xra{?}\yc_{\Omg}$$
+这个过程与量子化的过程是一样的？？WTF？？
+
+\textbf{Feymann Diagram}
+\begin{example}
+$X=\bbR$，
+$$\Omg=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\td x$$
+$$\int:\bbR[x]\to\bbR$$
+$$g\mapsto\int_{\bbR}g\Omg$$
+
+$\PV=\bbR[x,\theta]$, and 
+$$\yc_{\Omg}=\pp{x}\pp{\theta}-x\pp{\theta}$$
+%符号可能不对，小心check
+
+$$\int_{BV}:\bbR[x,\theta]\mapsto H^0(\yc_{\Omg})$$
+
+if $g=g(x)$, then $\yc_{\Omg}g=0$. Let $[g]$ be the 
+$\yc_{\Omg}$- homology class,
+$$\yc_{\Omg}(x^{m-1}\Omg)
+=(m-1)x^{m-2}
+-x^m$$
+$$\Rightarrow [x^m]=(m-1)[x^{m-2}]$$
+so,
+$$
+[x^m]=
+\left\{
+  \begin{array}{cc}
+    0  &  m \text{ is odd}\\
+    (2k-1)!![1]  & m=2k
+  \end{array}
+\right.
+$$
+
+so,
+$$\int_{\bbR}x^{2k}\Omg=
+(2k-1)!!\int_{\bbR}\Omg=(2k-1)!!$$
+
+\end{example}
+
+introduce the operator 
+$$\mcalU:=
+  e^{\frac{1}{2}\pp{x}\pp{x}}:
+  \bbR[x,\theta]\to\bbR[x,\theta]
+$$
+
+\begin{lemma}
+$$\yc_{\Omg}=\mcalU^{-1}(-x\pp{\theta})\mcalU$$
+\end{lemma}
+\begin{proof}
+use the formula
+$$e^ABe^{-A}=e^{\ad_A}B$$
+then
+$$\yc_{\Omg}=\pp{x}\pp{\theta}-x\pp{\theta}
+$$
+$$A=-\frac{1}{2}\pp{x}\pp{x}$$
+$$B=-x\pp{\theta}$$
+then 
+$$e^ABe^{-A}=\pp{x}\pp{\theta}$$
+where $[A,[A,B]]=0$.
+\end{proof}
+
+so,
+$$\mcalU\circ\yc_{\Omg}=(-x\pp{\theta})\circ\mcalU$$
+
+so,
+$$\mcalU:(\bbR[x,\theta,\yc_{\Omg}])\to
+(\bbR[x,m\theta],-x\pp{\theta})$$
+is a co-chain map.
+
+$$H\updot(\bbR[x,\theta],-x\pp{\theta})$$
+$$\bbR[x]\theta\xra{-x\pp{\theta}}\bbR[x]$$
+$$g\mapsto -xg(0)$$
+$H^{-1}=0$,$H^0=\bbR$.
+
+$$\mcalU[g(x)]_{\yc_{\Omg}}=[\mcalU(g)(x)]_{-x\pp{\theta}}
+=[\mcalU(g)(0)]_{-x\pp{\theta}}
+=\mcalU(g)(0)[1]$$
+
+so, 
+$$\int_{\bbR}g(x)\Omg=\mcalU(g)(0)=
+e^{\frac{1}{2}\pp{x}\pp{x}}|_{x=0}g(x)$$
+
+More generally, check:
+$$\int_{\bbR}g(x+a)\Omg=
+e^{\frac{1}{2}\pp{x}\pp{x}}|_{x=a}g(x)$$
+
+
+\begin{example}
+Consider the integral 
+$$
+  \int_{\bbR}
+    e^{(-\frac{1}{2}x^2+\frac{1}{3!}x^3)/\hbar}
+    \frac{\td x}{\sqrt{2\pi\hbar}}
+$$
+this integral is not convergent.... how to deal with it?
+
+(1)Change the integration Contour inside $\bbC$
+%%%%%%%Contour%%%%%%%
+(Airy function)
+
+(2)We consider only the asymptotic series
+$$
+  \sum_{n\geq 0}\frac{1}{n!}
+    \int
+      \left(
+        \frac{\lmd x^3}{3!\hbar}^n
+      \right)
+      e^{-\frac{1}{2}x^2/\hbar}
+      \frac{\td x}{\sqrt{2\pi\hbar}}
+$$
+
+$$\yc_{Omg}=\hbar\pp{x}\pp{\theta}-x\pp{\theta}$$
+$$\mcalU_{\hbar}=e^{\frac{\hbar}{2}\pp{x}\pp{x}}$$
+then
+
+%%%%%%%%微积分%%%%%%%%%
+introduce graph with cubic vertex, 
+
+each edge: we put $\hbar\pp{a}\pp{a}$
+
+each point: we put $\frac{\lmd a^3}{3!\hbar}$
+
+$$\omg_{\gamma}(a)$$
+by the above rule.
+
+%%%%%%这又是什么图%%%%%%%
+\end{example}
+
+\begin{thm}(Feymann graph formula)
+
+this integration is
+$$
+   \int_{\bbR}
+     e^{(-\frac{1}{2}x^2+\frac{\lmd}{3}(x+a)^3)/\hbar}
+     \frac{\td x}{\sqrt{2\pi\hbar}}
+=
+   \sum_{\Gamma:\text{trivalent graphs}}
+     \frac{w_{\Gamma}(a)}
+          {|\text{Aut}(\gamma)|}
+=
+   \sum
+$$
+\end{thm}
+\begin{proof}
+check.
+\end{proof}
+
+In general, consider
 
 
 
@@ -1137,6 +1602,3 @@ Question:how to $\int_X=H^n\quad n\to\infty$?
 
 
 
-
-
- 
