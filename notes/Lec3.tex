@@ -553,6 +553,7 @@ $$(f\star g)(x):=
 则$\star$给出了$(X,P)$的形变量子化。
 %%%%%%%此处有图%%%%%55
 \index{Moyal product}
+\label{Moyal星积-def}
 \end{Example}
 把算子指数打开，该星积$*$的定义式可以显式地写为
 $$
@@ -827,9 +828,10 @@ z_1^{v_1}z_2^{v_2}\cdots z_n^{v_n}
 
 我们考虑泊松代数$(e^V,\{,\})$的形变量子化：
 
-\begin{prop}
+\begin{prop}（量子环面）%Quantum tori
+
 记号承上，记$\hbar$为形式变元，
-定义$\bbR\fps[\hbar]$-双线性映射
+定义$\bbR\fps{\hbar}$-双线性映射
 \begin{eqnarray*}
 \star : e^V\fps{\hbar}\times e^V\fps{\hbar} &\to& e^V\fps{\hbar}\\
 e^x\star e^y &:=& e^{\hbar\omg(x,y)}e^{x+y}
@@ -1127,122 +1129,599 @@ $$x=x_1x_2\cdots x_p\quad y=y_1y_2\cdots y_q$$
 \end{proof}
 
 
+\section{间奏：Kontsevich量子化公式}
+%\textbf{Kontsevich's formula}
 
-\section{Kontsevich量子化公式}
-\textbf{Kontsevich's formula}
+本节我们介绍Kontsevich的著名结果：任何泊松流形$(X,P)$
+都存在形变量子化；并且星积$\star$可以显式地构造出。
+我们只介绍结果（星积$\star$的具体构造），暂不给出证明。
 
-Let $X\subseteq\bbR^{2n}$, $P=\sum_{i,j}P^{ij}(x)\p_i\wedge\p_j$,
-where $P$ is Poisson tensor.
+%Let $X\subseteq\bbR^{2n}$, $P=\sum_{i,j}P^{ij}(x)\p_i\wedge\p_j$,
+%where $P$ is Poisson tensor.
+%Kontsevich gives an explicit formula:
+%$$f\star_K g=\sum_{n\geq 0}\hbar^n B_n(f,g)$$
+%as an quantization of $P$.
 
-Kontsevich gives an explicit formula:
-$$f\star_K g=\sum_{n\geq 0}\hbar^n B_n(f,g)$$
-as an quantization of $P$.
+为描述Kontsevich的量子化公式，
+我们需要一些图论组合的准备：
 
-$\Gamma$: a graph
+\begin{definition}（带标记的有向图）
 
-$\Gamma_0$: set of vertices of $\Gamma$
+（1）带标记的有向图是指形如$(\Gamma_0,\Gamma_1,\veps)$的三元组，其中
+$\Gamma_0,\Gamma_1$为任意集合，
+$\veps:\Gamma_1\to \Gamma_0\times \Gamma_0$.
 
-$\Gamma_i$: set of edges/arrows of $\Gamma$
+（2）对于带标记的有向图$\Gamma=(\Gamma_0,\Gamma_1,\veps)$，
+我们称$\Gamma_0$为$\Gamma$的顶点集，
+$\Gamma_1$为$\Gamma$的边集；对于$e\in \Gamma_1$，定义
+\begin{eqnarray*}
+s(e):=\pi_1\circ\veps(e)\\
+t(e):=\pi_2\circ\veps(e)
+\end{eqnarray*}
+分别称之为$e$的\textbf{始点}（source）与\textbf{终点}（tail），其中
+$\pi_1,\pi_2:\Gamma_0\times \Gamma_0\to \Gamma_0$为典范的投影映射。
+\end{definition}
 
-(source,tail....)
+%$\Gamma$: a graph
+%$\Gamma_0$: set of vertices of $\Gamma$
+%$\Gamma_i$: set of edges/arrows of $\Gamma$
+%(source,tail....)
+组合意义明显，但要注意它与图论当中的“有向图”有细微区别。
+例如对于$\Gamma_0=\{X,Y,Z\}$，$\Gamma_1=\{a,b\}$，以下两个图
+$$
+  \xymatrix{
+    &X\ar[dl]_{a}  \ar[dr]^b
+    &
+  \\
+     Y
+    &
+    &Z
+  }
+\quad
+  \xymatrix{
+    &X\ar[dl]_{b}  \ar[dr]^a
+    &
+  \\
+     Y
+    &
+    &Z
+  }
+$$
+并不相同（它们的$\veps$不相同）。
 
-$e\in\Gamma_1$ is called a loop, if $s(e)=t(e)$
+我们再引入一些图论的概念。对于$e\in \Gamma_1$，
+如果$s(e)=t(e)$，则称$e$为\textbf{闭路}（loop）；
+对于$e_1,e_2\in\Gamma_1$，如果$s(e_1)=s(e_2)$并且
+$t(e_1)=t(e_2)$，则称$\Gamma_0$的子集${e_1,e_2}$为\textbf{双箭头}（double arrow）。
+类似地可以定义“多箭头”。
 
-$\{a,b\}$ is called a double arrow if $s(a)=s(b)$,$t(a)=t(b)$.
+%$e\in\Gamma_1$ is called a loop, if $s(e)=t(e)$
+%$\{a,b\}$ is called a double arrow if $s(a)=s(b)$,$t(a)=t(b)$.
 
 %%%%%%%有一个简单例子，在笔记上%%%%%%%%%
 
-Given $n\geq 0$,m define $G_n$ to be the
-set of graphs $\Gamma$ s.t.
+\begin{notation}
+对于非负整数$n$，我们记$G_n$为满足以下条件的
+带标记的有向图$\Gamma=(\Gamma_0,\Gamma_1,\veps)$构成的集合：
 
-(1)$\Gamma_0=\{1,2,...,n\}\cup\{L,R\}$
+（1）$\Gamma_0=\{1,2,...,n\}\sqcup\{L,R\}$，
+其中$L,R$为形式变元；
 
-(2)$\Gamma_1=\{a_1,...,a_n;b_1,...,b_n\}$
-such that $s(a_i)=s(b_i)=i$
+（2）$\Gamma_1=\{a_1,...,a_n;b_1,...,b_n\}$，并且对任意$q\leq i\leq n$，
+都有$s(a_i)=s(b_i)=i$；
 
-(3) $\Gamma_1$ has no loops and double arrows.
+（3）图$\Gamma$当中不含有回路，不含有双箭头。
+\end{notation}
 
+例如，集合$G_0$当中只有一个元素$(\Gamma_0,\Gamma_1,\veps)$，其中
+$\Gamma_0=\{L,R\}$，$\Gamma_1=\varnothing$，$\veps=\varnothing$；
+也就是说，只有$L,R$两个顶点，没有边。
+
+再比如，集合$G_1$当中有两个元素，如下：
+$$
+  \xymatrix{
+    &1\ar[dl]_{a_1}  \ar[dr]^{b_1}
+    &
+  \\
+     L
+    &
+    &R
+  }
+\quad
+   \xymatrix{
+    &1\ar[dl]_{b_1}  \ar[dr]^{a_1}
+    &
+  \\
+     L
+    &
+    &R
+  }
+$$
+
+再例如，以下三个带标记的有向图都是$G_2$当中的元素：
+$$
+  \xymatrix{
+    &1  \ar[ld]_{a_1}  \ar[rrd]_{b_1}
+    &2  \ar[lld]^{a_2}  \ar[rd]^{b_2}
+    &
+  \\
+     L
+    &
+    &
+    &R
+  }
+\quad
+  \xymatrix{
+    &1  \ar[ld]_{a_1}  \ar[r]^{b_1}
+    &2  \ar[lld]^{a_2}  \ar[rd]^{b_2}
+    &
+  \\
+     L
+    &
+    &
+    &R
+  }
+\quad
+  \xymatrix{
+    &1  \ar[ld]_{b_1}  \ar@/^/[r]^{a_1}
+    &2  \ar@/^/[l]^{b_2}  \ar@/^1.3pc/[lld]^{a_2}
+    &
+  \\
+     L
+    &
+    &
+    &R
+  }
+$$
+容易知道$G_2$当中有$(3\times 2)^2=36$个元素，在此不一一列举。
+一般地，$G_n$的元素个数为
+$$|G_n|=\big[n(n+1)\big]^n$$
+
+现在，考虑泊松流形$(X,P)$，其中泊松张量$P$再局部坐标下为
+$$P=P^{ij}\pp{u^i}\wedge\pp{u^j}$$
+给定$\Gamma\in G_n$，我们定义如下的$n$阶双微分算子：
+
+%Given $n\geq 0$,m define $G_n$ to be the
+%set of graphs $\Gamma$ s.t.
+%(1)$\Gamma_0=\{1,2,...,n\}\cup\{L,R\}$
+%(2)$\Gamma_1=\{a_1,...,a_n;b_1,...,b_n\}$
+%such that $s(a_i)=s(b_i)=i$
+%(3) $\Gamma_1$ has no loops and double arrows.
 %%%%%%Ex2（一大堆图）%%%%%%
+
 \begin{definition}
-Let $\Gamma\in G_n$,we define
-$$B_{\Gamma}(f,g)=
-    \sum
+%Let $\Gamma\in G_n$,we define
+
+对于$N$维泊松流形$(X,P)$，
+以及$\Gamma\in G_n$，定义$C^{\infty}(X)$上的$n$阶双微分算子
+$$B_{\Gamma}:C^{\infty}(X)\times C^{\infty}(X)\to C^{\infty}(X)$$
+如下：对任意$f,g\in C^{\infty}(X)$，在局部坐标下，
+\begin{eqnarray*}
+    B_{\Gamma}(f,g)
+&=&
+    \left[
       \prod_{k=1}^n
       \left(
-        \prod_{a_m\atop t(a_m)=k}
+        \prod_{\{m|t(a_m)=k\}}
           \p_{a_m}
-        \prod_{b_l\atop t(b_l)=k}
+        \prod_{\{l|t(a_l)=k\}}
           \p_{b_l}
-        P^{a_kb_k'}
+        P^{a_kb_k}
       \right)
+    \right]\\
+& &
       \left(
-        \prod_{a_m\atop t(a_m)=L}
+        \prod_{\{m|t(a_m)=L\}}
           \p_{a_m}
-        \prod_{b_l\atop t(b_l)=L}
+        \prod_{\{l|t(b_l)=L\}}
           \p_{b_l}
         f
       \right)
       \left(
-        \prod_{a_m\atop t(a_m)=R}
+        \prod_{\{m|t(a_m)=R\}}
           \p_{a_m}
-        \prod_{b_l\atop t(b_l)=R}
+        \prod_{\{l|t(b_l)=R\}}
           \p_{b_l}
         g
       \right)
-$$
-a bi-differential operator .
+\end{eqnarray*}
+%a bi-differential operator .
 \end{definition}
 %%%%%%%%例子见笔记%%%%
 
+这个公式的表述方式不太像人话。粗俗地说，
+图$\Gamma$的顶点$m\in\{1,2,...,m\}$被视为泊松张量的分量$P^{a_mb_m}$，
+图$\Gamma$的边（$\Gamma_1$）中的元素视为张量求和指标。
+如果有一条边$a_l$（切转：$b_l$）指向顶点$m$，
+那么我们对$P^{a_mb_m}$求偏导$\p_{a_l}$（切转：$\p_{b_l}$）；
+如果有边$a_m$指向顶点$L$，那么我们对函数$f\in C^{\infty}(X)$求偏导$\p_{a_m}$……
 
-\begin{definition}
-$$B_n(f,g)=\sum_{\Gamma\in G_n}w_{\Gamma}B_{\Gamma}(f,g)$$
-where $w_{\Gamma}$ is defines as follows:
+我们不妨举例说明一下：
 
-consider hyperbolic plane $\bbH=\{\im z\geq 0\}$ with hyperbolic metric.
+\begin{example}考虑带标记的有向图$\Gamma\in G_4$如下：
+$$
+  \xymatrix{
+     3 \ar[rd]_{a_3}  \ar@/_/[dd]_{b_3}
+    &
+    &4 \ar[ll]_{a_4}  \ar[ld]^{b_4}
+    &
+  \\
+    &1 \ar[ld]^{a_1}  \ar[rr]_{b_1}
+    &
+    &2 \ar@/_4pc/[ulll]_{a_2}  \ar[ld]^{b_2}
+  \\
+     L
+    &
+    &R
+    &
+  }
+$$
+那么双微分算子$B_{\Gamma}$的表达式为：
+对任意$f,g\in C^{\infty}(X)$，
+
+$$
+  B_{\Gamma}(f,g)
+=
+  (\p_{a_3}P^{a_1b_1})
+  (\p_{{b_1}}\p_{b_4}{P^{a_2b_2}})
+  (\p_{a_2}\p_{a_4}{P^{a_3b_3}})
+  (P^{a_4b_4})
+  (\p_{{a_1}}\p_{b_3}{f})
+  (\p_{b_2}{g})
+$$
+
+注意上式右边服从爱因斯坦求和约定，
+$a_1,...,a_4;b_1,...,b_4$为求和指标。
+\end{example}
+
+具体的操作如下：首先看顶点$1$，考察哪些箭头（边）指向$1$，
+发现只有箭头$a_3$指向$1$，于是写下字符串
+“$(\p_{a_3}P^{a_1b_1})$”；
+之后考察顶点$2$，发现$b_2,b_4$指向该点，于是紧接着写下字符串
+“$(\p_{{b_1}}\p_{b_4}{P^{a_2b_2}})$”……之后一直这么做下去，
+注意到顶点$L,R$分别对应$f,g$.
+
+再举一例:
+\begin{example}设带标记的有向图$\Gma,\Gma'\in G_3$依次为如下：
+$$
+  \xymatrix{
+     & 1 \ar[ddl]^{a_1}      \ar@/^/[dr]^{b_1}
+     &
+   \\
+       2 \ar@/^/[ur]^{b_2}   \ar[d]_{a_2}
+     &
+     & 3 \ar@/_/[lld]^{a_3}  \ar[d]^{b_3}
+   \\
+       L
+     &
+     & R
+  }
+\quad\qquad
+  \xymatrix{
+     & 1 \ar@/_/[dl]_{a_1}      \ar[dr]_{b_1}
+     &
+   \\
+       2 \ar[ur]_{b_2}          \ar@/_1pc/[rr]_{a_2}
+     &
+     & 3 \ar@/_/[lu]_{a_3}      \ar[ll]_{b_3}
+   \\
+       L
+     &
+     & R
+  }
+$$
+则对于$f,g\in C^{\infty}(X)$，有
+\begin{eqnarray*}
+     B_\Gma(f,g)
+&=&
+     (\p_{b_2}P^{a_1b_1})
+     (P^{a_2b_2})
+     (\p_{b_1}P^{a_3b_3})
+     (\p_{a_1}\p_{a_2}\p_{a_3}f)
+     (\p_{b_3}g)
+\\
+     B_{\Gma'}(f,g)
+&=&
+     (\p_{b_2}\p_{a_3}P^{a_1b_1})
+     (\p_{b_3}\p_{a_1}P^{a_2b_2})
+     (\p_{b_1}\p_{a_2}P^{a_3b_3})
+     fg
+\end{eqnarray*}
+\end{example}
+
+通过上述例子，我们已熟悉了双微分算子$B_{\Gma}$的定义。
+不过，距离完整介绍Kontsevich形变量子化公式，还有较长的路要走。
+事实上，Kontsevich构造的星积$\star$形如
+$$
+  f\star g
+=
+  \sum_{n=0}^{\infty}
+    \hbar^n
+    \left(
+      \sum_{\Gma\in G_n}
+        \omg_{\Gma}
+        B_\Gma(f,g)
+    \right)
+$$
+其中$\omg_\Gma\in\bbR$为系数，其具体定义即将被介绍。
+
+
+\begin{notation}
+%$$B_n(f,g)=\sum_{\Gamma\in G_n}w_{\Gamma}B_{\Gamma}(f,g)$$
+%where $w_{\Gamma}$ is defines as follows:
+%consider hyperbolic plane $\bbH=\{\im z\geq 0\}$ with hyperbolic metric.
+考虑双曲平面（hyperbolic plane）
+$\bbH:=\{z\in\bbC|\im z\geq 0\}$，配以标准的双曲度量
 $$\td s^2=\frac{\td x^2+\td y^2}{y^2}$$
-$\ell(p,q)$ is the geodesic connecting $p,q$. and $\fai(p,q)$
-be the angle from $\ell(p,q)$ to $\ell(p,\infty)$.
-$$\fai(p,q)=\arg\left(\frac{q-p}{q-\overline{p}}\right)$$
+对于任意$p\neq q\in\bbH$，我们记
+$\ell(p,q)$为$\bbH$上由$p$到$q$的测地线；再记
+%is the geodesic connecting $p,q$. and 
+$\fai(p,q)$为测地线$\ell(p,q)$到$\ell(p,\infty)$的夹角。
+%be the angle from $\ell(p,q)$ to $\ell(p,\infty)$.
 %%%%%%%这个见笔记的图%%%%%%%%%%%%
+\end{notation}
 
-Let
-$$Comf_n(\bbH):=\{(p_1,...,p_n)\in\bbH|p_i\neq p_j\}$$
-For each arrow in $\Gamma$,
-$$\fai_e:Conf_n(\bbH)\to\bbR$$
-$$\fai_e(p_1,...,p_n)\mapsto
-\fai{s(e),t(e)}$$
-\end{definition}
+众所周知，双曲平面上的测地线必形如垂直于$x$轴的直线，
+或者圆心位于$x$轴的上半圆弧。对于$p,q\in\bbH$，夹角
+$\fai(p,q)$的示意见下图。
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]
+  {figures/hyperbolic.png}
+
+图：测地线$\ell(p,q)$、$\ell(p,\infty)$，以及夹角$\fai(p,q)$.
+\end{figure}
+
+事实上，由初等平面几何容易给出$\fai(p,q)$的显式表达式：
+$$\fai(p,q)=\arg\left(\frac{q-\overline{p}}{q-p}\right)$$
+以上出现的夹角、辐角可以取任意的分支。
+
+\begin{notation}%Let
+对于$n\geq 0$，定义
+$$\Conf_n(\bbH):=\{(p_1,...,p_n)\in\bbH|
+p_i\neq p_j,\,\forall i\neq j\}$$
+则$\Conf_n(\bbH)$有自然的$2n$维光滑流形结构（$\bbR^{2n}$的开子流形）。
+
+%For each arrow in $\Gamma$,
+对于图$\Gamma=(\Gma_0,\Gma_1,\veps)\in G_n$，
+以及$e\in\Gma_1$，定义流形$\Conf_n(\bbH)$上的光滑函数$\fai_e$如下：
+\begin{eqnarray*}
+\fai_e:\Conf_n(\bbH)&\to&\bbR\\
+(p_1,...,p_n)&\mapsto&\fai(p_{s(e)},p_{t(e)})
+\end{eqnarray*}
+其中特别规定$p_L=0\in\overline{\bbH}$，
+以及$p_R=1\in\overline{\bbH}$
+\end{notation}
+
+粗俗地说，对于图$\Gma\in G_n$，
+$\Conf_n(\bbH)$当中的一个元素$\bfp$可以视为
+“将图$\Gma$嵌入双曲平面$\bbH$的一种方式”：
+图$\Gma$的“一般顶点”的位置由$\bfp$给出，
+“特殊顶点”$L,R$分别位于$0,1$；
+图$\Gma$当中的边对应于$\bbH$中的测地线。
+此时，$\fai_e$可以认为是边$e$的“倾斜角”。
 
 \begin{definition}
+对于图$\Gma\in G_n$，定义
 $$
-  w_{\gamma}=\frac{1}{2(\pi)^n}
-  \int_{Conf_n(\bbH)}
-    \wedge_{i=1}^n(\td\fai_{a_i}\wedge\td\fai_{b_i})
+  \omg_{\Gamma}=\frac{1}{n!(2\pi)^{2n}}
+  \int_{\Conf_n(\bbH)}
+    \bigwedge_{i=1}^n(\td\fai_{a_i}\wedge\td\fai_{b_i})
 $$
-check: it is convergent.
+%check: it is convergent.
 \end{definition}
+这是$2n$-形式在$2n$-维流形上的积分。
+但需要验证此积分的收敛性，这里从略。
+注意积分号前的系数$\frac{1}{n!(2\pi)^{2n}}$
+是精心挑选的，我们稍后给出解释。
+%见Kontsevich的原始论文
 
+现在，我们可以完整地陈述以下定理：
 \begin{thm}(Kontsevich)
 
-The formula
-$$f\star_{K}g=
-\sum_{n\geq 0}\hbar^n
-  B_n(f,g)=
-\sum_{n\geq 0}\hbar^n
-  \sum_{\Gamma\in G_n}w_{\Gamma}B_{\Gamma}(f,g)
-  $$
-gives a deformation quantization of $P$
+任意的泊松流形$(X,P)$都存在形变量子化，
+并且星积可以由以下公式显式给出：%The formula
+$$
+  f\star g
+=
+  \sum_{n=0}^{\infty}
+    \hbar^n
+    \left(
+      \sum_{\Gma\in G_n}
+        \omg_{\Gma}
+        B_\Gma(f,g)
+    \right)
+$$
+%gives a deformation quantization of $P$
 \end{thm}
+在此述而不证。构造如此星积$\star$的动机、
+想法，来自于量子场论等物理背景，我们在后文会介绍之。
+
+\begin{example}（$\omg_{\Gma}$最基本的显式计算）
+
+我们考虑简单（但重要的）情形:$\Gma,\Gma'\in G_1$分别为如下：
+$$
+  \xymatrix{
+    &1\ar[dl]_{a_1}  \ar[dr]^{b_1}
+    &
+  \\
+     L
+    &
+    &R
+  }
+\quad
+   \xymatrix{
+    &1\ar[dl]_{b_1}  \ar[dr]^{a_1}
+    &
+  \\
+     L
+    &
+    &R
+  }
+$$
+那么有
+$$\omg_\Gma=\frac{1}{2}\quad,\quad \omg_{\Gma'}=-\frac{1}{2}$$
+\end{example}
+
+\begin{proof}
+我们只需要求$\omg_{\Gma}$，
+而注意到$\Gma$与$\Gma'$的区别仅仅是两条边对换，
+从而倾斜角$\fai_{\Gma,a_1}=\fai_{\Gma',b_1}$，
+$\fai_{\Gma,b_1}=\fai_{\Gma',a_1}$，
+再由外积的反对称性，容易观察出$\omg_{\Gma}=-\omg_{\Gma'}$.
+
+现在计算$\omg_\Gma$.
+此时$n=1$，$\Conf_1(\bbH)\cong H$，
+对任意的$z=x+iy\in\bbH\cong\Conf_1(\bbH)$，
+由初等几何容易知道
+$$
+  \begin{array}{ll}
+    \fai_{a_1}(z)=-2\arg z\\
+    \fai_{b_1}(z)=-2\arg(z-1)
+  \end{array}
+$$
+（允许相差$2\pi$的整数倍，这无所谓）从而
+$$
+    \td\fai_{a_1}(z)=-2\td\arctan\left(\frac{y}{x}\right)
+=-2\frac{x\td y-y\td x}{x^2+y^2}
+$$
+同理
+$$\td\fai_{b_1}(z)=-2\frac{(x-1)\td y-y\td x}{(x-1)^2+y^2}$$
+因此有
+\begin{eqnarray*}
+     \omg_\Gma
+&=&
+     \frac{1}{1!(2\pi)^{2\times1}}
+     \int_{\Conf_1(\bbH)}
+       \td\fai_{a_1}
+       \wedge
+       \td\fai_{b_1}\\
+&=&
+     \frac{1}{4\pi^2}
+     \int_{\bbH}
+       \frac{4y}
+            {(x^2+y^2)\big((x-1)^2+y^2\big)}
+       \td x\wedge\td y\\
+&=&
+     \frac{1}{\pi^2}
+     \int_{0}^{\pi}
+       \sin\theta
+       \td\theta
+     \int_0^{\infty}
+       \frac{1}
+            {r^2-2r\cos\theta+1}
+       \td r\\
+&=&
+     \frac{1}{\pi^2}
+     \int_{0}^{\pi}
+       (\pi-\theta)
+       \td\theta
+=
+     \frac{1}{2}
+\end{eqnarray*}
+\end{proof}
 
 \begin{rem}
-if $P^{ij}$ is constant, then this is Moyal product.
-(也就是说，这是Moyal pruduct 的推广)
-结合性很不显然2333333
-
-以后会解释这个公式的来历。物理背景+非交换技术....
+事实上，如果泊松张量的分量$P^{ij}$在局部上是常值的，
+那么Kontsevich给出的量子化公式刚好是Moyal星积
+（见例子\ref{Moyal星积-def}），
+从而Kontsevich量子化$\star_K$是Moyal星积$\star_M$的推广。
+回顾我们此前已经给出了Moyal星积的显式表达式
+$$f\star_M g=\sum_{k=0}^{\infty}\frac{\hbar^k}{k!}
+\sum_{|I|=|J|=k}P^{I,J}(\p_If)(\p_Jg)$$
 \end{rem}
 
+\begin{proof}
+我们来考察$P^{ij}$为常数的情形。对于$n\geq 0$，以及$\Gamma\in G_n$，
+注意到如果$\Gma$当中有箭头不指向$L$且不指向$R$，则双微分算子$B_\Gma$
+当中含有对$P^ij$求导的项，因此$B_\Gma=0$，对$\star_K$没有贡献。
+从而我们只需要考虑$G_n$的子集
+$$\widetilde{G_n}:=\{\Gma\in G_n|t(a_i)\in\{L,R\},\forall 1\leq i\leq n\}$$
+即，$\widetilde{G_n}$当中的图具有性质：每个箭头都指向$L$或者$R$；
+并且容易知道$\widetilde{G_n}$当中有$2^n$个元素。
+现在，
+$$
+  f\star_K g=
+  \sum_{n=0}^{\infty}
+    \hbar^n
+    \sum_{\Gma\in\widetilde{G_n}}
+      \omg_{\Gma}B_{\Gma}(f,g)
+$$
+再注意到，对于任意$\Gma,\Gma'\in\widetilde{G_n}$，都有
+$$\omg_{\Gma}B_{\Gma}=\omg_{\Gma'}B_{\Gma'}$$
+这是由于两个$1-$形式的外积具有反交换性，
+以及泊松张量分量$P^{ij}$关于指标的反对称性。
+从而我们不妨取$\widetilde{G_n}$中的代表元
+$\Gma^n\in\widetilde{G_n}\subseteq G_n$，其中$\Gma^n$满足：
+所有的边$a_i$都指向$L$，所有的边$b_i$都指向$R$.从而
+\begin{eqnarray*}
+  f\star_K g
+&=&
+  \sum_{n=0}^{\infty}
+    \hbar^n
+      2^n\omg_{\Gma^n}B_{\Gma^n}(f,g)\\
+&=&
+  \sum_{n=0}^{\infty}
+    \hbar^n2^n
+      \omg_{\Gma^n}
+      (P^{a_1b_1}\cdots P^{a_nb_n})
+      (\p_{a_1}\cdots\p_{a_n}f)
+      (\p_{b_1}\cdots\p_{b_n}g)
+\end{eqnarray*}
+最后再注意到
+\begin{eqnarray*}
+     \omg_{\Gma^n}
+&=&
+     \frac{1}{n!(2\pi)^{2n}}
+     \int_{\bbH^n}
+       \bigwedge_{i=1}^n
+         (
+         \td\fai_{a_i}(z_i)\wedge
+         \td\fai_{b_i}(z_i)
+         )\\
+&=&
+     \frac{1}{n!(2\pi)^{2n}}
+     \prod_{i=1}^n
+       \left(
+         \int_{\bbH}
+           \td\fai_{a_i}(z_i)\wedge
+           \td\fai_{b_i}(z_i)
+       \right)\\
+&=&
+     \frac{(2\pi^2)^n}{n!(2\pi)^{2n}}
+ =
+     \frac{1}{n!2^n}
+\end{eqnarray*}
+因此Kontsevich量子化$\star_K$满足
+\begin{eqnarray*}
+  f\star_K g
+&=&
+  \sum_{n=0}^{\infty}
+    \hbar^n2^n
+      \frac{1}{n!2^n}
+      (P^{a_1b_1}\cdots P^{a_nb_n})
+      (\p_{a_1}\cdots\p_{a_n}f)
+      (\p_{b_1}\cdots\p_{b_n}g)\\
+&=&
+     \sum_{n=0}^{\infty}
+      \frac{\hbar^n}{n!}
+      (P^{a_1b_1}\cdots P^{a_nb_n})
+      (\p_{a_1}\cdots\p_{a_n}f)
+      (\p_{b_1}\cdots\p_{b_n}g)\\
+\end{eqnarray*}
+这正是Moyal乘积的表达式。
+\end{proof}
+
+
+
+%\begin{rem}
+%if $P^{ij}$ is constant, then this is Moyal product.
+%(也就是说，这是Moyal pruduct 的推广)
+%结合性很不显然2333333
+%以后会解释这个公式的来历。物理背景+非交换技术....
+%\end{rem}
+\section{指标定理}
 index theorem:
 
 Symplectic case: $(X,\omg)$ symplectic mfd,
@@ -1393,8 +1872,8 @@ good news: $0$ doesn't depend on $\dim(X)$!
 \textbf{Difficulty}: when $n\to\infty$, we need to construct $\yc$.
 
 \begin{example}
-Let $X$ is a manifold of finite dimension, $\dim X=n$, 
-local coordinate $\{x^1,...,x^n\}$ in $\mcalU\subseteq X$, 
+Let $X$ is a manifold of finite dimension, $\dim X=n$,
+local coordinate $\{x^1,...,x^n\}$ in $\mcalU\subseteq X$,
 volume form
 $$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge\td x^n$$
 
@@ -1408,7 +1887,7 @@ $\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\p_1,...,\p_n]$
 introduce grassman variables $\theta_1,...,\theta_n$,
 ($\theta _i\cong \p_i$)
 
-define 
+define
 $$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\theta_1,...,\theta_n]$$
 
 %%%%%%%非交换的微积分%%%%%%%%
@@ -1436,7 +1915,7 @@ $$\{,\}:\PV\times\PV\to\P$$
 $$\{\alpha,\beta\}:=
 \yc_{\Omg}(\alpha\wedge\beta)-(\yc_{\Omg}\alpha)\wedge\beta-
 (-1)^{|\alpha|}\alpha\wedge\yc_{\Omg}\beta$$
-the failure of $\yc_{\Omg}$ being a derivation. 
+the failure of $\yc_{\Omg}$ being a derivation.
 \end{definition}
 Check: $\{,\}$ is a Schouten-Nijenhuis bracket(up to sign).
 (independent of the choice of $f(x)$)
@@ -1455,13 +1934,13 @@ $$\Omg=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}\td x$$
 $$\int:\bbR[x]\to\bbR$$
 $$g\mapsto\int_{\bbR}g\Omg$$
 
-$\PV=\bbR[x,\theta]$, and 
+$\PV=\bbR[x,\theta]$, and
 $$\yc_{\Omg}=\pp{x}\pp{\theta}-x\pp{\theta}$$
 %符号可能不对，小心check
 
 $$\int_{BV}:\bbR[x,\theta]\mapsto H^0(\yc_{\Omg})$$
 
-if $g=g(x)$, then $\yc_{\Omg}g=0$. Let $[g]$ be the 
+if $g=g(x)$, then $\yc_{\Omg}g=0$. Let $[g]$ be the
 $\yc_{\Omg}$- homology class,
 $$\yc_{\Omg}(x^{m-1}\Omg)
 =(m-1)x^{m-2}
@@ -1484,7 +1963,7 @@ $$\int_{\bbR}x^{2k}\Omg=
 
 \end{example}
 
-introduce the operator 
+introduce the operator
 $$\mcalU:=
   e^{\frac{1}{2}\pp{x}\pp{x}}:
   \bbR[x,\theta]\to\bbR[x,\theta]
@@ -1501,7 +1980,7 @@ $$\yc_{\Omg}=\pp{x}\pp{\theta}-x\pp{\theta}
 $$
 $$A=-\frac{1}{2}\pp{x}\pp{x}$$
 $$B=-x\pp{\theta}$$
-then 
+then
 $$e^ABe^{-A}=\pp{x}\pp{\theta}$$
 where $[A,[A,B]]=0$.
 \end{proof}
@@ -1523,7 +2002,7 @@ $$\mcalU[g(x)]_{\yc_{\Omg}}=[\mcalU(g)(x)]_{-x\pp{\theta}}
 =[\mcalU(g)(0)]_{-x\pp{\theta}}
 =\mcalU(g)(0)[1]$$
 
-so, 
+so,
 $$\int_{\bbR}g(x)\Omg=\mcalU(g)(0)=
 e^{\frac{1}{2}\pp{x}\pp{x}}|_{x=0}g(x)$$
 
@@ -1533,7 +2012,7 @@ e^{\frac{1}{2}\pp{x}\pp{x}}|_{x=a}g(x)$$
 
 
 \begin{example}
-Consider the integral 
+Consider the integral
 $$
   \int_{\bbR}
     e^{(-\frac{1}{2}x^2+\frac{1}{3!}x^3)/\hbar}
@@ -1561,7 +2040,7 @@ $$\mcalU_{\hbar}=e^{\frac{\hbar}{2}\pp{x}\pp{x}}$$
 then
 
 %%%%%%%%微积分%%%%%%%%%
-introduce graph with cubic vertex, 
+introduce graph with cubic vertex,
 
 each edge: we put $\hbar\pp{a}\pp{a}$
 
