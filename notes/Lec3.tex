@@ -1455,7 +1455,7 @@ $\bbH:=\{z\in\bbC|\im z\geq 0\}$，配以标准的双曲度量
 $$\td s^2=\frac{\td x^2+\td y^2}{y^2}$$
 对于任意$p\neq q\in\bbH$，我们记
 $\ell(p,q)$为$\bbH$上由$p$到$q$的测地线；再记
-%is the geodesic connecting $p,q$. and 
+%is the geodesic connecting $p,q$. and
 $\fai(p,q)$为测地线$\ell(p,q)$到$\ell(p,\infty)$的夹角。
 %be the angle from $\ell(p,q)$ to $\ell(p,\infty)$.
 %%%%%%%这个见笔记的图%%%%%%%%%%%%
@@ -1713,149 +1713,204 @@ $\Gma^n\in\widetilde{G_n}\subseteq G_n$，其中$\Gma^n$满足：
 这正是Moyal乘积的表达式。
 \end{proof}
 
-
-
 %\begin{rem}
 %if $P^{ij}$ is constant, then this is Moyal product.
 %(也就是说，这是Moyal pruduct 的推广)
 %结合性很不显然2333333
 %以后会解释这个公式的来历。物理背景+非交换技术....
 %\end{rem}
-\section{指标定理}
-index theorem:
-
-Symplectic case: $(X,\omg)$ symplectic mfd,
-$P=\omg^{-1}$
-
-Fedosov: a single geometric way to get deformation quantization and the classification by
-$$\omg_{\hbar}=-\omg+\hbar\omg_1+\hbar^2\omg_2+\cdots$$
-where
-$$\omg_i\in H^2(X,\bbR)$$
-
-\begin{definition}
- the trace map
-$$\tau: c^{\infty}(X)\to \bbR\Ls{\hbar}$$
-satisfying
-$$\tau(f\star g)=\tau(g\star f)$$
-$$\Longrightarrow \tau\in \HH^0(C^{\infty}(x)\fps{\hbar})$$
-
-Fedosov/Nest Tsygar: canonical trace
-
-such that
-$$\tau(f)=\frac{1}{(2\pi\hbar)^n}
-\int_X
-  \frac{\omg^n}{n!}
-  (f+O(\hbar))$$
-\end{definition}
-
-注意记号：
-$$\HH^i(A):=H^i(A,A^*)$$
-
-
-\begin{thm}(Fedosov/Nest-Tsygan)
-
-$$\tau(1)=\int_X e^{w_{\hbar}/\hbar}\Ahat(X)$$
-(algebraic index thm)
-where $\Ahat$ is the genus of $X$,
-$$\Ahat(X):=
-\det\nolimits^{1/2}\frac{R/2}{\sinh(R/2)}$$
-$R$ is the curvature of $T_X$.
-\end{thm}
-
-Goal: explain both 1 and 2 from
-
-non-commutative Hochschild theory
-
-quantum- field theory
 
 %%%%现在开始正课，刚才的故事讲完了%%%
 
-\section{量子场论基础}
-\textbf{Some basis of QFT}
+\section{量子场论背景、BV算子}
+%\textbf{Some basis of QFT}
+现在我们开始逐渐去理解Kontsevich的形变量子化的构造；
+为此需要一些\textbf{量子场论}
+（quantum field theory，简称QFT）背景知识。
+\index{quantum field theory\kong 量子场论}
 
-a physics system always consists of
-$$\mcalS:\mcalE\to\bbR$$
-where $\mcalE$ is the space of field( of infinity dimension)
+%a physics system always consists of
+%$$\mcalS:\mcalE\to\bbR$$
+%where $\mcalE$ is the space of field( of infinity dimension)
 
-$\mcalS$ : actional functional%作用量
+大致地说（并非严格的数学表述），一个\textbf{物理系统}
+包括以下要素：\textbf{场空间}（space of fields）
+$\mcalE$与\textbf{作用量}
+（action functional）$\mcalS$，
+\index{space of fields\kong 场空间}
+\index{action functional\kong 作用量}
+其中场空间$\mcalE$通常为无穷维空间，作用量
+$$\mcalS:\mcalE\to \bbC$$
+为场空间$\mcalE$上的函数。
+%$\mcalS$ : actional functional%作用量
 
-Classical physics:
-$$Cirt(\mcalS)=\{\delta s=0\}$$
+在经典物理中，态的演化常用变分的临界来描述态的演化：
+%Classical physics:
+$$\Crit(\mcalS)=\{\delta\mcalS=0\}$$
+上式中的$\Crit(\mcalS)$称为$\mcalS$的critical locus，
+$\delta$为某个变分导数。
+\index{critical locus}
 
-Quantum physics:
+%Quantum physics:
+而在量子物理中，态的演化与积分
+$$\int_{\mcalE}\mcalO e^{i\mcalS/\hbar}$$
+有关，其中$\mcalO$为$\mcalE$上的函数，
+称之为\textbf{观测量}（observable）；
+\index{observable\kong 观测量}
+上述积分称之为“\textbf{路径积分}”（path integral）。
+\index{path integral\kong 路径积分}
+
+不过要注意，$\mcalE$是无穷维空间，
+在$\mcalE$上面积分是说不清道不明的事情；
+我们至今还未完全搞明白此积分的严格定义。
+我们在本讲义只谈论“数学上的事情”，
+数学上暂时没说清楚的东西避而不谈。
+
+%"path integral", $\theta$ is a function on $\mcalE$("observable").
+
+\begin{example}作为场空间$\mcalE$的例子，
+以下是近代物理中的常见对象：
+$$
+  \begin{tabular}{|c|c|}
+  \hline
+  标量场论    &  $\mcalS=$流形$X$上的全体光滑函数\\
+  \hline
+  规范理论    &  $\mcalS=$向量丛$E\to X$上的全体联络\\
+  \hline
+  $\sgm$-模型 &  $\mcalS=$流形$\sgm$与$X$之间的全体光滑映射\\
+  \hline
+  引力理论    &  $\mcalS=$流形$X$上的全体黎曼度量\\
+  \hline
+  \end{tabular}
+$$
+\end{example}
+
+我们再举一些作用量$\mcalS$的例子：
+
+\begin{example}（作用量）
+
+（1）在标量场论$\mcalE=C^{\infty}(X)$中，
+对于$X$上的光滑函数$\fai\in\mcalE$，定义
+$$\mcalS[\fai]=\int_X|\nabla\fai|^2$$
+称之为能量泛函。
+
+（2）在规范理论当中，对于$A\in\mcalE$为向量丛$E\to X$上的联络，
+记其曲率张量为
+$$F_A:=\td A+\frac{1}{2}[A,A]$$
+定义如下的\textbf{杨-米尔斯泛函}(Yang-Mills functional)
+$$\YM[A]:=\int_XF_A\wedge*F_A$$
+
+%$$\mcalE=\{\text{connections on $E\to X$}\}$$
+%curvature
+%is called Yang-Mills functional.
+\index{Yang-Mills functional\kong 杨-米尔斯泛函}
+\end{example}
+
+%\begin{example}
+%$$\mcalE= C^{\infty}(X)$$
+%$$\mcalS[\fai]=\int_X|\nabla\fai|^2\quad\fai\in C^{\infty}(X)$$
+%(scalar field theory)
+%$$\delta\mcalS=0\Longrightarrow\Delta\fai=0$$
+%\end{example}
+%\begin{example}($\sigma$-module)
+%$$\mcalE=map(\Sigma,X)$$
+%...
+%\end{example}
+%\begin{example}(Gravity)
+%$$\mcalE=\{\text{metrics on $X$}\}$$
+%\end{example}
+%以上是四种很经典的例子。
+%Problem: How to construct
+
+一个重要的问题是，如何去构造路径积分
 $$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
-"path integral", $\theta$ is a function on $\mcalE$("observable").
+我们介绍\textbf{BV方法}（Batalin-Vilkovisky），
+其主要思想是用同调理论来解释测度论。
 
-\begin{example}
-$$\mcalE= C^{\infty}(X)$$
-$$\mcalS[\fai]=\int_X|\nabla\fai|^2\quad\fai\in C^{\infty}(X)$$
-(scalar field theory)
-$$\delta\mcalS=0\Longrightarrow\Delta\fai=0$$
-\end{example}
+%We introduce a different method:BV method
+%(Batalin-Vilkovisky)
+%Philosophy: measure theory$\int_X\mapsto$ Homology theory.....
+%Calculus
 
-\begin{example}
-$$\mcalE=\{\text{connections on $E\to X$}\}$$
-$$F_A=\td A+\frac{1}{2}[A,A]$$
-curvature
-$$YM[A]=\int_XF_A\wedge*F_A$$
-is called Yang-Mills functional.
-\end{example}
+我们来考察有限维的情形。设$X$为$n$维紧致可定向流形，
+$\Omg\in\Omg_X^n$为$X$上的一个体积形式，
+则$X$上的紧支光滑函数$f$关于该体积形式的积分可以视为如下：
+\begin{eqnarray*}
+\int_X: C^{\infty}_c(X)&\to&\bbR\\
+f&\mapsto&\int_Xf\Omg
+\end{eqnarray*}
 
-\begin{example}($\sigma$-module)
-$$\mcalE=map(\Sigma,X)$$
-...
-\end{example}
+%$$\int_X:\Omg_X\updot\to\bbR$$
+%where $X$ is compact oriented manifold of dimension $n$,
 
-\begin{example}(Gravity)
-$$\mcalE=\{\text{metrics on $X$}\}$$
-\end{example}
-以上是四种很经典的例子。
+我们考虑
+$$\Omg_c(X):=\bigoplus_{p\geq 0}\Omg_c^p(X)$$
+为紧支的微分形式，以及$\td:\Omg_c^p(X)\to\Omg_c^{p+1}(X)$为de Rham外微分。
+众所周知，
+$$H^n(\Omg_c\updot(X),\td)\cong\bbR$$
+此式可以给出积分$\int_X$的同调解释：
+\begin{eqnarray*}
+\int_X:C_c^{\infty}(X)&\to&\bbR\\
+f&\mapsto&[f\Omg]\in H^n(\Omg_c\updot(X),\td)\cong\bbR
+\end{eqnarray*}
 
-Problem: How to construct
-$$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
+粗俗地说，我们把求$f$关于体积形式$\Omg$的积分
+视为取$f\Omg$的同调类；在此意义下，de Rham复形
+$(\Omg_C\updot,\td)$扮演了“测度”的角色。
 
-We introduce a different method:BV method
-(Batalin-Vilkovisky)
-
-Philosophy: measure theory$\int_X\mapsto$ Homology theory.....
-
-Calculus
-$$\int_X:\Omg_X\updot\to\bbR$$
-where $X$ is compact oriented manifold of dimension $n$,
-
-Observe:
-$$H^n_{DR}(X)=H^n(\Omg\updot,\td)\cong\bbR$$
-$$\int_X:\Omg^n\to H^n_{DR}\cong\bbR$$
-$$\alpha\mapsto[\alpha]$$
-
-$$\rightsquigarrow\int_X=H_{DR}^n$$
-$$(\Omg\updot(X),\td)\rightsquigarrow\text{measure}$$
-
-Question:how to $\int_X=H^n\quad n\to\infty$?
+%Observe:
+%$$H^n_{DR}(X)=H^n(\Omg\updot,\td)\cong\bbR$$
+%$$\int_X:\Omg^n\to H^n_{DR}\cong\bbR$$
+%$$\alpha\mapsto[\alpha]$$
+%$$\rightsquigarrow\int_X=H_{DR}^n$$
+%$$(\Omg\updot(X),\td)\rightsquigarrow\text{measure}$$
+%Question:how to $\int_X=H^n\quad n\to\infty$?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%2019.3.26星期二 第五周%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %讲一些物理想法
+%\textbf{Feynman Diagram}
+%recall:
+%$$D^n_{DR}=\int_X:\Omg\updot(X)\to\bbR$$
+%what if $n\to \infty$?
 
-\textbf{Feynman Diagram}
+在物理上我们常要面对无穷维空间，于是在此意义下，
+我们需要关心$n\to\infty$时，$H^n(X)$是何物。
+这是难以说清楚的，我们不妨换一个角度来看。
 
-recall:
-$$D^n_{DR}=\int_X:\Omg\updot(X)\to\bbR$$
-what if $n\to \infty$?
-
-Different philosophy:
-
-Let $\PV\updot(X):=\Gamma(X,\wedgeform{*}TX)$,
-$\Omg$ be a volume form($n$-form) on $X$,then
-$$f\mapsto\int_Xf\Omg$$
-
-$$\PV^k(X)\xra{\dashv\Omg}\Omg^{n-k}(X)$$
-is a 1-1 coorespondence.
+%Different philosophy:
+%Let $\PV\updot(X):=\Gamma(X,\wedgeform{*}TX)$,
+%$\Omg$ be a volume form($n$-form) on $X$,then
+%$$f\mapsto\int_Xf\Omg$$
+%$$\PV^k(X)\xra{\dashv\Omg}\Omg^{n-k}(X)$$
+%is a 1-1 coorespondence.
 %%%%缩并%%%%%%%
 
-$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
+\begin{definition}
+设$X$为$n$维紧致定向流形，$\Omg$为$X$上的一个体积形式，
+则有$\Omg$诱导了多重切向量场$\PV\updot(X)$
+与微分形式$\Omg_X\updot$之间的$C^{\infty}$-线性同构
+\begin{eqnarray*}
+\Gma_\Omg:\PV^k(X)&\to&\Omg^{n-k}_X\\
+V&\mapsto& i_V(\Omg)
+\end{eqnarray*}
+其中$i_V(\Omg)$为$V$关于$\Omg$的缩并，满足对任意$W\in\PV^{n-k}(X)$，
+$$\langle i_V(\Omg),W\rangle=\langle\Omg,V\wedge W\rangle$$
+\end{definition}
+当$V\in\PV^1(X)$为切向量场时，$i_V$就是我们熟悉的内乘运算。
+
+在局部坐标下，若$\Omg=\td x^1\wedge\td x^2\cdots\wedge\td x^n$，
+$$V=\p_{i_1}\wedge\p_{i_2}\wedge\cdots\wedge\p_{i_k}$$
+为多重切向量场，其中指标$i_1<i_2<\cdots<i_k$，则容易知道
+$$
+  \Gma_\Omg(V)=i_V(\Omg)
+= (-1)^{i_1+i_2+\cdots+i_k}(-1)^{\frac{k(k+1)}{2}}
+  \cdots\wedge\widehat{\td x^{i_1}}\wedge\cdots\wedge\widehat{\td x^{i_k}}\wedge\cdots
+$$
+
+%$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
 $$\yc\leftrightarrow \td$$
 this "$\yc$" is called "divergence operator w.r.t the volume form".
 when $x\in\PV^1(X)$,check: $\yc(v)=\div_{\Omg}v$.
@@ -1927,6 +1982,7 @@ In particular,$\{,\}$ is independent of choice of $\Omg$.
 $$\{,\}\xra{?}\yc_{\Omg}$$
 这个过程与量子化的过程是一样的？？WTF？？
 
+\section{费曼图}
 \textbf{Feymann Diagram}
 \begin{example}
 $X=\bbR$，

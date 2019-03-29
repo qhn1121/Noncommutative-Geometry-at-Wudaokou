@@ -186,6 +186,8 @@
 \newcommand*{\surj}{\twoheadrightarrow}
 \newcommand*{\xra}{\xrightarrow}
 \newcommand*{\xla}{\xleftarrow}
+\newcommand*{\rlim}{\varinjlim}                 %colimit，余极限，归纳极限，正向极限
+\newcommand*{\llim}{\varprojlim}                %limit，极限，投射极限，逆向极限
 
 \newcommand*{\xybigrow}{\xymatrixrowsep{5pc}}   %交换图排版专用
 \newcommand*{\xybigcol}{\xymatrixcolsep{5pc}}   %增大行、列间距
@@ -241,10 +243,11 @@
 %matrix pmatrix bmatrix Bmatrix vmatrix Vmatrix%
 %分别为无括号，小括号，中括号，大括号，竖线，双竖线%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathOperator{\ad}{ad}
-\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ad}{ad}         %adjoint
+\DeclareMathOperator{\id}{id}         %identity
 \DeclareMathOperator{\ev}{ev}         %evaluation
 \DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Crit}{Crit}     %Critical locus
 \DeclareMathOperator{\Coder}{Coder}   %Co-derivation  并不是“码农”的意思
 \DeclareMathOperator{\Conf}{Conf}     %Kontsevich公式当中用到了；configuration of points
 \DeclareMathOperator{\coker}{coker}   %co-kernel      余核
@@ -258,6 +261,7 @@
 \DeclareMathOperator{\per}{per}       %periodic cyclic complex
 \DeclareMathOperator{\PV}{PV}         %Polyvector field
 \DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\YM}{YM}         %Yang-Mills   杨振宁-米尔斯
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Free}{Free}

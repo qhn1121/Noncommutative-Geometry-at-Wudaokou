@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 这里用来暂时储存一些乱七八糟的杂稿，
+% 笔者暂时没有理解的内容，或者是零散、不成体系的东西
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 第五周 周一
+% 以下内容位于 位于Kontsevich量子化公式之后
+% 李思讲的“故事”：大概是在辛流形的特殊情况下，
+%  Kontesvich量子化与Atiyah-Singer指标定理有联系
+\section{指标定理}
+index theorem:
+
+Symplectic case: $(X,\omg)$ symplectic mfd,
+$P=\omg^{-1}$
+
+Fedosov: a single geometric way
+to get deformation quantization and the classification by
+$$\omg_{\hbar}=-\omg+\hbar\omg_1+\hbar^2\omg_2+\cdots$$
+where
+$$\omg_i\in H^2(X,\bbR)$$
+
+\begin{definition}
+ the trace map
+$$\tau: c^{\infty}(X)\to \bbR\Ls{\hbar}$$
+satisfying
+$$\tau(f\star g)=\tau(g\star f)$$
+$$\Longrightarrow \tau\in \HH^0(C^{\infty}(x)\fps{\hbar})$$
+
+Fedosov/Nest Tsygar: canonical trace
+
+such that
+$$\tau(f)=\frac{1}{(2\pi\hbar)^n}
+\int_X
+  \frac{\omg^n}{n!}
+  (f+O(\hbar))$$
+\end{definition}
+
+注意记号：
+$$\HH^i(A):=H^i(A,A^*)$$
+
+
+\begin{thm}(Fedosov/Nest-Tsygan)
+
+$$\tau(1)=\int_X e^{w_{\hbar}/\hbar}\Ahat(X)$$
+(algebraic index thm)
+where $\Ahat$ is the genus of $X$,
+$$\Ahat(X):=
+\det\nolimits^{1/2}\frac{R/2}{\sinh(R/2)}$$
+$R$ is the curvature of $T_X$.
+\end{thm}
+
+Goal: explain both 1 and 2 from
+
+non-commutative Hochschild theory
+
+quantum- field theory 
