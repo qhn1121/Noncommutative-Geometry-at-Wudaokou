@@ -1,5 +1,5 @@
 %%%%%%%%%%%%2019.3.12第三周Mon%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%下周一，周坚代课%%&%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%下周一，邱宇代课%%&%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%下周二，随堂考试%%%%%%%%%%%%%%%%%%%%%
 
 %\textbf{Coalgebra and homotopy associativity}
@@ -1824,7 +1824,7 @@ $$\YM[A]:=\int_XF_A\wedge*F_A$$
 
 一个重要的问题是，如何去构造路径积分
 $$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
-我们介绍\textbf{BV方法}（Batalin-Vilkovisky），
+我们介绍\textbf{BV方法}（Batalin-Vilkovisky method），
 其主要思想是用同调理论来解释测度论。
 
 %We introduce a different method:BV method
@@ -1832,7 +1832,7 @@ $$\int_{\mcalE}\theta e^{i\mcalS/\hbar}$$
 %Philosophy: measure theory$\int_X\mapsto$ Homology theory.....
 %Calculus
 
-我们来考察有限维的情形。设$X$为$n$维紧致可定向流形，
+我们来考察有限维的情形。设$X$为$n$维紧致定向流形，
 $\Omg\in\Omg_X^n$为$X$上的一个体积形式，
 则$X$上的紧支光滑函数$f$关于该体积形式的积分可以视为如下：
 \begin{eqnarray*}
@@ -1894,93 +1894,388 @@ $(\Omg_C\updot,\td)$扮演了“测度”的角色。
 与微分形式$\Omg_X\updot$之间的$C^{\infty}$-线性同构
 \begin{eqnarray*}
 \Gma_\Omg:\PV^k(X)&\to&\Omg^{n-k}_X\\
-V&\mapsto& i_V(\Omg)
+V&\mapsto& V\suobing\Omg
 \end{eqnarray*}
-其中$i_V(\Omg)$为$V$关于$\Omg$的缩并，满足对任意$W\in\PV^{n-k}(X)$，
-$$\langle i_V(\Omg),W\rangle=\langle\Omg,V\wedge W\rangle$$
+其中$V\lrcorner\,\Omg$为$V$关于$\Omg$的缩并.
 \end{definition}
-当$V\in\PV^1(X)$为切向量场时，$i_V$就是我们熟悉的内乘运算。
+
 
 在局部坐标下，若$\Omg=\td x^1\wedge\td x^2\cdots\wedge\td x^n$，
 $$V=\p_{i_1}\wedge\p_{i_2}\wedge\cdots\wedge\p_{i_k}$$
 为多重切向量场，其中指标$i_1<i_2<\cdots<i_k$，则容易知道
 $$
-  \Gma_\Omg(V)=i_V(\Omg)
-= (-1)^{i_1+i_2+\cdots+i_k}(-1)^{\frac{k(k+1)}{2}}
-  \cdots\wedge\widehat{\td x^{i_1}}\wedge\cdots\wedge\widehat{\td x^{i_k}}\wedge\cdots
+  \Gma_\Omg(V)=V\suobing\Omg
+= (-1)^{(i_1-1)+(i_2-1)+\cdots+(i_k-1)}
+  \cdots\wedge\widehat{\td x^{i_1}}
+  \wedge\cdots\wedge\widehat{\td x^{i_k}}\wedge\cdots
 $$
 
-%$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
-$$\yc\leftrightarrow \td$$
-this "$\yc$" is called "divergence operator w.r.t the volume form".
-when $x\in\PV^1(X)$,check: $\yc(v)=\div_{\Omg}v$.
-
-$$\td^2=0\Rightarrow\yc^2=0$$
-
-$$\PV^n\xra{\yc}\PV^{n-1}\xra{\yc}\PV^{n-2}\to\cdots$$
-$\yc$ is also called "BV operator".
-
-$$\int_{BV}:=H_0(\yc)$$
-good news: $0$ doesn't depend on $\dim(X)$!
-(so, we can $n\to\infty$???)
-
-\textbf{Difficulty}: when $n\to\infty$, we need to construct $\yc$.
-
 \begin{example}
-Let $X$ is a manifold of finite dimension, $\dim X=n$,
-local coordinate $\{x^1,...,x^n\}$ in $\mcalU\subseteq X$,
-volume form
-$$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge\td x^n$$
-
-$$\Omg\updot(\mcalU):=C^{\infty}(\mcalU)[\td x^1,...,\td x^n]$$
-where $\td x^i\wedge\td x^j=-\td x^j\wedge\td x^i$.
-
-$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\p_1,...,\p_n]$
- where $\p^i\wedge\p^j=-\p^j\wedge\p^i$.
+$$(\p_2\wedge\p_3)\suobing(\td x^1\wedge\td x^2\wedge\td x^3\wedge\td x^4)
+=-\td x^1\wedge\td x^4$$
 \end{example}
+以此为例，缩并的运算规则可以理解为：
+$\p_i$向右移动与$\td x^i$相遇而湮灭，
+其中在$\p_i$移动的过程中穿过几个对象
+（$\p_j$或者$\td x^j$）就改变几次正负号
+（这符合Koszul符号法则的“精神”）。
 
-introduce grassman variables $\theta_1,...,\theta_n$,
-($\theta _i\cong \p_i$)
+例如，如果$\Omg=e^{f(x)}\td x^1
+\wedge\td x^2\wedge\td x^3\wedge\td x^4$，则
+$$\Gma_\Omg(\p_2\wedge\p_3)=e^{f(x)}\td x^1\wedge\td x^4$$
+再比如，对于体积形式$\Omg$本身，有
+$$\Gma_\Omg^{-1}(\Omg)=1$$
+也就是说$1\in\PV^0(X)$对应于$\Omg\in\Omg^n_X$.
 
-define
-$$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\theta_1,...,\theta_n]$$
+当$V\in\PV^1(X)$为切向量场时，
+$V\lrcorner\Omg=i_V(\Omg)$就是我们熟悉的内乘运算。
 
+\begin{rem}（多重切向量场的内乘）
+类似于关于切向量场$X$的内乘算子
+$i_X:\Omg\updot_X\to \Omg^{\bullet-1}_X$，
+我们也可以考虑多重切向量场$V\in\PV^p(X)$的内乘
+$$i_V:\Omg\updot_X\to\Omg^{\bullet-p}_X$$
+使得对任意$\omg\in\Omg^r_X\,(r\geq p)$，以及任意$W\in\PV^{r-p}(X)$，成立
+$$\langle i_V(\omg),W\rangle=\langle\omg,V\wedge W\rangle$$
+\end{rem}
+特别注意，对于多重切向量场$V\in\PV\updot(X)$以及体积形式$\Omg$，
+一般来说
+$$V\suobing\Omg\neq i_V(\Omg)$$
+它们两者之间会相差一些奇怪的正负号。
+我们这里的$\PV^k(X)$与$\Omg^{n-k}_X$
+的对应是通过缩并实现的，而不是内乘。
+
+\begin{definition}（BV算子）
+
+对于$n$维光滑定向流形$X$，
+设$\Omg\in\Omg^n_X$为$X$上的一个体积形式，
+定义算子$\yc_\Omg:\PV^{k}(X)\to\PV^{k-1}(X)$，使得下图交换：
+$$
+  \xymatrix{
+     \PV^k(X)        \ar[r]^{\yc_\Omg}  \ar@{=}[d]_{\Gma_\Omg}
+    &\PV^{k-1}(X)                       \ar@{=}[d]_{\Gma_\Omg}
+  \\
+     \Omg_X^{n-k}    \ar[r]^{\td}
+    &\Omg_X^{n-k+1}
+  }
+$$
+称$\yc_\Omg$为\textbf{BV算子}（Batalin-Vilkovisky operator）。
+\index{Batalin-Vilkovisky operator\kong BV算子}
+\end{definition}
+%$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
+%$$\yc\leftrightarrow \td$$
+无非是将de Rham上链复形$(\Omg\updot_X,\td)$
+通过体积形式同构为\textbf{上}链复形
+$(\PV\updot(X),\yc_\Omg)$，其实没干什么事情。
+特别注意我们规定$\PV^k(X)$的次数为$-k$，
+使得$\yc_{\Omg}$是次数为$1$的微分算子（而不被看作边缘算子）。
+
+注意到此时有上同调群的同构
+$$H^n(\Omg\updot_X,\td)\cong H^0(\PV\updot(X),\yc_\Omg)$$
+回顾我们对积分$\int_Xf\Omg$的同调解释，从而有
+$$\int_X:f\mapsto[f]\in H^0(\PV\updot(X),\yc_\Omg)$$
+也就是说我们可以把求函数$f$关于体积形式$\Omg$的积分转化成取$f$在
+$(\PV\updot(X),\yc_\Omg)$的第零个同调类。这样的好处是，
+容易向维数$n\to\infty$的情形推广，毕竟无论维数$n$如何升高，
+我们取的总是第零个同调。
+
+不过这样的代价是，问题转化为“如何构造无穷维空间上的BV算子”。
+
+%this "$\yc$" is called "divergence operator w.r.t the volume form".
+%when $x\in\PV^1(X)$,check: $\yc(v)=\div_{\Omg}v$.
+%$$\td^2=0\Rightarrow\yc^2=0$$
+%$$\PV^n\xra{\yc}\PV^{n-1}\xra{\yc}\PV^{n-2}\to\cdots$$
+%$\yc$ is also called "BV operator".
+%$$\int_{BV}:=H_0(\yc)$$
+%good news: $0$ doesn't depend on $\dim(X)$!
+%(so, we can $n\to\infty$???)
+%\textbf{Difficulty}: when $n\to\infty$, we need to construct $\yc$.
+
+\begin{rem}（广义散度）
+
+事实上，如果$v\in\PV^1(X)$为$X$上的切向量场，则
+$$\yc_\Omg(v)=\Div_\Omg(v)$$
+正是我们熟悉的关于体积形式$\Omg$的散度。
+\end{rem}
+于是我们也俗称BV算子为多重切向量场的“广义散度”。
+
+为了书写方便，我们引入一套高效的语言：Grassmann变量。
+
+\begin{notation}（Grassmann变量）
+
+对于$n$维流形$X$，以及$X$的局部坐标卡$U\subseteq X$，
+我们考虑分次交换$\bbR$-代数
+$$C^{\infty}(U)\ten\Free\{\theta_1,\theta_2,...,\theta_n\}\big/\sim$$
+其中生成关系$\sim$为由
+$\{\theta_i\theta_j+\theta_j\theta_i|1\leq i,j\leq n\}$生成的理想。
+其中分次结构由
+$$\deg\theta_i=-1\quad\forall 1\leq i\leq n$$
+给出。
+\end{notation}
+容易发现，无非是将$\PV\updot(U)$当中的$\p_i$重新写为$\theta_i$，从而局部上
+$$\PV\updot(U)=C^{\infty}(U)[\theta_1,...,\theta_n]$$
+换句话说，$X$上的多重切向量场（局部上）
+可以写为关于局部坐标$x^1,...,x^n$以及Grassmann变量的函数
+$$\mu=\mu(x^1,...,x^n;\theta_1,...,\theta_n)\in\PV\updot(X)$$
+
+{\color{blue}这里的Grassmann变量$\theta_i$是不是
+Doubrovin-Zhang可积系统里面的“超变量”？
+}
+
+%\begin{example}
+%Let $X$ is a manifold of finite dimension, $\dim X=n$,
+%local coordinate $\{x^1,...,x^n\}$ in $\mcalU\subseteq X$,
+%volume form
+%$$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge\td x^n$$
+%$$\Omg\updot(\mcalU):=C^{\infty}(\mcalU)[\td x^1,...,\td x^n]$$
+%where $\td x^i\wedge\td x^j=-\td x^j\wedge\td x^i$.
+%$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\p_1,...,\p_n]$
+% where $\p^i\wedge\p^j=-\p^j\wedge\p^i$.
+%\end{example}
+%introduce grassman variables $\theta_1,...,\theta_n$,
+%($\theta _i\cong \p_i$)
+%define
+%$$\PV\updot(\mcalU):=C^{\infty}(\mcalU)[\theta_1,...,\theta_n]$$
 %%%%%%%非交换的微积分%%%%%%%%
 
-\begin{prop}
+\begin{definition}对于流形$X$，局部坐标下我们定义$-1$阶超导子
+$$\pp{\theta_i}:\PV\updot(X)\to\PV\updot(X)$$
+使得成立
+
+  \begin{eqnarray*}
+    \pp{\theta_i}f(x^1,...,x^n)=0,\qquad
+    \pp{\theta_i}\theta_j=\delta^i_j
+  \end{eqnarray*}
+
+\end{definition}
+$\pp{\theta_i}$服从$-1$阶超导子的超莱布尼茨法则，
+即对任意$f,g\in\PV\updot(X)$为齐次元，成立
+$$\pp{\theta_i}(fg)=\pfrac{f}{\theta_i}g+(-1)^{\deg f}f\pfrac{g}{\theta_i}$$
+
+容易验证，超导子$\pp{\theta_i}$满足关系
+$$\pp{\theta_i}\pp{\theta_j}=-\pp{\theta_j}\pp{\theta_i}$$
+对任意$1\leq i,j\leq n$成立。特别地，$\left(\pp{\theta_i}\right)^2=0$.
+
+\begin{prop}（BV算子的Grassmann变量表达式）
+
+对于定向流形$X$，设体积形式
 $$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge \td x^n$$
-$$\PV=C^{\infty}(u)[\theta_1,...,\theta_n]$$
-then
+则关于$\Omg$的BV算子$\yc\Omg$在Grassmann变量的意义下具有表达式
+$$\yc_{\Omg}=\pp{x^i}\pp{\theta_i}+\pfrac{f}{x^i}\pp{\theta_i}$$
 
-$$\yc_{\Omg}=\sum_{i}\pp{x^i}\pp{\theta_i}
--\sum_{i}\p_if(x)\pp{\theta_i}$$
-
-(Odd Laplacian)
-(这是BV算子的等价定义。。。)
+%(Odd Laplacian)
+%(这是BV算子的等价定义。。。)
 \end{prop}
 
 \begin{proof}
-%笔记里找
+直接验证之。对于任意
+$$V=\mu(x^1,...,x^n)\theta_{i_1}\cdots\theta_{i_k}\in\PV^{k}(X)$$
+则有
+\begin{eqnarray*}
+     \yc_\Omg V
+&=&
+     \Gma_\Omg^{-1}\circ\td\circ\Gma_\Omg(V)\\
+&=&
+     \Gma_\Omg^{-1}\circ\td
+     \left[
+       (-1)^{(i_1-1)+\cdots+(i_k-k)}\mu e^{f}
+       \widehat{\td x^{i_1}}\wedge\cdots\wedge\widehat{\td x^{i_k}}
+     \right]\\
+&=&
+     (-1)^{(i_1-1)+\cdots+(i_k-k)}
+     \Gma_\Omg^{-1}
+     \left[
+       (\pfrac{\mu}{x^i}+\mu\pfrac{f}{x^i})e^f
+       \sum_{l=1}^k
+         (-1)^{i_l-l}
+         \widehat{\td x^{i_1}}\wedge\cdots\wedge\td x^{i_l}
+         \wedge\cdots\wedge\widehat{\td x^{i_k}}
+     \right]\\
+&=&
+     (\pfrac{\mu}{x^i}+\mu\pfrac{f}{x^i})
+     \sum_{l=1}^l
+       (-1)^{l-1}
+       \theta_{i_1}\cdots\widehat{\theta_{i_l}}\cdots \theta_{i_k}\\
+&=&
+    \left[
+      \pp{x^i}\pp{\theta_i}+\pfrac{f}{x^i}\pp{\theta_i}
+    \right](V)
+\end{eqnarray*}
+从而证毕。
 \end{proof}
 
+注意到BV算子的表达式
+$$\yc_{\Omg}=\pp{x^i}\pp{\theta_i}+\pfrac{f}{x^i}\pp{\theta_i}$$
+长得像二阶微分算子，甚至很像拉普拉斯算子——$\yc_\Omg$因此也被称为
+\textbf{奇拉普拉斯算子}（odd Laplacian）。
+\index{odd Laplacian\kong 奇拉普拉斯算子}
 
-\begin{definition}
-Given $\yc_{\Omg}$(BV operator), we define
-$$\{,\}:\PV\times\PV\to\P$$
+\begin{prop}设$X$为定向流形，
+$\Omg=e^{f(x)}\td x^1\wedge\cdots\wedge\td x^n$为$X$的一个体积形式，
+$\yc_\Omg$为关于$\Omg$的BV算子。定义
+%Given $\yc_{\Omg}$(BV operator), we define
+$$\{,\}:\PV\updot(X)\times\PV\updot(X) \to \PV\updot(X)$$
 $$\{\alpha,\beta\}:=
 \yc_{\Omg}(\alpha\wedge\beta)-(\yc_{\Omg}\alpha)\wedge\beta-
 (-1)^{|\alpha|}\alpha\wedge\yc_{\Omg}\beta$$
-the failure of $\yc_{\Omg}$ being a derivation.
-\end{definition}
-Check: $\{,\}$ is a Schouten-Nijenhuis bracket(up to sign).
-(independent of the choice of $f(x)$)
+即，“$\yc$成为超导子的代价”。
+那么$\{,\}$不依赖于体积形式$\Omg$的选取。
+%the failure of $\yc_{\Omg}$ being a derivation.
+\label{另一种Schouten-Nijenhuis括号-def}
+\end{prop}
 
-In particular,$\{,\}$ is independent of choice of $\Omg$.
+\begin{proof}
+直接验证即可。对任意$\alpha\in\PV^p(X)$以及$\beta\in\PV^q(X)$，成立
+\begin{eqnarray*}
+     \yc_\Omg(\alpha\wedge\beta)
+&=&
+     \pp{x^i}\pp{\theta_i}
+     (\alpha\wedge\beta)
+    +\pfrac{f}{x^j}\pp{\theta_j}
+     (\afa\wedge\beta)\\
+&=&
+     \pp{x^i}
+     \left(
+       \pfrac{\afa}{\theta_i}
+       \wedge\beta
+      +(-1)^p\afa\wedge\pfrac{\beta}{\theta_i}
+     \right)
+    +\pfrac{f}{x^i}
+     \left(
+       \pfrac{\afa}{\theta_i}\wedge\beta
+      +(-1)^p\afa\wedge\pfrac{\beta}{\theta_i}
+     \right)\\
+&=&
+     \pmfrac{\afa}{x^i}{\theta_i}\wedge\beta
+    +\pfrac{\afa}{\theta_i}\wedge\pfrac{\beta}{x^i}
+    +(-1)^p\pfrac{\afa}{x^i}\wedge\pfrac{\beta}{\theta_i}\\
+& &
+    +(-1)^p\afa\wedge\pmfrac{\beta}{x^i}{\theta_i}
+    +\pfrac{f}{x^i}\pfrac{\afa}{\theta_i}\wedge\beta
+    +(-1)^p\pfrac{f}{x^i}\afa\wedge\pfrac{\beta}{\theta_i}\\
+&=&
+     (\yc_\Omg\afa)\wedge\beta
+    +(-1)^p\afa\wedge(\yc_\Omg\beta)\\
+& &
+    +\pfrac{\afa}{\theta_i}\wedge\pfrac{\beta}{x^i}
+    +(-1)^p\pfrac{\afa}{x^i}\pfrac{\beta}{\theta_i}
+\end{eqnarray*}
+从而得到
+$$
+  \{\alpha,\beta\}
+=
+  \pfrac{\afa}{\theta_i}\wedge\pfrac{\beta}{x^i}
+ +(-1)^p\pfrac{\afa}{x^i}\pfrac{\beta}{\theta_i}
+$$
+从而与$\Omg$的选取无关。
+\end{proof}
 
-\textbf{Quantization}
+我们之前也见过类似的运算：Schouten-Nijenhuis括号
+（见定义\ref{Schouten-Nijenhuis定义-def}）；
+而这里的$\{,\}$是“另一个版本的Schouten-Nijenhuis括号”：
 
-$$\{,\}\xra{?}\yc_{\Omg}$$
-这个过程与量子化的过程是一样的？？WTF？？
+\begin{lemma}定义$\ref{另一种Schouten-Nijenhuis括号-def}$中的括号
+$$\{,\}:\PV^p(X)\times\PV^q(X)\to\PV^{p+q-1}(X)$$
+满足性质：对任意$\afa\in\PV^p(X),\beta\in\PV^q(X),\gamma\in\PV^r(X)$，成立：
+
+（1）超反交换性
+$$\{\afa,\beta\}=(-1)^{pq}\{\beta,\afa\}$$
+
+（2）超莱布尼茨法则
+$$\{\afa,\beta\wedge\gamma\}
+=\{\afa,\beta\}\wedge\gamma
++(-1)^{(p-1)q}\beta\wedge\{\afa,\gamma\}$$
+
+（3）若$p=q=1$，则$\{,\}$退化为切向量场李括号：
+$$\{\alpha,\beta\}=[\afa,\beta]$$
+\end{lemma}
+
+注意超反交换性（1）与性质\ref{Schouten-Nijenhuis公理-prop}
+的（2）在正负号上有所出入。
+
+\begin{proof}使用表达式
+$$
+  \{\alpha,\beta\}
+=
+  \pfrac{\afa}{\theta_i}\wedge\pfrac{\beta}{x^i}
+ +(-1)^p\pfrac{\afa}{x^i}\pfrac{\beta}{\theta_i}
+\eqno{(*)}
+$$
+直接验证即可，并不困难。对于$\alpha\in\PV^p(X),\,\beta\in\PV^q(X)$
+以及$\gamma\in\PV^r(X)$，有
+\begin{eqnarray*}
+     \{\afa,\beta\}
+&=&
+     \pfrac{\afa}{\theta_i}\wedge\pfrac{\beta}{x^i}
+    +(-1)^p\pfrac{\afa}{x^i}\wedge\pfrac{\beta}{\theta_i}\\
+&=&
+     (-1)^{(p-1)q}\pfrac{\beta}{x^i}\wedge\pfrac{\afa}{\theta_i}
+    +(-1)^{p+p(q-1)}
+     \pfrac{\beta}{\theta_i}\wedge\pfrac{\afa}{x^i}\\
+&=&
+     (-1)^{pq}
+     \left(
+       \pfrac{\beta}{\theta_i}\wedge\pfrac{\afa}{x^i}
+      +(-1)^q\pfrac{\beta}{x^i}\wedge\pfrac{\afa}{\theta_i}
+     \right)\\
+&=&
+     (-1)^{pq}\{\beta,\alpha\}
+\end{eqnarray*}
+于是超反交换性成立；再看超莱布尼茨法则，
+\begin{eqnarray*}
+     \{\afa,\beta\wedge\gamma\}
+&=&
+     \pfrac{\afa}{\theta_i}\wedge
+     \pp{x^i}(\beta\wedge\gamma)
+    +(-1)^p\pfrac{\afa}{x^i}\wedge
+     \pp{\theta_i}(\beta\wedge\gamma)\\
+&=&
+     \pfrac{\afa}{\theta_i}\wedge
+     \left(
+       \pfrac{\beta}{x^i}\wedge\gamma
+      +\beta\wedge\pfrac{\gamma}{x^i}
+     \right)
+    +(-1)^p\pfrac{\afa}{x^i}\wedge
+     \left(
+       \pfrac{\beta}{\theta_i}\wedge\gamma
+      +(-1)^q\beta\wedge\pfrac{\gamma}{\theta_i}
+     \right)\\
+&=&
+     \{\alpha,\beta\}\wedge\gamma
+    +(-1)^{q(p-1)}
+     \beta\wedge\pfrac{\afa}{\theta_i}\wedge\pfrac{\gamma}{x^i}
+    +(-1)^{pq+p+q}
+     \beta\wedge\pfrac{\afa}{x^i}\wedge\pfrac{\gamma}{\theta_i}\\
+&=&
+     \{\alpha,\beta\}\wedge\gamma
+    +(-1)^{(p-1)q}\beta\wedge\{\alpha,\gamma\}
+\end{eqnarray*}
+而（3）是更加容易验证的，从略。
+\end{proof}
+可以体会到Grassmann变量$\theta_i$以及超导子$\pp{\theta_i}$在
+张量计算上的优越性：将本该必然面对的数学归纳法、
+组合恒等式转化为直接的暴力计算。
+
+{\color{gray}
+事实上，我们还可以用$(*)$来暴力验证$\{,\}$的超雅可比恒等式：
+$$
+  (-1)^{pr}\{\{\afa,\beta\},\gamma\}
+ +(-1)^{qp}\{\{\beta,\gamma\},\afa\}
+ +(-1)^{rq}\{\{\gamma,\afa\},\beta\}
+=0
+$$
+或者换句话说
+$$\{\alpha,\{\beta,\gamma\}\}=(-1)^{p-1}\{\{\alpha,\beta\},\gamma\}
++(-1)^{(p-1)(q-1)}\{\beta,\{\afa,\gamma\}\}$$
+（但是这个看起来不像是导子的样子）（此处待仔细验证）
+}
+
+%Check: $\{,\}$ is a Schouten-Nijenhuis bracket(up to sign).
+%(independent of the choice of $f(x)$)
+%In particular,$\{,\}$ is independent of choice of $\Omg$.
+%\textbf{Quantization}
+%$$\{,\}\xra{?}\yc_{\Omg}$$
+%这个过程与量子化的过程是一样的？？WTF？？
 
 \section{费曼图}
 \textbf{Feymann Diagram}
@@ -2128,6 +2423,7 @@ check.
 \end{proof}
 
 In general, consider
+
 
 
 
