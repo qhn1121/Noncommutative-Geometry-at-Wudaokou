@@ -840,44 +840,421 @@ $$\yc_\Omg
        \right)^m
 \end{eqnarray*}
 
-
-
-%%%%%%%%微积分%%%%%%%%%
-introduce graph with cubic vertex,
-
-each edge: we put $\hbar\pp{a}\pp{a}$
-
-each point: we put $\frac{\lmd a^3}{3!\hbar}$
-
-$$\omg_{\gamma}(a)$$
-by the above rule.
-
-%%%%%%这又是什么图%%%%%%%
-
-
-
-\begin{thm}(Feymann graph formula)
-
-this integration is
+上式最右端具有组合意义，我们接下来详细说明。
+记$\mcalP:=\frac{1}{2}\hbar\p_{a}^2$
+称之为\textbf{传播子}（propagator），
+\index{propagator\kong 传播子}
+再记$\mcalI(a):=\frac{\lmd a^3}{3!\hbar}$为“相互作用能”，则上式为
 $$
-   \int_{\bbR}
-     e^{(-\frac{1}{2}x^2+\frac{\lmd}{3}(x+a)^3)/\hbar}
-     \frac{\td x}{\sqrt{2\pi\hbar}}
-=
-   \sum_{\Gamma:\text{trivalent graphs}}
-     \frac{w_{\Gamma}(a)}
-          {|\text{Aut}(\gamma)|}
-=
-   \sum
+     \int_\bbR
+       e^{\big(
+            -\frac{1}{2}x^2
+            +\frac{\lmd}{3!}(x+a)^3
+          \big)
+          \big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+ \sim
+     \sum_{k,m\geq 0}
+       \frac{1}{k!}
+       \frac{1}{m!}
+       \mcalP^k\mcalI^m(a)
 $$
+
+我们先来观察$k=1$的情形，
+看看$\mcalP\mcalI^m(a)$是什么东西。
+记$\mcalP_s=\mcalP_t:=\sqrt{\hbar/2}\p_{a}$，则有
+$$\mcalP=\mcalP_t\mcalP_s$$
+再令$\mcalI_1=\mcalI_2=\cdots=\mcalI_m:=\mcalI$，则
+\begin{eqnarray*}
+     \mcalP\mcalI^m(a)
+&=&
+     \mcalP_t\mcalP_s
+     \left(
+       \mcalI_1(a)\mcalI_2(a)\cdots\mcalI_m(a)
+     \right)\\
+&=&
+     \mcalP_t
+     \left(
+       \sum_{u=1}^m
+         \mcalI_1(a)\cdots\mcalP_s\mcalI_u(a)\cdots\mcalI_m(a)
+     \right)\\
+&=&
+     \left(
+       \sum_{1\leq u<v\leq m}
+         \mcalI_1(a)\cdots\mcalP_s\mcalI_u(a)
+         \cdots\mcalP_t\mcalI_v(a)\cdots\mcalI_m(a)
+     \right.\\
+& &
+      \quad
+      +\sum_{1\leq u\leq m}
+         \mcalI_1(a)\cdots\mcalP_t\mcalP_s\mcalI_u(a)
+         \cdots\mcalI_m(a)\\
+& &
+      \quad
+      \left.
+      +\sum_{1\leq v<u\leq m}
+         \mcalI_1(a)\cdots\mcalP_t\mcalI_v(a)
+         \cdots\mcalP_s\mcalI_u(a)\cdots\mcalI_m(a)
+     \right)
+\end{eqnarray*}
+
+我们将$\mcalI_1,...,\mcalI_m$视为$m$个“顶点”，将
+$$\mcalI_1(a)\cdots\mcalP_s\mcalI_u(a)
+\cdots\mcalP_t\mcalI_v(a)\cdots\mcalI_m(a)$$
+视为从“顶点”$u$出发，到“顶点”$v$的“有向边”，
+则上式可以粗俗地说成“对所有的$m$个顶点、$1$条边的图求和”。
+类似地，考虑
+$$\mcalP^k\mcalI^m(a)=\underbrace{\mcalP\cdots\mcalP}_{k}
+\underbrace{\mcalI(a)\cdots\mcalI(a)}_m$$
+然后类似地展开，得到“对所有$m$个顶点、$k$条边的图求和”。
+
+我们将以上严格表述之，然后得到\textbf{费曼图展开公式}。
+我们之前在介绍Kontsevich量子化公式的时候引入了
+“带标记的有向图”的概念（见定义\ref{带标记的有向图-def}）。
+在这里，我们允许出现回路（即，始点与终点相同的有向边），
+也允许出现“多箭头”（即从某个点出发到某个点的边可能不止一条）。
+但是我们要求顶点集与边集都是有限集。
+
+\begin{notation}（带标记的有向图的有向底图）
+对于带标记的有向图$\Gma=(\Gma_0,\Gma_1,\veps)$，
+则$\Gma$可以遗忘为图论当中通常的\textbf{多重有向图}，
+后者称为前者的\textbf{有向底图}，记为$\underline{\Gma}$.
+\end{notation}
+
+遗忘的方式为“将边的名称去掉”。此操作是显然的，例如
+$$
+  \xymatrix{
+     1 \ar@/^1pc/[r]^{a}  \ar@/_1pc/[r]_{b}
+   & 2
+  }
+\quad
+\rightsquigarrow
+\quad
+  \xymatrix{
+     1 \ar@/^1pc/[r]     \ar@/_1pc/[r]
+   & 2
+  }
+$$
+
+我们更习惯将带标记的有向图$\Gma$的顶点集记为$V$，边集记为$E$
+（原来使用的记号$\Gma_0,\Gma_1$废止）。
+对于有限集$V,E$，定义集合
+$$\mcalG_{V,E}:=\{\text{以$V$为顶点集，
+以$E$为边集的全体带标记的有向图之全体}\}$$
+则容易构造一一对应$\mcalG_{V,E}\cong\{\veps:E\to V\times V\}$.
+
+\begin{definition}
+（置换群$S_V\times S_E$在集合$\mcalG_{V,E}$上的作用）
+
+对于有限集合$V,E$，定义群$S_V\times S_E$在集合$\mcalG_{V,E}$上的作用如下：
+对$\mcalG_{V,E}$中的任意元素$\veps:E\to V\times V$，
+以及置换$\sgm\in S_V,\tau\in S_E$，令
+$$(\sgm,\tau).\veps=(\sgm\times\sgm)\circ\veps\circ\tau^{-1}$$
+其中
+\begin{eqnarray*}
+\sgm\times\sgm: V\times V&\to& V\times V\\
+(v_1,v_2)&\mapsto&(\sgm(v_1),\sgm(v_2))
+\end{eqnarray*}
+\end{definition}
+
+讲人话，无非是将带标记的有向图的各顶点、各边的名称重新排列一下。
+例如，$V=\{1,2,3\},\,E=\{a,b,c\}$，带标记的有向图
+$$
+  \Gma=
+  \xymatrix{
+      1  \ar@/^1pc/[r]^a
+    & 2  \ar@/^1pc/[l]^b  \ar[r]^c
+    & 3
+  }
+$$
+考虑置换
+$$
+     \sgm=
+  \begin{pmatrix}
+    1 & 2 & 3\\
+    1 & 3 & 2
+  \end{pmatrix}
+\qquad
+     \tau=
+  \begin{pmatrix}
+    a & b & c\\
+    b & c & a
+  \end{pmatrix}
+$$
+则有
+$$
+  (\sgm,\tau).\Gma
+=\quad
+  \xymatrix{
+      1  \ar@/^1pc/[r]^b
+    & 3  \ar@/^1pc/[l]^c  \ar[r]^a
+    & 2
+  }
+\quad=\quad
+  \xymatrix{
+      1  \ar@/^1pc/[rr]^b
+    & 2  
+    & 3  \ar@/^1pc/[ll]^c  \ar[l]_a
+  }
+$$
+
+以下性质显然成立：
+\begin{lemma}
+对于有限集合$V,E$，以及$\Gma,\Gma'\in\mcalG_{V,E}$，
+则它们的有向底图（作为多重有向图）同构，当且仅当它们位于
+群$S_v\times S_E$在$\mcalG_{V,E}$作用的同一个轨道上。
+\end{lemma}
+
+也就是说，群$S_V\times S_E$作用的轨道类，无非是底图的同构类。
+
+\begin{example}（$|V|=3,|E|=2$的轨道类）
+
+令$V=\{1,2,3\},E=\{a,b\}$，
+我们给出$S_V\times S_E$在$\mcalG_{V,E}$作用的轨道类如下：
+$$
+  \begin{tabular}{cc}
+  \hline
+  轨道类   &   轨道长度\\
+  \hline
+    \xymatrix{
+       \bullet  \ar[r]
+      &\bullet  \ar[r]
+      &\bullet
+    }
+    &$12$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       \bullet  \ar[r]
+      &\bullet  
+      &\bullet  \ar[l]
+    }
+    &$6$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       \bullet  
+      &\bullet  \ar[r] \ar[l]
+      &\bullet
+    }
+    &$6$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       [\bullet]  \ar[r] 
+      &\bullet  
+      &\bullet
+    }
+    &$12$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       [\bullet]  
+      &\bullet  \ar[l]
+      &\bullet
+    }
+    &$12$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       [\bullet]
+      &\bullet  \ar[r]
+      &\bullet  
+    }
+    &$12$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       \bullet  \ar@/^1pc/[r]
+      &\bullet  \ar@/^1pc/[l]
+      &\bullet
+    }
+    &$6$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       \bullet  \ar@/^1pc/[r] \ar@/_1pc/[r]
+      &\bullet  
+      &\bullet
+    }
+    &$6$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       [[\bullet]]  
+      &\bullet  
+      &\bullet
+    }
+    &$3$
+  \\
+    \tabularbigrow
+    \xymatrix{
+       [\bullet]  
+      &[\bullet]  
+      &\bullet
+    }
+    &$6$
+  \\
+  \hline
+  \end{tabular}
+$$
+这里用有向底图来表示轨道类。
+表格中的方括号的含义是，以方括号内的顶点为端点的一条闭路（即从该点出发指向自己的箭头）；
+嵌套两层方括号就是两条闭路，以此类推。
+\end{example}
+
+不要忘记，我们引入这些图论概念，
+是为了描述求导运算。
+
+\begin{notation}（费曼规则）（Feynman's rule）
+
+对于带标记的有向图$\Gma=(V,E,\veps)$，定义
+$$
+     w_{\Gma}(\mcalP,\mcalI(a))
+:=
+     \prod_{v\in V}
+     \mcalP_s^{S(v)}
+     \mcalP_t^{T(v)}
+     \mcalI(a)
+$$
+其中$\mcalP:=\frac{1}{2}\hbar\p_a^2$为传播子，
+$\mcalP_s=\mcalP_t:=\sqrt{\hbar/2}\p_a$，
+$\mcalI(a):=\frac{\lmd a^3}{3!\hbar}$为“相互作用能”。
+并且对于顶点$v\in V$，
+$$S(v):=|\{e\in E|s(e)=v\}|$$
+$$T(v):=|\{e\in E|t(e)=v\}|$$
+分别为顶点$v$的\textbf{出度}与\textbf{入度}。
+\index{Feynman's rule\kong 费曼规则}
+\end{notation}
+
+翻译成人话，对于带标记的有向图
+（实际上多重有向图足矣，边的名称没贡献）$\Gma$，
+我们按照如下规则给该图赋值：首先对图$\Gma$的每一个顶点赋值，
+“有几条边经过此点，就求几次导”；然后将所有顶点的数值相乘。
+
+\begin{example}注意到这里的$\mcalI(a)=\frac{\lmd a^3}{3!\hbar}$为
+关于$a$的三次多项式，而$\mcalP_s=\mcalP_t$为一阶微分算子，
+从而如果图$\Gma$的某个顶点的度数（入度与出度之和）大于三，那么
+$w_\Gma(\mcalP,\mcalI)=0$
+\end{example}
+因此，我们只需要考虑每个顶点的度数都不超过$3$的图，
+这些$\Gma$才能使得$w_\Gma(\mcalP,\mcalI)$取值非平凡。
+
+
+\begin{lemma}
+\begin{eqnarray*}
+     \int_\bbR
+       e^{\big(
+            -\frac{1}{2}x^2
+            +\frac{\lmd}{3!}(x+a)^3
+          \big)
+          \big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+&\sim&
+     \sum_{k,m\geq 0}
+       \frac{1}{k!}
+       \frac{1}{m!}
+       \left(
+         \frac{1}{2}\hbar\p_a^2
+       \right)^k
+       \left(
+         \frac{\lmd a^3}{3!\hbar}
+       \right)^m\\
+&=&
+     \sum_{k,m\geq 0}
+       \frac{1}{k!}
+       \frac{1}{m!}
+       \sum_{\Gma\in\mcalG_{m,k}}
+         w_\Gma(\mcalP,\mcalI)
+\end{eqnarray*}
+其中$\mcalG_{m,k}:=\mcalG_{\{v_1,...,v_m\},\{e_1,...,e_k\}}$，
+视为$m$个顶点、$k$条边的带标记的有向图之全体。
+\end{lemma}
+此式的等号显然成立，仅仅是换了一种说法。
+
+我们将给出因子$\frac{1}{k!}\frac{1}{m!}$的组合解释。
+注意到置换群$S_m\times S_k$在$\mcalG_{m,k}$的作用，
+其轨道之全体记为$\underline{\mcalG}_{m,k}$，则由之前的论述，
+$\underline{\mcalG}_{m,k}$可被视为$m$个顶点、$k$条边的多重有向图之全体。
+再注意多重有向图也可按照费曼规则赋值（甚至多重无向图也可以）。
+
+\begin{definition}（带标记的有向图的自同构群）
+
+对于带标记的有向图$\Gma\in\mcalG_{m,k}$，定义其自同构群
+$$\Aut(\Gma):=\{\fai\in S_m\times S_k|\fai.\Gma=\Gma\}$$
+\end{definition}
+其实就是群$S_m\times S_k$在$\Gma$处的稳定子群。
+
+对于多重有向图$\underline{\Gma}\in\underline{\mcalG_{m,k}}$，
+则$\underline{\Gma}$可视为$S_m\times_k$在$\mcalG_{m,k}$作用的一条轨道，
+该轨道的长度记作$\ell(\underline{\Gma})$；而对于带标记的有向图$\Gma$，
+记$\ell(\Gma)$为$\Gma$所在轨道的长度。
+则由群论的轨道计数知，
+$$
+  m^{2k}=|\mcalG_{m,k}|
+=\sum_{\underline{\Gma}\in\underline{\mcalG}_{m,k}}
+  \ell(\underline{\Gma})
+$$
+$$
+m!k!=|S_m\times S_k|=
+\ell(\Gma)|\Aut(\Gma)|
+$$
+
+而对于多重有向图$\underline{\Gma}$，我们不去定义它的自同构群，但是注意到
+$$|\Aut(\underline{\Gma})|:=|\Aut(\Gma)|$$
+是良定的，与代表元的选取无关，因为同一轨道的不同元素的稳定子群共轭。
+
+综上所述，我们得到了如下费曼图公式：
+\begin{thm}（费曼图公式）（Feynman diagram formula）
+
+记号同上，则有
+\begin{eqnarray*}
+     \int_\bbR
+       e^{\big(
+            -\frac{1}{2}x^2
+            +\frac{\lmd}{3!}(x+a)^3
+          \big)
+          \big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+&\sim&
+     \sum_{k,m\geq 0}
+       \sum_{\Gma\in\underline{\mcalG}_{k,m}}
+         \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}\\
+&=&
+     \sum_{\Gma\text{为多重有向图}\atop\text{互不同构}}
+       \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+\end{eqnarray*}
 \end{thm}
-\begin{proof}
-check.
-\end{proof}
+%%%%%%%%微积分%%%%%%%%%
+%introduce graph with cubic vertex,
+%each edge: we put $\hbar\pp{a}\pp{a}$
+%each point: we put $\frac{\lmd a^3}{3!\hbar}$
+%$$\omg_{\gamma}(a)$$
+%by the above rule.
+%%%%%%这又是什么图%%%%%%%
+%\begin{thm}(Feymann graph formula)
+%this integration is
+%$$
+%   \int_{\bbR}
+%     e^{(-\frac{1}{2}x^2+\frac{\lmd}{3}(x+a)^3)/\hbar}
+%     \frac{\td x}{\sqrt{2\pi\hbar}}
+%=
+%   \sum_{\Gamma:\text{trivalent graphs}}
+%     \frac{w_{\Gamma}(a)}
+%          {|\text{Aut}(\gamma)|}
+%=
+%   \sum
+%$$
+%\end{thm}
+%\begin{proof}
+%check.
+%\end{proof}
 
-In general, consider
-
+%In general, consider
 %%%%%%%%%%%%%%%%%%%2019.4.1 第六周周一%%%%%%%%%%%%%%%%%%%%%%%
+\section{传播子与重整化群流算子}
 
 Recall：费曼图——理解积分的渐近展开式。
 
@@ -900,9 +1277,7 @@ $$\omg(\mcalP,I)=\hbar\sum_{\Gamma}\frac{\omg_\Gamma(\mcalP,I)}{|Aut(\Gamma)|}$$
 
 $$I\mapsto\omg(\mcalP,I)$$
 
-
 Today:
-\section{传播子与重整化群流算子}
 
 \begin{prop}
 Let $\bbR\fps{,\hbar}^+=x^3\bbR\fps{x}\oplus\hbar\bbR\fps{x,\hbar}\subseteq\bbR\fps{x,\hbar}$,
