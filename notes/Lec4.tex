@@ -9,7 +9,7 @@
 %$$\mcalS:\mcalE\to\bbR$$
 %where $\mcalE$ is the space of field( of infinity dimension)
 
-\section{BV算子}
+\section{Grassmann变量与BV算子}
 
 大致地说（并非严格的数学表述），一个\textbf{物理系统}
 包括以下要素：\textbf{场空间}（space of fields）
@@ -556,7 +556,7 @@ $$\{\alpha,\{\beta,\gamma\}\}=(-1)^{p-1}\{\{\alpha,\beta\},\gamma\}
 %$$\{,\}\xra{?}\yc_{\Omg}$$
 %这个过程与量子化的过程是一样的？？WTF？？
 
-\section{费曼图}
+\section{从一维Gauss积分到费曼图}
 %\textbf{Feymann Diagram}
 首先我们考察一个BV算子的例子：
 \begin{Example}
@@ -760,8 +760,8 @@ $$
 \end{Example}
 
 此式中的“$-\frac{1}{2}x^2$”在物理上可以认为是“自由能”，
-三次项$\frac{\lmd}{3!}(x-a)^3$则为“相互作用量”。
-相互作用量的存在，使得此积分发散。
+三次项$\frac{\lmd}{3!}(x+a)^3$则为“相互作用能”。
+相互作用能的存在，使得此积分发散。
 
 处理该积分有两种常见方式：其一是将它视为复平面上的积分，
 并且重新规定积分路径（这会出现Airy函数）；
@@ -818,7 +818,7 @@ $$\yc_\Omg
          \left(
            \frac{\lmd(x+a)^3}{3!\hbar}
          \right)^m
-         e^{-\frac{1}{2}x^2\hbar}
+         e^{-\frac{1}{2}x^2\big/\hbar}
        \frac{\td x}{\sqrt{2\pi\hbar}}\\
 &=&
      \left.
@@ -844,7 +844,7 @@ $$\yc_\Omg
 记$\mcalP:=\frac{1}{2}\hbar\p_{a}^2$
 称之为\textbf{传播子}（propagator），
 \index{propagator\kong 传播子}
-再记$\mcalI(a):=\frac{\lmd a^3}{3!\hbar}$为“相互作用能”，则上式为
+再记$\mcalI(a):=\frac{\lmd a^3}{3!}$为“相互作用能”，则上式为
 $$
      \int_\bbR
        e^{\big(
@@ -857,7 +857,10 @@ $$
      \sum_{k,m\geq 0}
        \frac{1}{k!}
        \frac{1}{m!}
-       \mcalP^k\mcalI^m(a)
+       \mcalP^k
+       \left(
+         \frac{\mcalI(a)}{\hbar}
+       \right)^m
 $$
 
 我们先来观察$k=1$的情形，
@@ -993,7 +996,7 @@ $$
 \quad=\quad
   \xymatrix{
       1  \ar@/^1pc/[rr]^b
-    & 2  
+    & 2
     & 3  \ar@/^1pc/[ll]^c  \ar[l]_a
   }
 $$
@@ -1005,7 +1008,50 @@ $$
 群$S_v\times S_E$在$\mcalG_{V,E}$作用的同一个轨道上。
 \end{lemma}
 
-也就是说，群$S_V\times S_E$作用的轨道类，无非是底图的同构类。
+也就是说，群$S_V\times S_E$作用的轨道类，
+无非是有向底图的同构类。
+
+\begin{example}
+考虑如下两个带标记的有向图
+\begin{eqnarray*}
+     \Gma
+&:=&
+     \xymatrix{
+        1  \ar@/^1pc/[r]^a  \ar@/_1pc/[r]_b
+       &2  \ar[r]^c
+       &3
+     }
+\\
+     \Gma'
+&:=&
+     \xymatrix{
+        1
+       &2  \ar[l]_b
+       &3  \ar@/^1pc/[l]^a  \ar@/_1pc/[l]_c
+     }
+\end{eqnarray*}
+则显然$\Gma\neq\Gma'$.
+\end{example}
+考虑它们的有向底图
+\begin{eqnarray*}
+     \underline{\Gma}
+:=
+     \xymatrix{
+        1  \ar@/^1pc/[r]  \ar@/_1pc/[r]
+       &2  \ar[r]
+       &3
+     }
+\qquad
+     \underline{\Gma'}
+:=
+     \xymatrix{
+        1
+       &2  \ar[l]
+       &3  \ar@/^1pc/[l]  \ar@/_1pc/[l]
+     }
+\end{eqnarray*}
+则$\underline{\Gma}\neq\underline{\Gma'}$；
+但是它们作为多重有向图是同构的。
 
 \begin{example}（$|V|=3,|E|=2$的轨道类）
 
@@ -1026,14 +1072,14 @@ $$
     \tabularbigrow
     \xymatrix{
        \bullet  \ar[r]
-      &\bullet  
+      &\bullet
       &\bullet  \ar[l]
     }
     &$6$
   \\
     \tabularbigrow
     \xymatrix{
-       \bullet  
+       \bullet
       &\bullet  \ar[r] \ar[l]
       &\bullet
     }
@@ -1041,15 +1087,15 @@ $$
   \\
     \tabularbigrow
     \xymatrix{
-       [\bullet]  \ar[r] 
-      &\bullet  
+       [\bullet]  \ar[r]
+      &\bullet
       &\bullet
     }
     &$12$
   \\
     \tabularbigrow
     \xymatrix{
-       [\bullet]  
+       [\bullet]
       &\bullet  \ar[l]
       &\bullet
     }
@@ -1059,38 +1105,38 @@ $$
     \xymatrix{
        [\bullet]
       &\bullet  \ar[r]
-      &\bullet  
+      &\bullet
     }
     &$12$
   \\
     \tabularbigrow
     \xymatrix{
-       \bullet  \ar@/^1pc/[r]
-      &\bullet  \ar@/^1pc/[l]
+       \bullet  \ar@/^0.6pc/[r]
+      &\bullet  \ar@/^0.6pc/[l]
       &\bullet
     }
     &$6$
   \\
     \tabularbigrow
     \xymatrix{
-       \bullet  \ar@/^1pc/[r] \ar@/_1pc/[r]
-      &\bullet  
+       \bullet  \ar@/^0.6pc/[r] \ar@/_0.6pc/[r]
+      &\bullet
       &\bullet
     }
     &$6$
   \\
     \tabularbigrow
     \xymatrix{
-       [[\bullet]]  
-      &\bullet  
+       [[\bullet]]
+      &\bullet
       &\bullet
     }
     &$3$
   \\
     \tabularbigrow
     \xymatrix{
-       [\bullet]  
-      &[\bullet]  
+       [\bullet]
+      &[\bullet]
       &\bullet
     }
     &$6$
@@ -1098,7 +1144,7 @@ $$
   \hline
   \end{tabular}
 $$
-这里用有向底图来表示轨道类。
+这里用有向底图的同构类来表示轨道类。
 表格中的方括号的含义是，以方括号内的顶点为端点的一条闭路（即从该点出发指向自己的箭头）；
 嵌套两层方括号就是两条闭路，以此类推。
 \end{example}
@@ -1113,18 +1159,30 @@ $$
      w_{\Gma}(\mcalP,\mcalI(a))
 :=
      \prod_{v\in V}
-     \mcalP_s^{S(v)}
-     \mcalP_t^{T(v)}
-     \mcalI(a)
+     \frac{
+           \mcalP_s^{S(v)}
+           \mcalP_t^{T(v)}
+           \mcalI(a)
+          }
+          {
+           \hbar
+          }
+=
+     \hbar^{-|V|}
+     \prod_{v\in V}
+       \mcalP_s^{S(v)}
+       \mcalP_t^{T(v)}
+       \mcalI(a)
 $$
 其中$\mcalP:=\frac{1}{2}\hbar\p_a^2$为传播子，
 $\mcalP_s=\mcalP_t:=\sqrt{\hbar/2}\p_a$，
-$\mcalI(a):=\frac{\lmd a^3}{3!\hbar}$为“相互作用能”。
+$\mcalI(a):=\frac{\lmd a^3}{3!}$为“相互作用能”。
 并且对于顶点$v\in V$，
 $$S(v):=|\{e\in E|s(e)=v\}|$$
 $$T(v):=|\{e\in E|t(e)=v\}|$$
 分别为顶点$v$的\textbf{出度}与\textbf{入度}。
 \index{Feynman's rule\kong 费曼规则}
+\label{费曼规则}
 \end{notation}
 
 翻译成人话，对于带标记的有向图
@@ -1132,7 +1190,7 @@ $$T(v):=|\{e\in E|t(e)=v\}|$$
 我们按照如下规则给该图赋值：首先对图$\Gma$的每一个顶点赋值，
 “有几条边经过此点，就求几次导”；然后将所有顶点的数值相乘。
 
-\begin{example}注意到这里的$\mcalI(a)=\frac{\lmd a^3}{3!\hbar}$为
+\begin{example}注意到这里的$\mcalI(a)=\frac{\lmd a^3}{3!}$为
 关于$a$的三次多项式，而$\mcalP_s=\mcalP_t$为一阶微分算子，
 从而如果图$\Gma$的某个顶点的度数（入度与出度之和）大于三，那么
 $w_\Gma(\mcalP,\mcalI)=0$
@@ -1190,15 +1248,14 @@ $$\Aut(\Gma):=\{\fai\in S_m\times S_k|\fai.\Gma=\Gma\}$$
 该轨道的长度记作$\ell(\underline{\Gma})$；而对于带标记的有向图$\Gma$，
 记$\ell(\Gma)$为$\Gma$所在轨道的长度。
 则由群论的轨道计数知，
-$$
+\begin{eqnarray*}
   m^{2k}=|\mcalG_{m,k}|
-=\sum_{\underline{\Gma}\in\underline{\mcalG}_{m,k}}
+&=&\sum_{\underline{\Gma}\in\underline{\mcalG}_{m,k}}
   \ell(\underline{\Gma})
-$$
-$$
-m!k!=|S_m\times S_k|=
-\ell(\Gma)|\Aut(\Gma)|
-$$
+\\
+m!k!=|S_m\times S_k|&=&
+\ell(\Gma)|\Aut(\Gma)|\quad (\forall\Gma\in\mcalG_{m,k})
+\end{eqnarray*}
 
 而对于多重有向图$\underline{\Gma}$，我们不去定义它的自同构群，但是注意到
 $$|\Aut(\underline{\Gma})|:=|\Aut(\Gma)|$$
@@ -1222,11 +1279,33 @@ $$|\Aut(\underline{\Gma})|:=|\Aut(\Gma)|$$
          \frac{w_\Gma(\mcalP,\mcalI)}
               {|\Aut(\Gma)|}\\
 &=&
-     \sum_{\Gma\text{为多重有向图}\atop\text{互不同构}}
+     \sum_{\Gma\text{取遍}\atop\text{多重有向图}}
        \frac{w_\Gma(\mcalP,\mcalI)}
               {|\Aut(\Gma)|}
 \end{eqnarray*}
 \end{thm}
+\begin{proof}
+这是显然的，只需要注意到
+\begin{eqnarray*}
+     \frac{1}{k!}
+     \frac{1}{m!}
+     \sum_{\Gma\in\mcalG_{m,k}}
+       w_\Gma(\mcalP,\mcalI)
+&=&
+     \frac{1}{|S_k\times S_m|}
+     \sum_{\Gma\in\underline{\mcalG}_{m,k}}
+       \ell(\Gma)
+       w_\Gma(\mcalP,\mcalI)\\
+&=&
+     \sum_{\Gma\in\underline{\mcalG}_{m,k}}
+       \frac{\ell(\Gma)w_\Gma(\mcalP,\mcalI)}
+            {\ell(\Gma)|\Aut(\Gma)|}
+ =
+     \sum_{\Gma\in\underline{\mcalG}_{m,k}}
+       \frac{w_\Gma(\mcalP,\mcalI)}
+            {|\Aut(\Gma)|}
+\end{eqnarray*}
+\end{proof}
 %%%%%%%%微积分%%%%%%%%%
 %introduce graph with cubic vertex,
 %each edge: we put $\hbar\pp{a}\pp{a}$
@@ -1254,43 +1333,306 @@ $$|\Aut(\underline{\Gma})|:=|\Aut(\Gma)|$$
 
 %In general, consider
 %%%%%%%%%%%%%%%%%%%2019.4.1 第六周周一%%%%%%%%%%%%%%%%%%%%%%%
-\section{传播子与重整化群流算子}
 
-Recall：费曼图——理解积分的渐近展开式。
+注意到我们公式中的图$\Gma$可以有很多“连通分支”，
+若进一步将连通分支“分解”之，费曼图公式可以写得更加紧凑。
 
-Asymptotic expansion of
-$$\int_\bbR e^{(-\frac{1}{2}x^2+I(x+a))/\hbar}\frac{\td x}{\sqrt{2\pi t_0}}$$
-where
-$$I(x)=\sum_{n\geq 3}\frac{\lmd_n}{n!}x^n
-=e^{\frac{\hbar}{2}\p_x^2}e^{I(a)/\hbar}$$
+\begin{notation}
 
-Feymann Graph formula
+（1）多重有向图$\Gma$可自然地被遗忘为多重（无向）图$\widehat{\Gma}$，
+后者称为前者的\textbf{无向底图}。对于带标记的有向图，
+类似定义其无向底图（先遗忘为多重有向图）。
 
-$$=\exp\left(\sum_{\Gamma-\text{Commu graphs}}
-\frac{\omg_\Gamma(a)}{|Aut(\Gamma)|}\right)$$
+（2）称带标记的有向图（或者多重有向图）是连通的，如果其无向底图连通。
 
-Let
-$$\mcalP=\frac{1}{2}\p_a^2$$
-is called propagator(传播子)
-$$e^{\omg(\mcalP,I)/\hbar}=e^{\hbar\mcalP}e^{I/\hbar}$$
-$$\omg(\mcalP,I)=\hbar\sum_{\Gamma}\frac{\omg_\Gamma(\mcalP,I)}{|Aut(\Gamma)|}$$
+（3）对于多重有向图$\Gma$，自行定义其\textbf{连通分支}。
+注意连通分支依然是多重有向图。
+\end{notation}
 
-$$I\mapsto\omg(\mcalP,I)$$
+对于两个多重有向图$\Gma$与$\Gma'$，
+自行定义它们的\textbf{无交并}$\Gma\sqcup\Gma'$
+（常简记为$\Gma\Gma'$，这仍然是一个多重有向图）。容易知道，
+对任何多重有向图$\Gma$，$\Gma$可被唯一分解为其连通分支的无交并：
+$$
+  \Gma\cong\Gma_1^{d_1}\Gma_2^{d_2}\cdots\Gma_l^{d_l}
+$$
+其中$\Gma_1,...,\Gma_l$为$\Gma$的互不同构的连通分支，$d_i\geq 1$，
+$$\Gma_i^{d_i}:=\underbrace{\Gma_i\Gma_i\cdots\Gma_i}_{d_i\text{个}}$$
 
-Today:
+\begin{lemma}记号、条件承上，如果
+$$
+  \Gma\cong\Gma_1^{d_1}\Gma_2^{d_2}\cdots\Gma_l^{d_l}
+$$
+则多重有向图$\Gma$的自同构群阶数满足：
+$$
+  |\Aut(\Gma)|
+=
+  \left(
+    \prod_{i=1}^l
+      |\Aut(\Gma_i)|^{d_i}
+  \right)
+  \left(
+    \prod_{i=1}^l
+      d_i!
+  \right)
+$$
+\end{lemma}
+\begin{proof}[证明大意]
+不妨将$\Gma$视为带标记的有向图（任取一个代表元即可），
+且$\Gma\in\mcalG_{m,k}$.
+一方面，易证上式的“$\geq$”，构造即可。另一方面，
+我们要说明$|\Aut(\Gma)|$中的元素“只有这些”，细节从略。
+{\color{blue}
+真的仅仅是限于篇幅...
+}
+\end{proof}
+
+\begin{thm}（费曼图公式：指数形式）
+
+记号承上，则成立
+\begin{eqnarray*}
+     \int_\bbR
+       e^{\big(
+            -\frac{1}{2}x^2
+            +\frac{\lmd}{3!}(x+a)^3
+          \big)
+          \big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+ \sim
+     \sum_{\Gma\text{取遍}\atop\text{多重有向图}}
+       \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+ =
+     \exp
+     \left(
+       \sum_{\Gma\text{取遍}
+             \atop\text{\textbf{连通的}多重有向图}}
+         \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+     \right)
+\end{eqnarray*}
+其中等号右边的“$\exp$”为按照指数运算规则形式地展开。
+\end{thm}
+\begin{proof}
+只需验证上式中的等号。
+\begin{eqnarray*}
+     \sum_{\Gma\text{取遍}\atop\text{多重有向图}}
+       \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+&=&
+     \sum_{r=0}^\infty
+       \sum_{\gma=0}^\infty
+         \left(
+         \sum_{d_1,...,d_r\geq 1\atop d_1+\cdots+d_r=\gma}
+           \sum_{\Gma_1,...,\Gma_r\text{连通}\atop\text{互不同构}}
+             \frac{w_{\Gma_1^{d_1}\cdots\Gma_r^{d_r}}(\mcalP,\mcalI)}
+                  {|\Aut(\Gma_1^{d_1}\cdots\Gma_r^{d_r})|}
+         \right)\\
+&=&
+     \sum_{\gma=0}^\infty
+       \sum_{r=0}^\infty
+       \left(
+         \sum_{d_1,...,d_r\geq 1\atop d_1+\cdots+d_r=\gma}
+           \sum_{\Gma_1,...,\Gma_r\text{连通}\atop\text{互不同构}}
+             \frac{1}{d_1!}\cdots
+             \frac{1}{d_r!}
+             \prod_{j=1}^r
+               \left(
+               \frac{w_{\Gma_j}(\mcalP,\mcalI)}
+                    {|\Aut(\Gma_j)|}
+               \right)^{d_j}
+       \right)\\
+&=&
+     \sum_{\gma=0}^\infty
+       \frac{1}{\gma!}
+         \left(
+           \sum_{\Gma\text{取遍}\atop
+                 \text{\textbf{连通的}多重有向图}}
+             \frac{w_\Gma(\mcalP,\mcalI)}
+                  {|\Aut(\Gma)|}
+         \right)^\gma\\
+&=&
+     \exp
+     \left(
+       \sum_{\Gma\text{取遍}
+             \atop\text{\textbf{连通的}多重有向图}}
+         \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+     \right)
+\end{eqnarray*}
+\end{proof}
+
+\section{重整化群流算子}
+
+%Recall：费曼图——理解积分的渐近展开式。
+%Asymptotic expansion of
+%$$\int_\bbR e^{(-\frac{1}{2}x^2+I(x+a))/\hbar}\frac{\td x}{\sqrt{2\pi t_0}}$$
+%where
+%$$I(x)=\sum_{n\geq 3}\frac{\lmd_n}{n!}x^n
+%=e^{\frac{\hbar}{2}\p_x^2}e^{I(a)/\hbar}$$
+%Feymann Graph formula
+%$$=\exp\left(\sum_{\Gamma-\text{Commu graphs}}
+%\frac{\omg_\Gamma(a)}{|Aut(\Gamma)|}\right)$$
+%Let
+%$$\mcalP=\frac{1}{2}\p_a^2$$
+%is called propagator(传播子)
+%$$I\mapsto\omg(\mcalP,I)$$
+%Today:
+
+我们已通过BV上同调给出了渐近展开
+\begin{eqnarray*}
+     \int_{\bbR}
+       e^{(\frac{1}{2}x^2+\frac{\lmd(x+a)^3}{3!})\big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+&\sim&
+     e^{\frac{\hbar}{2}\p_a^2}
+     e^{\frac{\lmd(x+a)^3}{3!\hbar}}
+\end{eqnarray*}
+并给出了组合解释——费曼图展开。若令
+$$w(\mcalP,\mcalI)
+:=\hbar\sum_{\Gamma\text{取遍}\atop\text{\textbf{连通的}多重有向图}}
+    \frac{w_\Gamma(\mcalP,I)}{|\Aut(\Gamma)|}$$
+则有指数型费曼图公式
+$$e^{w(\mcalP,\mcalI)/\hbar}=e^{\mcalP}e^{\mcalI/\hbar}$$
+其中$\mcalP=\frac{1}{2}\hbar\p^2$为传播子。
+
+上式中的“相互作用项”$\mcalI(x)=\frac{\lmd x^3}{3!}$可以如下推广之：
+
+\begin{notation}记空间
+$$\bbR[x]\fps{\hbar}^+:=
+x^3\bbR[x]\oplus\hbar\bbR[x]\fps{\hbar}
+\subseteq\bbR[x]\fps{\hbar}$$
+对于$\mcalI\in\bbR[x]\fps{\hbar}$，称$\mcalI$为相互作用能。
+\end{notation}
+任取$\mcalI\in\bbR[x]\fps{\hbar}^+$，
+以及带标记的有向图（或者多重有向图）$\Gma=(V,E,\veps)$，
+我们可类似地按照费曼规则（详见记号\ref{费曼规则}）给图$\Gma$赋值：
+$$w_\Gma(\mcalP,\mcalI):=
+     \hbar^{-|V|}
+     \prod_{v\in V}
+       \mcalP_s^{S(v)}
+       \mcalP_t^{T(v)}
+       \mcalI(a)
+\in
+     \bbR[x]\fps{\hbar}^+
+$$
+其中$\mcalP=\frac{1}{2}\hbar\p^2_x$为传播子。
+
+接下来，我们要将费曼图推广。
+对于相互作用能$\mcalI\in\bbR[x]\fps{\hbar}^+$，令
+$$\mcalI=\sum_{k\geq 0}\mcalI_{k}'x^k$$
+其中$\mcalI_{k}'\in\bbR\fps{\hbar}$为形式幂级数。
+记$\mcalI_k:=\mcalI_{k}'x^k$，
+于是$\mcalI$被分解为$\mcalI=\sum_{k=0}^\infty\mcalI_k$.
+
+一方面我们早已知道
+$$
+     \int_{\bbR}
+       e^{(\frac{1}{2}x^2+\mcalI(x+a))\big/\hbar}
+       \frac{\td x}{\sqrt{2\pi\hbar}}
+\sim
+     e^{\frac{\hbar}{2}\p_a^2}
+     e^{\mcalI(a)/\hbar}
+$$
+之后直接将右边展开，得到费曼图解释。
+但另一方面我们还可以如此展开：
+\begin{eqnarray*}
+     e^{\frac{\hbar}{2}\p_a^2}
+     e^{\mcalI(a)/\hbar}
+&=&
+     e^{\frac{\hbar}{2}\p_a^2}
+     e^{\frac{1}{\hbar}
+        \sum\limits_{k\geq0}
+          \mcalI_{k}(a)
+       }\\
+&=&
+     e^{\frac{\hbar}{2}\p_a^2}
+     \sum_{q=0}^{\infty}
+       \frac{1}{q!}
+       \left(
+         \frac{1}{\hbar}
+         \sum_{k=0}^\infty
+           \mcalI_{k}(a)
+       \right)^q\\
+&=&
+     e^{\frac{\hbar}{2}\p_a^2}
+     \left(
+       \sum_{r=0}^\infty
+         \sum_{
+               0\leq k_1<...<k_r
+               \atop
+               d_1,...,d_r\geq 0
+              }
+           \frac{\hbar^{-(d_1+\cdots+d_r)}}
+                {d_1!\cdots d_r!}
+           \prod_{j=1}^r
+             \mcalI_{k_j}^{d_j}(a)
+     \right)
+\end{eqnarray*}
+
+观察上式，仍将微分算子级数$e^{\frac{\hbar}{2}\p_a^2}$理解为“添加有向边”；
+而括号里的一长串也有组合解释——\textbf{带权的顶点集}。
+给“带权的顶点集”顺次添加“有向边”，就得到比
+“带标记的有向图的顶点集$V$”更为复杂的组合结构。
+大致地说，以前我们给图的所有顶点都赋以相同的$\mcalI(a)$，
+但是现在给图的不同顶点赋以不同的$\mcalI_{k}(a)$.
+
+\begin{definition}（顶点带权的带标记的有向图）
+
+\textbf{顶点带权的带标记的有向图}是指如下资料：
+$$(V,E,\veps,W,\fai)$$
+并且满足：
+
+（1）$(V,E,\veps)$为带标记的有向图；
+
+（2）$W$为集合，$\fai:V\to W$
+\end{definition}
+我们称$W$为权集，在这里$W=\{\mcalI_0,\mcalI_1,...\}\subseteq\bbR[x]\fps{\hbar}^+$.
+
+我们可以按照加权的类型对顶点带权的带标记的有向图分类。
+比如，此图有$d_1$个顶点赋以权$\mcalI_{k_1}$，
+$d_2$个顶点赋以权$\mcalI_{k_2}$，……，
+$d_r$个顶点赋以权$\mcalI_{k_r}$，则称该图为
+“$\mcalI_{k_1}^{d_1}\cdots\mcalI_{k_r}^{d_r}$型”的。
+
+
+
+
+
+
 
 \begin{prop}
-Let $\bbR\fps{,\hbar}^+=x^3\bbR\fps{x}\oplus\hbar\bbR\fps{x,\hbar}\subseteq\bbR\fps{x,\hbar}$,
-(at least cubic modulo $\hbar$),then
-$$\omg(\mcalP,-):I\to\omg(\mcalP,I)$$
-is a well-defined transformation on $\bbR\fps{x,\hbar}^+$.
-$$\omg(\mcalP,-):\bbR\fps{x,\hbar}^+\mapsto\bbR\fps{x,\hbar}^+$$
-
-and its inverse is $\omg(-\mcalP,-)$.
+对于传播子$\mcalP=\frac{1}{2}\hbar\p_x^2$，以及
+$\mcalI\in\bbR[x]\fps{h}^+$，定义
+$$w(\mcalP,\mcalI)
+:=\hbar\sum_{\Gamma\text{取遍}\atop\text{\textbf{连通的}多重有向图}}
+    \frac{w_\Gamma(\mcalP,I)}{|\Aut(\Gamma)|}$$
+那么算子
+\begin{eqnarray*}
+w(\mcalP,\text{-}):\bbR[x]\fps{h}^+ &\to& \bbR[x]\fps{h}^+\\
+\mcalI&\mapsto& w(\mcalP,\mcalI)
+\end{eqnarray*}
+是良定的，并且具有逆算子$w(-\mcalP,\text{-})$.
+%is a well-defined transformation on $\bbR\fps{x,\hbar}^+$.
+%and its inverse is $\omg(-\mcalP,-)$.
 \end{prop}
 
-\begin{proof}
-Let $I\in\bbR\fps{x,\hbar}^+$,
+\begin{proof}%Let 
+任取$\mcalI\in\bbR[x]\fps{\hbar}^+$，则有
+$$w(\mcalP,\mcalI)=
+\hbar\sum_{\Gamma\text{取遍}\atop\text{\textbf{连通的}多重有向图}}
+    \frac{w_\Gamma(\mcalP,I)}{|\Aut(\Gamma)|}
+=\sum_{G\in\bbZ\atop D\geq 0}
+   \lmd_{G,D}\hbar^Gx^D
+$$
+其中$\lmd_{G,D}\in\bbR$.为证明良定性，我们需要说明以下三点：
+
+（1）若$G<0$，则$\lmd_{G,D}=0$；
+
+（2）$\lmd_{0,0}=\lmd_{0,1}=\lmd_{0,2}=0$；
+
+（3）对任意$G\geq 0$，使得$\lmd_{G,D}$非零的$D$至多有限个。
+
 $$I=\sum_{k,g\geq 0}I_{k,g}\hbar^g$$
 where $I_{k,g}$ has degree $k$ polynomial on $x$.
 
@@ -1312,6 +1654,7 @@ $$I\mapsto\omg(\Gamma,I)$$
 $$e^{\omg(\Gamma,I)/\hbar}=e^{\hbar\mcalP}e^{I/\hbar}$$
 $\omg_(\Gamma,-)$ is called \textbf{renormalization group flow operator}.
 
+\section{$n$维Gauss积分}
 For $\bbR^n$,consider
 $$\int_{\bbR^n}\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}
 e^{(-\frac{1}{2}Q(x)+I(x+a))/\hbar}$$
@@ -1350,6 +1693,8 @@ $$e^{\omg(\mcalP,I)/\hbar}"="e^{\hbar\mcalP}e^{I/\hbar}$$
 it is well defined, invertible...
 
 Now, $\bbR^n$ when $n"\to"\infty$...
+
+\section{例子：$\phi^4$-场论}
 
 Quantum field theory case:
 
@@ -1594,6 +1939,240 @@ $$\int_{\gma:[0,t]\to\bbR^d\atop\gma(0)=x,\quad\gma(t)=y}
 $$\mcalS\to\mcalS[\cdots]$$
 
 还是下一节课再讲吧。。。
+
+\section{同伦重整化}
+%%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%这周继续量子场论%%%%%%%%%%%%%%%%
+\textbf{Homotopic Renormalization}
+
+Recall:
+$$\int\rightsquigarrow\textbf{BV homology}$$
+
+scalar field theory in $\bbR^4$.
+
+$\infty$-dimension$\rightsquigarrow$ UV-divergence.
+
+\begin{definition}
+A differential BV (or DGBV) is a triple $(\mcalA,Q,\yc)$,s.t.
+
+(1)$\mcalA$ is a graded commutative algebra with product$\cdot$
+
+(2)$Q:\mcalA\to\mcalA$ is a graded derivation of degree $1$.
+
+(3)$\yc:\mcalA\to\mcalA$ is a "2-nd differential operator" (BV operator),such that 
+$\deg\yc=1,\yc^2=0$.
+
+(4)$[Q,\yc]:=Q\circ\yc+(-1)^{1+1}\yc\circ Q=0$
+\end{definition}
+we define the BV-bracket 
+$$\{\afa,\beta\}:=\yc(\afa\beta)-(\yc\afa)\beta-(-1)^\afa\afa\yc\beta$$
+
+This bracket ${,}$ has degree $1$, satisfies:
+
+(1)graded Jacobi identity
+
+(2)Leibniz rule...
+
+(BV-algebra...)(similar as Gerstenhaber algebra)
+
+\begin{example}
+$M$ is a manifold with volume form $\Omg$, 
+$$\mcalA:=\PV\updot(M)\text{with wedge product}\wedge$$
+$$\yc:=\text{divergence operator with $\Omg$}$$
+$$Q=0$$
+
+in local coordinate,$\Omg=e^f\td^nx$,
+$$\yc=\sum_i\pp{x^i}\pp{\theta_i}-\sum_i\pfrac{f}{x^i}\pp{\theta_i}$$
+\end{example}
+
+\begin{example}
+Let $X$ be a complex manifold of complex dimension $d$, 
+$$\Omg\in H^0(X,K_X)$$
+is a holomorphic volume form(nowhere vanishing),where 
+$K_X:=\wedgeform{d}T_X^{1,0}$
+
+Then $(X,\Omg)$ is called a CY manifold(Calabi-Yau).
+
+$$\PV^{p,q}(X):=\Omg^{p,q}(X,\wedgeform{p}T_X^{1,0})
+\xra{\suobing\Omg}\Omg^{d-p,q}(X)$$
+
+$$\pbar:\PV^{p,q}\to\PV^{p,q-1}$$
+$$\yc:\PV^{p,q}\to\PV^{p-1,q}$$
+\end{example}
+Then we have a DGBV:
+$$\mcalA:=\PV^{\bullet,\bullet}(X)$$
+$$Q:=\pbar$$
+$$\yc=\text{divergence}$$
+
+(Hodge theory,deformation theory)
+
+$$\deg\PV^{p,q}(X)=q-p$$
+
+\begin{definition}
+Let $(\mcalA,Q,\yc)$ be a DGBV. $I_0\in\mcalA_0$(i.e. degree$=0$) is said to 
+satisfy classical master equation(CME), if 
+$$QI_0+\frac{1}{2}\{I_0,I_0\}=0$$
+\end{definition}
+（这个方程长得有点像联络，而且是曲率为0的那种）
+
+$$Q+\{I_0,-\}\curvearrowright\mcalA$$
+this operator acts as a differential, i.e.
+$$(Q+\{I_0,-\})^2=0$$
+(check,need to use Jacobi identity, HW)
+
+This bracket is also called "odd Poisson structure"...
+
+\textbf{Fact}:
+any action functional with gauge symmetry leads to a solution of CME.
+(What the fuck is "guage symmetry"?)
+
+(quantum version)
+
+$$I=I_0+I_1\hbar+I_2\hbar^2\in\mcalA\fps{\hbar}$$
+is said to satisfy Quantum master equation, if 
+$$QI+\hbar\yc I+\frac{1}{2}\{I,I\}=0$$
+(when $\hbar\to 0$, go back to "classical")
+
+(比较$\hbar$各项系数，有无穷多个方程)
+
+\textbf{HW}:
+$$\text{QMF}\iff (Q+\hbar\yc)e^{I/\hbar}=0$$
+
+i.e. , $e^{I/\hbar}$ is the analogue of "closed differential form".
+$$\rightsquigarrow\int e^{I/\hbar}\quad
+\text{in Physis: Quantum gauge symmetry}$$
+（某种意义下的不变的测度）
+
+$$\xra{?}\int \afa e^{I/\hbar}=:\langle\afa\rangle$$
+co-relator function
+
+\textbf{classical observable}
+$$Obs^{cl}:=H^0(\mcalA,Q+\{I,-\})$$
+(is called classical BRST)
+
+\textbf{quantum observable}
+$$Obs^q=H^0(\mcalA\fps{\hbar},Q+\hbar\yc+\{I,-\})$$
+
+if $\afa\in Obs^q$, then 
+$$(Q+\hbar\yc)\afa+\{I,\afa\}=0
+\iff\left
+(Q+\hbar\yc)(\afa e^{I/\hbar})=0
+\right)$$
+
+(i.e. $\afa e^{I/\hbar}$ is a "closed form")
+
+\begin{example}(from singularity theory)
+
+$$\mcalA:=\bbC[z^i,\theta_i]$$
+where $\deg\theta_i=-1$(super variable).
+$$f:\bbC^n\to\bbC$$
+is a polynomial, such that $f(z)$ has a isolated singularity  at $z=0$,
+$$\Crit(f)=\{z\in\bbC^n|\p_if(z)=0\}$$
+then $\Crit(f)=\{0\}$.
+
+Then ,there is a DGBV:
+$$Q=0$$
+$$\yc=\sum_i\pp{z^i}\pp{\theta_i}$$
+and $f$ solves CME: $\{f,f\}=0$(trivial...),and also satisfies QMF:
+$\yc e^{f/\hbar}=0$.
+\end{example}
+
+then , the classical observable 
+$$Obs^{cl}=H^0(\mcalA,\{f,-\})=
+\text{Koszul resolution of $\Crit(f)$}
+=\bbC[z^i]\big/(\p_if)$$
+is called "Milnor ring",parametrizing deformations of $f$.
+This Milnor ring is an Artinian ring(so, of finite length),
+$$\mu:=\dim_\bbC\bbC[z^i]\big/(\p_if)$$
+is called Milnor ring..
+
+\begin{example}
+$f(z)=z^{n+1}$,($A_n$-singularity),
+$$Jac(f)=\bbC[z]\big/z^n$$
+$$\mu=n$$
+\end{example}
+
+Check:
+$$Obs^q\cong\Omg_{holo}^n\fps{\hbar}\big/
+(\hbar\td+\td f\wedge)$$
+called (formal) Brieshorn lattice.
+
+$Obs^q$ describes complex oscillatory integral.
+
+Rmk: Singularity leads to a mixed Hodge theory. 
+
+$\hbar=$Hodge filtration. 
+
+QFT is a $\infty$-dimensional version of Hodge theory.
+%以上几句在吹牛。。。
+
+\textbf{$(-1)$-symplectic geometry(BV-formalism)}
+
+Toy model:
+Consider $(V,Q,\omg)$,where $(V,Q)$ is a finite dimensional complex, 
+$$Q:V\to V,Q^2=0$$
+$$\omg:\wedgeform{2}V\to\bbC$$
+symplectic pair(non-degenerate) of degree $-1$. 
+And $\omg$ is compactible with $Q$:
+$$Q(\omg)=0\iff
+\omg(Q(-),-)+\omg(-,Q(-))=0$$
+
+$(V,Q,\omg)$ is called degree $(-1)$-symplectic space.
+
+We can construct a DGBV algebra
+$$\mcalA=\mcalO(v)=\prod_{n\geq 0}\Sym^n(V^*)$$
+$Q$ is the induced derivation on $\mcalA$.
+(Eg: 
+$$(QI)(\afa_1\ten\cdots\ten\afa_n)=
+\sum_i\pm I(\afa_1,...,\hat{\afa_i},...,\afa_n)$$
+)
+
+$\omg:V^*\cong V[1]$, example:
+$\omg=\td x^i\wedge\td\theta_i$.
+$$\omg\in\wedgeform{2}(V^*)\longleftarrow \wedgeform{2}(V[1])=\Sym^2(V)[2]$$
+$K=\omg^{-1}\in\Sym^2(V),\deg(K)=1$ is the Poisson kernel of $\omg$.
+
+locally, 
+$$\omg=\td x^i\wedge\td\theta_i$$
+$$K=\pp{x^i}\ten\pp{\theta_i}+\pp{\theta_i}\ten\pp{x^i}$$
+
+We define the BV operator 
+$$\yc_K:\mcalO(V)\to\mcalO(V)$$
+$$\Sym^n(V^*)\to\Sym^{n-2}(V^*)$$
+by contracting with $K\in\Sym^2(V)$.
+
+Expicitly
+$$\yc_K(\afa_1\ten...\ten\afa_n)
+=\sum_{i,j}\pm\langle K,\afa_i,\afa_j\rangle\afa_1\ten...\hat{\afa_i}...\hat{\afa_j}...\ten\afa_n$$
+
+\begin{prop}(HW)
+$$(\mcalA=\mcalO(V),Q,\yc_K)$$
+is a DGBV algebra.
+\end{prop}
+
+eg: $\mcalA=\bbC[x^i,\theta_i]$,$\omg=\td x^i\wedge\td\theta_i$, and 
+$$\yc_K=\pp{x^i}\pp{\theta_i}$$
+
+\textbf{QFT case}
+$$V,Q\rightsquigarrow 
+\mcalE\updot=\Gma(X,E\updot)$$
+smooth section of some graded bundle $E\updot$.
+$$\cdots\xra{Q}\mcalE^{-1}\xra{Q}\mcalE^0\xra{Q}\mcalE^1\to\cdots$$
+$Q$ is a differential operator, $Q^2=0$. ($\infty$-dimension)
+
+$$\omg\rightsquigarrow\text{local $(-1)$-symplectic pair}$$
+$$\omg(\afa,\beta)=\int_X\langle\afa,\beta\rangle,\quad\afa,\beta\in\mcalE$$
+
+$K=\omg^{-1}=\delta\text{-function supported on} X\subseteq X\times X$.
+(UV-divergence)
+
+$V^*\to\mcalE^*$ is distribution...
+
+$\yc_K\curvearrowright$ Distribution is ill-defined!
+
+
+
+
 
 
 
