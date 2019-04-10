@@ -1412,7 +1412,9 @@ $$
      \right)
 \end{eqnarray*}
 其中等号右边的“$\exp$”为按照指数运算规则形式地展开。
+\label{费曼图展开：指数形式}
 \end{thm}
+
 \begin{proof}
 只需验证上式中的等号。
 \begin{eqnarray*}
@@ -1642,12 +1644,12 @@ $w_\Gma(\mcalP)$.
 $$
   \xybigcol
   \xymatrix{
-    &&&\mcalI_4^{(2)} 
+    &&&\mcalI_4^{(2)}
       \ar@/_1.2pc/[dd]_{e_1}
       \ar@/^1.2pc/[dd]_{e_3}
       \ar[dd]_{e_2}
   \\
-     \mcalI_3^{(1)} \ar@/^1pc/[r]^{a_1}  \ar@/_1pc/[r]_{a_2}
+     \mcalI_3^{(1)} \ar@/^2pc/[r]^{a_1}  \ar@/_2pc/[r]_{a_2}
     &\mcalI_4^{(1)} \ar[r]^b
     &\mcalI_3^{(2)} \ar@/^1.2pc/[ur]^c   \ar@/_1.2pc/[dr]_d
     &
@@ -1674,7 +1676,7 @@ $$
      (\p_x^3\mcalI_3^{(2)})
      (\p_x^3\mcalI_4^{(1)})
      (\p_x^4\mcalI_4^{(2)})
-     (\p_x^4\mcalI_6^{(1)}) 
+     (\p_x^4\mcalI_6^{(1)})
 $$
 其中$\mcalI_k^{(l)}:=\mcalI_k$.
 还可以考察其自同构群，容易知道
@@ -1749,12 +1751,13 @@ w(\mcalP,\text{-}):\bbR[x]\fps{h}^+ &\to& \bbR[x]\fps{h}^+\\
 是良定的，并且具有逆算子$w(-\mcalP,\text{-})$.
 该算子称为\textbf{重整化群流算子}（renormalization group flow operator）。
 \index{renormalization group flow operator\kong 重整化群流算子}
+\label{重整化群流算子-thm}
 %$\omg_(\Gamma,-)$ is called \textbf{renormalization group flow operator}.
 %is a well-defined transformation on $\bbR\fps{x,\hbar}^+$.
 %and its inverse is $\omg(-\mcalP,-)$.
 \end{thm}
 
-\begin{proof}%Let 
+\begin{proof}%Let
 任取$\mcalI\in\bbR[x]\fps{\hbar}^+$，则有
 $$w(\mcalP,\mcalI)=
 \hbar\sum_{\Gamma\text{取遍}\atop\text{\textbf{连通的}多重有向图}}
@@ -1903,7 +1906,7 @@ $$e^{w(\mcalP,\mcalI)/\hbar}=e^\mcalP e^{\mcalI/\hbar}$$
  =
      e^{-\mcalP}e^{\mcalP}
      e^{\mcalI/\hbar}
- =   
+ =
      e^{\mcalI/\hbar}
 \end{eqnarray*}
 因此$w(-\mcalP,w(\mcalP,\mcalI))=\mcalI$.另一边同理，从而证毕。
@@ -1912,47 +1915,341 @@ $$e^{w(\mcalP,\mcalI)/\hbar}=e^\mcalP e^{\mcalI/\hbar}$$
 
 
 \section{$n$维Gauss积分}
-For $\bbR^n$,consider
-$$\int_{\bbR^n}\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}
-e^{(-\frac{1}{2}Q(x)+I(x+a))/\hbar}$$
 
-where $Q(x)=\sum Q_{ij}x^ix^j$ quadratic ,and $(Q_{ij})>0$ positive.
-$$I(x)\in\bbR\fps{x^i,\hbar}^+$$
-at least cubic in $x^i$ modulo $\hbar$.
-
-the volume form
-$$e^{-\frac{1}{2\hbar}Q(x)}\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}$$
-$$\yc=\hbar\sum_i\pp{x^i}\pp{\theta_i}-\sum_{i,j}Q_{ij}x^i\pp{\theta_j}
-=\mcalU^{-1}(-\sum_{ij}Q_{ij}x^i\pp{\theta_j})\mcalU$$
-where
-$$\mcalU=e^{\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}}$$
-where $(Q^{ij})=(Q_{ij})^{-1}$. Then
-$$\int_{\bbR^n}\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}
-e^{(-\frac{1}{2}Q(x)+I(x+a))/\hbar}
-=\frac{1}{\sqrt{\det Q}}
-  \left(
-    e^{\frac{1}{2}\hbar Q^{ij}\pp{a^i}\pp{a^j}}e^{I(a)/\hbar}
-  \right)
-=
-  \frac{1}{\sqrt{\det Q}}
-  \exp\left(
-    \sum_{\Gamma-\text{connected graph}}
-      \frac{\omg_\Gamma(a)}{Aut(\Gamma)}
-  \right)
+回顾之前若干节。我们已经熟悉了一维情形，即通过BV上同调给出积分
 $$
+  \int_\bbR
+    e^{(-\frac{1}{2}x^2+\mcalI(x+a))/\hbar}
+    \frac{\td x}
+         {\sqrt{2\pi\hbar}}
+\eqno{(*)}
+$$
+的渐近展开，其中相互作用能
+$$\mcalI(x)=\sum\limits_{k,g}\hbar^g\in\bbR[x]\fps{\hbar}^+$$
+我们引入了一种有向图，每个顶点都赋以$\mcalI(x)$，
+每条有向边都赋以微分算子$\frac{1}{2}\hbar\p_x\ten\p_x$；
+依照费曼规则给这样的图赋值，
+进而给出了积分$(*)$的渐近展开——费曼图公式。
+此外，我们通过更精细的组合技巧，
+即图的顶点可以赋予不同的$\mcalI_{k,g}$，
+引入了重整化群流算子。
+
+本节探讨更加一般的有限维情形，类似于“多元正态分布”。
+
+\begin{Example}
+我们考察积分
+$$
+  \int_{\bbR^n}
+    e^{
+        (-\frac{1}{2}Q(x)
+       +\mcalI(x+a))/\hbar
+      }
+    \bigwedge_{i=1}^n
+      \frac{\td x^i}
+           {\sqrt{2\pi\hbar}}
+$$
+其中$x=(x^1,...,x^n)\in\bbR^n$，$Q(x):=Q_{ij}x^ix^j$为二次函数，
+二次型矩阵$(Q_{ij})$对称、严格正定、常值；相互作用能
+$\mcalI(x)\in\bbR[x^1,...,x^n]\fps{\hbar}^+$，其中
+$$\bbR[x^1,...,x^n]\fps{\hbar}^+:=
+\left(
+\bigoplus_{1\leq i\leq j\leq k\leq n}
+  x^ix^jx^k\bbR[x^1,...,x^n]\fps{\hbar}
+\right)
+\oplus\hbar\bbR[x^1,...,x^n]\fps{\hbar}
+$$
+\end{Example}
+%For $\bbR^n$,consider
+%at least cubic in $x^i$ modulo $\hbar$.
+
+与之前完全类似，我们先考察BV上同调。
+在这里，体积形式为%the volume form
+$$
+  \Omg=e^{-\frac{1}{2\hbar}Q(x)}
+       \bigwedge_{i=1}^n
+         \frac{\td x^i}
+              {\sqrt{2\pi\hbar}}
+$$
+需要注意在这里
+$$\int_{\bbR^n}\Omg=\frac{1}{\sqrt{\det Q}}$$
+
+考察BV算子，由性质\ref{BV算子的超变量表达式-prop}直接写出
+\begin{eqnarray*}
+     \yc_\Omg'
+&=&
+     \pp{x^i}\pp{\theta_i}
+    -\frac{1}{2\hbar}
+     \pp{x^i}
+     \left(
+       Q_{kl}x^kx^l
+     \right)
+     \pp{\theta_i}\\
+&=&
+     \pp{x^i}\pp{\theta_i}
+    -\frac{1}{\hbar}
+     Q_{ik}x^k\pp{\theta_i}
+\end{eqnarray*}
+不妨相差常数倍（不会影响同调），令BV算子
+$$\yc_{\Omg}:=
+     \hbar\pp{x^i}\pp{\theta_i}
+    -Q_{ik}x^k\pp{\theta_i}
+$$
+
+\begin{lemma}
+记号承上，令传播子
+$$\mcalP=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$$
+其中$(Q^{ij})$为$(Q_{ij})$的逆矩阵。记$\mcalU=e^\mcalP$，则成立
+$$\yc_\Omg=
+\mcalU^{-1}
+\left(
+  -Q_{ij}x^i\pp{\theta_j}
+\right)
+\mcalU$$
+\end{lemma}
+
+\begin{proof}
+与一维情形完全类似。容易验证
+$$[\mcalP,-Q_{ij}x^i\pp{\theta_j}]=
+  -\frac{1}{2}\hbar Q^{ij}Q_{kl}
+  [\pp{x^i}\pp{x^j},x^l\pp{\theta_k}]
+=
+  -\hbar\pp{x^i}\pp{\theta_i}
+$$
+$$[\mcalP,[\mcalP,-Q_{ij}x^i\pp{\theta_j}]]
+=[\mcalP,-\hbar\pp{x^i}\pp{\theta_i}]=0$$
+从而有
+\begin{eqnarray*}
+     \mcalU^{-1}
+     \left(
+       -Q_{ij}x^i\pp{\theta_j}
+     \right)\mcalU
+&=&
+     \exp(\ad_{-\mcalP})
+     \left(
+       -Q_{ij}x^i\pp{\theta_j}
+     \right)\\
+&=&
+     -Q_{ij}x^i\pp{\theta_j}
+     -[\mcalP,-Q_{ij}x^i\pp{\theta_j}]\\
+&=&
+     \hbar\pp{x^i}\pp{\theta_i}
+    -Q_{ij}x^i\pp{\theta_j}=\yc_\Omg
+\end{eqnarray*}
+\end{proof}
+
+注意$\mcalU$显然可逆，从而$\mcalU$诱导了上链复形的同构：
+$$
+  \mcalU:(\PV_{\bbR^n}\updot,\yc_\Omg)
+  \xra{\sim}
+  (\PV_{\bbR^n}\updot,-Q_{ij}x^i\pp{\theta_j})
+$$
+与一维情形类似，
+容易验证在$H^0(\PV_{\bbR^n}\updot,-Q_{ij}x^i\pp{\theta_j})$当中，
+$[(x^1)^{d_1}(x^2)^{d_2}\cdots(x^n)d^n]=0$
+（如果$d_1,...,d_n$不全为零）——这只需注意到
+$$-Q_{ij}x^i\pp{\theta_j}(-Q^{kl}\theta_k)=x^l$$
+
+从而易知成立如下的渐近展开：
+\begin{prop}记号承上，则有
+\begin{eqnarray*}
+     \int_{\bbR^n}
+       e^{
+           (-\frac{1}{2}Q(x)
+          +\mcalI(x+a))/\hbar
+         }
+       \bigwedge_{i=1}^n
+         \frac{\td x^i}
+              {\sqrt{2\pi\hbar}}
+&\sim&
+     \left.
+       e^{\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}}
+       e^{\mcalI(x)/\hbar}
+     \right|_{x=a}
+     \int_{\bbR^n}\Omg\\
+&=&
+     \frac{1}{\sqrt{\det Q}}
+     e^{\frac{1}{2}\hbar Q^{ij}\pp{a^i}\pp{a^j}}
+     e^{\mcalI(a)/\hbar}
+\end{eqnarray*}
+\end{prop}
+
+我们仿照一维情形，给出上式的费曼图解释。
+与一维情形不同的是，传播子
+$\mcalP=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$
+更加复杂，为此我们需要稍微推广一下费曼规则。
+
+给定相互作用能$\mcalI\in\bbR[x^1,...,x^n]\fps{\hbar}^+$，
+以及传播子$\mcalP=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$，
+我们企图给多重图（带标记的有向图的遗忘）赋值。
+我们通过例子来说明费曼规则。
+
+\begin{example}若多重图$\Gma$如下：
+$$
+  \xymatrix{
+     \bullet  \ar@{-}@/^1pc/[r]  
+              \ar@{-}@/_1pc/[r]
+    &\bullet  \ar@{-}[r]
+    &\bullet
+  }
+$$
+则首先给每一条边的两端添加标记（文字），得到：
+
+$$
+  \xymatrix{
+     \bullet  \ar@{-}@/^1pc/[r]^<<{a_1}^>>{b_1}  
+              \ar@{-}@/_1pc/[r]_<<{a_2}_>>{b_2}
+    &\bullet  \ar@{-}[r]^<<{c}^>>{d}
+    &\bullet
+  }
+$$
+然后直接写出
+$$
+  w_\Gma(\mcalP,\mcalI)
+:=
+  \left(\frac{1}{2}\hbar Q^{i_1j_1}\right)
+  \left(\frac{1}{2}\hbar Q^{i_2j_2}\right)
+  \left(\frac{1}{2}\hbar Q^{cd}\right)
+  \left(\p_{a_1}\p_{a_2}\frac{\mcalI}{\hbar}\right)
+  \left(\p_{b_1}\p_{b_2}\p_c\frac{\mcalI}{\hbar}\right)
+  \left(\p_{d}\frac{\mcalI}{\hbar}\right)
+$$
+这里的文字$a_1,a_2,b_1,b_2,c,d$视为从$1$到$n$的求和指标，
+服从爱因斯坦求和约定。
+\end{example}
+
+显然如此定义的$w_\Gma(\mcalP,\mcalI)$与边两端的标记文字选取无关
+（只要保证这些文字两两不同）。
+对于带标记的有向图$\Gma=(V,E,\veps)$，
+我们当然也能给它赋值$w_\Gma(\mcalP,\mcalI)$，
+只需要将$\Gma$遗忘为多重图。
+我们再看一个例子：
+
+\begin{example}考虑如下多重图$\Gma$：
+$$
+  \xymatrix{
+     &&\bullet   \ar@{-}@/_1pc/[d]
+                 \ar@{-}@/^1pc/[d]
+     &
+  \\
+     &&\bullet   \ar@{-}[dl]
+                 \ar@{-}[dr]
+     &
+  \\
+       \bullet   \ar@{-}[r]
+     & [\bullet]
+     &&\bullet
+  }
+$$
+该图的顶点数$V=5$，边数$E=6$，
+特别注意方括号代表一条闭路（即起始点与终点相同）。
+我们来考察$w_\Gma(\mcalP,\mcalI)$
+\end{example}
+
+\begin{proof}[解]
+一样地，首先给每条边的两端标记文字：
+$$
+  \xymatrix{
+     &&\bullet   \ar@{-}@/_1pc/[d] _<<<{a}_>>>{a'}
+                 \ar@{-}@/^1pc/[d] ^<<<{b}^>>>{b'}
+     &
+  \\
+     &&\bullet   \ar@{-}[dl] _<<<{d}_>>>{d'}
+                 \ar@{-}[dr] ^<<<{e}^>>>{e'}
+     &
+  \\
+       \bullet   \ar@{-}[r] ^<<{c}^>>{c'}
+     & [\bullet]_{f,f'}
+     &&\bullet
+  }
+$$
+从而从图中直接读出
+\begin{eqnarray*}
+     w_\Gma(\mcalP,\mcalI)
+&=&
+     (\frac{1}{2}\hbar)^E\hbar^{-V}
+     Q^{aa'}Q^{bb'}Q^{cc'}Q^{dd'}Q^{ee'}Q^{ff'}\\
+& &
+     \left(\p_{a}\p_{b}\mcalI\right)
+     \left(\p_{a'}\p_{b'}\p_{d}\p_{e}\mcalI\right)
+     \left(\p_{c}\mcalI\right)
+     \left(\p_{c'}\p_{d'}\p_{f}\p_{f'}\mcalI\right)
+     \left(\p_{e'}\mcalI\right)
+\end{eqnarray*}
+\end{proof}
+
+通过以上两例，不难总结出\textbf{费曼规则}。
+与一维情形完全类似，也有费曼图展开公式：
+
+\begin{thm}（费曼图公式：$n$维情形）
+记号承上，则有渐近展开式
+\begin{eqnarray*}
+     \int_{\bbR^n}
+       e^{(-\frac{1}{2}Q(x)+\mcalI(x+a))/\hbar}
+       \bigwedge_{i=1}^n
+         \frac{\td x^i}{\sqrt{2\pi\hbar}}
+&\sim&
+     \frac{1}{\sqrt{\det Q}}
+     \left(
+       e^{\frac{1}{2}\hbar Q^{ij}
+          \pp{a^i}\pp{a^j}}
+       e^{\mcalI(a)/\hbar}
+     \right)\\
+&=&
+     \sum_{\Gma\text{取遍}\atop\text{多重有向图}}
+       \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+ =
+     \exp
+     \left(
+       \sum_{\Gma\text{取遍}
+             \atop\text{\textbf{连通的}多重有向图}}
+         \frac{w_\Gma(\mcalP,\mcalI)}
+              {|\Aut(\Gma)|}
+     \right)
+\end{eqnarray*}
+\end{thm}
+
+\begin{proof}
+与定理\ref{费曼图展开：指数形式}的证明完全相同，从略。
+\end{proof}
+
+与一维情形类似，我们也可以引入重整化群流算子：
+
+\begin{thm}（重整化群流算子：$n$维情形）
+
+对于传播子$\mcalP=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$，
+以及相互作用能$\mcalI\in\bbR[x^1,...,x^n]\fps{\hbar}^+$，令
+$$w(\mcalP,\mcalI):=
+         \sum_{\Gma\text{取遍}
+             \atop\text{\textbf{连通的}多重有向图}}
+           \frac{w_\Gma(\mcalP,\mcalI)}
+                {|\Aut(\Gma)|}
+$$
+则算子
+$$w(\mcalP,\text{-}):
+\bbR[x^1,...,x^n]\fps{\hbar}^+\to
+\bbR[x^1,...,x^n]\fps{\hbar}^+$$
+是良定的，并且具有逆算子$w(-\mcalP,\text{-})$.
+\end{thm}
+
+\begin{proof}
+与一维情形（定理\ref{重整化群流算子-thm}）完全类似，
+引入顶点带权的带标记的有向图。从略。
+\end{proof}
+
+%where
+%$$\mcalU=e^{\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}}$$
+%where $(Q^{ij})=(Q_{ij})^{-1}$. Then
 %%%%%%%%%%Feymann rule%%%%%%%%%%%%%%%%5
+%Similarly,
+%$$\mcalP=\frac{1}{2}\sum_{i,j}Q^{ij}\pp{x^i}\pp{x^j}$$
+%$$\omg(\mcalP,-):\bbR\fps{x^i,\hbar}^+\to\bbR\fps{x^i,\hbar}^+$$
+%$$I\mapsto \omg(\mcalP,I)$$
+%$$e^{\omg(\mcalP,I)/\hbar}"="e^{\hbar\mcalP}e^{I/\hbar}$$
+%it is well defined, invertible...
 
-Similarly,
-$$\mcalP=\frac{1}{2}\sum_{i,j}Q^{ij}\pp{x^i}\pp{x^j}$$
-$$\omg(\mcalP,-):\bbR\fps{x^i,\hbar}^+\to\bbR\fps{x^i,\hbar}^+$$
-$$I\mapsto \omg(\mcalP,I)$$
-$$e^{\omg(\mcalP,I)/\hbar}"="e^{\hbar\mcalP}e^{I/\hbar}$$
-it is well defined, invertible...
-
+\section{无穷维情形初探：$\phi^4$-场论}
 Now, $\bbR^n$ when $n"\to"\infty$...
-
-\section{例子：$\phi^4$-场论}
-
 Quantum field theory case:
 
 \begin{example}Scalar field theory,$\bbR^D$.
@@ -2216,12 +2513,12 @@ A differential BV (or DGBV) is a triple $(\mcalA,Q,\yc)$,s.t.
 
 (2)$Q:\mcalA\to\mcalA$ is a graded derivation of degree $1$.
 
-(3)$\yc:\mcalA\to\mcalA$ is a "2-nd differential operator" (BV operator),such that 
+(3)$\yc:\mcalA\to\mcalA$ is a "2-nd differential operator" (BV operator),such that
 $\deg\yc=1,\yc^2=0$.
 
 (4)$[Q,\yc]:=Q\circ\yc+(-1)^{1+1}\yc\circ Q=0$
 \end{definition}
-we define the BV-bracket 
+we define the BV-bracket
 $$\{\afa,\beta\}:=\yc(\afa\beta)-(\yc\afa)\beta-(-1)^\afa\afa\yc\beta$$
 
 This bracket ${,}$ has degree $1$, satisfies:
@@ -2233,7 +2530,7 @@ This bracket ${,}$ has degree $1$, satisfies:
 (BV-algebra...)(similar as Gerstenhaber algebra)
 
 \begin{example}
-$M$ is a manifold with volume form $\Omg$, 
+$M$ is a manifold with volume form $\Omg$,
 $$\mcalA:=\PV\updot(M)\text{with wedge product}\wedge$$
 $$\yc:=\text{divergence operator with $\Omg$}$$
 $$Q=0$$
@@ -2243,9 +2540,9 @@ $$\yc=\sum_i\pp{x^i}\pp{\theta_i}-\sum_i\pfrac{f}{x^i}\pp{\theta_i}$$
 \end{example}
 
 \begin{example}
-Let $X$ be a complex manifold of complex dimension $d$, 
+Let $X$ be a complex manifold of complex dimension $d$,
 $$\Omg\in H^0(X,K_X)$$
-is a holomorphic volume form(nowhere vanishing),where 
+is a holomorphic volume form(nowhere vanishing),where
 $K_X:=\wedgeform{d}T_X^{1,0}$
 
 Then $(X,\Omg)$ is called a CY manifold(Calabi-Yau).
@@ -2266,8 +2563,8 @@ $$\yc=\text{divergence}$$
 $$\deg\PV^{p,q}(X)=q-p$$
 
 \begin{definition}
-Let $(\mcalA,Q,\yc)$ be a DGBV. $I_0\in\mcalA_0$(i.e. degree$=0$) is said to 
-satisfy classical master equation(CME), if 
+Let $(\mcalA,Q,\yc)$ be a DGBV. $I_0\in\mcalA_0$(i.e. degree$=0$) is said to
+satisfy classical master equation(CME), if
 $$QI_0+\frac{1}{2}\{I_0,I_0\}=0$$
 \end{definition}
 （这个方程长得有点像联络，而且是曲率为0的那种）
@@ -2286,7 +2583,7 @@ any action functional with gauge symmetry leads to a solution of CME.
 (quantum version)
 
 $$I=I_0+I_1\hbar+I_2\hbar^2\in\mcalA\fps{\hbar}$$
-is said to satisfy Quantum master equation, if 
+is said to satisfy Quantum master equation, if
 $$QI+\hbar\yc I+\frac{1}{2}\{I,I\}=0$$
 (when $\hbar\to 0$, go back to "classical")
 
@@ -2310,7 +2607,7 @@ $$Obs^{cl}:=H^0(\mcalA,Q+\{I,-\})$$
 \textbf{quantum observable}
 $$Obs^q=H^0(\mcalA\fps{\hbar},Q+\hbar\yc+\{I,-\})$$
 
-if $\afa\in Obs^q$, then 
+if $\afa\in Obs^q$, then
 $$(Q+\hbar\yc)\afa+\{I,\afa\}=0
 \iff\left
 (Q+\hbar\yc)(\afa e^{I/\hbar})=0
@@ -2334,7 +2631,7 @@ and $f$ solves CME: $\{f,f\}=0$(trivial...),and also satisfies QMF:
 $\yc e^{f/\hbar}=0$.
 \end{example}
 
-then , the classical observable 
+then , the classical observable
 $$Obs^{cl}=H^0(\mcalA,\{f,-\})=
 \text{Koszul resolution of $\Crit(f)$}
 =\bbC[z^i]\big/(\p_if)$$
@@ -2356,9 +2653,9 @@ called (formal) Brieshorn lattice.
 
 $Obs^q$ describes complex oscillatory integral.
 
-Rmk: Singularity leads to a mixed Hodge theory. 
+Rmk: Singularity leads to a mixed Hodge theory.
 
-$\hbar=$Hodge filtration. 
+$\hbar=$Hodge filtration.
 
 QFT is a $\infty$-dimensional version of Hodge theory.
 %以上几句在吹牛。。。
@@ -2366,10 +2663,10 @@ QFT is a $\infty$-dimensional version of Hodge theory.
 \textbf{$(-1)$-symplectic geometry(BV-formalism)}
 
 Toy model:
-Consider $(V,Q,\omg)$,where $(V,Q)$ is a finite dimensional complex, 
+Consider $(V,Q,\omg)$,where $(V,Q)$ is a finite dimensional complex,
 $$Q:V\to V,Q^2=0$$
 $$\omg:\wedgeform{2}V\to\bbC$$
-symplectic pair(non-degenerate) of degree $-1$. 
+symplectic pair(non-degenerate) of degree $-1$.
 And $\omg$ is compactible with $Q$:
 $$Q(\omg)=0\iff
 \omg(Q(-),-)+\omg(-,Q(-))=0$$
@@ -2379,7 +2676,7 @@ $(V,Q,\omg)$ is called degree $(-1)$-symplectic space.
 We can construct a DGBV algebra
 $$\mcalA=\mcalO(v)=\prod_{n\geq 0}\Sym^n(V^*)$$
 $Q$ is the induced derivation on $\mcalA$.
-(Eg: 
+(Eg:
 $$(QI)(\afa_1\ten\cdots\ten\afa_n)=
 \sum_i\pm I(\afa_1,...,\hat{\afa_i},...,\afa_n)$$
 )
@@ -2389,11 +2686,11 @@ $\omg=\td x^i\wedge\td\theta_i$.
 $$\omg\in\wedgeform{2}(V^*)\longleftarrow \wedgeform{2}(V[1])=\Sym^2(V)[2]$$
 $K=\omg^{-1}\in\Sym^2(V),\deg(K)=1$ is the Poisson kernel of $\omg$.
 
-locally, 
+locally,
 $$\omg=\td x^i\wedge\td\theta_i$$
 $$K=\pp{x^i}\ten\pp{\theta_i}+\pp{\theta_i}\ten\pp{x^i}$$
 
-We define the BV operator 
+We define the BV operator
 $$\yc_K:\mcalO(V)\to\mcalO(V)$$
 $$\Sym^n(V^*)\to\Sym^{n-2}(V^*)$$
 by contracting with $K\in\Sym^2(V)$.
@@ -2407,11 +2704,11 @@ $$(\mcalA=\mcalO(V),Q,\yc_K)$$
 is a DGBV algebra.
 \end{prop}
 
-eg: $\mcalA=\bbC[x^i,\theta_i]$,$\omg=\td x^i\wedge\td\theta_i$, and 
+eg: $\mcalA=\bbC[x^i,\theta_i]$,$\omg=\td x^i\wedge\td\theta_i$, and
 $$\yc_K=\pp{x^i}\pp{\theta_i}$$
 
 \textbf{QFT case}
-$$V,Q\rightsquigarrow 
+$$V,Q\rightsquigarrow
 \mcalE\updot=\Gma(X,E\updot)$$
 smooth section of some graded bundle $E\updot$.
 $$\cdots\xra{Q}\mcalE^{-1}\xra{Q}\mcalE^0\xra{Q}\mcalE^1\to\cdots$$
@@ -2437,9 +2734,9 @@ Toy model$(V,Q,\omg)$,$(V,Q)$ finite dimensional complex.
 $\omg:\wedgeform{2}V\to\bbC$
 non-degenerated, of degree $-1$.
 
-$K=\omg^{-1}$ Poisson kernel, $\deg K=1$, 
+$K=\omg^{-1}$ Poisson kernel, $\deg K=1$,
 $$K\in\Sym^2(V)\quad (!!!)$$
-so, 
+so,
 $$\yc_K\curvearrowright\mcalO(V)=\prod_{n}\Sym^n(V^*)$$
 $$\Sym^n(V^*)\to\Sym^{n-2}(V^*)$$
 $\yc_K$: BV operator, $\yc_K^2=0$.
@@ -2468,9 +2765,9 @@ For example, $Q=\td$ be de-Rham differential.
 
 Fact:$H\updot(\mcalE,Q)$ is of finite dimension.
 
-$\omg\rightsquigarrow\omg$: local $(-1)$-symplectic, 
+$\omg\rightsquigarrow\omg$: local $(-1)$-symplectic,
 $$\omg(\afa,\beta)=\int_X\langle\afa,\beta\rangle$$
-where 
+where
 $$\langle,\rangle: E\updot\ten E\updot\to Dens_X$$
 where "Dens" is the "density line bundle"(if $X$ is orientable. $Dens_X=\wedgeform{n}T_X^*$)
 
@@ -2480,16 +2777,16 @@ $\omg(\afa,\beta)=-(-1)^{|\afa||\beta|}$
 
 non-degenerate:$\omg(\afa,-)=0\iff\afa=0$
 
-Q-compactible: 
+Q-compactible:
 $\omg(Q(-),-)+\omg(-,Q(-))=0$.
 
-Then, we get a structure 
+Then, we get a structure
 $$(\mcalE,Q,\omg)$$
 $\infty$-dimensional $(-1)$-symplectic space.
 
 \begin{example}(Chern-Simons Theory)
 
-Let $X$ be a $3$-dim manifold. $\mfkg$ is a Lie algebra 
+Let $X$ be a $3$-dim manifold. $\mfkg$ is a Lie algebra
 with Killing pair $Tr$. $\mcalE=\Omg\updot(X,\mfkg)[1],Q=\td$.
 $$\Omg(\afa,\beta)=\int_XTr(\afa,\beta)$$
 for $\afa,\beta\in\mcalE$.$\deg(\omg)=-1$.
@@ -2515,13 +2812,13 @@ $$\Sym^2(\mcalE^*)$$
 is defined.
 ($S_2$-invariant distribution on $X\times X$)
 
-$\rightsquigarrow\Sym^n(\mcalE^*)$: $S_n$-invariant distributions on 
+$\rightsquigarrow\Sym^n(\mcalE^*)$: $S_n$-invariant distributions on
 $\underbrace{X\times\cdots\times X}_n$.
 
 $\rightsquigarrow\mcalO(\mcalE)=\prod_n\Sym^n(\mcalE^*)$ is defined.
 (graded commutative algebra)
 
-$Q:\mcalE\to\mcalE$ induces $Q:\mcalE^*\to\mcalE^*$, and then 
+$Q:\mcalE\to\mcalE$ induces $Q:\mcalE^*\to\mcalE^*$, and then
 induces derivation $Q\curvearrowright\mcalO(\mcalE)$.
 
 $$K\in\omg^{-1}\not\in\Sym^2(\mcalE)$$
@@ -2549,11 +2846,11 @@ $K_0:=\omg^{-1}$ is a destribution,
 $$Q(K):=(Q\ten 1+ 1\ten Q)K=0$$
 (by compatibility of $\omg$ with $Q$.)
 
-by regularity, we have 
+by regularity, we have
 $$K_0=K_r+Q(P_r)$$
 （in PDE，it is called "Paramatrix"）
 
-where $K_r\in\Sym^2(\mcalE)$ is smooth. 
+where $K_r\in\Sym^2(\mcalE)$ is smooth.
 and $P_r$ is a (singular) distributional section.
 
 $K_r$ is smooth, $Q(K_r)=0$.
@@ -2566,21 +2863,21 @@ $$\yc_{K_r}:\Sym^n(\mcalE^*)\to\Sym^{n-2}(\mcalE^*)$$
 contracting with the smooth $K_r\in\Sym^2(\mcalE)$.
 $$[\yc_{K_r},Q]=0$$
 
-so, 
+so,
 $$(\mcalO(\mcalE),Q,\yc_{K_r})$$
 is a DGBV algebra.($r$-regularized DGBV)
 %%%%%%%%%%%%%画饼%%%%%%%%%%%%%%55
 
-Now, if 
+Now, if
 $$K_0=K_r+QP_r=K_{r'}+QP_{r'}$$
 2 ways to ...
-So, 
+So,
 $$K_{r'}-K_r=QP^{r'}_r$$
-($P_r^{r'}:=P_{r'}=P_r$)Notices that 
-$QP^{r'}_r$is smooth, then by regularity of elliptic operator, 
+($P_r^{r'}:=P_{r'}=P_r$)Notices that
+$QP^{r'}_r$is smooth, then by regularity of elliptic operator,
 $P^{r'}_r$ is smooth.
 
-Denote 
+Denote
 $$\yc_{K_r}=\pp{K_r}$$
 contracting with $K_r$, $2^{nd}$ order.
 
@@ -2601,7 +2898,7 @@ $$
 as operators acting on $\mcalO(\mcalE)$.
 \end{cor}
 \begin{proof}["proof"]
-Using the formula 
+Using the formula
 $$e^ABe^{-A}=e^{\ad_A}B$$
 %%%%%%%476%%%%%%%%%%%
 \end{proof}
@@ -2610,15 +2907,15 @@ $$e^ABe^{-A}=e^{\ad_A}B$$
 
 \begin{definition}
 $\mcalO(\mcalE),Q,\yc_r=\yc_{K_i}$ regularized DGBV,
-$\mcalI[r]\in\mcalO(\mcalE)\fps{\hbar}$ is said to satisfy 
-$r$-effective QME, if 
+$\mcalI[r]\in\mcalO(\mcalE)\fps{\hbar}$ is said to satisfy
+$r$-effective QME, if
 $$(Q+\hbar\yc_r)e^{\mcalI[r]/\hbar}=0$$
 \end{definition}
 \begin{prop}
-Let $\mcalI[r]$ be a $r$-effective solution of QME, defined 
-$\mcalI[r']$ by 
+Let $\mcalI[r]$ be a $r$-effective solution of QME, defined
+$\mcalI[r']$ by
 $$e^{\mcalI[r']/\hbar}=e^{\hbar\p_{P_r^{r'}}}e^{\mcalI[r]/\hbar}$$
-Then $\mcalI[r']$ also satisfies QME. 
+Then $\mcalI[r']$ also satisfies QME.
 \end{prop}
 
 \begin{proof}
@@ -2626,7 +2923,7 @@ Then $\mcalI[r']$ also satisfies QME.
 \end{proof}
 
 \begin{definition}
-An effective solution of QME is defined by a family 
+An effective solution of QME is defined by a family
 $$\{\mcalI[r]\in\mcalO(\mcalE)\fps{\hbar}\}$$
 satisfying the following properties:
 
@@ -2638,10 +2935,10 @@ satisfying the following properties:
 
 In practice, Introduce metric on $E$. $Q^*$ is the adjoint of $Q$,
 $$\Box=[Q,Q^*]=QQ^*+Q^*Q$$
-is the Laplacian. 
+is the Laplacian.
 
 for $t\geq 0$, $K_t$ the heat kernel for $e^{t\Box}$.
-$K_0=$delta-function, $K_t$ smooth for $t>0$. 
+$K_0=$delta-function, $K_t$ smooth for $t>0$.
 $$K_t-K_0=
 \int_0^t[Q,Q^*]e^{-t\Box}\td t
 =[Q,\int_0^tQ^*e^{-u\Box}\td u]$$
@@ -2649,8 +2946,8 @@ $P_0^t$ be the kernel of $\int_0^tQ^*e^{-u\Box}\td u$
 $$P_0^t=(Q^*\ten 1)\int_0^tK_u\td u$$
 $$K_t-K_0=Q(P_0^t)$$
 
-Define the regularized propagator 
-$$P_\veps^L=\int_\veps^L(Q^*\ten 1)K_u\td u$$  
+Define the regularized propagator
+$$P_\veps^L=\int_\veps^L(Q^*\ten 1)K_u\td u$$
 
 $$K_\veps-K_L=Q(P_{\veps}^L)$$
 
