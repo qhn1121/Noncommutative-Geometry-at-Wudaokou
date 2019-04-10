@@ -2086,7 +2086,7 @@ $\mcalP=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$
 \begin{example}若多重图$\Gma$如下：
 $$
   \xymatrix{
-     \bullet  \ar@{-}@/^1pc/[r]  
+     \bullet  \ar@{-}@/^1pc/[r]
               \ar@{-}@/_1pc/[r]
     &\bullet  \ar@{-}[r]
     &\bullet
@@ -2096,7 +2096,7 @@ $$
 
 $$
   \xymatrix{
-     \bullet  \ar@{-}@/^1pc/[r]^<<{a_1}^>>{b_1}  
+     \bullet  \ar@{-}@/^1pc/[r]^<<{a_1}^>>{b_1}
               \ar@{-}@/_1pc/[r]_<<{a_2}_>>{b_2}
     &\bullet  \ar@{-}[r]^<<{c}^>>{d}
     &\bullet
@@ -2195,10 +2195,12 @@ $$
        e^{\mcalI(a)/\hbar}
      \right)\\
 &=&
+     \frac{1}{\sqrt{\det Q}}
      \sum_{\Gma\text{取遍}\atop\text{多重有向图}}
        \frac{w_\Gma(\mcalP,\mcalI)}
-              {|\Aut(\Gma)|}
- =
+              {|\Aut(\Gma)|}\\
+&=&
+     \frac{1}{\sqrt{\det Q}}
      \exp
      \left(
        \sum_{\Gma\text{取遍}
