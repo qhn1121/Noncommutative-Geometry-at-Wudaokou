@@ -2251,120 +2251,375 @@ $$w(\mcalP,\text{-}):
 %it is well defined, invertible...
 
 \section{无穷维情形初探：$\phi^4$-场论}
-Now, $\bbR^n$ when $n"\to"\infty$...
-Quantum field theory case:
+%Now, $\bbR^n$ when $n"\to"\infty$...
+%Quantum field theory case:
 
-\begin{example}Scalar field theory,$\bbR^D$.
-$$\mcalE=C^{\infty}(\bbR^D)$$
-smooth functions ,
-$$\bbR^n\rightsquigarrow\mcalE$$
+现在，我们试图类比$n$维Gauss积分，
+讨论无穷维的量子场论，定义路径积分
+$\int_\mcalE e^{\mcalS[\phi]/\hbar}[D\fai]$.
+本节谈论$\bbR^d$标量场论的一种情形：
 
-$$\mcalS[phi]=\frac{1}{2}
-\int_{\bbR^D}
-  |\td\phi|^2
+\begin{Example}%Scalar field theory,$\bbR^D$.
+对于$d\geq 3$，考虑场空间
+$$\mcalE=C_c^{\infty}(\bbR^d)$$%smooth functions ,
+即$\bbR^d$上的紧支、光滑函数之全体。定义$\mcalE$上泛函
+$\mcalS:\mcalE\to\bbR$如下：
+$$\mcalS[\phi]=\frac{1}{2}
+\int_{\bbR^d}
+  |\nabla\phi|^2
  +\frac{\lmd}{4!}
-  \int_{\bbR^D}\phi^4
+  \int_{\bbR^d}\phi^4
 $$
-for $\phi\in\mcalE$. we want
-$$\int_{\mcalE}e^{-\mcalS[\phi]/\hbar}[D\phi]$$
-\end{example}
+\end{Example}%for
 
-finite dimension ,
-$$\bbR^n=map(n \text{points},\bbR)$$
-so,
-$$\mcalE=C^{\infty}(\bbR^D)"="\lim_{N\to\infty}C^{\infty}(N \text{points})$$
-（取密密麻麻的点？格点场论）
+对于$\phi\in\mcalE$，我们希望定义出路径积分%we want
+$$“\int_{\mcalE}e^{-\mcalS[\phi]/\hbar}[D\phi]”$$
 
-$$i \text{index}\rightsquigarrow x\in\bbR^D$$
-$$\sum_i\rightsquigarrow\int_{\bbR^D}\td x$$
-
-free part:
-$$\frac{1}{2}\int_X|\td\phi|^2
-=\frac{1}{2}\int_X\phi D\phi
+首先注意到
 $$
-where $D=-\sum_i\pp{x^i}\pp{x^i}$ be laplacian:
-$$D:\mcalE\to\mcalE$$
+\int_{\bbR^d}|\nabla \phi|^2
+=\int_{\bbR^d}\phi D\phi
+$$
+其中$D=-\sum\limits_{i=1}^d\pp{x^i}\pp{x^i}$为Laplace算子（注意负号）。
 
-propagator
-$$\mcalP=D^{-1}=D^{-1}_{x,y}$$
-(is called Green's function integral kernel)
+不难将此无穷维情形与之前的$n$维情形类比如下：
+$$
+  \begin{tabular}{|c|c|}
+    \hline
+      $n$维                &  无限维\\
+    \hline
+      $\bbR^n$             &  $\mcalE=C_c^\infty(\bbR^d)$\\
+      $x_i,\,
+      1\leq i\leq n$       &  $\fai(x),x\in\bbR^d$\\
+      $\sum\limits_{i=1}^n$&  $\int_{\bbR^d}\td x$\\
+      $x^iQ_{ij}x^j$       &  $\int_{\bbR^d}\phi D\phi$\\
+      $\mcalI(x)$          &  $\frac{\lmd}{4!}\int_{\bbR^d}\phi^4$\\
+    \hline
+  \end{tabular}
+$$
 
-$$\Phi:\mcalE\to\mcalE$$
-operator, has kernel $\Phi(x,y)$ if
-$$\Phi(f)(x)=\int\td y\Phi(x,y)f(y)$$
+有一种想法是，我们将$\bbR^n$视为
+$$\bbR^n=C^\infty(\bbR^d\text{当中的}n\text{个点})$$
+之后令“$n\to\infty$”，取$\bbR^d$的一个“均匀”、
+稠密的点集，从而达到无限维。这在物理上叫做“格点场论”。
 
-eg. $\Phi=\id\iff\Phi(x,y)=\delta(x-y)$ delta function.
-$$D^{-1}\to D^{-1}(x,y)=\frac{1}{|x-y|^{D-2}}$$
-singularity comes from infinite dimensional nature.
-(Ultra-Violet singularity紫外发散)
+%$$\bbR^n\rightsquigarrow\mcalE$$
+%finite dimension ,
+%$$\bbR^n=map(n \text{points},\bbR)$$
+%so,$$\mcalE=C^{\infty}(\bbR^D)"="\lim_{N\to\infty}C^{\infty}(N \text{points})$$
+%（取密密麻麻的点？格点场论）
+%$$i \text{index}\rightsquigarrow x\in\bbR^D$$
+%$$\sum_i\rightsquigarrow\int_{\bbR^D}\td x$$
+%free part:
+%$$\frac{1}{2}\int_X|\td\phi|^2
+%=\frac{1}{2}\int_X\phi D\phi$$
+%where $D=-\sum_i\pp{x^i}\pp{x^i}$ be laplacian:
+%$$D:\mcalE\to\mcalE$$
+%propagator
+
+在有限维情形，我们有传播子
+$\mcalP:=\frac{1}{2}\hbar Q^{ij}\pp{x^i}\pp{x^j}$,
+我们希望得到它的无限维版本。
+注意$(Q_{ij})$的无限维版本是Laplace算子$D$；
+于是为了得到$(Q^{ij})$的无限维版本，
+自然需要考虑Lapalce算子$D$的“逆”。
+幸运的是，分析学在这方面给我们足够支持。
+
+\begin{lemma}（Lapalce算子的格林函数）
+
+对于$d\geq 3$，记$S_d$为$d$维单位球体的表面积，
+考虑$\bbR^d\setminus\{0\}$上的函数
+$$G(x):=\frac{1}{(d-2)S_d}
+        \frac{1}{|x|^{d-2}}
+$$
+则成立
+$$DG(x)=\delta(x)$$
+其中$\delta(x)$为Dirac delta-广义函数，Laplace算子$D$视为对广义函数求导。
+\end{lemma}
+
+这是偏微分方程当中众所周知的结果。若我们再令
+$$G(x,y):=G(x-y)$$
+则对任意$f\in C^\infty_c(\bbR^d)$以及任意$x\in\bbR^d$，成立
+$$
+  f(x)=\int_{\bbR^d}
+         G(x,y)(Df)(y)
+         \td y
+$$
+
+容易看出，算子
+\begin{eqnarray*}
+G:C^\infty_c(\bbR^d) &\to& C^\infty_c(\bbR^d)\\
+f&\mapsto&\left(
+            x\mapsto\int_{\bbR^d}G(x,y)f(y)\td y
+          \right)
+\end{eqnarray*}
+是Laplace算子$D$的“逆算子”，
+“矩阵元”$G(x,y)$类比于有限维情形的$Q^{ij}$.
+
+%$$\mcalP=D^{-1}=D^{-1}_{x,y}$$
+%(is called Green's function integral kernel)
+%$$\Phi:\mcalE\to\mcalE$$
+%operator, has kernel $\Phi(x,y)$ if
+%$$\Phi(f)(x)=\int\td y\Phi(x,y)f(y)$$
+%eg. $\Phi=\id\iff\Phi(x,y)=\delta(x-y)$ delta function.
+%$$D^{-1}\to D^{-1}(x,y)=\frac{1}{|x-y|^{D-2}}$$
+%singularity comes from infinite dimensional nature.
+%(Ultra-Violet singularity紫外发散)
 
 %%%%%%%%%2019.4.2第六周周二%%%%%%%%%%%%%%%%%%%%
 %这周要布置作业，要交的作业，不然跟不上了%
 
 %我们要花两节课来讲一个重要概念：重整化
 %量子场论的例子，与Hochschild理论的联系
+%\textbf{Renormalization(I)}
+%Last time:
+%$$\int_{\bbR^n}e^{(-\frac{1}{2}\sum x^iQ^{ij}x^j+I(x+a))/\hbar}
+%\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}$$
+%$$=\frac{1}{\sqrt{\det Q}}e^{\frac{1}{2}\hbar Q^{ij}\pp{a^i}\pp{a^j}}e^{I(a)/\hbar}$$
+%$$=\frac{1}{\sqrt{\det Q}}\exp
+%\left(
+%  \sum_{\Gamma}
+%   \frac{\omg_\Gamma(P,a)}{Aut\Gamma}
+%\right)$$
+%Field theory example:
+\vs
 
-\textbf{Renormalization(I)}
+现在，我们考虑$d=4$的情形，
+即$\mcalE=C^{\infty}_c(\bbR^4)$，作用量$\mcalS$为
+%$\phi^4$-theory on $\bbR^4$
+\begin{eqnarray*}
+     \mcalS[\phi]
+&=&
+     \int_{\bbR^4}
+       \frac{1}{2}\phi D\phi
+      +\frac{\lmd}{4!}\int_{\bbR^4}\phi^4\\
+&:=&
+     Q(\phi)+\mcalI(\phi)
+\end{eqnarray*}
 
-Last time:
-$$\int_{\bbR^n}e^{(-\frac{1}{2}\sum x^iQ^{ij}x^j+I(x+a))/\hbar}
-\prod_{i=1}^n\frac{\td x^i}{\sqrt{2\pi\hbar}}$$
-$$=\frac{1}{\sqrt{\det Q}}e^{\frac{1}{2}\hbar Q^{ij}\pp{a^i}\pp{a^j}}e^{I(a)/\hbar}$$
-$$=\frac{1}{\sqrt{\det Q}}\exp
-\left(
-  \sum_{\Gamma}
-   \frac{\omg_\Gamma(P,a)}{Aut\Gamma}
-\right)$$
+此时，Green函数
+$$G(x,y)=\frac{1}{2S_4}\frac{1}{|x-y|^2}
+=\frac{15}{64\pi^2}\frac{1}{|x-y|^2}$$
 
+我们定义“传播子”
+$$\mcalP\,":="\,\frac{1}{2}\hbar D(x,y)\p_\phi^2$$
+并且模仿有限维情形取定义路径积分：
 
-Field theory example:
+\begin{definition}对于$\mcalE=C_c^\infty(\bbR^4)$，定义
+$$
+  \int_{\mcalE}
+    e^{-\mcalS[\phi]/\hbar}
+    [D\phi]
+\,"="\,
+  \frac{1}{\sqrt{\det Q}}
+  \exp
+  \left(
+    \sum_{\Gamma\text{取遍}
+          \atop\text{\textbf{连通的}多重有向图}}
+      \frac{\omg_{\Gamma}(\mcalP,\mcalI)}
+           {|\Aut(\Gamma)|}
+  \right)
+$$
+其中“$\frac{1}{\sqrt{\det Q}}$”为某个非零常数，
+$w_\Gma(\mcalP,\mcalI)$的含义我们将稍后举例说明。
+\end{definition}
 
-$\phi^4$-theory on $\bbR^4$
-$$\mcalE=C^{\infty}_c(\bbR^4)$$
-$$\mcalS[\phi]=\int_{\bbR^4}\frac{1}{2}\phi D\phi+\frac{\lmd}{4!}\int_{\bbR^4}\phi^4$$
-$$:=Q(\phi)+I(\phi)$$
+这里的$w_\Gma(\mcalP,\mcalI)$服从如下的\textbf{费曼规则}：
 
-$$\int_{\mcalE}[D\phi]e^{-\mcalS[\phi]/\hbar}
-"="\frac{1}{\sqrt{\det Q}}\exp
-\left(
-  \sum_{\Gamma}
-    \frac{\omg_{\Gamma}(\mcalP,I)}
-         {|Aut(\Gamma)|}
-\right)$$
+\begin{notation}对于$\phi\in C_c^\infty(\bbR^4)$，
+以及连通的多重有向图$\Gma$，
+记$\Gma$的顶点集$V=\{v_1,...,v_m\}$，边集为$E$，
+顶点$v_i$的度数（入度$+$出度）为$d_i$，则定义
+\begin{eqnarray*}
+     w_\Gma(\mcalP,\mcalI)
+=
+     (\frac{1}{2}\hbar)^{|E|}
+     \hbar^{-|V|}
+     \prod_{i=1}^m
+       \left(
+         \frac{\lmd}{(4-d_i)!}
+         \int_{\bbR^4}
+           \phi^{4-d_i}(x_i)
+           \td x_i
+       \right)
+     \prod_{e\in E}
+       G(x_{s(e)},x_{t(e)})
+\end{eqnarray*}
+特别规定，如果图$\Gma$的某个顶点度数大于$4$，则$w_\Gma(\mcalP,\mcalI)=0$.
+其中映射
+\begin{eqnarray*}
+s,t:E &\to& \{1,2,...,m\}
+\end{eqnarray*}
+将边$e\in E$分别映为其始点、终点的下指标。
+\end{notation}
+其实对于多重图$\Gma$也完全可以定义$w_\Gma(\mcalP,\mcalI)$，
+边的定向对$w_\Gma(\mcalP,\mcalI)$的结果没有贡献。
+不过我们需要注意，$G(x,y)\propto \frac{1}{|x-y|^2}$，
+当$x,y$非常接近时$G$趋近于无穷，
+正是所谓\textbf{紫外发散}（ultra-violet divergence）现象。
+\index{ultra-violet divergence\kong 紫外发散}
+于是对于积分$w_\Gma(\mcalP,\mcalI)$，我们需要考虑收敛性。
 
-Feymann rule...$G(x,y)$ satisfy
-$$D_xG(x,y)=\delta(x,y)$$
-(analogue $Q_{ij}Q^{jk}=\delta^{k}_i$)
-(Green's function)
+%Feymann rule...$G(x,y)$ satisfy
+%$$D_xG(x,y)=\delta(x,y)$$
+%(analogue $Q_{ij}Q^{jk}=\delta^{k}_i$)
+%(Green's function)
+%where $$D=-\sum_i\pp{x^i}\pp{x^i}$$
+%is the Laplacian...
+%in $\bbR^4$,
+%$$G(x,y)=\frac{1}{|x-y|^2}$$
+%(in general on $\bbR^d$, $G(x,y)\sim\frac{1}{|x-y|^{d-2}}$ when $d\geq 3$)
+%Feyman graph formula:
 
-where $$D=-\sum_i\pp{x^i}\pp{x^i}$$
-is the Laplacian...
+\begin{example}
+考虑多重图$\Gma$为如下：
+$$
+  \xymatrix{
+     \phi          \ar@{--}[rd]
+    &&&\phi        \ar@{--}[ld]
+  \\
+     \phi          \ar@{--}[r]
+    &\bullet       \ar@{-}[r]
+    &\bullet
+    &\phi          \ar@{--}[l]
+  \\
+    \phi           \ar@{--}[ru]
+    &&&\phi        \ar@{--}[lu]
+  }
+$$
+该图有两个顶点、一条边（虚线无视之），则在相差常数倍意义下，
+\begin{eqnarray*}
+     w_\Gma(\mcalP,\mcalI)
+&\propto&
+     \int_{\bbR^4}\td x
+     \int_{\bbR^4}\td y
+       \phi^3(x)
+       \phi^3(y)
+       G(x,y)\\
+&\propto&
+     \int_{\bbR^4}\td x
+     \int_{\bbR^4}
+       \phi^3(x)
+       \phi^3(x+y)
+       \frac{1}{|y|^2}
+       \td y
+\end{eqnarray*}
 
-in $\bbR^4$,
-$$G(x,y)=\frac{1}{|x-y|^2}$$
+容易看出积分$w_\Gma(\mcalP,\mcalI)$此时是收敛的。
+\label{phi^4费曼规则-example}
+\end{example}
 
-(in general on $\bbR^d$, $G(x,y)\sim\frac{1}{|x-y|^{d-2}}$ when $d\geq 3$)
+\begin{example}
+再考察另一个多重给有向图$\Gma$如下：
+$$
+  \xymatrix{
+     \phi          \ar@{--}[rd]
+    &&&\phi        \ar@{--}[ld]
+  \\
+    &\bullet       \ar@{-}@/^1.3pc/[r]  \ar@{-}@/_1.3pc/[r]
+    &\bullet
+    &
+  \\
+    \phi           \ar@{--}[ru]
+    &&&\phi        \ar@{--}[lu]
+  }
+$$
+该图$\Gma$有两个顶点、两条边。此时，在相差常数倍意义下，
+\begin{eqnarray*}
+     w_\Gma(\mcalP,\mcalI)
+&\propto&
+     \int_{\bbR^4\times\bbR^4}
+       \phi^2(x)\phi^2(y)G^2(x,y)\td x\td y\\
+&\propto&
+     \int_{\bbR^4\times\bbR^4}
+       \phi^2(x)\phi^2(y)
+       \frac{1}{|x-y|^4}
+       \td x\td y\\
+&=&
+     \int_{\bbR^4}
+       \phi^2(x)
+       \td x
+     \int_{\bbR^4}
+       \phi^2(x+y)
+       \frac{1}{|y|^4}
+       \td y
+\end{eqnarray*}
+容易看出此积分发散。
+\end{example}
 
-Feyman graph formula:
+此外，如果图$\Gma$当中有闭路，即某条边的始点与终点相同，
+则$w_\Gma(\mcalP,\mcalI)$也不是良好定义，这是更坏的情形。
+产生如此\textbf{紫外发散}的原因是边太多（“能量太高”）。
 
-tree level ($\hbar^0$)
+对于一种特殊的情形——树状图，$w_\Gma$一定是良好定义的：
+
+\begin{prop}记号承上，如果连通图$\Gma$是\textbf{树形图}
+（即，顶点数$=$边数$+1$），则积分$w_\Gma(\mcalP,\mcalI)$收敛。
+\end{prop}
+
+\begin{proof}
+对$\Gma$的顶点个数$|V|$归纳。
+$|V|=2$的情形已经得证，见例子\ref{phi^4费曼规则-example}.
+
+现在，给定$m\geq 2$，
+若对于任何顶点个数为$m$的树状图$\Gma'$，
+$w_{\Gma'}(\mcalP,\mcalI)$都收敛，
+则任意给定树状图$\Gma$使得顶点个数为$m+1$.
+由图论知识，必存在$\Gma$的度为$1$的顶点（树叶），
+且从$\Gma$当中去掉该顶点及其连接的边之后所得的图仍为树形图。
+
+记顶点$v_0$为树$\Gma$的一片树叶，
+$\Gma$的其余$m$个顶点记为$v_1,v_2,...,v_m$，不妨$v_1$与$v_0$相邻，
+记顶点$v_1$的度数为$d_1\geq 1$.
+记$\Gma$去掉$v_0$及其连接的边所得到的图为$\Gma'$，则$\Gma'$
+是以$v_1,...,v_n$为顶点的树。
+由归纳假设，积分
+$$
+  w_{\Gma'}(\mcalP,\mcalI)
+\propto
+  \int_{(\bbR^4)^m}
+    \phi^{d_1}(x_1)F(x_1,...,x_m)
+    \td x_1\cdots\td x_m
+$$
+收敛（读者自行按费曼规则补全$F(x_1,...,x_m)$的定义）。从而
+\begin{eqnarray*}
+     w_\Gma(\mcalP,\mcalI)
+&\propto&
+     \int_{\bbR^4}
+       \phi^3(x_0)
+       \td x_0
+     \int_{(\bbR^4)^{m}}
+       G(x_0,x_1)
+       \phi^{d_1-1}(x_1)
+       F(x_1,...,x_n)
+       \td x_1\cdots\td x_m\\
+&\propto&
+     \int_{(\bbR^4)^{m}}
+       \phi^{d_1-1}(x_1)
+       F(x_1,...,x_n)
+       \td x_1\cdots\td x_m
+     \int_{\bbR^4}
+       \phi^3(x_1+x_0)
+       \frac{1}{|x_0|^2}
+       \td x_0
+\end{eqnarray*}
+
+\end{proof}
+
+%tree level ($\hbar^0$)
 %%%%cy%%%%%%
-
-$$\mcalE=C_c^\infty(\bbR^4)$$
-（这个无穷维空间是有拓扑的）（这个空间上的广义函数？）
-
-这个例子讲完了，我们稍微再复杂一点，下面呢。。。
-
-in general, for a tree diagram (loop = 0)
+%$$\mcalE=C_c^\infty(\bbR^4)$$
+%（这个无穷维空间是有拓扑的）（这个空间上的广义函数？）
+%这个例子讲完了，我们稍微再复杂一点，下面呢。。。
+%in general, for a tree diagram (loop = 0)
 %%%%%%%%another example%%%%%%
-\textbf{HW:}
-the Feymann integral is well-defined.
-
-One loop($\hbar^1$)
+%\textbf{HW:}
+%the Feymann integral is well-defined.
+%One loop($\hbar^1$)
 %%%%%%%%loop%%%%%%%
-(ill defined..)
-(Ultra-Violent divergent...)
-发散的原因是“两个点离得太近，能量太高”
+%(ill defined..)
+%(Ultra-Violent divergent...)
+%发散的原因是“两个点离得太近，能量太高”
 
 处理这种发散，引入“重整化”
 
@@ -2475,28 +2730,7 @@ exists.
 
 这个定理挺难证。。。不证了。。。
 
-\begin{example}Quantum mechanics (QFT in dimension 1)
-
-field:
-$$\gamma:\bbR\to\text{a space}$$
-$$t\mapsto \gamma(t)$$
-
-$$\mcalS[\gma]=\frac{1}{2}\int\bbR\td t|\gma'(t)|^2$$
-is called energy...
-
-\end{example}
-
-"Physics fact": For $x,y\in\bbR^d$,consider
-$$\int_{\gma:[0,t]\to\bbR^d\atop\gma(0)=x,\quad\gma(t)=y}
-[D\gma]e^{-\mcalS[\gma]/\hbar}
-=h_t(x,y)$$
-
-"the second story":first order formula,
-$$\mcalS\to\mcalS[\cdots]$$
-
-还是下一节课再讲吧。。。
-
-\section{同伦重整化}
+\section{DGBV代数}
 %%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%这周继续量子场论%%%%%%%%%%%%%%%%
 \textbf{Homotopic Renormalization}
@@ -2729,6 +2963,7 @@ $\yc_K\curvearrowright$ Distribution is ill-defined!
 %%%%%%%%%%%2019.4.9第七周周二%%%%%%%%%%%%%%%%%%%%%
 %还要将讲量子场论，今天是正儿八经的干货
 
+\section{同伦重整化}
 \textbf{Homotopic renormailzation II}
 $(-1)$-symplectic geometry.
 
