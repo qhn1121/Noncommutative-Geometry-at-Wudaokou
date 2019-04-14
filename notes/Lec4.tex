@@ -535,20 +535,23 @@ $$
 张量计算上的优越性：将本该必然面对的数学归纳法、
 组合恒等式转化为直接的暴力计算。
 
-{\color{gray}
-事实上，我们还可以用$(*)$来暴力验证$\{,\}$的超雅可比恒等式：
-$$
-  (-1)^{pr}\{\{\afa,\beta\},\gamma\}
- +(-1)^{qp}\{\{\beta,\gamma\},\afa\}
- +(-1)^{rq}\{\{\gamma,\afa\},\beta\}
-=0
-$$
-或者换句话说
-$$\{\alpha,\{\beta,\gamma\}\}=(-1)^{p-1}\{\{\alpha,\beta\},\gamma\}
-+(-1)^{(p-1)(q-1)}\{\beta,\{\afa,\gamma\}\}$$
-（但是这个看起来不像是导子的样子）（此处待仔细验证）
-}
+{\color{blue}
+\begin{rem}
+回顾之前定义的Schouten-Nijenhuis括号
+（见性质\ref{Schouten-Nijenhuis公理-prop}）。
+而这里的“$\{,\}$”与之相差一些奇怪的正负号。
+我们只需适当调整之：
 
+$$\{\alpha,\beta\}:=
+-(-1)^{|\afa|}
+\left(
+\yc_{\Omg}(\alpha\wedge\beta)-(\yc_{\Omg}\alpha)\wedge\beta-
+(-1)^{|\alpha|}\alpha\wedge\yc_{\Omg}\beta
+\right)
+$$
+则容易验证如此的括号满足性质\ref{Schouten-Nijenhuis公理-prop}。
+\end{rem}
+}
 %Check: $\{,\}$ is a Schouten-Nijenhuis bracket(up to sign).
 %(independent of the choice of $f(x)$)
 %In particular,$\{,\}$ is independent of choice of $\Omg$.
@@ -2518,7 +2521,7 @@ $$
      \phi          \ar@{--}[rd]
     &&&\phi        \ar@{--}[ld]
   \\
-    &\bullet       \ar@{-}@/^1.3pc/[r]  
+    &\bullet       \ar@{-}@/^1.3pc/[r]
                    \ar@{-}@/_1.3pc/[r]
     &\bullet
     &
@@ -2719,8 +2722,8 @@ $$
      \phi          \ar@{--}[rd]
     &&&\phi        \ar@{--}[ld]
   \\
-    &\bullet       \ar@{-}@/^1.2pc/[r] ^{P^L_\veps}  
-                   \ar@{-}@/_1.2pc/[r] _{P^L_\veps}  
+    &\bullet       \ar@{-}@/^1.2pc/[r] ^{P^L_\veps}
+                   \ar@{-}@/_1.2pc/[r] _{P^L_\veps}
     &\bullet
     &
   \\
@@ -2875,20 +2878,19 @@ $$\mcalI^{\veps}:=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\phi(x)^4\td x$$
 \end{proof}
 %这个定理挺难证。。。不证了。。。
 
-\section{DGBV代数}
+\section{dGBV代数}
 %%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%这周继续量子场论%%%%%%%%%%%%%%%%
-\textbf{Homotopic Renormalization}
+%\textbf{Homotopic Renormalization}
+%Recall:
+%$$\int\rightsquigarrow\textbf{BV homology}$$
+%scalar field theory in $\bbR^4$.
+%$\infty$-dimension$\rightsquigarrow$ UV-divergence.
 
-Recall:
-$$\int\rightsquigarrow\textbf{BV homology}$$
+我们讨论一些代数结构。
 
-scalar field theory in $\bbR^4$.
-
-$\infty$-dimension$\rightsquigarrow$ UV-divergence.
-
-\begin{definition}
-A differential BV (or DGBV) is a triple $(\mcalA,Q,\yc)$,s.t.
+\begin{definition}（dGBV代数）（differential Gerstenhaber-Batalin-Vilkoviskty algebra）
+%A differential BV (or DGBV) is a triple $(\mcalA,Q,\yc)$,s.t.
 
 (1)$\mcalA$ is a graded commutative algebra with product$\cdot$
 
