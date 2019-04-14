@@ -2491,12 +2491,14 @@ $$
 \begin{eqnarray*}
      w_\Gma(\mcalP,\mcalI)
 &\propto&
+     \lmd^2
      \int_{\bbR^4}\td x
      \int_{\bbR^4}\td y
        \phi^3(x)
        \phi^3(y)
        G(x,y)\\
 &\propto&
+     \lmd^2
      \int_{\bbR^4}\td x
      \int_{\bbR^4}
        \phi^3(x)
@@ -2516,7 +2518,8 @@ $$
      \phi          \ar@{--}[rd]
     &&&\phi        \ar@{--}[ld]
   \\
-    &\bullet       \ar@{-}@/^1.3pc/[r]  \ar@{-}@/_1.3pc/[r]
+    &\bullet       \ar@{-}@/^1.3pc/[r]  
+                   \ar@{-}@/_1.3pc/[r]
     &\bullet
     &
   \\
@@ -2528,14 +2531,18 @@ $$
 \begin{eqnarray*}
      w_\Gma(\mcalP,\mcalI)
 &\propto&
+     \lmd^2
      \int_{\bbR^4\times\bbR^4}
-       \phi^2(x)\phi^2(y)G^2(x,y)\td x\td y\\
+       \phi^2(x)\phi^2(y)G^2(x,y)
+       \td x\td y\\
 &\propto&
+     \lmd^2
      \int_{\bbR^4\times\bbR^4}
        \phi^2(x)\phi^2(y)
        \frac{1}{|x-y|^4}
        \td x\td y\\
 &=&
+     \lmd^2
      \int_{\bbR^4}
        \phi^2(x)
        \td x
@@ -2545,6 +2552,7 @@ $$
        \td y
 \end{eqnarray*}
 容易看出此积分发散。
+\label{phi^4费曼规则-发散example}
 \end{example}
 
 此外，如果图$\Gma$当中有闭路，即某条边的始点与终点相同，
@@ -2577,6 +2585,7 @@ $\Gma$的其余$m$个顶点记为$v_1,v_2,...,v_m$，不妨$v_1$与$v_0$相邻�
 $$
   w_{\Gma'}(\mcalP,\mcalI)
 \propto
+  \lmd^m
   \int_{(\bbR^4)^m}
     \phi^{d_1}(x_1)F(x_1,...,x_m)
     \td x_1\cdots\td x_m
@@ -2585,6 +2594,7 @@ $$
 \begin{eqnarray*}
      w_\Gma(\mcalP,\mcalI)
 &\propto&
+     \lmd^{m+1}
      \int_{\bbR^4}
        \phi^3(x_0)
        \td x_0
@@ -2594,6 +2604,7 @@ $$
        F(x_1,...,x_n)
        \td x_1\cdots\td x_m\\
 &\propto&
+     \lmd^{m+1}
      \int_{(\bbR^4)^{m}}
        \phi^{d_1-1}(x_1)
        F(x_1,...,x_n)
@@ -2603,7 +2614,7 @@ $$
        \frac{1}{|x_0|^2}
        \td x_0
 \end{eqnarray*}
-
+从而易知收敛。（要利用$\phi$的紧支性）。
 \end{proof}
 
 %tree level ($\hbar^0$)
@@ -2621,114 +2632,248 @@ $$
 %(Ultra-Violent divergent...)
 %发散的原因是“两个点离得太近，能量太高”
 
-处理这种发散，引入“重整化”
-
-idea of renormalization:
-
-observe: Green function $G$ is the "inverse of Laplacian".
+一般来说，$w_\Gma(\mcalP,\mcalI)$是发散的。
+在量子场论中采用\textbf{重整化}（renormalization）
+\index{renormalization\kong 重整化}
+的手段处理这种紫外发散。下面介绍重整化的想法。
+首先从Laplace算子$D$的“逆算子”说起。注意到
+%idea of renormalization:
+%observe: Green function $G$ is the "inverse of Laplacian".
 $$D^{-1}=\int_0^\infty e^{-tD}\td t$$
-$e^{-tD}$ is "Heat operator"..
+这里的$e^{-tD}$ 为\textbf{热算子}（heat operator），
+\index{heat operator\kong 热算子}
+我们有偏微分方程当中众所周知的如下结果：
 
-$e^{-tD}$ is represented by an integral kernel
-$h_t(x,y)$ such that
-$$(e^{-tD}\phi)(x)=\int_{\bbR^d}h_t(x,y)\phi(y)\td y$$
+\begin{lemma}（热核与热方程）
 
-on $\bbR^d$,
-$$h_t(x,y)=\frac{1}{(4\pi t)^{d/2}}e^{-\frac{|x-y|^2}{4t}}$$
+记$D$为$\bbR^d$中的Laplace算子。对于$t>0$，
+定义$\bbR^d\times\bbR_+$上的函数
+$$h_t(x)=\frac{1}{(4\pi t)^{d/2}}
+           e^{-\frac{|x|^2}{4t}}$$
+称该函数为$\bbR^d$上的\textbf{热核}（heat kernel），
+\index{heat kernel\kong 热核}
+则以下性质成立：
 
-check:
-$$(\p_t+D_x)h_t(x,y)=0$$
+（1）热算子$e^{-tD}$可由热核表示：
+对任意$\phi\in C_c^\infty(\bbR^d)$，
+$$(e^{-tD}\phi)(x)
+=\int_{\bbR^d}h_t(x-y)\phi(y)\td y$$
 
-\begin{prop}
+（2）热核满足如下\textbf{热方程}：
+$$(\p_t+D)h_t(x)=0$$
 
-(1) $h_t$ is smooth if $t>0$, and $h_t\to\delta(x,y)$ when $t\to 0$.
+（3）恒等逼近：
+$$\lim_{t\to 0^+}h_t(x)=\delta(x)$$
 
-(2) semi-group prop:
-$$\int_{\td y}h_{t_1}(x_1,y)h_{t_2}(y,x_2)=h_{t_1+t_2}(x,y)$$
-i.e.
-$$e^{-t_1 D}e^{-t_2D}=e^{-(t_1+t_2)D}$$
-\end{prop}
+（4）半群性质：对任意$t_1,t_2>0$，以及$x,y\in\bbR^4$，
+$$\int_{\bbR^d}
+    h_{t_1}(x-z)h_{t_2}(z-y)\td z
+=   h_{t_1+t_2}(x-y)$$
+\end{lemma}
+%is represented by an integral kernel
+%$h_t(x,y)$ such that%check:
+%and we have
+此外容易知道Green函数$G$满足
+$$G(x,y)=\int_0^\infty h_t(x-y)\td t$$
 
-and we have
-$$G(x,y)=\int_0^\infty \td t h_t(x,y)$$
+\begin{notation}（正则化传播子）
 
-introduce cut-off paramaters
-$$0<\veps<L<+\infty$$
+引入\textbf{截断参数}（cut-off parameters）
+$$0<\veps<L<+\infty$$%Define
+定义$\bbR^d\times\bbR^d$上的光滑函数
+$$P^L_{\veps}(x,y):=\int_\veps^L h_t(x,y)\td t$$
+称之为\textbf{正则化传播子}（regularized propagator）。
+\index{regularized propagator\kong 正则化传播子}
+\end{notation}
 
-Define
-$$P^L_{\veps}(x,y)=\int_\veps^L\td h_t(x,y)$$
-is smooth(called regularized propagator).
-$\veps$ is called uv(紫外) cut-off,
-$L$ is  called IR(红外) cut-off.
+这里的参数$\veps$称为\textbf{紫外截断}（ultra-violet cut-off），
+$L$称为\textbf{红外截断}（infrared cut-off）。
+\index{ultra-violet cut-off\kong 紫外截断}
+\index{infrared cut-off\kong 红外截断}
 
-idea: Replace the propagator $G$ by $P^L_\veps$
-and analyze the behavior of the graph as $\veps\to 0$ and $L\to\infty$.
-
-Eg:
-
+重整化的基本想法是，将原先的传播子当中的$G(x,y)$替换为
+$P^L_\veps(x,y)$，然后分析$\veps\to 0$,$L\to\infty$
+时$w_{\Gma}(\mcalP_\veps^L,\mcalI)$的行为。
+%idea: Replace the propagator $G$ by $P^L_\veps$
+%and analyze the behavior of the graph as $\veps\to 0$ and $L\to\infty$.
+%Eg:
 %%%%%%%%cnm%%%%%%%%%%%%%
 
+特别地，当$d=4$时，
+$$
+  P^L_\veps(x,y)
+=
+  \int_\veps^L
+    h_t(x-y)\td t
+=
+  \int_\veps^L
+    \frac{1}{(4\pi t)^2}
+    e^{-\frac{|x-y|^2}{4t}}
+    \td t
+$$\vs
+
+\begin{example}再看例子\ref{phi^4费曼规则-发散example}，
+即图$\Gma$为如下：
+$$
+  \xymatrix{
+     \phi          \ar@{--}[rd]
+    &&&\phi        \ar@{--}[ld]
+  \\
+    &\bullet       \ar@{-}@/^1.2pc/[r] ^{P^L_\veps}  
+                   \ar@{-}@/_1.2pc/[r] _{P^L_\veps}  
+    &\bullet
+    &
+  \\
+    \phi           \ar@{--}[ru]
+    &&&\phi        \ar@{--}[lu]
+  }
+$$
+对于截断参数$\veps<L$，试计算$w_\Gma(\mcalP^L_\veps,\mcalI)$.
+\end{example}
+
+\begin{proof}[解]
+直接计算之，
 \begin{eqnarray*}
-     (1)
+     w_\Gma(\mcalP^L_\veps,\mcalI)
+&\propto&
+     \lmd^2
+     \int_{\bbR^4\times\bbR^4}
+       \phi^2(x)\phi^2(y)
+       P^L_\veps(x,y)^2
+       \td x\td y\\
+&=&
+     \lmd^2
+     \int_{\bbR^4}\td x
+       \int_{\bbR^4}
+         \phi^2(x)\phi^2(x+y)\td y
+         \int_{\veps}^L
+           \int_\veps^L
+             \frac{\td t_1}{(4\pi t_1)^2}
+             \frac{\td t_2}{(4\pi t_2)^2}
+             e^{-\frac{|y|^2}{4t_1}}
+             e^{-\frac{|y|^2}{4t_2}}
+\end{eqnarray*}
+
+使用Taylor展开，令
+$$
+  \phi^2(x)\phi^2(x+y)
+=:\phi^4(x)+R(x,y)
+$$
+由于函数$\Phi$是紧支的，从而存在常数$C>0$，
+使得对任意$x,y\in\bbR^4$，成立
+$$|R(x,y)|\leq C|y|$$
+从而对每个$x\in\bbR^4$,
+\begin{eqnarray*}
+     \limsup_{\veps\to 0^+}
+       \int_{\bbR^4}
+         |R(x,y)|\td y
+         \int_{\veps}^\infty
+           \int_\veps^\infty
+             \frac{\td t_1}{(4\pi t_1)^2}
+             \frac{\td t_2}{(4\pi t_2)^2}
+             e^{-\frac{|y|^2}{4t_1}}
+             e^{-\frac{|y|^2}{4t_2}}
+ \leq
+     C'\int_{\bbR^4}
+         \frac{|y|}{|y|^4}\td y<+\infty
+\end{eqnarray*}
+因此有
+\begin{eqnarray*}
+     w_\Gma(\mcalP^L_\veps,\mcalI)
+&\propto&
+     \lmd^2
+     \int_{\bbR^4}\phi^4(x)\td x
+       \int_{\bbR^4}\td y
+         \int_{\veps}^L
+           \int_\veps^L
+             \frac{\td t_1}{(4\pi t_1)^2}
+             \frac{\td t_2}{(4\pi t_2)^2}
+             e^{-\frac{|y|^2}{4t_1}}
+             e^{-\frac{|y|^2}{4t_2}}\\
+& &
+    +(\text{$\veps\to 0$时的收敛项})\\
 &=&
      \lmd^2\int_{\bbR^4}
-       \td x\phi^4(x)
+       \phi^4(x)\td x
          \int_\veps^L
-           \frac{\td t_1}{(4\pi t_1)^2}
-           \frac{\td t_2}{(4\pi t_2)^2}
-             \int_{\bbR^4}
-               e^{-\frac{|y|^2}{4t_1}-\frac{|y|^2}{4t_2}}\\
+           \int_\veps^L
+             \frac{\td t_1}{(4\pi t_1)^2}
+             \frac{\td t_2}{(4\pi t_2)^2}
+               \int_{\bbR^4}
+                 e^{-\frac{|y|^2}{4t_1}-\frac{|y|^2}{4t_2}}
+                 \td y\\
+& &
+    +(\text{$\veps\to 0$时的收敛项})\\
 &=&
      \lmd^2\int_{\bbR^4}
-       \td x\phi^4(x)
+       \phi^4(x)\td x
          \int_\veps^L
-           \frac{\td t_1}{(4\pi t_1)^2}
-           \frac{\td t_2}{(4\pi t_2)^2}
-           \frac{(2\pi)^2}{(\frac{1}{2t_1}+\frac{1}{2t_2})^2}\\
+           \int_\veps^L
+             \frac{\td t_1}{(4\pi t_1)^2}
+             \frac{\td t_2}{(4\pi t_2)^2}
+             \frac{(2\pi)^2}{(\frac{1}{2t_1}+\frac{1}{2t_2})^2}\\
+& &
+    +(\text{$\veps\to 0$时的收敛项})\\
 &=&
      \frac{\lmd^2}{(4\pi)^2}
      \int_{\bbR^4}
-       \td x\phi^4(x)
+       \phi^4(x)\td x
        \int_\veps^L
-         \frac{\td t_1\td t_2}{(t_1+t_2)^2}\\
+         \int_\veps^L
+           \frac{\td t_1\td t_2}{(t_1+t_2)^2}\\
+& &
+    +(\text{$\veps\to 0$时的收敛项})\\
 &=&
      -\frac{\lmd^2\log\veps}{(4\pi)^2}
-     \int_{\bbR^4}\td x \phi(x)^4
-     +\text{terms smooth when $\veps\to 0$}
+     \int_{\bbR^4}\phi(x)^4\td x\\
+& &
+    +(\text{$\veps\to 0$时的收敛项})\\
 \end{eqnarray*}
-%%%%%%%%gou%%%%%%%%%%%%%%
+\end{proof}
 
-idea: $\lmd\to\lmd(\veps)$ depend on $\veps$.
-Consider add the following to $\mcalS$:
-$$I^{CT}_1(\veps)=\frac{\hbar\lmd^2\log\veps}{(4\pi)^2}\int\td x\phi^4$$
-（CT: counter term...用来抵消发散）
+不过要注意$L\to \infty$的时候积分
+$\int_\veps^L
+         \int_\veps^L
+           \frac{\td t_1\td t_2}{(t_1+t_2)^2}$
+也是发散的，即“\textbf{红外发散}”。
+为处理$\veps\to 0$的发散，我们对相互作用能进行\textbf{量子修正}：
+%idea: $\lmd\to\lmd(\veps)$ depend on $\veps$.
+%Consider add the following to $\mcalS$:
+令
+$$\mcalI^{CT}(\veps):=
+\frac{\hbar\lmd^2\log\veps}{(4\pi)^2}\int_{\bbR^4}\phi^4\td x$$
+%（CT: counter term...用来抵消发散）
 
-$$\mcalS\mapsto\mcalS+I^{CT}(\veps)$$
-$$=\frac{1}{2}\int\phi D\phi+\frac{\lmd}{4!}\td x\phi^4+
-\frac{\hbar\lmd^2\log\veps}{(4\pi)^2}\int\td x\phi^4$$
+\begin{eqnarray*}
+\mcalS&\mapsto&\mcalS+\mcalI^{CT}(\veps)\\
+&=&\frac{1}{2}\int\phi D\phi+\frac{\lmd}{4!}\phi^4\td x+
+\frac{\hbar\lmd^2\log\veps}{(4\pi)^2}\int\phi^4\td x
+\end{eqnarray*}
 
-Feymann rule
+%Feymann rule
 %%%%%%%%量子修正%%%%%%%%%%
 
-\begin{thm}[Physics]（物理中少数几个正儿八经的定理）
+一般地，在量子物理中，关于$\veps\to 0$的量子修正，有如下定理：
 
-there exists
-$$\lmd(\veps)=\lmd+\hbar\frac{\lmd^2\log\veps}{(4\pi)^2}+\hbar^2+\cdots$$
-$$=\lmd+\sum_{g\geq 1}\hbar^gG_g(\lmd,\veps)$$
-(dependents on $\lmd,\veps$, singular as $\veps\to 0$.)
-
-such that Let
-$$I^{\veps}=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\td x\phi(x)^4$$
-then
+\begin{thm}记号承上，则存在%there exists
+关于$\veps$的函数
+$$\lmd(\veps)=\lmd+\hbar\frac{\lmd^2\log\veps}{(4\pi)^2}+\cdots
+=\lmd+\sum_{g\geq 1}\hbar^gG_g(\lmd,\veps)$$
+%(dependents on $\lmd,\veps$, singular as $\veps\to 0$.)
+%such that Let
+使得极限
 $$
-  \lim_{\veps\to 0}\sum_{\Gamma}
-  \frac{\omg_P(P_\veps^L,I^\veps)}
-       {|Aut(\Gamma)|}
+  \lim_{\veps\to 0}\sum_{\Gamma\text{取遍}\atop\text{多重有向图}}
+  \frac{\omg_P(P_\veps^L,\mcalI^\veps)}
+       {|\Aut(\Gamma)|}
 $$
-exists.
+存在，其中
+$$\mcalI^{\veps}:=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\phi(x)^4\td x$$
 \end{thm}
-
-这个定理挺难证。。。不证了。。。
+\begin{proof}
+比较困难，从略。
+\end{proof}
+%这个定理挺难证。。。不证了。。。
 
 \section{DGBV代数}
 %%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
