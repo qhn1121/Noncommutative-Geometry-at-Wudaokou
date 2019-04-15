@@ -1,0 +1,225 @@
+%%%%%%%%%%%%%%2019.4.15第八周周一%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%Final Project%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{还没想好叫什么名字}
+
+\textbf{Maurer-Cartan Equation}
+
+Chevalley-Eilenberg Complex
+
+Let $\mfkg$ be a Lie algebra, with Lie bracket 
+$$[,]:\wedge^2\mfkg\to\mfkg$$
+
+Define $C\updot(\mfkg):=\wedgeform{\bullet}\mfkg^\vee$
+where $\mfkg^\vee$ be the linear dual of $\mfkg$.
+
+("CE" is "Chevalley-Eilenberg")
+
+we define a derivation 
+$$\td_{CE}:C\updot(\mfkg)\to\mfkg$$
+determined by 
+$$\td_{CE}:\mfkg^\vee\to\wedgeform{2}\mfkg^\vee$$
+where $\td_{CE}$ is the dual of $\wedgeform{2}\mfkg\to\mfkg$.
+
+And extend by Leibnitz rule:
+$$\td_{CE}(\afa_1\wedge\cdots\wedge\afa_k)
+=
+\sum_i(-1)^{i-1}
+\afa_1\wedge...\td_{CE}(\afa_i)...\wedge\afa_k
+$$
+
+\begin{prop}
+$$\td_{CE}^2=0$$
+\end{prop}
+\begin{proof}
+$\iff$ Jacobi identity. Check.
+%%%%%%%%%%%%%%示意图%%%%%%%%%%%%%%
+\end{proof}
+
+Another way: $C\updot(\mfkg):=\Hom(\wedgeform{\bullet}\mfkg,\bbC)$.
+$$\fai:C^k(\mfkg)=\Hom(\wedgeform{k}\mfkg,\bbC)$$
+$$\td_{CE}(\fai)\in C^{k+1}(\mfkg)$$
+$$(\td_{CE}\fai)(e_1,...,e_{k+1})=
+   \sum_{i<j}
+     (-1)^{i+j-1}
+     \phi([e_i,e_j],e_1,...,\hat{e_i},...,\hat{e_j},...,e_{k+1})
+$$
+
+More generally, let $M$ be a $\mfkg$-module,
+\begin{definition}
+$$C\updot(\mfkg,M):=\wedgeform{\bullet}\mfkg^\vee\ten M$$
+\begin{eqnarray*}
+\td_{CE}:M&\to&\mfkg^\vee\ten M\\
+\end{eqnarray*}
+is the dual of $\mfkg\ten M\to M$.
+
+(then ,extend by Leibnitz rule)
+\end{definition}
+
+$$
+  \td_{CE}(\afa\wedge...\wedge\afa_k\ten m)
+=\sum\pm\afa_1\wedge...\td_{CE}(\afa_i)...\wedge\afa_k\ten M
++(-1)^k\afa_1\wedge...\wedge\afa_k\wedge\td_{CE}(m)
+$$
+
+\begin{prop}
+$$\td_{CE}^2=0$$
+($\iff$ $M$ is $\mfkg$-module)
+\end{prop}
+check...
+
+\begin{rem}
+$$C\updot=\wedgeform{\bullet}(\mfkg^\vee)\ten M$$
+is a module over $C\updot(\mfkg)=\wedgeform{\bullet}\mfkg^\vee$.
+Actually, this is a differential graded module!
+$$C\updot(\mfkg)\curvearrowright C\updot(\mfkg,M)$$
+$$(\afa,\fai)\to \afa\wedge\fai$$
+
+$$\td_{CE}(\afa\wedge\fai)=(\td_{CE}\afa)\wedge\fai\pm\afa\wedge(\td_{CE}\fai)$$
+\end{rem}
+
+\begin{rem}
+$$(C\updot(\mfkg,M),\td_{CE})$$
+is a complex. Consider its cohomology:
+$$H\updot(\mfkg,M):=H\updot(C\updot(\mfkg,M),\td_{CE})$$
+is called Lie algebra cohomology.
+\end{rem}
+
+$$M\xra{\td_{CE}}\mfkg^\vee\ten M\xra{\td_{CE}}
+M\ten\wedgeform{2}\mfkg^\vee\to\cdots$$
+
+$\td_{CE}(m)(e)=e.m$, so 
+$$H^0(\mfkg,M)=\{m\in M^\mfkg\}$$
+($\mfkg$-invariant elements)
+
+\textbf{dg case}
+Let $\mfkg$ be a dgLa($\bbZ$-graded)
+$$\td:\mfkg\to\mfkg$$
+$\deg\td=1$
+
+$$[,]:\wedgeform{2}\mfkg\to\mfkg$$
+$\deg[,]=0$,
+(graded Jacobi-identity)
+
+\begin{definition}
+$$
+  C^k(\mfkg):=
+    \left\{
+      \begin{array}{l}
+        \Hom(\Sym^k(\mfkg[1]),\bbC)  \\
+        \Sym^k(\mfkg^\vee[-1])\cong\wedgeform{k}\mfkg^\vee[-k]
+      \end{array}
+    \right.
+$$
+(注意这里是分次对偶)
+
+with CE- differential
+$$\td_{CE}=\td_{\mfkg}+\td_{[,]}$$
+where $\td_{\mfkg}:\mfkg^\vee[-1]\to\mfkg^\vee[-1]$ is the dual of $\td:\mfkg\to\mfkg$.
+
+$\td_{[,]}:\mfkg^\vee[-1]\to \Sym^2(\mfkg^\vee[-1])\cong\wedgeform{2}\mfkg^\vee\to\mfkg$
+is the dual of $[,]:\wedgeform{2}\mfkg\to\mfkg$
+\end{definition}
+
+$\deg(\td_{CE})=1$.
+
+Extend to $C\updot(\mfkg)$ by Leibnitz rule,
+\begin{prop}
+$$\td_{CE}^2=0$$
+($\iff$ dgLa structure)
+\end{prop}
+(check)
+
+Similarly, $M$ is a dg-$\mfkg$-module, i.e. 
+$\td_M:M\to M$ s.t.
+$$\td_M(e.m)=(\td e).m\pm e.(\td_M (m))$$
+we also have 
+$$(C\updot(\mfkg,M),\td_{CE})$$
+and $\td_{CE}^2=0$
+
+\begin{example}
+$X$ be a manifold, $\mfkg=\Gma(X,TX)=Vect_X$
+$M=C^\infty(X)$ is a $\mfkg$-module, and 
+$\Omg\updot(X)\subseteq C\updot(\mfkg,M)$.
+\end{example}
+
+\section{Maurer-Cartan Equation}
+（连接所有结构的核心方程）
+
+Let $(\mfkg,\td,[,])$ be a dgLa, an 
+Maurer-Cartan element is  $\afa\in\mfkg_1$(i.e. $\deg\afa=1$)
+satisfies the following Maurer-Cartan Equation:
+$$\td\afa=\frac{1}{2}[\afa,\afa]=0$$
+and define $\mcalM(\mfkg)$ be the set of all the Maurer-Cartan element...
+
+Key point: new dgLa
+$$(\mfkg^\afa,\td_\afa,[,])$$
+
+where 
+$$\td_{\afa}=\td+[\afa,-]$$
+$$[,]=\text{the same}$$
+(check :$\td_\afa^2=0$)
+
+Upshot: all deformation property are described by MC equation..
+
+\begin{example}
+Let $E\to X$ be a vector bundle with flat connection $\nabla$($\nabla^2=0$)
+Then there is a dgLa:
+$$\mfkg=\Omg\updot(X,\End(E))$$
+$$\td=\nabla$$
+$$[,]\text{is the commutator in}\End(E)$$
+then
+$$\mcalM(\mfkg)=\{A\in\Omg^1(X,\End(E))|\nabla A+\frac{1}{2}[A,A]=0\}$$
+$$\{\text{flat connections on} E\}$$
+
+$(\nabla+A)^2=$curvature
+\end{example}
+
+\begin{example}
+$X$ is a complex manifold, 
+$$\mfkg=\Omg^{0,\bullet}(X,T_X^{1,0})$$
+$\pbar$ is the differential. and  
+$[,]$ is the Lie bracket from $(1,0)$ vector vector field.
+
+This is a dgLa.
+$$\mcalM(\mfkg)=
+\{\mu\in\Omg^{0,1}(X,T_X^{1,0})|
+\pbar\mu+\frac{1}{2}[\mu,\mu]=0
+\}$$
+Beltrami-differential, describing the deformation of complex structures.
+\end{example}
+
+$$\mu-\mu^1_{\overline{j}}\td\overline{z}^j\ten\p_i$$
+locally...
+
+$\mu\rightsquigarrow$ new complex manifold "$X_\mu$"
+
+a local function $f$ is called holomorphic in $X_\mu$, 
+$\iff$ $\pbar_jf+\sum_i\mu^i_{\overline{j}}\p_if=0$ for all $j$.
+
+integrability $\iff$ $\pbar\mu+\frac{1}{2}[\mu,\mu]=0\iff(\pbar+\mu)^2=0$.
+
+\begin{example}
+$E\to X$ is a holomorphic vector bundle, then 
+$$\mfkg:=\Omg^{0,\bullet}(X,\End(E))$$
+$\pbar$ differential, and $[,]$ on $\End(E)$.
+this is a dgLa.
+
+$$\mcalM(\mfkg)=\{A\in\Omg^{0,1}(X,\End(E))|\pbar A+\frac{1}{2}[A,A]=0\}$$
+(holomorphic structure on $E\to X$)
+
+A new holomorphic vector bundle...$E_A\to X$..
+a local section $s$ is holomorphic in $E_A$
+$\iff$
+$$\pbar s+As=0$$
+\end{example}
+
+
+
+
+
+
+
+
+
+
