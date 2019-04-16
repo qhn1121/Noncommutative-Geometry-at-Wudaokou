@@ -238,7 +238,8 @@ $$
   }
 $$
 称$\yc_\Omg$为\textbf{BV算子}（Batalin-Vilkovisky operator）。
-\index{Batalin-Vilkovisky operator\kong BV算子}
+\index{BV算子}
+\label{BV算子-def}
 \end{definition}
 %$$\PV^*(X)\leftrightarrow \Omg^{n-\bullet}(X)$$
 %$$\yc\leftrightarrow \td$$
@@ -2878,7 +2879,7 @@ $$\mcalI^{\veps}:=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\phi(x)^4\td x$$
 \end{proof}
 %这个定理挺难证。。。不证了。。。
 
-\section{dGBV代数}
+\section{dGBV代数与经典Master方程}
 %%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%这周继续量子场论%%%%%%%%%%%%%%%%
 %\textbf{Homotopic Renormalization}
@@ -2889,79 +2890,381 @@ $$\mcalI^{\veps}:=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\phi(x)^4\td x$$
 
 我们讨论一些代数结构。
 
-\begin{definition}（dGBV代数）（differential Gerstenhaber-Batalin-Vilkoviskty algebra）
+\begin{definition}（dGBV代数）
+（differential Gerstenhaber-Batalin-Vilkoviskty algebra）
 %A differential BV (or DGBV) is a triple $(\mcalA,Q,\yc)$,s.t.
 
-(1)$\mcalA$ is a graded commutative algebra with product$\cdot$
+\textbf{dGBV代数}是指满足如下性质的三元组$(\mcalA,Q,\yc)$：
 
-(2)$Q:\mcalA\to\mcalA$ is a graded derivation of degree $1$.
+（1）$\mcalA=\bigoplus\limits_{k\in\bbZ}\mcalA^k$
+为分次交换代数，配以乘法$\cdot$；
 
-(3)$\yc:\mcalA\to\mcalA$ is a "2-nd differential operator" (BV operator),such that
-$\deg\yc=1,\yc^2=0$.
+（2）$Q:\mcalA\to\mcalA$ 为$1$阶超导子，且$Q^2=0$；
 
-(4)$[Q,\yc]:=Q\circ\yc+(-1)^{1+1}\yc\circ Q=0$
+（3）$\yc:\mcalA\to\mcalA$满足$\yc(\mcalA^k)\subseteq\mcalA^{k+1}$，
+$\yc^2=0$，并且对任意$\afa\in\mcalA$为齐次元，算子
+\begin{eqnarray*}
+\delta_\afa:\mcalA&\to&\mcalA\\
+\beta&\mapsto&
+  (-1)^{|\afa|}
+  \left(
+    \yc(\afa\beta)-\yc(\afa)\beta-(-1)^{|\afa|}\afa\yc(\beta)
+  \right)
+\end{eqnarray*}
+为$|\afa|+1$阶超导子。
+%is a "2-nd differential operator" (BV operator),such that
+%$\deg\yc=1,\yc^2=0$.
+
+（4）$[Q,\yc]:=Q\circ\yc+(-1)^{1+1}\yc\circ Q=0$
+\index{dGBV 代数}
+\label{dGBV代数-def}
 \end{definition}
-we define the BV-bracket
-$$\{\afa,\beta\}:=\yc(\afa\beta)-(\yc\afa)\beta-(-1)^\afa\afa\yc\beta$$
 
-This bracket ${,}$ has degree $1$, satisfies:
+这里的$Q$称为微分算子；而$\yc$为\textbf{BV算子}，
+\index{BV算子}
+是之前（定义\ref{BV算子-def}）的代数抽象。
 
-(1)graded Jacobi identity
+\begin{rem}（GBV代数）
 
-(2)Leibniz rule...
+先不看$Q$，若二元组$(\mcalA,\yc)$满足上述定义中的（1）（3），
+则称$(\mcalA,\yc)$为\textbf{GBV代数}。
+\index{GBV代数}
+\end{rem}
 
-(BV-algebra...)(similar as Gerstenhaber algebra)
+\begin{thm}（GBV代数诱导Gerstenhaber代数）
 
-\begin{example}
-$M$ is a manifold with volume form $\Omg$,
-$$\mcalA:=\PV\updot(M)\text{with wedge product}\wedge$$
-$$\yc:=\text{divergence operator with $\Omg$}$$
-$$Q=0$$
+设$(\mcalA,\yc)$为GBV代数，定义BV括号
+\begin{eqnarray*}
+\{,\}:\mcalA\times\mcalA &\to& \mcalA\\
+\{\afa,\beta\}&:=&
+(-1)^{|\afa|}
+\left(
+\yc(\afa\beta)-(\yc\afa)\beta-(-1)^\afa\afa\yc\beta
+\right)
+\end{eqnarray*}
+则$\{\mcalA,\{,\}\}$满足定义\ref{Gerstenhaber代数-def}
+的（1）（2）（3）条。
+\label{GBV诱导Gerstenhaber-thm}
+\end{thm}
 
-in local coordinate,$\Omg=e^f\td^nx$,
-$$\yc=\sum_i\pp{x^i}\pp{\theta_i}-\sum_i\pfrac{f}{x^i}\pp{\theta_i}$$
+这样的代数$(\mcalA,\{,\})$称为\textbf{BV代数}，
+\index{BV代数}
+它与Gerstenhaber代数非常相似，区别在于这里是
+$$\{,\}:\mcalA^p\times\mcalA^q\to\mcalA^{p+q+1}$$
+(而不是映到$\mcalA^{p+q-1}$)
+
+%This bracket ${,}$ has degree $1$, satisfies:
+%(1)graded Jacobi identity
+%(2)Leibniz rule...
+%(BV-algebra...)(similar as Gerstenhaber algebra)
+
+\begin{proof}
+$\{,\}$的双线性性显然，超反交换性直接验证。
+超莱布尼茨法则就是定义\ref{dGBV代数-def}的（3）；
+而超雅可比恒等式
+$$
+  \{f,\{g,h\}\}=\{\{f,g\},h\}+(-1)^{(f+1)(g+1)}\{g,\{f,h\}\}
+$$
+比较复杂，我们稍后证明。
+\end{proof}
+
+\begin{lemma}\label{BV算子引理-lem}
+设$(\mcalA,\yc)$为GBV代数，
+则对$\mcalA$中的齐次元$f,g$，成立
+$$\yc\{f,g\}=\{\yc f,g\}+(-1)^{f+1}\{f,\yc g\}$$
+\end{lemma}
+
+\begin{proof}利用$\yc^2=0$，以及
+$\yc(fg)=(-1)^f\left(\{f,g\}+f\yc(g)+(-1)^f\yc(f)g\right)$直接验证之：
+\begin{eqnarray*}
+     \yc\{f,g\}
+&=&
+     (-1)^f\yc
+     \left(
+       \yc(fg)-\yc(f)g-(-1)^ff\yc(g)
+     \right)\\
+&=&
+     (-1)^{f+1}
+     \left(
+       \yc(f)g+(-1)^ff\yc(g)
+     \right)\\
+&=&
+     (-1)^{f+1}
+     \left(
+       (-1)^{f+1}
+       \left(
+         \{\yc f,g\}+
+         {\color{blue}
+           \yc(f)\yc(g)
+         }
+       \right)
+      +(-1)^{f+f}
+       \left(
+         \{f,\yc g\}+(-1)^f
+         {\color{blue}
+           \yc(f)\yc(g)
+         }
+       \right)
+     \right)\\
+&=&
+     \{\yc f,g\}+(-1)^{f+1}\{f,\yc g\}
+\end{eqnarray*}
+\end{proof}
+
+现在我们给出定理\ref{GBV诱导Gerstenhaber-thm}剩余部分的证明。
+
+\begin{proof}[超雅可比恒等式的证明]
+需要反复使用公式
+\begin{eqnarray*}
+\yc(fg)&=&(-1)^f\left(\{f,g\}+f\yc(g)+(-1)^f\yc(f)g\right)\\
+\yc\{f,g\}&=&\{\yc f,g\}+(-1)^{f+1}\{f,\yc g\}
+\end{eqnarray*}
+以及超莱布尼茨法则。
+
+首先考察
+\begin{eqnarray}
+     (-1)^g\{f,\{g,h\}\}\nonumber
+&=&
+     \{f,\yc(gh)-\yc(g)h+(-1)^{g+1}g\yc(h)\}\nonumber\\
+&=&
+     {\color{blue}
+       \{f,\yc(gh)\}
+     }
+    -\{f,\yc(g)h\}
+    +(-1)^{g+1}\{f,g\yc(h)\}
+\end{eqnarray}
+
+而由引理\ref{BV算子引理-lem}可知
+$$\{f,\yc(gh)\}=(-1)^{f+1}\yc\{f,gh\}+(-1)^f\{\yc(f),gh\}$$
+代入（4.1）式蓝色部分，得到
+\begin{eqnarray}
+     (-1)^g\{f,\{g,h\}\}\nonumber
+&=&
+     (-1)^{f+1}
+     {\color{red}
+      \yc\{f,gh\}
+     }
+    +(-1)^f\{\yc(f),gh\}\nonumber\\
+& &
+    -\{f,\yc(g)h\}
+    +(-1)^{g+1}\{f,g\yc(h)\}
+\end{eqnarray}
+
+再看上式中红色的项，先用超莱布尼茨法则展开，
+\begin{eqnarray*}
+     \yc\{f,gh\}
+&=&
+     \yc
+     \left(
+       \{f,g\}k+(-1)^{(f+1)g}g\{f,h\}
+     \right)\\
+&=&
+     (-1)^{f+g+1}
+     \left(
+       \{\{f,g\},h\}
+      +\{f,g\}\yc(h)
+      +(-1)^{f+g+1}\yc\{f,g\}h
+     \right)\\
+& &
+    +(-1)^{(f+1)g+g}
+     \left(
+       \{g,\{f,h\}\}
+      +g\yc\{f,h\}
+      +(-1)^g\yc(g)\{f,h\}
+     \right)\\
+&=&
+     {\color{purple}
+       (-1)^{f+g+1}\{\{f,g\},h\}
+      +(-1)^{fg}\{g,\{f,h\}\}
+     }\\
+& &
+    +(-1)^{f+g+1}\{f,g\}\yc h
+    +\left(
+       \{\yc f,g\}+(-1)^{f+1}\{f,\yc g\}
+     \right)h\\
+& &
+    +(-1)^{fg}g
+     \left(
+       \{\yc f,h\}+(-1)^{f+1}\{f,\yc h\}
+     \right)
+    +(-1)^{(f+1)g}\yc(g)\{f,\yc h\}
+\end{eqnarray*}
+代入（4.2）即可。
+注意深红色部分出现了想要的$\{\{f,g\},h\}$与$\{g,\{f,h\}\}$；
+接下来将（4.2）等号右边最后两项用超莱布尼茨法则展开，
+抵消其余的项。细节从略。
+\end{proof}
+
+dGBV代数的典型例子为如下：
+
+\begin{example}%$M$ is a manifold with volume form $\Omg$,
+设$M$为光滑定向流形，$\Omg$为$M$的一个体积形式，则令
+\
+$$
+\left\{
+  \begin{array}{rcl}
+    \mcalA&:=&(\PV\updot(M),\wedge)\\
+    \yc   &:=&\text{定义\ref{BV算子-def}中的BV算子}\\
+    Q     &:=&0
+  \end{array}
+\right.
+$$
+那么$(\mcalA,\yc,Q)$为dGBV代数。
 \end{example}
+我们早已熟知，不必再证。
+回顾在局部坐标下，若$\Omg=e^{f(x)}\td^nx$，则
+$$\yc=\pp{x^i}\pp{\theta_i}-\pfrac{f}{x^i}\pp{\theta_i}$$
+这个dGBV代数比较平凡，毕竟$Q=0$.
 
-\begin{example}
-Let $X$ be a complex manifold of complex dimension $d$,
-$$\Omg\in H^0(X,K_X)$$
-is a holomorphic volume form(nowhere vanishing),where
-$K_X:=\wedgeform{d}T_X^{1,0}$
+对于一般的dGBV，有以下关于$Q$的等式：
 
-Then $(X,\Omg)$ is called a CY manifold(Calabi-Yau).
+\begin{lemma}
+设$(\mcalA,\yc,Q)$为dGBV，则对任意齐次元$f,g\in\mcalA$，成立
+$$Q\{f,g\}=\{Qf,g\}+(-1)^{f+1}\{f,Qg\}$$
+\label{dGBV的Q引理-lemma}
+\end{lemma}
 
-$$\PV^{p,q}(X):=\Omg^{p,q}(X,\wedgeform{p}T_X^{1,0})
-\xra{\suobing\Omg}\Omg^{d-p,q}(X)$$
+\begin{proof}
+要利用$Q$的超导子性，以及相容性$Q\circ\yc+\yc\circ Q=0$.直接验证如下：
+\begin{eqnarray*}
+     Q\{f,g\}
+&=&
+     (-1)^fQ
+     \left(
+       \yc(fg)-\yc(f)g-(-1)^ff\yc(g)
+     \right)\\
+&=&
+     (-1)^{f+1}
+     \yc
+     \left(
+       Q(f)g+(-1)^ffQ(g)
+     \right)
+    -(-1)^fQ\left(\yc(f)g\right)
+    -Q\left(f\yc g\right)\\
+&=&
+     (-1)^{f+1}\yc\left(Q(f)g\right)
+    -\yc\left(fQ(g)\right)\\
+& &
+    -(-1)^f
+     \left(
+       Q(\yc(f)g)
+      +(-1)^{f+1}\yc(f)Q(g)
+     \right)
+    -\left(
+       Q(f)\yc(g)+(-1)^ffQ(\yc g)
+     \right)\\
+&=&
+     \left(
+       \{Qf,g\}
+      +{\color{blue}Q(f)\yc(g)}
+      +(-1)^{f+1}{\color{red}\yc(Qf)g}
+     \right)\\
+& &
+    -(-1)^f
+     \left(
+       \{f,Qg\}
+      +{\color{green}f\yc(Qg)}
+      +(-1)^f{\color{gray}\yc(f)Q(g)}
+     \right)\\
+& &
+    +(-1)^f{\color{red}\yc(Qf)g}
+    +{\color{gray}\yc(f)Q(g)}\\
+& &
+    -{\color{blue}Q(f)\yc(g)}
+    +(-1)^f{\color{green}f\yc(Qg)}\\
+&=&
+     \{Qf,g\}+(-1)^{f+1}\{f,Qg\}
+\end{eqnarray*}
+\end{proof}
 
-$$\pbar:\PV^{p,q}\to\PV^{p,q-1}$$
-$$\yc:\PV^{p,q}\to\PV^{p-1,q}$$
-\end{example}
-Then we have a DGBV:
-$$\mcalA:=\PV^{\bullet,\bullet}(X)$$
-$$Q:=\pbar$$
-$$\yc=\text{divergence}$$
+\begin{definition}（经典Master方程）
+%Let be a DGBV. $I_0\in\mcalA_0$(i.e. degree$=0$) is said to%satisfy (CME), if
+\index{classical master equation\kong 经典Master方程}
 
-(Hodge theory,deformation theory)
+设$(\mcalA,Q,\yc)$为dGBV代数，对于$\mcalA$中的$0$次元$I_0$，
+称$I_0$满足\textbf{经典Msater方程}
+（classical master equation，简称\textbf{CME}），若
 
-$$\deg\PV^{p,q}(X)=q-p$$
-
-\begin{definition}
-Let $(\mcalA,Q,\yc)$ be a DGBV. $I_0\in\mcalA_0$(i.e. degree$=0$) is said to
-satisfy classical master equation(CME), if
 $$QI_0+\frac{1}{2}\{I_0,I_0\}=0$$
 \end{definition}
-（这个方程长得有点像联络，而且是曲率为0的那种）
 
-$$Q+\{I_0,-\}\curvearrowright\mcalA$$
-this operator acts as a differential, i.e.
-$$(Q+\{I_0,-\})^2=0$$
-(check,need to use Jacobi identity, HW)
+在微分几何中，此方程很像联络的平坦性。
+以后会知道，它与\textbf{形变理论}联系密切。
 
-This bracket is also called "odd Poisson structure"...
+\begin{lemma}
+设$(\mcalA,\yc,Q)$为dGBV代数，
+$I_0\in\mcalA^0$满足经典Master方程，则算子
+\begin{eqnarray*}
+Q_{I_0}:\mcalA&\to&\mcalA\\
+f&\mapsto&Qf+\{I_0,f\}
+\end{eqnarray*}
+为次数为$1$的超导子，并且
+$$Q_{I_0}^2=0$$
+\end{lemma}
 
-\textbf{Fact}:
-any action functional with gauge symmetry leads to a solution of CME.
-(What the fuck is "guage symmetry"?)
+\begin{proof}
+注意$Q$与$\{I_0,-\}$都是次数为$1$的超导子
+（后者等价于超雅可比恒等式），从而$Q_{I_0}=Q+\{I_0,-\}$
+也是次数为$1$的超导子。再看$Q_{I_0}^2$，
+对任意$f\in\mcalA$，首先由超雅可比，有
+\begin{eqnarray*}
+\{I_0,\{I_0,f\}\}=
+\{\{I_0,I_0\},f\}+(-1)^{1\times 1}\{I_0,\{I_0,f\}\}
+\end{eqnarray*}
+从而
+$$\{I_0,\{I_0,f\}\}=\frac{1}{2}\{\{I_0,I_0\},f\}$$
+接下来，注意使用引理\ref{dGBV的Q引理-lemma}，以及
+$I_0$满足经典Master方程，从而
+\begin{eqnarray*}
+     Q_{I_0}^2(f)
+&=&
+     Q\left(Qf+\{I_0,f\}\right)
+    +\{I_0,Qf+\{I_0,f\}\}\\
+&=&
+     Q\{I_0,f\}+\{I_0,Qf\}+\{I_0,\{I_0,f\}\}\\
+&=&
+     \{QI_0,f\}+\frac{1}{2}\{\{I_0,I_0\},f\}\\
+&=&
+     \{QI_0+\frac{1}{2}\{I_0,I_0\},f\}\\
+&=&
+     0
+\end{eqnarray*}
+\end{proof}
+
+%$$Q+\{I_0,-\}\curvearrowright\mcalA$$
+%this operator acts as a differential, i.e.
+%$$(Q+\{I_0,-\})^2=0$$
+%(check,need to use Jacobi identity, HW)
+
+\begin{rem}
+（1）与辛几何的泊松括号类比，注意$\{I_0,I_0\}$未必等于零。
+这里的BV括号$\{,\}$，也称作“\textbf{奇泊松结构}”（odd Poisson structure）。
+\index{odd Poisson structure\kong 奇泊松结构}
+
+（2）在物理学中，任意“规范对称”的作用量$\mcalI_0$
+都给出一个经典Master方程的解。
+\end{rem}
+
+%This bracket is also called "odd Poisson structure"...
+%\textbf{Fact}:
+%any action functional with gauge symmetry leads to a solution of CME.
+%(What the fuck is "guage symmetry"?)
+
+对于满足经典Master方程的$I_0\in\mcalA^0$，由于$Q_{I_0}^2=0$，
+从而可以考虑其上同调：
+
+\begin{definition}（经典BRST）
+
+对于dGBV代数$(\mcalA,\yc,Q)$，
+以及满足经典Master方程的$I_0\in\mcalA^0$，记
+$$\Obs^{\cl}_{I_0}(\mcalA):=H^0(\mcalA,Q_{I_0})$$
+称为\textbf{经典BRST}（Becchi-Rouet-Stora-Tyutin）。
+\end{definition}
+%\textbf{classical observable}
+%(is called classical BRST)
+
+\section{量子Master方程}
+
 
 (quantum version)
 
@@ -2982,10 +3285,6 @@ $$\rightsquigarrow\int e^{I/\hbar}\quad
 
 $$\xra{?}\int \afa e^{I/\hbar}=:\langle\afa\rangle$$
 co-relator function
-
-\textbf{classical observable}
-$$Obs^{cl}:=H^0(\mcalA,Q+\{I,-\})$$
-(is called classical BRST)
 
 \textbf{quantum observable}
 $$Obs^q=H^0(\mcalA\fps{\hbar},Q+\hbar\yc+\{I,-\})$$
