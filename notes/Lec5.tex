@@ -3,11 +3,12 @@
 
 \chapter{还没想好叫什么名字}
 
-\textbf{Maurer-Cartan Equation}
+\section{Chevalley-Eilenberg 复形}
+%\textbf{Maurer-Cartan Equation}
 
 Chevalley-Eilenberg Complex
 
-Let $\mfkg$ be a Lie algebra, with Lie bracket 
+Let $\mfkg$ be a Lie algebra, with Lie bracket
 $$[,]:\wedge^2\mfkg\to\mfkg$$
 
 Define $C\updot(\mfkg):=\wedgeform{\bullet}\mfkg^\vee$
@@ -15,9 +16,9 @@ where $\mfkg^\vee$ be the linear dual of $\mfkg$.
 
 ("CE" is "Chevalley-Eilenberg")
 
-we define a derivation 
+we define a derivation
 $$\td_{CE}:C\updot(\mfkg)\to\mfkg$$
-determined by 
+determined by
 $$\td_{CE}:\mfkg^\vee\to\wedgeform{2}\mfkg^\vee$$
 where $\td_{CE}$ is the dual of $\wedgeform{2}\mfkg\to\mfkg$.
 
@@ -88,7 +89,7 @@ is called Lie algebra cohomology.
 $$M\xra{\td_{CE}}\mfkg^\vee\ten M\xra{\td_{CE}}
 M\ten\wedgeform{2}\mfkg^\vee\to\cdots$$
 
-$\td_{CE}(m)(e)=e.m$, so 
+$\td_{CE}(m)(e)=e.m$, so
 $$H^0(\mfkg,M)=\{m\in M^\mfkg\}$$
 ($\mfkg$-invariant elements)
 
@@ -130,23 +131,23 @@ $$\td_{CE}^2=0$$
 \end{prop}
 (check)
 
-Similarly, $M$ is a dg-$\mfkg$-module, i.e. 
+Similarly, $M$ is a dg-$\mfkg$-module, i.e.
 $\td_M:M\to M$ s.t.
 $$\td_M(e.m)=(\td e).m\pm e.(\td_M (m))$$
-we also have 
+we also have
 $$(C\updot(\mfkg,M),\td_{CE})$$
 and $\td_{CE}^2=0$
 
 \begin{example}
 $X$ be a manifold, $\mfkg=\Gma(X,TX)=Vect_X$
-$M=C^\infty(X)$ is a $\mfkg$-module, and 
+$M=C^\infty(X)$ is a $\mfkg$-module, and
 $\Omg\updot(X)\subseteq C\updot(\mfkg,M)$.
 \end{example}
 
-\section{Maurer-Cartan Equation}
+\section{Maurer-Cartan 方程}
 （连接所有结构的核心方程）
 
-Let $(\mfkg,\td,[,])$ be a dgLa, an 
+Let $(\mfkg,\td,[,])$ be a dgLa, an
 Maurer-Cartan element is  $\afa\in\mfkg_1$(i.e. $\deg\afa=1$)
 satisfies the following Maurer-Cartan Equation:
 $$\td\afa=\frac{1}{2}[\afa,\afa]=0$$
@@ -155,7 +156,7 @@ and define $\mcalM(\mfkg)$ be the set of all the Maurer-Cartan element...
 Key point: new dgLa
 $$(\mfkg^\afa,\td_\afa,[,])$$
 
-where 
+where
 $$\td_{\afa}=\td+[\afa,-]$$
 $$[,]=\text{the same}$$
 (check :$\td_\afa^2=0$)
@@ -176,9 +177,9 @@ $(\nabla+A)^2=$curvature
 \end{example}
 
 \begin{example}
-$X$ is a complex manifold, 
+$X$ is a complex manifold,
 $$\mfkg=\Omg^{0,\bullet}(X,T_X^{1,0})$$
-$\pbar$ is the differential. and  
+$\pbar$ is the differential. and
 $[,]$ is the Lie bracket from $(1,0)$ vector vector field.
 
 This is a dgLa.
@@ -194,13 +195,13 @@ locally...
 
 $\mu\rightsquigarrow$ new complex manifold "$X_\mu$"
 
-a local function $f$ is called holomorphic in $X_\mu$, 
+a local function $f$ is called holomorphic in $X_\mu$,
 $\iff$ $\pbar_jf+\sum_i\mu^i_{\overline{j}}\p_if=0$ for all $j$.
 
 integrability $\iff$ $\pbar\mu+\frac{1}{2}[\mu,\mu]=0\iff(\pbar+\mu)^2=0$.
 
 \begin{example}
-$E\to X$ is a holomorphic vector bundle, then 
+$E\to X$ is a holomorphic vector bundle, then
 $$\mfkg:=\Omg^{0,\bullet}(X,\End(E))$$
 $\pbar$ differential, and $[,]$ on $\End(E)$.
 this is a dgLa.
@@ -214,12 +215,214 @@ $\iff$
 $$\pbar s+As=0$$
 \end{example}
 
+%%%%%%%%%%%%2019.4.16第八周周二%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Maurer-Cartan (II)}
+
+Last time: $\mfkg$ is a dgLa,
+CE complex: $C\updot(\mfkg)=\text{两种写法，有限维是一样的}$
+$$\mcalM(\mfkg)=\{\afa\in\mfkg_1|\td\afa+\frac{1}{2}[\afa,\afa]=0\}$$
+
+Geometrically, we can think about
+$$C\updot(\mfkg)=\Sym\updot(\mfkg^\vee[-1])$$
+where $\mfkg^\vee[-1]$ is the dual of $\mfkg[1]$.
+$C\updot(\mfkg)$ can be regarded as "functions on $\mfkg[1]$".
+
+$\td_{CE}$ is a derivation on $C\updot(\mfkg)$, $\iff$ 
+vector fields $X_{CE}$ on $\mfkg[1]$, $\deg X_{CE}=1$.
+
+\begin{example}
+$\mfkg$  is a Lie algebra, $\{e_\afa\}$ basis of $\mfkg$,
+$\{c^\afa\}$ dual basis of $(\mfkg[1])^\vee$.
+$c^\afa c^\beta=-c^\beta c^\afa$.
+
+$\td_{CE}c^\afa=\frac{1}{2}f_{\beta\gma}^\afa c^\beta c^\gma$
+$\iff$
+$$X_{CE}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma \pp{c^\afa}$$
+
+MC: $\td\afa+\frac{1}{2}[\afa,\afa]=0$.
+$$\td\afa+\frac{1}{2}[\afa,\afa]=
+\text{coefficients of $X_{CE}$ valued at $\afa\in\mfkg[1]$}$$
+so,
+$\afa\in\mcalM(\mfkg)\iff \afa=\text{zero locus of $X_{CE}$}$
+\end{example}
+
+（以上，是。。。的几何解释）
+
+\begin{prop}
+Let $\mfkg,\mfkh$ be two dgLa, 
+$$\fai:\mfkg\to\mfkh$$
+be a homomorphism of dgLa(自己补定义，与微分、李括号都相容)
+
+Then $\fai$ induces a map 
+$$\fai_*: \mcalM(\mfkg)\to\mcalM(\mfkh)$$
+
+i.e. 
+$$\underline{DGLA}\xra{\mcalM}\underline{Set}$$
+is a functor
+\end{prop}
+
+\begin{proof}
+Obvious.
+\end{proof}
+
+$\fai:\mfkg\to\mfkh$, then 
+$$\mfkg[1]\xra{\fai}\mfkg[h]$$
+（意淫为两个空间的映射）
+$$\fai^*:\mcalO(\mfkg[1])\to\mcalO(\mfkg[1])$$
+where $\mcalO(\mfkg[1]):=C\updot(\mfkg)$ is CE complex...
+%%%%%%%%%%%%%%%%%%%%%%%%几何解释%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{(-1)-Symplectic geometry}
+recall: $(V,\omg)$ ,where $V$ is a graded linear space, $\omg$ is a (-1)- symplectic structure.
+$$\omg:\wedgeform{2}V\to\bbC$$
+non-degenerated, $\deg\omg=-1$.
+
+Given $\mcalS\in\mcalO(V)$, it defines a vector field 
+$X_\mcalS$ on $V$, s.t. 
+$$X_\mcalS=\{\mcalS,-\}$$
+where $\{,\}$ is the induced poisson bracket($\deg\{,\}=1$).
+
+$$\deg(\mcalS)=0\iff\deg(X_\mcalS)=1$$
+
+recall: CME: $\{\mcalS,\mcalS\}=0$. it means that 
+$$[X_\mcalS,X_\mcalS]=0$$
+if $\mcalS$ contains two terms 
+$$\mcalS=\mcalS_2+\mcalS_3$$
+($\in \Sym^2(V^*),\Sym^3(V^*)$ respectively)
+
+$\{\mcalS_2,-\}$ is "differential"
+
+$\{\mcalS_3,-\}$ Lie algebra structure.
+
+$\{\mcalS,\mcalS\}=0\Longrightarrow$ dgLa on $\mfkg$ where $\mfkg[1]=V$. 
+
+\begin{example}
+Let $\mfkg$ be a Lie algebra, 
+$$V=\mfkg[1]\oplus\mfkg^\vee[-2]$$
+(degree $-1,2$ respectively)
+with natural $(-1)$- symplectic structure 
+$$\omg:\mfkg[1]\ten \mfkg^\vee[-2]\to\bbC$$
 
 
+Let $\{e_\afa\}$ be a basis of $\mfkg$,
+$$[e_\afa,e_\beta]=f^\gma_{\afa\beta}e_\gma$$
+
+$$V^*=(\mfkg[1])^\vee\oplus(g^\vee[-2])^\vee$$
+
+$\{c^\afa\}$ dual basis of $g^\vee[-1]$ of degree $\deg(c^\afa)=1$.
+
+$\{u_\afa\}$ basis of $\mfkg[2]$ s.t. $\deg(u_\afa)=-2$.
+$$\omg=\sum_{\afa}\td c^\afa\wedge\td u_\afa$$
+\end{example}
+
+Poisson bracket:
+$$\{c^\afa,u_\beta\}=\delta^\afa_\beta$$
+
+$$\mcalS=\sum_{\afa\beta\gma}
+\frac{1}{2}f_{\afa\beta}^\gma c^\afa c^\beta u_\gma
+\in\mcalO(V)=\bbC[c^\afa,u_\afa]
+$$
+
+$$\deg\mcalS=0$$
+
+Claim: $\mcalS$ satisfies CME, $\{\mcalS,\mcalS\}=0$.
+
+$$\mcalO(C)\cong \wedgeform{\bullet}\mfkg^\vee\ten\Sym\updot\mfkg
+=C\updot(\mfkg,\Sym\updot\mfkg)
+$$
+
+$$\{\mcalS,c^\afa\}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma$$
+$$\{\mcalS,u_\afa\}=f^\gma_{\afa\beta}c^\beta u_\gma$$
+
+so, 
+$$X_{\mcalS}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma\pp{c^\afa}
++f^\gma_{\afa\beta}c^\beta u_\gma\pp{u_\beta}
+$$
+
+check:$\{X_\mcalS,X_\mcalS\}=0$
+\vs
+
+In general, $\mcalS\in\mcalO(V)$, s.t.
+$$\mcalS=\mcalS_2+\mcalS_3+\mcalS_4+\cdots$$
+
+$\{\mcalS_2,-\}$ ... differential
+
+$\{\mcalS_3,-\}$... Lie bracket
+
+$\{\mcalS_4,-\}$... is what? "3-bracket"...
+
+$\{\mcalS_{k+1},-\}$..."$k$-bracket"
+
+CME $\{\mcalS,\mcalS\}=0\Longrightarrow$ compatibility conditions for all "$k$-brackets"...
+
+Homotopy Lie structure ($L_\infty$-albegra)
+
+\begin{definition}
+An $L_\infty$-algebra is a graded vector space $\mfkg$ with 
+a $\deg=1$ vector field $\delta$ s.t. $[\delta,\delta]=2\delta^2=0$.
+\end{definition}
+$$\delta\in\Hom(\Sym\updot(\mfkg[1]),\mfkg[1])$$
+$$\delta=\sum_{k\geq 0}\delta_k$$
+$$\delta_k\in\Hom(\Sym^k(\mfkg[1]),\mfkg[1])$$
+
+$[\delta,\delta=0]\iff$
+$$\sum\cdots=0$$
+
+Since $\Sym^k(\mfkg[1])\cong\wedgeform{k}\mfkg[k]$, it induces 
+$$\ell_k:\wedgeform{k}\mfkg\to\mfkg$$
+$\deg(\ell_k)=2-k$.
+
+$[\delta,\delta]=0$用$\ell_k$来写。。。
+
+（Jacobi identity holds up to homotopy）
+
+Let $\mfkg$ is an $L_\infty$ algebra, define 
+$$\mcalM(\mfkg)=\{\afa\in\mfkg_1|
+\ell_1(\afa)+\frac{1}{2}\ell_2(\afa,\afa)+\frac{1}{3!}\ell_3(\afa,\afa,\afa)=0
+\}$$
+(is zero locus of $\delta$ on $\mfkg[1]$)
 
 
+\begin{definition}
+Let $\mfkg,\mfkh$ be two $L_\infty$-algebras, 
+Am $L_\infty$-morphism "$\fai:\mfkg\to\mfkh$" is given by a cochain 
+map
+$$\fai^*:C\updot(\mfkh)\to C\updot(\mfkg)$$
 
+$$(\mfkg[1])^\vee\to(\Sym^k(\mfkg[1]))^\vee$$
+$$\fai_k:\Sym^k(\mfkg[1])\to\mfkh[1]$$
 
+\end{definition}
+
+then we get an $L_\infty$ category.
+
+Moreover, $\fai:\mcalM(\mfkg)\to\mcalM(\mfkh)$,
+the same as before.
+
+\begin{example}(Chern Simons theory)
+$X$ is 3-manifold, $\mfkg$ Lie algebra with Trace pairing.
+Fields
+$$\mcalE=\Omg\updot(X)\ten\mfkg[1]$$
+$$\deg(\Omg^k)=k-1$$
+degree $-1$:ghost
+
+degree 1: field
+
+degree 2: anti-field
+
+degree 2 anti-ghost
+
+$$CS[\mcalA]=\int_X\frac{1}{2}Tr\mcalA\wedge\td A+\frac{1}{6}Tr\mcalA\wedge[\mcalA,\mcalA]$$
+for $\mcalA\in\mcalE$
+
+then $\{CS,CS\}=0$ holds ,
+$(\Omg\updot(X)\ten\mfkg,\td,[-,-])$ is a dgLa.
+
+$$\{CS,-\}=\delta_{BRST}$$
+$$\delta_{BRST}(\mcalA)=\td \mcalA+\frac{1}{2}[\mcalA,\mcalA]$$
+MC equation $\iff$ EOM
+\end{example}
 
 
 
