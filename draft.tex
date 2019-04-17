@@ -57,11 +57,12 @@ Goal: explain both 1 and 2 from
 
 non-commutative Hochschild theory
 
-quantum- field theory 
+quantum- field theory
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%以上内容位于【phi^4场论、重整化】之后%%%%%%%%%%%
+\section{$\phi^4$重整化}
 \begin{example}Quantum mechanics (QFT in dimension 1)
 
 field:
@@ -82,3 +83,56 @@ $$\int_{\gma:[0,t]\to\bbR^d\atop\gma(0)=x,\quad\gma(t)=y}
 $$\mcalS\to\mcalS[\cdots]$$
 
 还是下一节课再讲吧。。。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%这是dGBV代数的一个例子%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Calabi-Yau流形与dGBV}
+下一个例子来自复几何，与Hodge理论、形变理论联系密切。
+
+\begin{example}%Let $X$ be a complex manifold of complex dimension $d$,
+设$X$为$d$维复流形，
+$$\Omg\in H^0(X,K_X)$$
+is a holomorphic volume form(nowhere vanishing),where
+$K_X:=\wedgeform{d}T_X^{1,0}$
+
+Then $(X,\Omg)$ is called a CY manifold(Calabi-Yau).
+
+$$\PV^{p,q}(X):=\Omg^{p,q}(X,\wedgeform{p}T_X^{1,0})
+\xra{\suobing\Omg}\Omg^{d-p,q}(X)$$
+
+$$\pbar:\PV^{p,q}\to\PV^{p,q-1}$$
+$$\yc:\PV^{p,q}\to\PV^{p-1,q}$$
+\end{example}
+Then we have a DGBV:
+$$\mcalA:=\PV^{\bullet,\bullet}(X)$$
+$$Q:=\pbar$$
+$$\yc=\text{divergence}$$
+
+(Hodge theory,deformation theory)
+
+$$\deg\PV^{p,q}(X)=q-p$$
+
+\section{$\mathsf{A}_n$-型奇点}
+%%%%%%%%%%%%%%%作为量子QME的一个例子%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}
+$f(z)=z^{n+1}$,($A_n$-singularity),
+$$Jac(f)=\bbC[z]\big/z^n$$
+$$\mu=n$$
+\end{example}
+
+Check:
+$$Obs^q\cong\Omg_{holo}^n\fps{\hbar}\big/
+(\hbar\td+\td f\wedge)$$
+called (formal) Brieshorn lattice.
+
+$Obs^q$ describes complex oscillatory integral.
+
+Rmk: Singularity leads to a mixed Hodge theory.
+
+$\hbar=$Hodge filtration.
+
+QFT is a $\infty$-dimensional version of Hodge theory.
+%以上几句在吹牛。。。 

@@ -2879,7 +2879,7 @@ $$\mcalI^{\veps}:=\frac{\lmd(\veps)}{4!}\int_{\bbR^4}\phi(x)^4\td x$$
 \end{proof}
 %这个定理挺难证。。。不证了。。。
 
-\section{dGBV代数与经典Master方程}
+\section{dGBV代数与Master方程}
 %%%%%%%%%%%2019.4.8第七周周一%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%这周继续量子场论%%%%%%%%%%%%%%%%
 %\textbf{Homotopic Renormalization}
@@ -3263,84 +3263,265 @@ $$\Obs^{\cl}_{I_0}(\mcalA):=H^0(\mcalA,Q_{I_0})$$
 %\textbf{classical observable}
 %(is called classical BRST)
 
-\section{量子Master方程}
+\begin{example}（来自奇点理论的例子）
+%(from singularity theory)
+
+考虑dGBV代数$(\PV_{\bbC^n}\updot,\yc,0)$，即
+$$
+  \left\{
+    \begin{array}{rcl}
+      \mcalA&=&\PV\updot_{\bbC^n}
+               \cong\bbC[z^1,...,z^n;\theta_1,...,\theta_n]\\
+      \yc   &=&\sum\limits_{i=1}^n\pp{z^i}\pp{\theta_i}\\
+      Q     &=&0
+    \end{array}
+  \right.
+$$
+其中$\mcalA$的分次由$\deg\theta_i=-1$给出。
+设多项式$f\in\bbC[z^1,...,z^n]=\mcalA^0$满足
+$$\Crit(f):=\{z\in\bbC^n|\p_if(z)=0\,,\forall 1\leq i\leq n\}=\{0\}$$
+即$0\in\bbC^n$为$f$（唯一的）孤立奇点，则$f$满足经典Master方程，
+并且其经典BRST为
+$$\Obs^{\cl}_f=\bbC[z^1,...,z^n]\big/(\p_1f,...,\p_nf)$$
+%where $\deg\theta_i=-1$(super variable).
+%$f(z)$ has a isolated singularity  at $z=0$,
+%then $\Crit(f)=\{0\}$.
+%and $f$ solves CME: $\{f,f\}=0$(trivial...),and also satisfies QMF:
+%$\yc e^{f/\hbar}=0$.
+\end{example}
+\begin{proof}
+注意$Q=0$，此时的经典Master方程即为$\{I_0,I_0\}=0$.
+在本例中，BV括号$\{,\}$就是（负的）Schouten-Nijenhuis括号，
+从而$\{f,f\}=0$是平凡的。我们看它的BRST，
+$$
+  \Obs^{\cl}_f=
+    \frac{\bbC[z^1,...,z^n]}
+         {\im\left(
+               \{f,-\}:\PV^1_{\bbC^n}\to\PV^0_{\bbC^n}
+             \right)
+         }
+$$
+而对于切向量场$X\in\mcalA^{-1}$，若
+$$X=X^i\theta_i$$
+则直接计算得
+$$\{f,X\}=\yc(fX)-f\yc(X)=\pfrac{f}{z^i}X^i$$
+从而证毕。
+\end{proof}
+
+在奇点理论中，环$\bbC[z^1,...,z^n]$的理想
+$J_f:=(\pfrac{f}{z^1},...,\pfrac{f}{z^n})$称为\textbf{Jacobi理想}，
+$$\mcalA_f:=\bbC[z^1,...,z^n]\big/J_f\quad(=\Obs^{cl}_f)$$
+称为$f$的\textbf{Milnor环}。作为复线性空间，称
+$$\mu:=\dim_{\bbC}\mcalA_f$$
+为\textbf{Milnor数}。由交换代数（Hilbert零点定理）可知，
+当$0$为$f$的孤立奇点时，$\mu<+\infty$.
+
+%then , the classical observable
+%$$Obs^{cl}=H^0(\mcalA,\{f,-\})=
+%\text{Koszul resolution of $\Crit(f)$}
+%=\bbC[z^i]\big/(\p_if)$$
+%is called "Milnor ring",parametrizing deformations of $f$.
+%This Milnor ring is an Artinian ring(so, of finite length),
+%$$\mu:=\dim_\bbC\bbC[z^i]\big/(\p_if)$$
+%is called Milnor ring..
 
 
-(quantum version)
+%(quantum version)
 
-$$I=I_0+I_1\hbar+I_2\hbar^2\in\mcalA\fps{\hbar}$$
-is said to satisfy Quantum master equation, if
+现在考虑量子版本。
+
+\begin{definition}（量子Master方程）
+
+设$(\mcalA,\yc,Q)$为dGBA代数，以及$I\in\mcalA^0\fps{\hbar}$，
+称$I$满足\textbf{量子Master方程}（Quantum Master Equation，简称\textbf{QME}），
+\index{Quantum Master Equation\kong 量子Master方程}若
 $$QI+\hbar\yc I+\frac{1}{2}\{I,I\}=0$$
-(when $\hbar\to 0$, go back to "classical")
+\end{definition}
+量子Master方程其实是无穷多个方程。
+记$I=\sum\limits_{k=0}^\infty I_k\hbar^k$，比较$\hbar^k$的系数，
+$$
+  \left\{
+    \begin{array}{l}
+      QI_0+\frac{1}{2}\{I_0,I_0\}=0\\
+      QI_1+\yc I_0+\frac{1}{2}
+        \left(
+          \{I_0,I_1\}+\{I_1,I_0\}
+        \right)=0\\
+      QI_2+\yc I_1+\frac{1}{2}
+        \left(
+          \{I_0,I_2\}+\{I_1,I_1\}+\{I_2,I_0\}
+        \right)=0\\
+      \cdots\cdots
+    \end{array}
+  \right.
+$$
+其中第一个方程即为经典Master方程。
+容易看出，经典Master方程是量子Master方程“$\hbar\to 0$”的“极限”。
 
-(比较$\hbar$各项系数，有无穷多个方程)
+\begin{lemma}
+设$(\mcalA,\yc,Q)$为dGBV代数，则对于任意$I\in\mcalA^0\fps{\hbar}$，
+以及任意$k\geq 0$，成立
+$$\yc(I^k)=k\yc(I)I^{k-1}+\frac{k(k-1)}{2}\{I,I\}I^{k-2}$$
+\end{lemma}
 
-\textbf{HW}:
-$$\text{QMF}\iff (Q+\hbar\yc)e^{I/\hbar}=0$$
+\begin{proof}
+其实不妨$I\in\mcalA^0$（并没有用到$\hbar$的信息）.
+注意$I$与$\mcalA$中任何元素交换。首先由超莱布尼茨法则易知
+$$\{I,I^{k-1}\}=(k-1)\{I,I\}I^{k-2}$$
+于是有
+\begin{eqnarray*}
+     \yc(I^k)&=&\yc(II^{k-1})
+ =
+     \{I,I^{k-1}\}+\yc(I)I^{k-1}
+    +I\yc(I^{k-1})\\
+&=&
+     (k-1)\{I,I\}I^{k-2}
+    +I^{k-1}\yc(I)
+    +I\yc(I^{k-1})
+\end{eqnarray*}
+于是
+$$\yc(I^k)-I\yc(I^{k-1})=(k-1)\{I,I\}I^{k-2}+I^{k-1}\yc(I)$$
+于是易知对任意$1\leq s\leq k$，都有
+$$I^{s-1}\yc(I^{k-s+1})-I^s\yc(I^{k-s})
+=(k-s)\{I,I\}I^{k-2}+I^{k-1}\yc(I)$$
+将上式的$s$从$1$到$k$求和即可。
+\end{proof}
 
-i.e. , $e^{I/\hbar}$ is the analogue of "closed differential form".
-$$\rightsquigarrow\int e^{I/\hbar}\quad
-\text{in Physis: Quantum gauge symmetry}$$
-（某种意义下的不变的测度）
+\begin{prop}（量子Master方程的等价形式）
 
-$$\xra{?}\int \afa e^{I/\hbar}=:\langle\afa\rangle$$
-co-relator function
+对于dGBV代数$(\mcalA,\yc,Q)$，则量子Master方程等价于
+$$(Q+\hbar\yc)e^{I/\hbar}=0$$
+\end{prop}
 
-\textbf{quantum observable}
-$$Obs^q=H^0(\mcalA\fps{\hbar},Q+\hbar\yc+\{I,-\})$$
+\begin{proof}直接验证，注意\textbf{不必}
+将$I$展开为$I=\sum\nolimits_{k\geq 0}I_k\hbar^k$.只需注意
+\begin{eqnarray*}
+     Qe^{I/\hbar}
+ =
+     Q\sum_{k=0}^\infty
+        \frac{I^k}
+             {k!\hbar^k}
+ =
+     \sum_{k=0}^\infty
+       \frac{kQ(I)I^{k-1}}
+            {k!\hbar^k}
+ =
+     \frac{1}{\hbar}
+     Q(I)e^{I/\hbar}
+\end{eqnarray*}
+以及由之前引理，
+\begin{eqnarray*}
+     \yc e^{I/\hbar}
+&=&
+     \sum_{k=0}^\infty
+       \frac{\yc(I^k)}{\hbar^kk!}\\
+&=&
+     \sum_{k=0}^\infty
+       \frac{
+              k\yc(I)I^{k-1}
+             +\frac{1}{2}k(k-1)\{I,I\}I^{k-2}
+            }
+            {\hbar^kk!}\\
+&=&
+     \frac{\yc(I)}{\hbar}
+     \sum_{k=1}^\infty
+       \frac{I^{k-1}}{(k-1)!\hbar^{k-1}}
+    +\frac{\{I,I\}}{2\hbar^2}
+     \sum_{k=2}^\infty
+       \frac{I^{k-2}}{(k-2)!\hbar^{k-2}}\\
+&=&
+     \left(
+       \frac{\yc(I)}{\hbar}
+      +\frac{\{I,I\}}{2\hbar^2}
+     \right)
+     e^{I/\hbar}
+\end{eqnarray*}
 
-if $\afa\in Obs^q$, then
-$$(Q+\hbar\yc)\afa+\{I,\afa\}=0
-\iff\left
-(Q+\hbar\yc)(\afa e^{I/\hbar})=0
-\right)$$
+综上，有
+$$
+  (Q+\hbar\yc)e^{I/\hbar}
+=\frac{1}{\hbar}
+ \left(
+   Q(I)+\hbar\yc(I)+\frac{1}{2}\{I,I\}
+ \right)
+ e^{I/\hbar}
+$$
+可见上式为$0$当且仅当$I$满足量子Master方程。
+\end{proof}
 
-(i.e. $\afa e^{I/\hbar}$ is a "closed form")
+注意$(Q+\hbar\yc)^2=0$，于是“$e^{I/\hbar}$”可以视为
+关于“微分”$(Q+\hbar\yc)$的“闭微分形式”，
+如果$I$满足量子Master方程。
 
-\begin{example}(from singularity theory)
+%i.e. , $e^{I/\hbar}$ is the analogue of "closed differential form".
+%$$\rightsquigarrow\int e^{I/\hbar}\quad
+%\text{in Physis: Quantum gauge symmetry}$$
+%（某种意义下的不变的测度）
+%$$\xra{?}\int \afa e^{I/\hbar}=:\langle\afa\rangle$$
+%co-relator function
+%\textbf{quantum observable}
 
-$$\mcalA:=\bbC[z^i,\theta_i]$$
-where $\deg\theta_i=-1$(super variable).
-$$f:\bbC^n\to\bbC$$
-is a polynomial, such that $f(z)$ has a isolated singularity  at $z=0$,
-$$\Crit(f)=\{z\in\bbC^n|\p_if(z)=0\}$$
-then $\Crit(f)=\{0\}$.
+\begin{prop}
+对于dGBV代数$(\mcalA,\yc,Q)$，
+以及满足量子Master方程的$I\in\mcalA^0\fps{\hbar}$，
+则算子
+\begin{eqnarray*}
+Q_I:\mcalA\fps{\hbar}&\to&\mcalA\fps{\hbar}\\
+f&\mapsto&(Q+\hbar\yc)f+\{I,f\}
+\end{eqnarray*}
+为一阶超导子，且$Q_I^2=0$；此外，对于$\afa\in\mcalA^0\fps{\hbar}$，
+$Q_I(\afa)=0$当且仅当
+$$(Q+\hbar\yc)(\afa e^{I/\hbar})=0$$
+\end{prop}
 
-Then ,there is a DGBV:
-$$Q=0$$
-$$\yc=\sum_i\pp{z^i}\pp{\theta_i}$$
-and $f$ solves CME: $\{f,f\}=0$(trivial...),and also satisfies QMF:
-$\yc e^{f/\hbar}=0$.
-\end{example}
+\begin{proof}显然$Q_I$为一阶超导子。
+注意$(Q+\hbar\yc)^2=0$，以及对任意$f\in\mcalA\fps{\hbar}$成立
+$$\{I,\{I,f\}\}=\frac{1}{2}\{\{I,I\},f\}$$
+因此
+\begin{eqnarray*}
+     Q_I^2(f)
+&=&
+     \left(
+       Q+\yc\hbar+\{I,-\}
+     \right)^2f\\
+&=&
+     (Q+\hbar\yc)^2f+\{I,\{I,f\}\}
+    +(Q+\hbar\yc)\{I,f\}
+    +\{I,(Q+\hbar\yc)f\}\\
+&=&
+     \{I,\{I,f\}\}
+    +\{(Q+\hbar\yc)I,f\}\\
+&=&
+     \{(Q+\hbar\yc)I+\frac{1}{2}\{I,I\},f\}\\
+&=&
+     0
+\end{eqnarray*}
+再注意
+\begin{eqnarray*}
+     (Q+\hbar\yc)(\afa e^{I/\hbar})
+&=&
+     ((Q+\hbar\yc)\afa)e^{I/\hbar}
+    +\afa(Q+\hbar\yc)e^{I/\hbar}
+    +\hbar\{\afa,e^{I/\hbar}\}\\
+&=&
+     \left(
+       (Q+\hbar\yc)\afa+\{I,\afa\}
+     \right)e^{I/\hbar}
+\end{eqnarray*}
+因此得证。
+\end{proof}
 
-then , the classical observable
-$$Obs^{cl}=H^0(\mcalA,\{f,-\})=
-\text{Koszul resolution of $\Crit(f)$}
-=\bbC[z^i]\big/(\p_if)$$
-is called "Milnor ring",parametrizing deformations of $f$.
-This Milnor ring is an Artinian ring(so, of finite length),
-$$\mu:=\dim_\bbC\bbC[z^i]\big/(\p_if)$$
-is called Milnor ring..
+与经典情形类似，对于满足量子Master方程的$I$，定义\textbf{量子BRST}
+$$\Obs^q_I:=H^0(\mcalA\fps{\hbar},Q_I)$$
 
-\begin{example}
-$f(z)=z^{n+1}$,($A_n$-singularity),
-$$Jac(f)=\bbC[z]\big/z^n$$
-$$\mu=n$$
-\end{example}
+%if $\afa\in Obs^q$, then
+%$$(Q+\hbar\yc)\afa+\{I,\afa\}=0
+%\iff\left
+%(Q+\hbar\yc)(\afa e^{I/\hbar})=0
+%\right)$$
+%(i.e. $\afa e^{I/\hbar}$ is a "closed form")
 
-Check:
-$$Obs^q\cong\Omg_{holo}^n\fps{\hbar}\big/
-(\hbar\td+\td f\wedge)$$
-called (formal) Brieshorn lattice.
-
-$Obs^q$ describes complex oscillatory integral.
-
-Rmk: Singularity leads to a mixed Hodge theory.
-
-$\hbar=$Hodge filtration.
-
-QFT is a $\infty$-dimensional version of Hodge theory.
-%以上几句在吹牛。。。
+\section{$(-1)$-辛几何}
 
 \textbf{$(-1)$-symplectic geometry(BV-formalism)}
 
