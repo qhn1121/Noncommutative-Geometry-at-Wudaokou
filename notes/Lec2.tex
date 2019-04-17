@@ -261,12 +261,17 @@ $$
 %HW:%%下周二必考！！
 \begin{prop}对于分次$K$-模$V$，
 以及任意$n\geq0$，则有分次$K$-模同构:
-$$\Sym^n(V[1])\cong(\wedgeform{n}(V))[n]$$
+\begin{eqnarray*}
+\Sym^n(V[1])&\cong&(\wedgeform{n}(V))[n]\\
+\wedgeform{n}(V[1])&\cong&(\Sym^n(V))[n]
+\end{eqnarray*}
 %here $[n]=([1])^{n\text{times}}$
 \end{prop}
 %%非常重要！！！%
 
-\begin{proof}对于任意$d\in\bbZ$，
+\begin{proof}
+只证第一式，第二式同理。
+对于任意$d\in\bbZ$，
 首先看看它们的齐次分量$(\Sym^n(V[1]))_d$
 与$\big((\wedgeform{n}(V))[n]\big)_d$中的元素具有何种形式。
 我们用$v_1,...,v_n$表示$V$中的$d_1,...,d_n$
