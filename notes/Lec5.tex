@@ -228,7 +228,7 @@ $$C\updot(\mfkg)=\Sym\updot(\mfkg^\vee[-1])$$
 where $\mfkg^\vee[-1]$ is the dual of $\mfkg[1]$.
 $C\updot(\mfkg)$ can be regarded as "functions on $\mfkg[1]$".
 
-$\td_{CE}$ is a derivation on $C\updot(\mfkg)$, $\iff$ 
+$\td_{CE}$ is a derivation on $C\updot(\mfkg)$, $\iff$
 vector fields $X_{CE}$ on $\mfkg[1]$, $\deg X_{CE}=1$.
 
 \begin{example}
@@ -250,14 +250,14 @@ $\afa\in\mcalM(\mfkg)\iff \afa=\text{zero locus of $X_{CE}$}$
 （以上，是。。。的几何解释）
 
 \begin{prop}
-Let $\mfkg,\mfkh$ be two dgLa, 
+Let $\mfkg,\mfkh$ be two dgLa,
 $$\fai:\mfkg\to\mfkh$$
 be a homomorphism of dgLa(自己补定义，与微分、李括号都相容)
 
-Then $\fai$ induces a map 
+Then $\fai$ induces a map
 $$\fai_*: \mcalM(\mfkg)\to\mcalM(\mfkh)$$
 
-i.e. 
+i.e.
 $$\underline{DGLA}\xra{\mcalM}\underline{Set}$$
 is a functor
 \end{prop}
@@ -266,7 +266,7 @@ is a functor
 Obvious.
 \end{proof}
 
-$\fai:\mfkg\to\mfkh$, then 
+$\fai:\mfkg\to\mfkh$, then
 $$\mfkg[1]\xra{\fai}\mfkg[h]$$
 （意淫为两个空间的映射）
 $$\fai^*:\mcalO(\mfkg[1])\to\mcalO(\mfkg[1])$$
@@ -278,16 +278,16 @@ recall: $(V,\omg)$ ,where $V$ is a graded linear space, $\omg$ is a (-1)- symple
 $$\omg:\wedgeform{2}V\to\bbC$$
 non-degenerated, $\deg\omg=-1$.
 
-Given $\mcalS\in\mcalO(V)$, it defines a vector field 
-$X_\mcalS$ on $V$, s.t. 
+Given $\mcalS\in\mcalO(V)$, it defines a vector field
+$X_\mcalS$ on $V$, s.t.
 $$X_\mcalS=\{\mcalS,-\}$$
 where $\{,\}$ is the induced poisson bracket($\deg\{,\}=1$).
 
 $$\deg(\mcalS)=0\iff\deg(X_\mcalS)=1$$
 
-recall: CME: $\{\mcalS,\mcalS\}=0$. it means that 
+recall: CME: $\{\mcalS,\mcalS\}=0$. it means that
 $$[X_\mcalS,X_\mcalS]=0$$
-if $\mcalS$ contains two terms 
+if $\mcalS$ contains two terms
 $$\mcalS=\mcalS_2+\mcalS_3$$
 ($\in \Sym^2(V^*),\Sym^3(V^*)$ respectively)
 
@@ -295,13 +295,13 @@ $\{\mcalS_2,-\}$ is "differential"
 
 $\{\mcalS_3,-\}$ Lie algebra structure.
 
-$\{\mcalS,\mcalS\}=0\Longrightarrow$ dgLa on $\mfkg$ where $\mfkg[1]=V$. 
+$\{\mcalS,\mcalS\}=0\Longrightarrow$ dgLa on $\mfkg$ where $\mfkg[1]=V$.
 
 \begin{example}
-Let $\mfkg$ be a Lie algebra, 
+Let $\mfkg$ be a Lie algebra,
 $$V=\mfkg[1]\oplus\mfkg^\vee[-2]$$
 (degree $-1,2$ respectively)
-with natural $(-1)$- symplectic structure 
+with natural $(-1)$- symplectic structure
 $$\omg:\mfkg[1]\ten \mfkg^\vee[-2]\to\bbC$$
 
 
@@ -335,7 +335,7 @@ $$
 $$\{\mcalS,c^\afa\}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma$$
 $$\{\mcalS,u_\afa\}=f^\gma_{\afa\beta}c^\beta u_\gma$$
 
-so, 
+so,
 $$X_{\mcalS}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma\pp{c^\afa}
 +f^\gma_{\afa\beta}c^\beta u_\gma\pp{u_\beta}
 $$
@@ -359,7 +359,7 @@ CME $\{\mcalS,\mcalS\}=0\Longrightarrow$ compatibility conditions for all "$k$-b
 Homotopy Lie structure ($L_\infty$-albegra)
 
 \begin{definition}
-An $L_\infty$-algebra is a graded vector space $\mfkg$ with 
+An $L_\infty$-algebra is a graded vector space $\mfkg$ with
 a $\deg=1$ vector field $\delta$ s.t. $[\delta,\delta]=2\delta^2=0$.
 \end{definition}
 $$\delta\in\Hom(\Sym\updot(\mfkg[1]),\mfkg[1])$$
@@ -369,7 +369,7 @@ $$\delta_k\in\Hom(\Sym^k(\mfkg[1]),\mfkg[1])$$
 $[\delta,\delta=0]\iff$
 $$\sum\cdots=0$$
 
-Since $\Sym^k(\mfkg[1])\cong\wedgeform{k}\mfkg[k]$, it induces 
+Since $\Sym^k(\mfkg[1])\cong\wedgeform{k}\mfkg[k]$, it induces
 $$\ell_k:\wedgeform{k}\mfkg\to\mfkg$$
 $\deg(\ell_k)=2-k$.
 
@@ -377,7 +377,7 @@ $[\delta,\delta]=0$用$\ell_k$来写。。。
 
 （Jacobi identity holds up to homotopy）
 
-Let $\mfkg$ is an $L_\infty$ algebra, define 
+Let $\mfkg$ is an $L_\infty$ algebra, define
 $$\mcalM(\mfkg)=\{\afa\in\mfkg_1|
 \ell_1(\afa)+\frac{1}{2}\ell_2(\afa,\afa)+\frac{1}{3!}\ell_3(\afa,\afa,\afa)=0
 \}$$
@@ -385,8 +385,8 @@ $$\mcalM(\mfkg)=\{\afa\in\mfkg_1|
 
 
 \begin{definition}
-Let $\mfkg,\mfkh$ be two $L_\infty$-algebras, 
-Am $L_\infty$-morphism "$\fai:\mfkg\to\mfkh$" is given by a cochain 
+Let $\mfkg,\mfkh$ be two $L_\infty$-algebras,
+Am $L_\infty$-morphism "$\fai:\mfkg\to\mfkh$" is given by a cochain
 map
 $$\fai^*:C\updot(\mfkh)\to C\updot(\mfkg)$$
 
@@ -423,6 +423,248 @@ $$\{CS,-\}=\delta_{BRST}$$
 $$\delta_{BRST}(\mcalA)=\td \mcalA+\frac{1}{2}[\mcalA,\mcalA]$$
 MC equation $\iff$ EOM
 \end{example}
+
+
+%%%%%%%%%%%%%2019.4.22 第九周%%%%%%%%%%%%%%%%%%
+
+\section{Gauge theory and BRST-BV formalism}
+
+Last time
+Homotopy Lie algebra $\mfkg\quad(L_\infty$-algebra
+$=$ degree $1$ square-zero vector field $\delta$ on $\mfkg[1]$.
+
+$L_\infty$ operator
+$$\{\ell_n:\wedgeform{n}\mfkg\mapsto \mfkg\}$$
+with degree $\ell_n=2-n=$ components of $\delta$.
+
+CE-complex $C\updot (\mfkg)=\widehat{\Sym}\updot(\mfkg[1]^\wedge)=\mcalO(\mfkg[1])$,
+differential $\td_{CE}=\delta$.
+$\td_{CE}^2=0$.
+
+MC-equation: $\afa\in\mfkg_1$,
+$$\sum_{k}\frac{1}{k!}\ell_n(\afa^k)=0$$
+$\afa$ satisfies MC $\iff\afa=$ zero locus of $\delta$.
+
+$(-1)$-shifted symplectic geometry, $\{,\}$ degree $=1$, Poisson bracket,
+CME: $\{S,S\}=0\rightsquigarrow \{S,-\}$ defines a $L_\infty$-structure.
+\vsp
+
+Today: Gauge theory$\mapsto$ CME $\mapsto L_\infty$-structure.
+
+Finite dimensional model.
+Let $V$ be a finite dimensional vector space with a Lie group $G$ acts on $V$.
+
+$V\rightsquigarrow$"space of fields"
+
+$G\rightsquigarrow$"Gauge symmetry"
+
+Let $f\in\mcalO(V)$ be a function(polynomial? $L^2$? )
+on $V$, which is $G$-invariant.
+
+$f\rightsquigarrow$"action function"
+
+$G$-invariant$\rightsquigarrow$ "Gauge invariance".
+
+$f$ can be viewed as a function on $V/G$.
+We want to model
+$$\int_{V/G}e^{f/\hbar}$$
+Problem: $V/G$ is usually very bad(Singularities)
+
+\begin{example}
+$V=\bbC^2,G=\bbZ_2=\{1,\sgm\}$
+$$\sgm:V\to V$$
+$$(z_1,z_2)\mapsto(-z_1,-z_2)$$
+then $V/\bbZ_2=?$
+\end{example}
+$$\mcalO(V/G)=\mcalO(V)^G=(\bbC[z_1,z_2])^G$$
+$G$-invariant functions on $V$.Generators $u=z_1^2,v=z_1z_2,w=z_2^2$,
+relations $v^2=uw$.So,
+$$\mcalO(V/\bbZ_2)\cong \bbC[u,v,w]/(uw=v^2)$$
+So,
+$$V/\bbZ_2=\{uw=v^2\}\subseteq\bbC^3$$
+this hyper-surface has a singularity at
+$(u,v,w)=(0,0,0)$
+(Ordinary double point)
+
+Lesson from homological algebra.
+
+replace "bad theory" be complex.
+(derived!!!)
+
+$$\mcalO(V)^G=H^0(\mfkg,\mcalO(V))
+=H^0(C\updot(\mfkg,\mcalO(V)),\td_{CE})$$
+
+Replace $\mcalO(V)\rightsquigarrow C\updot(\mfkg,\mcalO(V))=
+\widehat{\Sym}(\mfkg[1]^\wedge)\ten\mcalO(V)=\mcalO(\mfkg[1]\oplus V)$
+
+$V/G\rightsquigarrow\mfkg[1]\oplus V$ with $\td_{CE}$
+
+$\int_{V/G}\rightsquigarrow\int_{\mfkg[1]\oplus V}$
+(BRST-formalism) $\td_{CE}=$BRST-transformation.
+
+$f$ extends to a function on $\mfkg[1]\oplus V$,
+$f\in C\updot(\mfkg,\mcalO(V))$.
+$f$ is $G$-invariant$\iff \td_{CE}=0$.
+\vs
+
+Recall:
+$$\int_X\rightsquigarrow\text{model by $\PV_X$}$$
+$\PV(V)=\mcalO(V)\ten\wedgeform{\bullet}V^*
+=\mcalO(V\ten V^*[-1])=\mcalO(T^*V[-1])$.
+
+Apply to the construction to $\mfkg[-1]\ten V\Rightarrow$
+\begin{eqnarray*}
+     E
+&=&
+     T^*(\mfkg[1]\oplus V)[-1]\\
+&=&
+     (\mfkg[1]\oplus V)\oplus
+     (\mfkg[1]\oplus V)^*[-1]\oplus\\
+&=&
+     \mfkg[1]\oplus V\oplus V^*[-1]\oplus\mfkg^*[-2]
+\end{eqnarray*}
+$(-1)$-symplectic of degree $-1,0,1,2$ respectively.
+
+(ghost, field, anti-field, anti-ghost)
+
+$\mcalO(E),\{,\}$, $\deg=1$, poisson bracket,
+
+$\td_{CE}$ acts on $\mcalO(\mfkg[1]\oplus V)$
+extends naturally to $\mcalO(E)=C\updot(\mfkg,\mcalO(V\oplus V^*[-1]\oplus \mfkg^*[-2]))$
+
+In most cases, $\td_{CE}=\{H_{CE},-\}$, where $H_{CE}\in\mcalO(E)$,
+$\deg H_{CE}=0$.
+
+\begin{example}
+$V=\{0\}$, and 
+$$H_{CE}=\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma u_\afa$$
+$f$ is $G$-invariant $\iff \{H_{CE},f\}=0$
+
+$\{f,f\}=0$ by type reason.
+\end{example} 
+
+$V/G\rightsquigarrow T=\mfkg[1]\oplus V\oplus V^*[-1]\oplus \mfkg^*[-2]$
+
+$$\mcalS^{BV}=f+H_{CE}$$
+BRST-BV extension of $f$, satisfying CME $\{\mcalS^{BV},\mcalS^{BV}\}=0$
+
+$$
+  f\rightsquigarrow
+  \left\{
+    \begin{array}{c}
+      \{H_{CE},H_{CE}\}=0\quad \text{(Lie structure)}\\
+      \{H_{CE},f\}=0 \quad\text{$G$-invariance}\\
+      \{f,f\}=0
+    \end{array}
+  \right.
+$$
+
+\begin{example}(CS-theory)(Chern-Simons)
+
+Ordinary CS-theory on $3$-manifold $M$, 
+$A\in\Omg^1(X,\mfkg)$ connection $1$-form.
+$$CS[A]=\int \frac{1}{2}Tr A\wedge\td A+
+\frac{1}{6}Tr(A\wedge[A,A])$$
+CS has a gauge symmetry
+$$\text{Lie algebra(Gauge group)}=\Omg\updot(M,\mfkg)=C^\infty(M)$$
+$\phi\in\Omg\updot(M,\mfkg)$, 
+$$\delta_\phi A=\td\phi+[A,A]\Rightarrow \delta_\phi CS=0$$
+(infinitisimal transformation)
+\end{example}
+
+$$\Rightarrow E: \Omg^0(M,\mfkg)\quad
+\Omg^1(M,\mfkg)\quad \Omg^2(M,\mfkg)\quad \Omg^3(M,\mfkg)$$
+(ghost,field,anti-field,anti-ghost)
+$$\mcalA=\phi\oplus A\oplus A^\wedge\oplus C\wedge$$
+
+$$CS^{BV}=\int_M\frac{1}{2}Tr A\wedge A+\frac{1}{6}Tr A\wedge[A,A]$$
+
+$$[CS^{BV},CS^{BV}]=0\iff \Omg\updot(X,\mfkg) \text{is a dgLa}$$
+
+Special locus $A=A^\wedge =0\rightsquigarrow$
+$$\frac{1}{2}\int Tr C^\vee\wedge [C,C]$$
+is the analogue of $\frac{1}{2}f^\afa_{\beta\gma}c^\beta c^\gma u_\afa$
+
+\section{AKSZ-formalism}
+
+Super-manifold: locally ringed space $X,\mcalO_X$($X$ is a topological space) 
+whose structure ring$\mcalO_X$ is a graded commutative dg-algebra.
+
+\begin{example}(de-Rham space)
+
+$X_{dR}=(X,\Omg_X\updot)$ with $\td=$de Rham differenital.
+\end{example}
+
+\begin{example}(Vector bundle)
+consider vector bundle $E\to X$, then 
+$$(X,\wedgeform{\bullet}E)$$
+is a super-manifold, with $\td=0$
+\end{example}
+
+\begin{example}
+
+$$B_\mfkg=(pt,C\updot(\mfkg))$$
+"$pt/G$"
+\end{example}
+
+Let $X,Y$ be two super manifolds, 
+
+\textbf{Goal}: $(-1)$-symplectic structure on "$map(X,Y)$".
+
+$X$: is equipped with $\int_X:\mcalO(X)\to\bbR$,
+$\deg=-k$
+
+(Eg:$\int\mcalO(X_{dR})\to\bbR$, $\deg=-\dim X$)
+
+$Y$ is equipped with symplectic form of degree $k-1$, 
+$$\omg:\wedgeform{2}T_Y\to\mcalO_Y$$
+$\deg\omg=k-1$.
+
+AKSZ:"$map(X,Y)$" has $(-1)$-symplectic structure!
+
+$f\in map(X,Y)$,then the "tangent map"
+$$T_f map(X,Y)=\Gma(X,f^*T_Y)$$
+$\Rightarrow(-1)$symplectic pairing on 
+$\afa,\beta\in T_fmap(X,Y)$,
+$$\afa\ten\beta\mapsto\int_X\langle\afa,\beta\rangle Y\in\mcalO(X)$$
+with degree $=(-k)+(k-1)=-1$.
+
+\begin{example}(loop space)
+
+$$S^1_{dR}\to (V,\omg)\cong \bbR^{2n}$$
+where $S^1_{dR}$ is the de Rham super manifold over loop $S^1$, 
+and $(V,\omg)$ is an ordinary symplectic space.
+
+$\int\Omg(S^1)\to\bbR\quad\deg=-1$
+
+$\omg$ has degree $0=1-1$.
+
+$$map(S_{dR},V)=\Omg\updot(S^1)\ten V$$
+(-1)-symplectic
+\end{example}
+
+$(\rightsquigarrow$ Atiyah-Singer index theorem)
+
+\begin{example}(CS-theory, again)
+
+$M$ is a $3$-manifold, 
+$$M_{dR}=(M,\Omg\updot(M))\to B_\mfkg=(pt,C\updot(\mfkg))$$
+$$C\updot(\mfkg)=\Sym(\mfkg[1]^\vee)$$
+$$\Hom_{alg}(C\updot(\mfkg),\Omg\updot(M))
+\cong\Hom_\bbC(\mfkg[-1]^\vee,\Omg\updot(M))
+\cong \Omg\updot(M)\ten\mfkg[1]$$
+
+$$\int:\mcalO(M_{dR})\to\bbR\quad \deg=3$$
+
+$$Tr:\Sym^2\mfkg\to\bbC$$
+trace pairing (Killing form)
+$$\omg:\wedgeform{2}(\mfkg[-1])\to\bbC\quad\deg =2$$
+
+$$S=\int \frac{1}{2}A\wedge\td A
++\frac{1}{6}Tr A\wedge [A,A]$$
+\end{example}
+
+
 
 
 
