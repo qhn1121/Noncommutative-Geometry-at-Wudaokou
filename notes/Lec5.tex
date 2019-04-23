@@ -495,7 +495,7 @@ $$\mcalO(V)^G=H^0(\mfkg,\mcalO(V))
 =H^0(C\updot(\mfkg,\mcalO(V)),\td_{CE})$$
 
 Replace $\mcalO(V)\rightsquigarrow C\updot(\mfkg,\mcalO(V))=
-\widehat{\Sym}(\mfkg[1]^\wedge)\ten\mcalO(V)=\mcalO(\mfkg[1]\oplus V)$
+\widehat{\Sym}(\mfkg[1]^\vee)\ten\mcalO(V)=\mcalO(\mfkg[1]\oplus V)$
 
 $V/G\rightsquigarrow\mfkg[1]\oplus V$ with $\td_{CE}$
 
@@ -663,6 +663,247 @@ $$\omg:\wedgeform{2}(\mfkg[-1])\to\bbC\quad\deg =2$$
 $$S=\int \frac{1}{2}A\wedge\td A
 +\frac{1}{6}Tr A\wedge [A,A]$$
 \end{example}
+
+%%%%%%%%%%%%%%%2019.4.23第9周%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+Today:
+
+\textbf{Formality}
+
+Back to deformation quantization...
+
+$X$ be a manifold with a Poisson tensor 
+$P\in\Gma(X,\wedgeform{2}TX)$,
+$\mcalA=C^\infty(X)$, $\{,\}$ Poisson bracket.
+
+Quantize, $(C^\infty(X)\fps{\hbar},*)$
+associative algebra, (star product),
+$$\{f,g\}=\lim_{\hbar\to 0}
+\frac{1}{\hbar}
+\left(
+  f*g-g*f
+\right)$$
+
+$X=\bbR^n$, $\mcalA=\bbR\{x^i\}$,
+$$P=P^{ij}(x)\pp{x^i}\wedge\pp{x^j}$$
+$$[P,P]_{SN}=0$$
+if $P^{ij}$ is constant ,we have Moyal product...
+In general, Kontsevich formula...
+
+Denote 
+$$\PV\updot(X):=\Gma(X,\wedgeform{\bullet}TX)$$
+and $[,]$ be the Schouten-Nijenhuis bracket..
+
+$C\updot(A,A)$ Hochschild cochains,
+$\p$: Hochschild differential, and $[,]_G$ be the Gerstenhaber bracket...
+
+Recall:
+$$[\PV^k,\PV^m]_{SN}\subseteq\PV^{k+m-1}$$
+
+\begin{definition}
+$$\mfkg_{\PV}\updot:=\PV\updot[1]$$
+
+then, the Schouten-Nijenhuis bracket 
+$$[,]:\Sym^2(\PV\updot)\to\PV\updot$$
+
+$$
+  \rightsquigarrow
+  \ell_2:\wedgeform{2}\mfkg_{\PV}\updot\to\mfkg_{\PV}\updot
+$$
+$\deg\ell_2=0$.
+\end{definition}
+So, $(\mfkg_{\PV}\updot,\ell_2)$ is a dgLa($\td=0$),
+and $\mfkg^0_{\PV}=Vect_X$ is a sub Lie algebra...
+
+
+What is the MC-element in $\mfkg_{\PV}\updot$??
+
+$$MC(\mfkg_{\PV}\updot)=\{\afa\in\PV^2|[\afa,\afa]_{SN}=0\}$$
+is the set of all Poisson tensor.
+
+$C\updot(A,A)$ Hochschild $\p$, $[-,-]_G$
+$$[C^k(A,A),C^m(A,A)]_G\subseteq C^{k+m-1}(A,A)$$
+
+\begin{definition}
+$$\mfkg_{Hoch}\updot=C\updot(A,A)[1]$$
+$$\p\rightsquigarrow\ell_1:\mfkg_{Hoch}\updot\to\mfkg_{Hoch}\updot$$
+$\deg\ell_1=1$,
+
+$$[-,-]_G\rightsquigarrow\ell_2:\wedgeform{2}(\mfkg_{Hoch}\updot)\to\mfkg_{Hoch}\updot$$
+$\deg(\ell_2)=0$.
+\end{definition}
+
+\begin{prop}
+Let $(\mfkg,\td,[-,-])$ be a dgLa, 
+Then it induces a dgLa structure on 
+$$(H\updot(\mfkg,\td),[-,-])$$
+$diff=0$
+\end{prop}
+\begin{proof}
+$$\td[\afa,\beta]=[\td\afa,\beta]\pm[\afa,\td\beta]$$
+so, $[-,-]$ is a cochain map.
+\end{proof}
+
+$$(\mfkg_{Hoch}\updot,\ell_1,\ell_2)\xra{\ell_1\text{-cohomology}}
+(\mfkg_{PV},\ell_2)$$
+
+\textbf{Idea:} dgLa $(\mfkg,\td,[,])$ is formal if 
+"it carries somehow the same information as $H\updot(\mfkg,\td)$"
+
+$$MC(\mfkg_{Hoch}\updot)=
+\{\afa\in C^2(A,A)|\p\afa+\frac{1}{2}[\afa,\afa]_G=0\}$$
+Let
+$$m: A^{\ten 2}\to A$$
+be the product, $m\in C^2(A,A)$, 
+Associativity$\iff[m,m]_G=0$. 
+Hochschild differential $\p=[m,-]_G$.So, 
+MC-equation $\iff$
+$$[m,\afa]_G+\frac{1}{2}[\afa,\afa]_G=0$$
+$$\iff [m+\afa,m+\afa]_G=0$$
+where $m+\afa\in C^2(A,A)$, %细思极恐！！
+
+$\Rightarrow (m+\afa)$ defines a deformation of associative product on $A$.
+
+In particular,
+$$\{\afa\in C^2(A,A)\fps{\hbar}|\p\afa+\frac{1}{2}[\afa,\afa]_G=0\}=\{\text{star product}\}$$
+
+Let $\afa=\afa_1\hbar+\afa_2\hbar^2+\cdots$
+
+$$
+  \left\{
+    \begin{array}{l}
+      \p\afa_1=0\quad \rightsquigarrow P=[\afa_1]\in\HH^2(A,A)=\PV^2\text{ the initial Poisson tensor}\\
+      \frac{1}{2}[\afa_1,\afa_1]_G=-\p\afa_2 \quad\rightsquigarrow[P,P]_{SN}=0\\
+      \cdots\cdots
+    \end{array}
+  \right.
+$$
+
+\textbf{Problem:} Connect 
+$$MC(\mfkg_{Hoch}\updot)\sim MC(\mfkg_{PV}\updot)$$
+(equivalence relation???)
+
+
+(Deformation functor)
+
+$I=[0,1],t\in A$, $\Omg\updot(I)$- dg algebra, $\td_t$: de Rham differential
+
+$$\Rightarrow \mfkg\ten\Omg\updot(I)$$
+is a new dgLa, differential $\td+\td_t$,
+
+\begin{definition}
+$\afa_0,\afa_1\in MC(\mfkg)$ is said to be gauge equivalent, 
+if $\exists\beta\in MC(\mfkg\ten\Omg\updot(I))$, s.t.
+$$\beta|_{t=0}=\afa_0$$
+$$\beta|_{t=1}=\afa_1$$
+\end{definition}
+
+Remark:
+\begin{eqnarray*}
+\mfkg\ten\Omg\updot[I]&\xra{\text{Res $t=t_0$}}&\mfkg\\
+MC&\mapsto& MC
+\end{eqnarray*}
+
+Explicitly, $\beta=\beta_0(t)+\beta_1(t)\td t$,
+where $\beta_0(t)\in\mfkg^1$ and $\beta_1(t)\in\mfkg^0$.
+
+$$(\td+\td_t)\beta+\frac{1}{2}[\beta,\beta]=0$$
+$$\iff
+  \left\{
+    \begin{array}{l}
+      \td\beta_0(t)+\frac{1}{2}[\beta_0(t),\beta_0(t)]=0
+      \quad\rightsquigarrow I\to MC(\mfkg)
+    \\
+      \p_t\beta_0+\td\beta_1+[\beta_0,\beta_1]=0
+      \quad\rightsquigarrow\text{variation of $\beta_0(t)$ is always exact at any $t$}
+    \end{array}
+  \right.
+$$
+
+\begin{definition}
+$$Def(\mfkg)="MC(\mfkg)"/\sim$$
+\end{definition}
+deformation functor (local moduli)
+
+Homework:$\sim$ us an equivalence relation(not easy!)
+
+Homework:$\fai:\mfkg\to\hat{\mfkg}$ be a dgLa-homomorphism, 
+then it induces 
+$$\fai_*:Def(\mfkg)\to Def(\hat{\mfkg})$$
+
+Geometry interpretation:
+$MC(\mfkg)\rightsquigarrow$ zero locus of "vector field" $\delta$
+$\delta^2=0$ implies "$\delta$ is tangent to MC".
+
+Generalization:
+
+\textbf{HW} 1. $\mfkg$ be an $L_\infty$-algebra, 
+Define $Def(\mfkg)=MC(\mfkg)/\sim$.
+$("I_{dR}\to B_\mfkg")$
+
+2.Let $\fai:\mfkg\to\widehat{\mfkg}$ be a homomorphism of $L_\infty$-algebra,
+($\iff \fai^*: C\updot(\widehat{\mfkg})\to C\updot(\mfkg)$ map of dgLa)
+$$\Rightarrow\fai_*:MC(\mfkg)\to MC(\widetilde{\mfkg})$$
+$$Def(\mfkg)\to Def(\widetilde{\mfkg})$$
+
+\begin{definition}
+$$\fai:\mfkg\to\widehat{\mfkg}$$
+a map of dgLa, is called a quasi-isomorphism, if 
+$$\fai:H\updot(\mfkg,\td)\to H\updot(\widetilde{\mfkg},\td)$$
+is an isomorphism.
+\end{definition}
+
+\begin{thm}
+If $\fai:\mfkg\to\widetilde{\mfkg}$ is a quasi-isomorphism of dgLa, then 
+$$\fai_*:Def(\mfkg)\to Def(\widetilde{\mfkg})$$
+is an isomorphism.
+\end{thm}
+\begin{proof}
+Next time
+\end{proof}
+
+\begin{thm}(Kontsevich)
+
+$$Def(\mfkg_{Hoch}\updot)\cong Def(\mfkg_{\PV}\updot)$$
+(Deformation quantization)
+\end{thm}
+
+\begin{definition}
+Let $\fai:\mfkg\to\widetilde{\mfkg}$ be a morphism of $L_\infty$-algebras,
+$$\fai^*:C\updot(\widetilde{\mfkg})\to C\updot(\mfkg)$$
+$$\iff \Hom(\widetilde{\mfkg}^*,C\updot(\mfkg))$$
+$$\iff \Hom(\Sym\updot(\mfkg[1]),\widehat{\mfkg}[1])$$
+satisfying $L_\infty$-relations...
+
+is called $L_\infty$-quasi isomorphism, if 
+$$\fai_1:\mfkg\to\widetilde{\mfkg}$$
+induces an isomorphism of 
+$$H\updot(\mfkg,\ell_1)\to H\updot(\widetilde{\mfkg},\ell_1)$$
+\end{definition}
+In particular, if $\mfkg,\widetilde{\mfkg}$ are dgLa, then 
+dgLa quasi-isomorphism $\iff L_\infty$ quasi isomorphism..
+
+\begin{thm}
+If $\fai:\mfkg\to\widetilde{\mfkg}$ be an $L_\infty$ quasi-isomorphsim, then
+$$\fai_*: Def(\mfkg)\cong Def(\widetilde{\mfkg})$$
+\end{thm}
+
+\begin{definition} A dgLa $(\mfkg,\td,[,])$ is called formal, 
+if $\exists L_\infty$-quasi isomorphism 
+$$\mfkg\to H\updot(\mfkg,\td)$$
+\end{definition}
+In particular, $Def(\mfkg)=Def(H\updot(\mfkg,\td))$
+
+\begin{thm}(Formality Theorem, Kontsevich)
+
+$\mfkg\updot_{Hoch}$ is formal, 
+and there is an explicit formula of $L_\infty$ quasi isomorphism
+$\mfkg_{Hoch}\updot\to\mfkg_{\PV}\updot$
+
+(Sum over Feymann Digrams)
+\end{thm}
+Reference: Kontsevich, Deformation Quantization on Poisson Manifold...
+
 
 
 
