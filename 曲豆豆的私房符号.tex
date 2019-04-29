@@ -154,17 +154,37 @@
 \newcommand*{\bfy}{\boldsymbol{y}}
 \newcommand*{\bfz}{\boldsymbol{z}}
 
-\newcommand*{\Ahat}{\hat{A}}
-\newcommand*{\Bhat}{\hat{B}}
-\newcommand*{\Chat}{\hat{C}}
-\newcommand*{\Dhat}{\hat{D}}
-\newcommand*{\Ehat}{\hat{E}}
-\newcommand*{\Fhat}{\hat{F}}
-\newcommand*{\Ghat}{\hat{G}}
-\newcommand*{\Hhat}{\hat{H}}
+\newcommand*{\uhat}{\widehat{u}}
+\newcommand*{\vhat}{\widehat{v}}
 
-\newcommand*{\zbar}{\bar{z}}            %complex number
-\newcommand*{\wbar}{\bar{w}}
+\newcommand*{\Ahat}{\widehat{A}}
+\newcommand*{\Bhat}{\widehat{B}}
+\newcommand*{\Chat}{\widehat{C}}
+\newcommand*{\Dhat}{\widehat{D}}
+\newcommand*{\Ehat}{\widehat{E}}
+\newcommand*{\Fhat}{\widehat{F}}
+\newcommand*{\Ghat}{\widehat{G}}
+\newcommand*{\Hhat}{\widehat{H}}
+
+\newcommand*{\zbar}{\overline{z}}            %complex number
+\newcommand*{\wbar}{\overline{w}}
+\newcommand*{\taubar}{\overline{\tau}}
+
+\newcommand*{\ftil}{\widetilde{f}}
+\newcommand*{\gtil}{\widetilde{g}}
+\newcommand*{\htil}{\widetilde{h}}
+\newcommand*{\itil}{\widetilde{i}}
+\newcommand*{\xtil}{\widetilde{x}}
+\newcommand*{\ytil}{\widetilde{y}}
+\newcommand*{\ztil}{\widetilde{z}}
+\newcommand*{\wtil}{\widetilde{w}}
+
+\newcommand*{\Ftil}{\widetilde{F}}
+\newcommand*{\Gtil}{\widetilde{G}}
+\newcommand*{\Htil}{\widetilde{H}}
+\newcommand*{\Ntil}{\widetilde{N}}
+
+\newcommand*{\Omgtil}{\widetilde{\Omega}}
 
 \newcommand*{\afa}{\alpha}
 \newcommand*{\lmd}{\lambda}
@@ -210,6 +230,7 @@
 \newcommand*{\ddowndot}{_{\bullet\bullet}}
 \newcommand*{\updot}{^{\bullet}}
 \newcommand*{\wedgeform}{\bigwedge\nolimits^}
+\newcommand*{\ssubset}{\subset\!\subset}        %紧包含
 \newcommand*{\vkong}{\varnothing}               %空集
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -217,6 +238,42 @@
 
 \newcommand*{\fps}[1]{[\![#1]\!]}        %Formal power series形式幂级数
 \newcommand*{\Ls}[1]{(\!(#1)\!)}         %Laurent series     洛朗级数
+
+\newcommand*{\Bigset}[2]
+  {
+   \Big\{ #1 \Big| #2 \Big\}             %集合符号
+  }
+
+\newcommand*{\pair}[2]                   %普通的内积
+  {
+    \langle 
+      #1,#2 
+    \rangle
+  }
+
+\newcommand*{\Pair}[2]                   %大的的内积
+  {
+    \left\langle 
+      #1,#2 
+    \right\rangle
+  }
+
+\newcommand*{\ppair}[2]                   %双括号内积
+  {
+    \langle\!\langle
+      #1,#2
+    \rangle\!\rangle
+  }
+
+\newcommand*{\Ppair}[2]                   %大双括号内积
+  {
+    \left\langle\!\left\langle
+      #1,#2
+    \right\rangle\!\right\rangle
+  }
+
+
+
 
 \newcommand*{\Choose}[2]
   {\left[{
@@ -252,6 +309,7 @@
 \DeclareMathOperator{\ad}{ad}         %adjoint
 \DeclareMathOperator{\Ass}{Ass}       %Associated Prime
 \DeclareMathOperator{\Aut}{Aut}       %automorphism
+\DeclareMathOperator{\CE}{CE}         %Chevalley-Eilenberg
 \DeclareMathOperator{\ch}{char}
 \DeclareMathOperator{\cl}{cl}         %classical
 \DeclareMathOperator{\Coder}{Coder}   %Co-derivation  并不是“码农”的意思
@@ -279,11 +337,14 @@
 \DeclareMathOperator{\Obs}{Obs}       %Observable
 \DeclareMathOperator{\per}{per}       %periodic cyclic complex
 \DeclareMathOperator{\PV}{PV}         %Polyvector field
+\DeclareMathOperator{\ran}{ran}
 \DeclareMathOperator{\Rep}{Rep}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\Sym}{Sym}       %Symmetry
+\DeclareMathOperator{\Spec}{Spec}     %素谱
+\DeclareMathOperator{\supp}{supp}     %Support 支撑集
+\DeclareMathOperator{\Sym}{Sym}       %Symmetry  对称张量积
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Tot}{Tot}       %Total complex of a double-complex
 \DeclareMathOperator{\YM}{YM}         %Yang-Mills   杨振宁-米尔斯
