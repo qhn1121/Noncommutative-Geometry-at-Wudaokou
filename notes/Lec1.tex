@@ -500,10 +500,10 @@ $\Hom_{A^e}(A,M)$.我们称
 \label{双模的导出中心的结构prop}
 对于双$A$-模$M$，则有双$A$-模同构
 $$\Hom_{A^e}(A,M)
-\cong\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}$$
+\cong\Bigset{m\in M}{a.m-m.a=0\,\,\,\forall a\in A}$$
 \end{prop}
 
-容易验证$\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}$
+容易验证$\Bigset{m\in M}{a.m-m.a=0\,\,\,\forall a\in A}$
 为$M$的双$A$-子模。粗俗地说，
 该子模由“与$A$中所有元素交换”的元素构成，
 故谓之“中心”。
@@ -517,7 +517,7 @@ $$\fai(a)=\fai(1.a)=\fai(1).a$$
 于是我们可以构造如下双$A-$模同态：
 \begin{eqnarray*}
 \Hom_{A^e}(A,M)
-&\to&\{m\in M|a.m-m.a=0\,\,\,\forall a\in A\}\\
+&\to&\Bigset{m\in M}{a.m-m.a=0\,\,\,\forall a\in A}\\
 \fai&\mapsto&\fai(1)
 \end{eqnarray*}
 容易验证该模同态为同构。证毕。
@@ -592,7 +592,7 @@ a&\mapsto& [m,a]:=m.a-a.m
 \index{inner derivation\kong 内导子}
 
 我们记
-$$\Der(A,M):=\{D:A\to M|D\text{为导子}\}$$
+$$\Der(A,M):=\Bigset{D:A\to M}{D\text{为导子}}$$
 $$\Inn(A,M):=\{\ad_m|m\in M\}\subseteq \Der(A,M)$$
 
 注意$\Inn(A,M)$与$\Der(A,M)$都有显然的$K$-模结构，
@@ -714,8 +714,8 @@ $$(a_1\oplus m_1)\bullet(a_2\oplus m_2)
 $$
     H^2(A,M)\cong
   \frac{
-         \{\fai|(\Ahat,\hat{\bullet}_{\fai})
-         \text{是结合代数}\}
+         \Bigset{\fai}{(\Ahat,\hat{\bullet}_{\fai})
+         \text{是结合代数}}
        }{
        \im(\p:C^1(A,M)\to C^2(A,M))
        }
@@ -2747,8 +2747,8 @@ $$H\updot_{\lmd}(A):=\HC\updot(A)
 作为例子，我们具体计算一下第零个循环上同调。
 
 \begin{example}对于$K$-代数$A$，则有
-$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
-\forall x,y\in A,f(xy)=f(yx)\}$$
+$$H^0_{\lmd}(A)=\Bigset{f\in\Hom(A,K)}{
+\forall x,y\in A,f(xy)=f(yx)}$$
 \end{example}
 
 \begin{proof}直接计算即可。
@@ -2761,8 +2761,8 @@ $$H^0_{\lmd}(A)=\ker(b^*:C^0(A)\to C^1(A))$$
 对于$f\in\Hom(A,K)$，若$b^*f=0$，则对于任意$x,y\in A$，有
 $$0=(b^*f)(x,y)=f(b(x\ten y))=f(xy-yx)=f(xy)-f(yx)$$
 从而可知
-$$H^0_{\lmd}(A)=\{f\in\Hom(A,K)|
-\forall x,y\in A,f(xy)=f(yx)\}$$
+$$H^0_{\lmd}(A)=\Bigset{f\in\Hom(A,K)}{
+\forall x,y\in A,f(xy)=f(yx)}$$
 \end{proof}
 
 像$H^0_{\lmd}(A)$当中的线性算子那样，满足

@@ -1182,8 +1182,8 @@ $$
 $\mcalP_s=\mcalP_t:=\sqrt{\hbar/2}\p_a$，
 $\mcalI(a):=\frac{\lmd a^3}{3!}$为“相互作用能”。
 并且对于顶点$v\in V$，
-$$S(v):=|\{e\in E|s(e)=v\}|$$
-$$T(v):=|\{e\in E|t(e)=v\}|$$
+$$S(v):=\#\Bigset{e\in E}{s(e)=v}$$
+$$T(v):=\#\Bigset{e\in E}{t(e)=v}$$
 分别为顶点$v$的\textbf{出度}与\textbf{入度}。
 \index{Feynman's rule\kong 费曼规则}
 \label{费曼规则}
@@ -1243,7 +1243,8 @@ $\underline{\mcalG}_{m,k}$可被视为$m$个顶点、$k$条边的多重有向图
 \begin{definition}（带标记的有向图的自同构群）
 
 对于带标记的有向图$\Gma\in\mcalG_{m,k}$，定义其自同构群
-$$\Aut(\Gma):=\{\fai\in S_m\times S_k|\fai.\Gma=\Gma\}$$
+$$\Aut(\Gma):=
+\Bigset{\fai\in S_m\times S_k}{\fai.\Gma=\Gma}$$
 \end{definition}
 其实就是群$S_m\times S_k$在$\Gma$处的稳定子群。
 
@@ -3332,7 +3333,7 @@ $$\mu:=\dim_{\bbC}\mcalA_f$$
 
 \begin{definition}（量子Master方程）
 
-设$(\mcalA,\yc,Q)$为dGBA代数，以及$I\in\mcalA^0\fps{\hbar}$，
+设$(\mcalA,\yc,Q)$为dGBV代数，以及$I\in\mcalA^0\fps{\hbar}$，
 称$I$满足\textbf{量子Master方程}（Quantum Master Equation，简称\textbf{QME}），
 \index{Quantum Master Equation\kong 量子Master方程}若
 $$QI+\hbar\yc I+\frac{1}{2}\{I,I\}=0$$
@@ -3521,7 +3522,7 @@ $$\Obs^q_I:=H^0(\mcalA\fps{\hbar},Q_I)$$
 %\right)$$
 %(i.e. $\afa e^{I/\hbar}$ is a "closed form")
 
-\section{$(-1)$-辛几何}
+\section{$(-1)$-辛几何（待补）}
 
 \textbf{$(-1)$-symplectic geometry(BV-formalism)}
 
@@ -3590,7 +3591,7 @@ $\yc_K\curvearrowright$ Distribution is ill-defined!
 %%%%%%%%%%%2019.4.9第七周周二%%%%%%%%%%%%%%%%%%%%%
 %还要将讲量子场论，今天是正儿八经的干货
 
-\section{同伦重整化}
+\section{同伦重整化（待补）}
 \textbf{Homotopic renormailzation II}
 $(-1)$-symplectic geometry.
 
