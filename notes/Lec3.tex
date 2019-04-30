@@ -1480,8 +1480,8 @@ $$\fai(p,q)=\arg\left(\frac{q-\overline{p}}{q-p}\right)$$
 
 \begin{notation}%Let
 对于$n\geq 0$，定义
-$$\Conf_n(\bbH):=\{(p_1,...,p_n)\in\bbH|
-p_i\neq p_j,\,\forall i\neq j\}$$
+$$\Conf_n(\bbH):=\Bigset{(p_1,...,p_n)\in\bbH}
+{p_i\neq p_j,\,\forall i\neq j}$$
 则$\Conf_n(\bbH)$有自然的$2n$维光滑流形结构（$\bbR^{2n}$的开子流形）。
 
 %For each arrow in $\Gamma$,
@@ -1638,7 +1638,8 @@ $$f\star_M g=\sum_{k=0}^{\infty}\frac{\hbar^k}{k!}
 注意到如果$\Gma$当中有箭头不指向$L$且不指向$R$，则双微分算子$B_\Gma$
 当中含有对$P^ij$求导的项，因此$B_\Gma=0$，对$\star_K$没有贡献。
 从而我们只需要考虑$G_n$的子集
-$$\widetilde{G_n}:=\{\Gma\in G_n|t(a_i)\in\{L,R\},\forall 1\leq i\leq n\}$$
+$$\widetilde{G_n}:=
+\Bigset{\Gma\in G_n}{t(a_i)\in\{L,R\},\forall 1\leq i\leq n}$$
 即，$\widetilde{G_n}$当中的图具有性质：每个箭头都指向$L$或者$R$；
 并且容易知道$\widetilde{G_n}$当中有$2^n$个元素。
 现在，

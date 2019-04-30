@@ -234,6 +234,7 @@
 \newcommand*{\vkong}{\varnothing}               %空集
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand*{\lbar}[1]{\overline{#1}}    %比较长的上横线
 
 \newcommand*{\fps}[1]{[\![#1]\!]}        %Formal power series形式幂级数
@@ -246,61 +247,101 @@
 
 \newcommand*{\pair}[2]                   %普通的内积
   {
-    \langle 
-      #1,#2 
+    \langle
+      #1,#2
     \rangle
   }
 
 \newcommand*{\Pair}[2]                   %大的的内积
   {
-    \left\langle 
-      #1,#2 
+    \left\langle
+      #1,#2
     \right\rangle
   }
 
 \newcommand*{\ppair}[2]                   %双括号内积
   {
-    \langle\!\langle
-      #1,#2
-    \rangle\!\rangle
+    \langle\!\!
+      \langle
+        #1,#2
+      \rangle\!\!
+    \rangle
   }
 
 \newcommand*{\Ppair}[2]                   %大双括号内积
   {
-    \left\langle\!\left\langle
-      #1,#2
-    \right\rangle\!\right\rangle
+    \left\langle\!\!
+      \left\langle
+        #1,#2
+      \right\rangle\!\!
+    \right\rangle
   }
 
+\newcommand*{\norm}[1]                   %范数
+  {
+    |\!|#1|\!|
+  }
 
+\newcommand*{\Norm}[1]                   %大型范数
+  {
+    \left|\!
+      \left|
+        #1
+      \right|\!
+    \right|
+  }
+  
+\newcommand*{\nnorm}[1]                   %三竖线范数
+  {
+    |\!|\!| 
+      #1 
+    |\!|\!|
+  }
 
+\newcommand*{\Nnorm}[1]                   %大型三竖线范数
+  {
+    \left|\!
+      \left|\!
+        \left| 
+          #1 
+        \right|\!
+      \right|\!
+    \right|
+  }
 
-\newcommand*{\Choose}[2]
+\newcommand*{\Choose}[2]                  %方括号组合数
   {\left[{
       #1 \atop
       #2
-  }\right]}                              %快速输入小型方括号组合数
+  }\right]}
 
-\newcommand*{\bbar}[1]
-  {\overline{#1}}
+\newcommand*{\dd}[1]                       %常微分算子
+  {\frac{\mathrm{d}   }
+        {\mathrm{d} #1}
+  }
+
+\newcommand*{\ddfrac}[2]
+  {\frac{\mathrm{d} #1}
+        {\mathrm{d} #2}
+  }                                       %一阶常微分
 
 \newcommand*{\pp}[1]
   {\frac{\partial   }
         {\partial #1}
-  }                               %切向量场，一阶偏微分算子
+  }                                       %切向量场，一阶偏微分算子
 
 \newcommand*{\pfrac}[2]
   {\frac{\partial #1}
         {\partial #2}
-  }                               %一阶偏微分
+  }                                       %一阶偏微分
 
 \newcommand*{\ppfrac}[2]
   {\frac{\partial^2{#1}}
-        {\partial{#2}^2}}          %二阶偏微分
+        {\partial{#2}^2}}                 %二阶偏微分
 
 \newcommand*{\pmfrac}[3]
   {\frac{\partial^2{#1}}
-        {\partial{#2}\partial{#3}}} %二阶混合偏微分
+        {\partial{#2}\partial{#3}}}        %二阶混合偏微分
 
 %amsmath 宏包输入矩阵%
 %matrix pmatrix bmatrix Bmatrix vmatrix Vmatrix%
@@ -326,18 +367,19 @@
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\HC}{HC}         %Hochschild Cyclic (co)homology
 \DeclareMathOperator{\HH}{HH}         %Hochschild (co)homology
-\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Hom}{Hom}       %Homorphism
 \DeclareMathOperator{\id}{id}         %identity
 \DeclareMathOperator{\im}{Im}         %Image
 \DeclareMathOperator{\Inn}{Inn}       %Inner Derivation  内导子
-\DeclareMathOperator{\Inv}{Inv}
-\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Inv}{Inv}       %Invariant
+\DeclareMathOperator{\Lie}{Lie}       %Lie algebra or Lie derivation
 \DeclareMathOperator{\Mor}{Mor}       %Morphism
-\DeclareMathOperator{\Obj}{Obj}
+\DeclareMathOperator{\Obj}{Obj}       %Object
 \DeclareMathOperator{\Obs}{Obs}       %Observable
 \DeclareMathOperator{\per}{per}       %periodic cyclic complex
 \DeclareMathOperator{\PV}{PV}         %Polyvector field
-\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\ran}{ran}       %range
+\DeclareMathOperator{\rank}{rank}     %rank 秩
 \DeclareMathOperator{\Rep}{Rep}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Sh}{Sh}

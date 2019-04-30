@@ -251,7 +251,7 @@ $$\HH_k(A)\cong\Omg^k_A:=A\ten\wedgeform k(\bbC^n)$$
 $\eta^1,\eta^2,...,\eta^n$
 （视为复线性空间$\bbC^n$的一组基），考虑环
 $$\mcalK:=\frac{A^e[\eta^1,\eta^2,...,\eta^n]}
-               {\{(\eta^i\eta^j+\eta^j\eta^i)|i\neq j\}}
+               {\Bigset{\eta^i\eta^j+\eta^j\eta^i}{i\neq j}}
          =A^e\ten\wedgeform *(\bbC^n)$$
 为以$A^e$为系数的外代数。
 
@@ -934,10 +934,10 @@ H\updot  (A,M)&\cong&H\updot  (\overline{C}\updot  (A,M))
 \begin{definition}（微分分次代数）
 
 %A differential graded algebra
-\index{differential graded algebra\kong 微分分次代数}
+\index{dga\kong 微分分次代数}
 $\bbZ$-分次$K$-代数
 $$A:=\bigoplus_{n\in\mathbb{Z}}A_n$$
-称为\textbf{微分分次代数}（differential graded algebra），
+称为\textbf{微分分次代数}（differential graded algebra，简称\textbf{dga}），
 若它配以$K$-线性算子$\td:A\to A$，并且满足：
 $$\left\{\begin{array}{l}
 \td(A_n)\subseteq A_{n+1}\quad\forall n\in\bbZ\\

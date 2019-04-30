@@ -22,7 +22,7 @@
 
 %Today:
 
-\section{分次模与Koszul符号法则}
+\section{分次模与Koszul符号律}
 
 本节我们集中起来澄清一些关于分次模、分次代数的概念，
 并且力图阐明分次代数中出现的正负号。
@@ -116,7 +116,7 @@ x\ten y&\mapsto&(-1)^{\deg x\deg y}y\ten x
 %$$c_m\ten d_l\mapsto(-1)^{ml}d_l\ten c_m$$
 
 %$\rightsquigarrow$ Koszul sign rule:
-\begin{notation}（Kuszul符号法则）
+\begin{notation}（Kuszul符号律）
 
 设$M,M',N,N'$均为分次$K$-模，
 则自然有如下的分次$K$-模同态：
@@ -125,7 +125,7 @@ x\ten y&\mapsto&(-1)^{\deg x\deg y}y\ten x
 (f\ten g)(m\ten m')&:=&(-1)^{\deg g\deg m}f(m)\ten g(m')
 \end{eqnarray*}
 其中$f,g,m,m'$分别为$\Hom(M,N),\Hom(M',N'),M,M'$当中的任意齐次元。
-\label{Koszul符号法则-notation}
+\label{Koszul符号律-notation}
 \end{notation}
 
 依然注意正负号。以后我们总是
@@ -233,7 +233,7 @@ $$\wedgeform{m}(V):=V^{\ten m}\big/\sim$$
 $$\alpha\ten\beta\sim-(-1)^{\deg\alpha\deg\beta}\beta\ten\alpha$$
 \end{definition}
 
-若$V=V_0$为通常的$K$-模，则$Sym^n(V_0)$
+若$V=V_0$为通常的$K$-模，则$\Sym^n(V_0)$
 与$\wedgeform{n}(V_0)$即为通常的对称张量、外张量。
 
 %我们记
@@ -459,7 +459,7 @@ $$(-1)^{ab}:=(-1)^{\deg a\deg b}=(-1)^{ba}$$
 
 我们可以考虑以分次$K$-代数的范畴：
 
-\begin{definition}（分次结合代数范畴）
+
 %$A$ graded $K$-algebra,
 %$$A=\bigoplus_nA_n\in Mod_K^{\bbZ}$$
 %$$m:A\ten A\to A$$
@@ -467,24 +467,6 @@ $$(-1)^{ab}:=(-1)^{\deg a\deg b}=(-1)^{ba}$$
 %satisfying associativity
 %Category of associative graded $K$-algebra
 %$$Ass-alg_K^{\bbZ}$$
-
-我们定义如下的\textbf{分次结合$K$-代数范畴}，
-记为$\Assalgcat{\bbZ}{K}$：
-
-（1）$\Obj=$全体分次结合$K$-代数；
-
-（2）$\Mor$:对任意两个分次结合$K$-代数$A,B$，
-$$\Hom(A,B):=\bigoplus_{n\in\bbZ}(\Hom(A,B))_n$$
-其中
-$$(\Hom(A,B))_n:=\Bigset{f\text{为$K$-代数同态}}{
-f(A_d)\subseteq B_{d+n}\,\forall d\in\bbZ}$$
-$(\Hom(A,B))_n$当中的元素称之为$n$次齐次$K$-代数同态。
-\end{definition}
-
-%$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative" if
-类似地，考虑\textbf{分次交换代数范畴}，
-它是分次结合代数范畴的全子范畴，记为
-$$\Commualgcat{\bbZ}{K}$$
 
 \begin{definition}（分次双$A$-模）
 
@@ -504,7 +486,28 @@ $$M_p.A_q\subseteq M_{p+q}$$
 亦有自然的分次双$A$-模结构。
 
 特别地，对于分次$K$-代数$A$，
-$A$自身有自然的分次双$A$-模结构。
+$A$自身有自然的分次双$A$-模结构。\vs 
+
+类似于分次结合代数的表示、李代数的表示，我们也有：
+
+\begin{definition}（分次李代数的表示）
+
+设$(\mfkg,[,])$为分次李代数，$M=\bigoplus\limits_{k\in\bbZ}M_k$
+为分次线性空间，称双线性映射
+\begin{eqnarray*}
+\mfkg\times M&\to& M\\
+(g,m)&\mapsto& g.m
+\end{eqnarray*}
+为$M$的$\mfkg$-模结构，如果以下成立：
+
+（1）任意$k,l\in\bbZ$，$\mfkg_k(M_l)\subseteq M_{k+l}$；
+
+（2）对$\mfkg$中的齐次元$g,h$，以及任意$m\in M$，成立
+$$[g,h].m=g.(h.m)-(-1)^{gh}h.(g.m)$$
+\end{definition}
+
+此时姑且称$M$为“\textbf{李超模}”；或者在默认$\mfkg$为分次李代数（李超代数）
+的情况下直接称$M$为“$\mfkg$-模”.
 
 %Let $A\in Ass-alg_K^{\bbZ}$,$M$ is a (graded) bi-module,
 %a derivation
@@ -543,8 +546,8 @@ $$
 $$
 其中$m$表示$A$中的乘法，
 然后特别注意$1\ten D$以及$D\ten 1$
-在$A\ten A$上的作用服从\textbf{Koszul符号法则}
-（回顾记号\ref{Koszul符号法则-notation}）.
+在$A\ten A$上的作用服从\textbf{Koszul符号律}
+（回顾记号\ref{Koszul符号律-notation}）.
 
 
 %%%%导子图%%%%%%%%搞定
@@ -588,8 +591,11 @@ $(A,\td)$正是我们在之前
 \end{rem}
 分次微分代数$(A,\td)$自然可视为分次上链复形。
 当然我们也可以考虑次数为$-1$的超导子，
-亦可定义出类似版本的分次微分代数
+亦可定义出类似版本的微分分次代数
 （不过我们更推荐使用上链复形的语言）。
+
+此外，我们也可定义微分分次代数的表示：\textbf{微分分次模}，
+其定义见性质\ref{微分分次模的定义-prop}.
 
 \begin{lemma}（由超导子构成的李超代数）
 
@@ -678,8 +684,48 @@ $(\Der(A,A),[,])$为李超代数。
 $(\deg D_1+\deg D_2)$的超导子，证毕。
 \end{proof}\vs
 
+分次李代数（李超代数）结构与微分结构相结合，
+可得如下重要的代数结构：
+
+\begin{definition}（微分分次李代数，dgLa）
+\index{dgLa\kong 微分分次李代数}
+\label{微分分次李代数dgLa-def}
+
+三元组$(\mfkg,[,],\td)$称为\textbf{微分分次李代数}
+（differential graded Lie algebra，简称\textbf{dgLa}），如果以下成立：
+
+（1）$(\mfkg,[,])$为分次李代数；
+
+（2）$\td:\mfkg_k\to\mfkg_{k+1}$，并且$\td^2=0$；
+
+（3）$\td$与$[,]$的相容性：对$\mfkg$中的任意齐次元$a,b$，
+$$\td[a,b]=[\td a,b]+(-1)^a[a,\td b]$$
+\end{definition}
+
+\section{有关的范畴、函子}
+
+\begin{definition}（分次结合代数范畴）
+
+我们定义如下的\textbf{分次结合$K$-代数范畴}，
+记为$\Assalgcat{\bbZ}{K}$：
+
+（1）$\Obj=$全体分次结合$K$-代数；
+
+（2）$\Mor$:对任意两个分次结合$K$-代数$A,B$，
+$$\Hom(A,B):=\bigoplus_{n\in\bbZ}(\Hom(A,B))_n$$
+其中
+$$(\Hom(A,B))_n:=\Bigset{f\text{为$K$-代数同态}}{
+f(A_d)\subseteq B_{d+n}\,\forall d\in\bbZ}$$
+$(\Hom(A,B))_n$当中的元素称之为$n$次齐次$K$-代数同态。
+\end{definition}
+
+%$A\in Ass-alg_K^{\bbZ}$ is called (graded) "commutative" if
+类似地，考虑\textbf{分次交换代数范畴}，
+它是分次结合代数范畴的全子范畴，记为
+$$\Commualgcat{\bbZ}{K}$$
+
 %We have natural forgetful functor
-最后简要介绍一下函子性：
+
 我们有遗忘函子
 \begin{eqnarray*}
 \Assalgcat{\bbZ}{K}   &\to& \Modcat{\bbZ}{K}\\
@@ -951,7 +997,7 @@ $$
   }
 $$
 不过要注意，这里的$\tau$为分次对合自同构
-（见定义\ref{分次对合自同构}），服从Koszul符号法则：
+（见定义\ref{分次对合自同构}），服从Koszul符号律：
 $$\tau: x\ten y\mapsto (-1)^{xy}y\ten x$$
 
 
@@ -977,7 +1023,7 @@ $$
 %$\delta: C\to C$ satisfying
 %%%%%co-Leibnitz rule%%%%%%%
 \end{definition}
-注意到上述图表默认Koszul符号法则。
+注意到上述图表默认Koszul符号律。
 记$A$的$d$次齐次余超导子之全体为$\Coder(A)_d$，
 以及
 $$\Coder(A):=\bigoplus_{d\in\bbZ}\Coder(A)_d$$
@@ -1623,7 +1669,7 @@ $S_{p+q}$的作用是左作用。
 还要注意一点，$A,A'$以及$M,M'$并不被假定有分次结构，
 $A\ten A'$在$M\ten M'$上的模作用是通常的
 $$(a\ten a').(m\ten m')=(a.m)\ten(a'.m')$$
-右模作用也类似，并不会出正负号，Koszul符号法则在此平凡。
+右模作用也类似，并不会出正负号，Koszul符号律在此平凡。
 
 还要注意，
 $$C_{p+q}(A\ten A',M\ten M')
