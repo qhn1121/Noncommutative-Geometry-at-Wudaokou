@@ -3,7 +3,7 @@
 
 \chapter{还没想好叫什么名字}
 
-\section{Chevalley-Eilenberg 复形}
+\section{Chevalley-Eilenberg复形}
 %\textbf{Maurer-Cartan Equation}
 我们继续准备一些代数结构。
 \begin{definition}（Chevalley-Eilenberg 复形）
@@ -1143,8 +1143,193 @@ $\mfkg_{Hoch}\updot\to\mfkg_{\PV}\updot$
 \end{thm}
 Reference: Kontsevich, Deformation Quantization on Poisson Manifold...
 
+\section{形变理论}
+\textbf{Deformation Theory}
 
+Recall:$\mfkg$-dgLa,
+$$MC(\mfkg)=\{\afa\in\mfkg_1|\td\afa+\frac{1}{2}[\afa,\afa]=0\}$$
+$$Def(\mfkg)=MC(\mfkg)/\sim$$
 
+$\mfkg$ is called formal, if 
+$$\mfkg\xra{L_{\infty}\text{quasi-isom}}H\updot(\mfkg,\td)$$
+
+$$\mfkg_{Hoch}=(C\updot(A,A)[1],b,[-,-]_G)$$
+$A=\bbC[x^i]$,
+$$MC(\mfkg_{Hoch})=\text{"associated product"}$$
+$$\mfkg_{\PV}=H\updot(\mfkg_{Hoch},b)$$
+$$MC(\mfkg_{\PV})=\text{"Poisson bivector"}$$
+
+Today:
+$X$- is an algebraic scheme/vairety/manifold/topological space.
+$$X=\Spec\qquad A=\bbC[x^1,...,x^n]/(f_1,...,f_m)$$
+is the (common) "zero locus" of $f_1,f_2,...,f_m$.
+
+\textbf{idea} Study $X$ by working at all $\{Y\to X\}$.
+$Mor(-,X)$, $\underline{Sch}$- category of scheme.
+
+$$Mor: \underline{Sch}\to\underline{Set}$$
+$$X\to Mor(Y,X)$$
+
+\begin{notation}
+$R$ is a ring, 
+$$X(R):=Mor(\Spec R,X)\leftrightsquigarrow\Hom(\mcalO(X),R)$$
+is called $R$-points of $X$.
+\end{notation}
+
+Example :$X=\Spec A$， then $X(R)=$solutions $\{f_i=0\}$ in $R$.
+
+\begin{example}
+$$X(\bbC)=\text{space of closed points of $X$}$$
+
+$$X(\bbC[\veps]/\veps^2)=
+\{\Spec(C[\veps]/\veps^2)\to X\}
+=TX$$
+tangent vectors of $X$...
+\end{example}
+
+\begin{notation}
+$$\underline{Art}:\quad\text{Category of Artinian ring}$$
+\end{notation}
+Artin环就是“很肥的点”.....66666
+
+\begin{example}
+$A=\bbC[x]/x^{n+1}$ is an Artinain ring,with $\mfkm=(x)$.
+\end{example}
+
+Let $A$ be an Artinian ring, study $\Spec(A)\to X$，
+
+\begin{definition}(Deformation functor)
+
+The deformation functor of $X$ at $\mfkp$ is given by
+$$Def_{X,\mfkp}:\underline{Art}\to\underline{Set}$$
+$$A\mapsto X(A)$$
+$$\Spec(\bbC)\mapsto\mfkp$$
+\end{definition}
+
+Functorial property: if $A\to B$ is a ring homomorphism in $\underline{Art}$.
+(i.e. $\Spec B\to\Spec A$) ,then it induces 
+$$Def_{X,\mfkp}(A)\to Def_{X,\mfkp}(B)$$
+
+\begin{thm}[Lifting Criterion for Smoothness]
+
+$X$ is an (affine) scheme($X=\Spec R$),$\mfkp\in X$ a point.Then,
+$\mfkp$ is smooth$\iff\forall$ surjective $A\to B$in $\underline{Art}$,
+then $Def_{X,\mfkp}(A)\to Def_{X,\mfkp}(B)$ is surjective.
+\end{thm}
+
+$$
+  \xymatrix{
+    \Spec(B) \ar[r]^\fai  \ar[d]
+   &X
+  \\
+    \Spec(A) \ar[ru]^{\exists\tilde{\fai}}
+  }
+$$
+
+\begin{proof}
+Difficult. Omit.
+\end{proof}
+
+\begin{example}
+$X=\bbC^n$, $\mfkp=$origin, then
+$$Def_{X,\mfkp}(A)=A\times A\times\cdots\times A$$
+If $A\to B$ is surjective, then $A^n\to B$ is also surjective..
+\end{example}
+
+\begin{example}
+$$X=\Spec(\bbC[x]/x^2)=\{x^2=0\}\subseteq\bbC$$
+is a "fat point"...Consider
+$$A=\bbC[\veps]/\veps^3\qquad B=\bbC[\veps]/\veps^2$$
+$$A\surj B$$
+$$\veps\to\veps$$
+then???
+\end{example}
+
+Examples of moduli functor...
+
+\begin{example}
+Moduli space of genus $g$ curve $\mcalM_g(g>1)$.
+$$Mor(X,\mcalM_g)=\text{a smooth family of genus $g$ curves over $X$}/\sim$$
+\end{example}
+
+\begin{example}Moduli space of vector bundle on $\Sgm$, $Bun(\Sgm)$.
+$$Mor(X,Bun(\Sgm))=\{\text{Vector bundles on $X\times\Sgm$}\}/\sim$$
+\end{example}
+
+$\mfkg$-dgLa, a local "moduli"
+
+(1):
+$$MC:\underline{Art}\to\underline{Set}$$
+$$(A,\mfkm)\to MC(\mfkg\ten \mfkm)
+=\{\afa\in\mfkm\ten\mfkg_1|\td\afa+\frac{1}{2}[\afa,\afa]=0\}$$
+
+(2):
+$$Def:\underline{Art}\to\underline{Set}$$
+$$(A,\mfkm)\to MC(\mfkg\ten \mfkm)/\sim$$
+
+\begin{definition}
+We define $B_\mfkg$ by 
+$$B_\mfkg(A):=Def(A)$$
+for artinian ring $A$.
+$$"\Spec A"\to B_\mfkg$$
+$\iff$ an element of $Def(A)$.
+\end{definition}
+
+Recall the gauge equivalence: definie
+$$\Omg_T\updot:=\bbC[t_0,t_1,\td t_0,\td t_1]/(t_0+t_1=1,\td t_0+\td t_1=0)$$
+algebraic de Rham complex on $I=[0,1]$
+
+\begin{definition}
+$\afa_0,\afa_1\in MC(\mfkg\ten\mfkm)$ are called gauge equivalence, if 
+$\exists\beta\in MC(\mfkm\ten\mfkg\ten\Omg_I\updot)$ such that
+$$\beta|_{t_0=0}=\afa_0$$
+$$\beta|_{t_1=0}=\afa_1$$
+then 
+$$Def(A)=MC(\mfkm\ten\mfkg)/\sim$$
+(gauge equivalence)
+\end{definition}
+
+Tangent space of $B_\mfkg$(or $Def$ functor)
+
+Tangent space$=Def(\bbC[\veps]/\veps^2)=MC(\bbC[\veps]/\veps^2)/\sim$
+
+$$\afa\in MC(\bbC[\veps]/\veps^2)$$
+$\afa\in\veps\ten\mfkg_1,\quad\td\afa+\frac{1}{2}[\afa,\afa]=0$.
+$$\Rightarrow MC(\bbC[\veps]/\veps^2)\cong\veps\ten\ker(\mfkg_1\xra{\td}\mfkg_2)$$
+
+Let
+$$\beta\in MC(\veps\ten\mfkg\ten\Omg_I\updot)$$
+$$\beta=\beta_0(t)+\beta_1(t)\td t$$
+satisfies $\td\beta+\frac{1}{2}[\beta,\beta]=0$, i.e. $(\td_\mfkg+\td_t)\beta=0$
+$$
+  \iff 
+  \left\{
+    \begin{array}{l}
+      \td_\mfkg\beta_0=0\\
+      \p_t\beta_0+\td_\mfkg\beta_1=0
+    \end{array}
+  \right.
+$$
+$$\beta|_{t=1}-\beta|_{t=0}=\int_{0}^{1}\p_t\beta_0\td t
+=-\td_\mfkg\left(\int_{0}^{1}\beta_1\td t\right)$$
+
+Claim: $\afa_0,\afa_1\in MC(\veps\ten\mfkg)$ is gauge equivalent 
+$\iff\afa_0-\afa_1$ is $\td_{\mfkg}$-exact.
+
+\begin{cor}
+$$Def(\bbC[\veps]/\veps^2)
+\cong\frac{\ker(\mfkg_0\xra{\td_\mfkg}\mfkg_1)}
+{\im(\mfkg_0\xra{\td_\mfkg}\mfkg_1)}=H^1(\mfkg,\td)$$
+\end{cor}
+
+\begin{example}$X$ is a complex manifold, 
+$$\mfkg=\Omg^{0,\bullet}(X,T^{1,0}_X),\pbar,[-,-]$$
+$$Def(\mfkg)=\{\text{local moduli of complex structures on $X$}\}/\sim$$
+
+$$T_{[x]\mcalM}=H^1(\Omg^{0,\bullet}(X,TX),\pbar)=H^1(X,T_X)$$
+In particular, $X=\Sgm_g$ genus $g$ curve, then 
+$$\dim(H^1(\Sgm_g,T_{\Sgm_g}))=3g-3$$
+\end{example}
 
 
 
