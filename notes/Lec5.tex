@@ -1150,7 +1150,7 @@ Recall:$\mfkg$-dgLa,
 $$MC(\mfkg)=\{\afa\in\mfkg_1|\td\afa+\frac{1}{2}[\afa,\afa]=0\}$$
 $$Def(\mfkg)=MC(\mfkg)/\sim$$
 
-$\mfkg$ is called formal, if 
+$\mfkg$ is called formal, if
 $$\mfkg\xra{L_{\infty}\text{quasi-isom}}H\updot(\mfkg,\td)$$
 
 $$\mfkg_{Hoch}=(C\updot(A,A)[1],b,[-,-]_G)$$
@@ -1171,7 +1171,7 @@ $$Mor: \underline{Sch}\to\underline{Set}$$
 $$X\to Mor(Y,X)$$
 
 \begin{notation}
-$R$ is a ring, 
+$R$ is a ring,
 $$X(R):=Mor(\Spec R,X)\leftrightsquigarrow\Hom(\mcalO(X),R)$$
 is called $R$-points of $X$.
 \end{notation}
@@ -1207,7 +1207,7 @@ $$\Spec(\bbC)\mapsto\mfkp$$
 \end{definition}
 
 Functorial property: if $A\to B$ is a ring homomorphism in $\underline{Art}$.
-(i.e. $\Spec B\to\Spec A$) ,then it induces 
+(i.e. $\Spec B\to\Spec A$) ,then it induces
 $$Def_{X,\mfkp}(A)\to Def_{X,\mfkp}(B)$$
 
 \begin{thm}[Lifting Criterion for Smoothness]
@@ -1268,7 +1268,7 @@ $$Def:\underline{Art}\to\underline{Set}$$
 $$(A,\mfkm)\to MC(\mfkg\ten \mfkm)/\sim$$
 
 \begin{definition}
-We define $B_\mfkg$ by 
+We define $B_\mfkg$ by
 $$B_\mfkg(A):=Def(A)$$
 for artinian ring $A$.
 $$"\Spec A"\to B_\mfkg$$
@@ -1280,11 +1280,11 @@ $$\Omg_T\updot:=\bbC[t_0,t_1,\td t_0,\td t_1]/(t_0+t_1=1,\td t_0+\td t_1=0)$$
 algebraic de Rham complex on $I=[0,1]$
 
 \begin{definition}
-$\afa_0,\afa_1\in MC(\mfkg\ten\mfkm)$ are called gauge equivalence, if 
+$\afa_0,\afa_1\in MC(\mfkg\ten\mfkm)$ are called gauge equivalence, if
 $\exists\beta\in MC(\mfkm\ten\mfkg\ten\Omg_I\updot)$ such that
 $$\beta|_{t_0=0}=\afa_0$$
 $$\beta|_{t_1=0}=\afa_1$$
-then 
+then
 $$Def(A)=MC(\mfkm\ten\mfkg)/\sim$$
 (gauge equivalence)
 \end{definition}
@@ -1302,7 +1302,7 @@ $$\beta\in MC(\veps\ten\mfkg\ten\Omg_I\updot)$$
 $$\beta=\beta_0(t)+\beta_1(t)\td t$$
 satisfies $\td\beta+\frac{1}{2}[\beta,\beta]=0$, i.e. $(\td_\mfkg+\td_t)\beta=0$
 $$
-  \iff 
+  \iff
   \left\{
     \begin{array}{l}
       \td_\mfkg\beta_0=0\\
@@ -1313,7 +1313,7 @@ $$
 $$\beta|_{t=1}-\beta|_{t=0}=\int_{0}^{1}\p_t\beta_0\td t
 =-\td_\mfkg\left(\int_{0}^{1}\beta_1\td t\right)$$
 
-Claim: $\afa_0,\afa_1\in MC(\veps\ten\mfkg)$ is gauge equivalent 
+Claim: $\afa_0,\afa_1\in MC(\veps\ten\mfkg)$ is gauge equivalent
 $\iff\afa_0-\afa_1$ is $\td_{\mfkg}$-exact.
 
 \begin{cor}
@@ -1322,14 +1322,220 @@ $$Def(\bbC[\veps]/\veps^2)
 {\im(\mfkg_0\xra{\td_\mfkg}\mfkg_1)}=H^1(\mfkg,\td)$$
 \end{cor}
 
-\begin{example}$X$ is a complex manifold, 
+\begin{example}$X$ is a complex manifold,
 $$\mfkg=\Omg^{0,\bullet}(X,T^{1,0}_X),\pbar,[-,-]$$
 $$Def(\mfkg)=\{\text{local moduli of complex structures on $X$}\}/\sim$$
 
 $$T_{[x]\mcalM}=H^1(\Omg^{0,\bullet}(X,TX),\pbar)=H^1(X,T_X)$$
-In particular, $X=\Sgm_g$ genus $g$ curve, then 
+In particular, $X=\Sgm_g$ genus $g$ curve, then
 $$\dim(H^1(\Sgm_g,T_{\Sgm_g}))=3g-3$$
 \end{example}
 
+%%%%%%%%%%%%%%2019.5.7%%%%%%%%%%%%%%%%%%%%%%
 
+Last time: $\mfkg$-dgLa, MC-equation.
 
+$$MC:\underline{Art}\to\underline{Set}$$
+$$(A,\mfkm)\mapsto MC(\mfkm\ten\mfkg)$$
+
+$$Def:\underline{Art}\to\underline{Set}$$
+$$(A,\mfkm)\mapsto MC(\mfkm\ten\mfkg)/\sim$$
+"$\Spec A\to B_{\mfkg}$".
+
+Tangent space.  $Def(\bbC[\veps]/\veps^2)=H^1(\mfkg,\td)$.
+
+\section{障碍理论}
+Obstruction theory.
+
+\begin{definition}
+A functor $F:\underline{Art}\to\underline{Set}$ is called smooth,
+if for any (exact) $A\to B\to B$ in $\underline{Art}$,
+then $F(A)\to F(B)$ is also surjective.
+\end{definition}
+(Lifting criterion)
+
+\begin{prop}
+$F$ is smooth if and only if for any "square-zero extension"
+$$0\to I\to \widetilde{R}\to R\to 0$$
+where $R,\widetilde{R}$ in $\underline{Art}$, 
+$I$-ideal in $\widetilde{R}$ such that $I^2=0$.
+Then we have surjective map $F(\widetilde{R})\to F(R)$.
+\end{prop}
+
+\begin{proof}
+Exercise.
+\end{proof}
+
+\begin{definition}
+An extension is called to minimal, if 
+$$0\to I\to \widetilde{R}\to R\to 0$$
+and $I^2=0$ and $I\cong \bbC$.
+\end{definition}
+
+Remark: The previous proposition holds if
+we replace "square extension" by minimal extension.
+
+\begin{example}
+$$A=\bbC[x]/x^{n+1}\surj B=\bbC[x]/x^2$$
+\end{example} 
+
+\textbf{Obstruction theory}
+
+Goal: Study lifting property.
+$$0\to I\to\widetilde{R}\to R\to 0$$
+$$0\to I\to\widetilde{\mfkm}_R\to \mfkm_R\to 0$$
+is a square-zero extension, $I^2=0$, $I$ is $R$-module. 
+Text the surjectivity of 
+$Def(\widetilde{R})\to Def(R)$.
+
+for $[\afa]\in Def(R)$, $\afa\in MC(R)$,
+$\afa\in\mfkm_R\ten\mfkg_1$ satisfying
+$$\td \afa+\frac{1}{2}[\afa,\afa]=0$$
+Question: Can we find $\widetilde{\afa}\in\mfkm_{\widetilde{R}}\ten\mfkg$ s.t.
+
+(1) $\widetilde{\afa}|_{\mfkm_R}=\afa$
+
+(2) $\td\widetilde{\afa}+\frac{1}{2}[\widetilde{\afa},\widetilde{\afa}]=0$
+
+\textbf{Step1} Choose any $\afatil$ satisfies (1).
+Using the surjectivity of 
+$$0\to I\ten\mfkg\to\mfkm_{\Rtil}\ten\mfkg\to\mfkm_R\ten\mfkg\to 0$$
+($\afatil\in \mfkm_{\Rtil}\ten\mfkg$ and $\afa\in \mfkm_R\ten\mfkg$)
+
+\textbf{Step2} Let
+$$\gma:=\td\afatil+\frac{1}{2}[\afatil,\afatil]\in\mfkm_R\ten\mfkg_2$$
+Under 
+$$0\to I\ten\mfkg_2\to\mfkm_{\Rtil}\ten\mfkg_2\to\mfkm_R\ten\mfkg_2\to 0$$
+then $\gma\in I\ten\mfkg_2$.
+
+\textbf{Step3}Claim: 
+$$\td\gma+[\afa,\gma]=0$$
+($\iff$ Bianchi identity)
+
+\begin{proof}[proof of claim]
+We have 
+$$\td\gma+[\afatil,\gma]=0$$
+(Bianchi-identity)
+
+$$
+  =\td(\td\afatil+\frac{1}{2}[\afatil,\afatil])+[\afatil,\td\afatil]
+   +\frac{1}{2}[\afatil,[\afatil,\afatil]]
+  =0
+$$
+
+Now using $I^2=0$,
+$\mfkm_{\Rtil}\cdot I=\mfkm_R\cdot I$.So,
+$$\td\gma+[\afa,\gma]=0$$
+\end{proof}
+
+\textbf{Step4} $\gma$ defines an element in
+$$[\gma]\in H^2(I\ten\mfkg,\td+[\afa,-])$$
+Check: $(\td+[\afa,-])^2=0$.
+
+\textbf{Step5} Show $[\gma]$ is independent of the choice of $\afatil$.
+If we choose another lifting 
+$$
+  0\to I\ten\mfkg_1\to\mfkm_{\Rtil}\ten\mfkg_1
+  \to\mfkm_R\ten\mfkg_1\to 0
+$$
+$\afatil,\afatil'\to\afa$.
+$$\afatil'=\afatil+\beta,\quad\beta\in I\ten\mfkg_1$$
+
+$$\gma':=\td\afatil+\frac{1}{2}[\afatil',\afatil']$$
+$$=\td(\afatil+\beta)+\frac{1}{2}[\afatil+\beta,\afatil+\beta]$$
+$$=\td\afatil+\frac{1}{2}[\afatil,\afatil]+\td\beta+[\afatil,\beta]+\frac{1}{2}[\beta,\beta]$$
+$$=\gma+\td\beta+[\afa,\beta]$$
+
+$\Rightarrow \gma'-\gma$ is $\td+[\afa,-]$exact. 
+$[\gma']=[\gma]$ in $H^2(I\ten\mfkg,\td+[\afa,-])$.
+
+\textbf{Step 6} $\afa$ lifts to a solution of $MC(\mfkm_{\Rtil}\ten\mfkg)$
+$\iff[\gma]=0$ in $H^2(I\ten\mfkg,\td+[\afa,-])$.
+
+In fact, $(\Rightarrow)$ Let $\afatil$ be a lifting, then 
+$\gma=\td\afatil+\frac{1}{2}[\afatil,\afatil]=0$, $[\gma]=0$.
+
+$\Leftarrow$ If $[\gma=0]$, then $\exists\beta\in I\ten\mfkg_1$ s.t. 
+$$\gma+\td\beta+[\afa,\beta]=0$$
+choose $\afatil=\afa+\beta$, then $\afatil$ satisfies $MC$
+by the previous computation. 
+
+\textbf{Step 7} Consider minimal extension 
+$$0\to\bbC\to \Rtil\to R\to 0$$
+$\afa\in MC(R)$. Then $\exists Ob(\afa)\in H^2(I\ten\mfkg,\td+[\afa,-])=H^2(\mfkg,\td)$
+such that $Ob(\afa)=0$ in $H^2(\mfkg,\td)\iff\afa$ lifts to $MC(\Rtil)$.
+
+\textbf{In Summary} $\mfkg$-dgLa.
+
+(1)Tangent space $=H^1(\mfkg,\td)$.
+
+(2)Obstruction space $=H^2(\mfkg,\td)$. then $Def$ is smooth.
+
+\begin{example}$X$-complex manifold, 
+$\mcalM$- moduli space of complex structure on $X$.
+$$\mfkg=\Omg^{0,\bullet}(X,TX),\pbar,[-,-]$$
+Tangent space $\cong H^1(\mfkg)=H^1(X,TX)$
+
+Obstruction space $\cong H^2(X,TX)$.
+
+Kodaire-Spencer: $H^2(X,TX)=0\Rightarrow \mcalM$ is smooth at $[x]\in\mcalM$.
+\end{example}
+
+In particular, $X=\Sgm_g$ genus $g>2$ curve. 
+$$H^2(\Sgm_g,T_{\Sgm_g})=0$$
+$$H^2(\Sgm_g,T_{\Sgm_g})=\text{Tangen space of $\mcalM,g$}$$
+$$H^0(\Sgm_g,T_{\Sgm_g})=0$$
+
+$\dim_{\bbC}\mcalM_g=3g-3\quad\text{by Riemann-Roch}$
+
+Remark: Kuranishi Theory. Locally there exists a non-linear (analytic) map
+$$H^1\xra{\fai} H^2$$
+s.t. $\mcalM\cong\fai^{-1}(0)$.
+
+\textbf{Deformation-Obstruction theory for QME}
+Recall: $(\mcalA,\yc)$- GBV-algebra, $S_0\in\mcalA_0$
+is said to satisfy CME if 
+$$\{S_0,S_0\}=0$$
+
+$S\in\mcalA_0\fps{\hbar}$ is said to satisfies QME, if
+$$\hbar\yc S+\frac{1}{2}\{S,S\}=0$$
+
+Question: Given $S_0$, how to quantize to $S$?
+
+idea: Solve order by order in $\hbar$, using obstruction theory.
+
+$\hbar$-order: Find $S_1$. 
+$$\yc S_0+\{S_0,S_1\}=0$$
+Let $\delta=\{S_0,-\}$, $\delta^2=0$. 
+
+(a)$\yc S_0$ is $\delta$-closed:
+$$\{S_0,\yc S_0\}=\frac{1}{2}\yc\{S_0,S_0\}=0$$
+
+(b)Solvability of $S_1\iff[\yc S_0]=0$ in $\delta$-cohomology $H^1(\mcalA,\delta)$.
+(BRST-cohomology)
+
+Assume we have find 
+$$S^{\leq k}=S_0+\hbar S_1+\cdots+\hbar^k S_k$$
+satisfying 
+$$\hbar\yc S^{\leq k}+\frac{1}{2}\{S^{\leq k},S^{\leq k}\}=0\mod\hbar^{k+1}$$
+
+Question: find $S_{k+1}$ such that 
+$$\hbar\yc S^{\leq k+1}+
+\frac{1}{2}\{S^{\leq k+1},S^{\leq k+1}\}=0\mod\hbar^{k+2}$$
+
+Let 
+$$\hbar\yc S^{\leq k}+\frac{1}{2}\{S^{\leq k},S^{\leq k}\}
+=\hbar^{k+1}\mcalO_{k+1}+O(\hbar^{k+2})$$
+find $S_{k+1}\hbar^{k+1}$ to kill $\mcalO_{k+1}$.
+
+(a) $\mcalO_{k+1}$ is $\delta$-closed, $\{S_0,\mcalO_{k+1}\}=0$.
+
+(b) Solvability of $S_{k+1}\iff \mcalO_{k+1}$ is $\delta$-exact.
+
+(Check.)
+
+(Hint: QME
+$$\hbar \yc e^{S^{\leq k}/\hbar}
+=(\hbar^k\mcalO_{k+1}+O(\hbar^{k+1}))e^{S^{\leq k}/\hbar}$$
+then apply $\hbar\yc$ again.
+)
