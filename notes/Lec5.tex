@@ -506,9 +506,9 @@ Obvious.
 \end{proof}
 
 $\fai:\mfkg\to\mfkh$, then
-$$\mfkg[1]\xra{\fai}\mfkg[h]$$
+$$\mfkg[1]\xra{\fai}\mfkh[1]$$
 （意淫为两个空间的映射）
-$$\fai^*:\mcalO(\mfkg[1])\to\mcalO(\mfkg[1])$$
+$$\fai^*:\mcalO(\mfkh[1])\to\mcalO(\mfkg[1])$$
 where $\mcalO(\mfkg[1]):=C\updot(\mfkg)$ is CE complex...
 %%%%%%%%%%%%%%%%%%%%%%%%几何解释%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1545,7 +1545,7 @@ then apply $\hbar\yc$ again.
 %2019.5.13
 
 \section{$L_\infty$-quasi-isomorphism}
-Recall: 
+Recall:
 $(\mfkg,\td,[,])$ be a dgLa, $\rightsquigarrow$ a functor
 $$\underline{Art}\to \underline{Set}$$
 $$(A,\mfkm)\mapsto MC(A):=
@@ -1606,12 +1606,12 @@ $$
 $$
 \end{example}
 
-Recall:$\mfkg$ is called an $L_\infty$-algebra, 
+Recall:$\mfkg$ is called an $L_\infty$-algebra,
 if $\exists\delta\in Vect_0(\mfkg[1])$
 ("$0$"means "vanishing at zero"),
 $$\delta=\sum_{k\geq 1}\delta_k$$
 $$\delta_k\in Hom(\Sym^k(\mfkg[1]),\mfkg[1])$$
-("or" $\Sym^k(\mfkg[1]^*)\ten\mfkg[1]$)such that 
+("or" $\Sym^k(\mfkg[1]^*)\ten\mfkg[1]$)such that
 $\deg\delta=1$ and $\delta^2=0$.
 
 $$\delta_k\rightsquigarrow
@@ -1641,7 +1641,7 @@ $\mcalO_0(W):=\prod\limits_{k\geq 1}\Sym^k(W^*)$,
 "$\mcalO_0$" means "vanishing at zero".
 $$\iff\fai^*: W^*\xra{\text{linear}}\prod_{k\geq 1}\Sym^k(V^*)$$
 $$\iff\fai\in \Hom(\prod_{k\geq 1}\Sym^k(V),W)$$
-$\fai=\sum\limits_{k\geq 1}\fai_k$, 
+$\fai=\sum\limits_{k\geq 1}\fai_k$,
 $\fai_k\in\Hom(\Sym^k(V),W)$.
 
 %%%%%%%%%%%%%%%本课程无期末考试%%%%%%%%%%%%%%%%%%
@@ -1650,10 +1650,10 @@ $$\fai_*(\delta^V)\in \Hom(\prod_{k\geq 1}\Sym^k(V),W)$$
 (vector field,"push forward")
 
 $$\delta^W|_{\fai(V)}=\cdots$$
-$\fai$ is an $L_\infty$-morphism if 
+$\fai$ is an $L_\infty$-morphism if
 （局部坐标具体表达式，挺长的）
 
-At linearilized level, 
+At linearilized level,
 $$
   V\xra{\delta_1^V}V\xra{\fai_1}W= V\xra{\fai_1}W\xra{\delta_1^W}W
 $$
@@ -1662,12 +1662,12 @@ i.e. $\fai_1:(V,\delta_1^V)\to (W,\delta_1^W)$ is a cochain map.
 \begin{definition}
 $\fai:(V,\delta^V)\to(W,\delta^W)$ $L_\infty$-morphism,
 
-(1)If $\fai_1:V\to W$ is an isomorphism, then $\fai$ is called an 
+(1)If $\fai_1:V\to W$ is an isomorphism, then $\fai$ is called an
 $L_\infty$-isomorphism.
 
 ($\Rightarrow\fai^{-1}$ exists, also be an $L_\infty$-morphism)
 
-(2) If $\fai:V\to W$ induces an isomorphism 
+(2) If $\fai:V\to W$ induces an isomorphism
 $$H(V,\delta_1^V)\to H(W,\delta_1^W)$$
 $\fai$ is called an $L_\infty$-quasi isomorphism.
 \end{definition}
@@ -1679,7 +1679,7 @@ If $\fai:V\to W$ is an $L_\infty$ quasi-isomorphism, then:
 $$\eta_1:H\updot(W,\delta_1^W)\to H\updot(V,\delta_1^V)$$
 is the inverse of $\fai_1:H\updot(V,\delta_1^V)\to H\updot(W,\delta_1^W)$.
 
-(2)$\fai$ induces an isomorphism of functors 
+(2)$\fai$ induces an isomorphism of functors
 $$Def_V\to Def_W$$
 \end{thm}
 
@@ -1691,7 +1691,7 @@ $\delta_1^V=0$.
 \end{definition}
 
 \begin{prop}
-Let $\mfkg$ be a dgLa, Let 
+Let $\mfkg$ be a dgLa, Let
 $$\fai_1:H=H\updot(\mfkg,\td)\to\ker\td\subseteq\mfkg$$
 be a splitting of the surjective map
 $$\ker\td\to H\updot(\td)=\frac{\ker\td}{\im\td}$$
@@ -1706,7 +1706,7 @@ In particular, $\fai$ is an $L_\infty$ quasi-isomorphism.
 \end{prop}
 
 \begin{proof}
-Consider 
+Consider
 $$
   \mcalE=\prod_{k\geq 1}\Sym^k(H[1]^*)\ten H[1]
          \oplus\prod_{k\geq 1}\Sym^k(H[1]^*)\ten\mfkg
@@ -1718,13 +1718,13 @@ Claim: $\mcalE$ is naturally a dgLa.
 differential:$\td:\mcalO_0(H[1])\ten\mfkg\to\mcalO_0(H[1])\ten\mfkg$
 is the $\mcalO_0(H[1])$-linear extension of $\td:\mfkg\to\mfkg$.
 
-Bracket: 
+Bracket:
 $[Vect,Vect]$ is the bracket on vector fields;
 
-$[Vect,\mcalO_0(H[1])\ten\mfkg]$ is the action 
+$[Vect,\mcalO_0(H[1])\ten\mfkg]$ is the action
 $Vect\curvearrowright\mcalO_0$.
 
-$[\mcalO\ten\mfkg,\mcalO\ten\mfkg]$ is the $\mcalO_0(H)$-linear extension of 
+$[\mcalO\ten\mfkg,\mcalO\ten\mfkg]$ is the $\mcalO_0(H)$-linear extension of
 $[,]:\mfkg\times \mfkg\to\mfkg$.
 
 (Check:$\mcalE$ is a dgLa)
@@ -1732,7 +1732,7 @@ $[,]:\mfkg\times \mfkg\to\mfkg$.
 $MC(\mcalE)\ni \delta^H\oplus\fai$,
 $$\delta^H\in Vect_0(H[1])\,\,\deg\delta^H=1$$
 $\fai\in\mcalO_0(H[1])\ten\mfkg[1]$,$\deg\fai=0$,
-satisfying 
+satisfying
 $$\td(\delta^H+\fai)+\frac{1}{2}[\delta^H+\fai,\delta^H+\fai]=0$$
 
 $$[\delta^H,\delta^H=0]\eqno{(1)}$$
@@ -1765,7 +1765,7 @@ given.
 
 Goal: Construct higher orders in $\hbar$.
 
-Exercise: Initial terms defines a differential 
+Exercise: Initial terms defines a differential
 $$\td+[\fai,-]$$
 on $\mcalE$.
 
@@ -1779,9 +1779,229 @@ $$\mcalO_0(H[1])\ten H[1]\to \mcalO_0(H[1])\ten H$$
 then, $[\fai_1,-]$-cohomology are all vanishing.
 \end{proof}
 
+%%%%%%%%%%%%%2019.5.14%%%%%%%%%%%%%%%%%%%%%%%
+
+$L_\infty$ quasi-isomorphism
+
+Recall:
+$\mfkg_1,\mfkg_2$- $L_\infty$ algebras (or $2$ dgLas),
+$L_\infty$ morphism $\fai:\mfkg_1\to \mfkg_2$,
+satisfies: $\fai_1:\mfkg_1[1]\to\mfkg_2[1]$
+is a linear map.
+
+$\fai$ is called $L_\infty$-isomorphism if $\fai_1$ is an isomorphsim;
+($\fai$ is (formally) a diffimorphsim,$\fai^{-1}$ exists)
 
 
+$\fai$ is called $L_\infty$ quasi-isomorphism if $\fai_1$
+is a quasi-isomorphsim, i.e.
+$$\fai_1:H\updot(\mfkg_1,\td_1)\to H\updot(\mfkg_2,\td_2)$$
+is an isomorphism.
 
+Last time:
+\begin{prop}
+Let $(\mfkg,\td,[-,-])$ be a dgLa, $H=H\updot(\mfkg,\td)$,
+let $\fai_1:H\to \ker\td\subseteq\mfkg$ be a splitting of $\ker\td\to H$,
+then there exists a minimal $SL_\infty$-structure $\delta^H$ on $H[1]$
+and an $L_\infty$-quasi-isomorphism
+$\fai^H:H[1]\to\mfkg[1]$,such that
+
+(1)$\delta_1^H=0$(i.e. minimal)
+
+(2)$\fai_1:H[1]\to\mfkg[1]$ is the one above.
+\end{prop}
+
+(Last time...)
+
+Similarly, let $\eta_1:\mfkg\to H$ and $\fai_1:H\to\mfkg$,
+choose $\eta_1:(\mfkg,\td)\to (H,0)$
+such that $\eta_1$ is an quasi-isomorphism.
+
+(Hint: $\mfkg\to\mfkg/\im\td\to H$...)
+
+\begin{prop}
+Let $\eta_1:(\mfkg,\td)\to (H,0)$ be a quasi-isomorphsim
+for cochian complexes, then there exists:
+
+(1) A minimal $L_\infty$-structure on $H$, $\widetilde{\delta}^H$
+
+(2)$L_\infty$-quasi-isomorphism $\eta:\mfkg[1]\to H[1]$
+
+such that :
+
+(1) $\widetilde{\delta}_1^H=0$(i.e. minimal)
+
+(2) $\eta_1:\mfkg[1]\to H[1]$ is the one above.
+\end{prop}
+
+\begin{proof}[Sketch of proof]
+
+$(\widetilde{\delta}^H,\eta^H)$ is a MC-element of the dgLa
+$$\widetilde{\mcalE}:=Vect_0(H[1])\oplus\mcalO_0(\mfkg[1])\ten H$$
+
+We want:
+{\color{gray}
+  $$\delta^\mfkg\eta+\widetilde{\delta}^H(\eta)=0$$
+??????
+}
+Solve by deformation theory the tangent/obstruction space computed by
+$H\updot(\widetilde{\mcalE},\td_\mfkg+[\eta,-])=0$
+by a special sequence computation as before.
+
+(留作疑问，有坑待填)
+\end{proof}
+
+\begin{rem}
+$$H[1]\xra{\fai}\mfkg[1]\xra{\eta}H[1]$$
+where $\fai$ and $\eta$ are $L_\infty$-quasi-isomorphism, then
+$$\Phi:=\eta\circ\fai:
+(H[1],\delta^h)\to (H[1],\widetilde{\delta}^H)$$
+is an $L_\infty$-isomorphsim.
+\end{rem}
+
+\begin{prop}
+Let $\fai:\mfkg_1[1]\to\mfkg_2[1]$
+be an $L_\infty$ quasi-isomorphism of two dgLas.
+Then there exists $L_\infty$ quasi-isomorphism
+$\eta:\mfkg_2[1]\to\mfkg_1[1]$ such that
+$$\eta_1:H\updot(\mfkg_2)\to H\updot(\mfkg_1)$$
+is the inverse of $\fai_1$.
+\end{prop}
+
+\begin{proof}
+Let $H_1:=H\updot(\mfkg_1), H_2:=H\updot(\mfkg_2)$.
+%%%%%%%JM%%%%%%555
+Since $\Phi:H_1[1]\to H_2[1]$ is an $L_\infty$-isomorphsim
+(diffeomorphism), Let $\eta$ be the following composition:
+%%%%%%%%%JM2%%%%%%%%%%%%%%%%%
+\end{proof}
+
+
+\textbf{Deformation functor}
+\begin{definition}
+An $L_\infty$-algebra $\mfkg$ is called linear contractible,
+if $\ell_2=\ell_2=\cdots=0$ and $H\updot(\mfkg,\ell_1)=0$.
+\end{definition}
+
+Choose a splitting $\mfkg\cong H\oplus M$ as a
+sum of two cochain complex such that
+$H\updot(\mfkg)\cong H$ and $H\updot(M,\td)=0$.
+
+Let $\pi_H:\mfkg\to H$, $\pi_M:\mfkg\to M$ be the projections,
+
+idea: Use deformation theory to construct an $L_\infty$-morphsim
+$$\fai^H:\mfkg[1]\to(H[1],\widetilde{\delta}^H)$$
+$$\fai^M:\mfkg[1]\to M[1]$$
+($M[1]$ is linear contractible)
+
+$$\Leftrightarrow
+(\fai^H)^*:\prod_{k\geq 0}\widehat{\Sym}(H[1]^*)=:\mcalO(H[1])
+\to \prod_{k\geq 0}\widehat{\Sym}(\mfkg[1]^*)=:\mcalO(\mfkg[1])
+$$
+a morphism of dga,
+i.e.
+$$(\fai^H)^*:\mcalO(H[1])\to\mcalO(\mfkg[1])$$
+$$(\fai^M)^*:\mcalO(M[1])\to\mcalO(\mfkg[1])$$
+dga morphism, tensor:
+
+$$\rightsquigarrow
+\mcalO(H[1])\ten \mcalO(M[1])
+\to
+\mcalO(\mfkg[1])
+$$
+$$\afa\ten\beta\to(\fai^H)^*(\afa)(\fai^M)^*(\beta)$$
+is a morphism of dga.
+
+so we can construct an $L_\infty$-morphism
+$$\Phi:\mfkg[1]\to H[1]\oplus M[1]$$
+with linear term
+$$\Phi_1:\mfkg[1]\to H[1]\oplus M[1]$$
+is the isomorphism $\pi_H\oplus\pi_M$
+we start with.
+
+In particular, $\Phi_1$ is an isomorphism.
+
+\begin{prop}
+Let $\mfkg$ be a dgLa, Then $\mfkg$ is $L_\infty$-isomorphic to
+a direct sum of a minimal $L_\infty$-algebra $\oplus$
+linear contractible one.
+\end{prop}
+
+\begin{cor}
+Assume $\mfkg\cong H\oplus M$,
+where $H$ is minimal and $M$ is linear contractible.Let
+$$Def_\mfkg:\underline{Art}\to\underline{Set}$$
+$$Def_H:\underline{Art}\to\underline{Set}$$
+then $Def_\mfkg\cong Def_H$.
+\end{cor}
+
+\begin{proof}[Sketch of proof]
+(1)$Def_\mfkg\cong Def_H\times Def_M$.
+$$Def_M:\underline{Art}\to\underline{Set}$$
+$$(A,\mfkm)\mapsto\Bigset{\afa\in\mfkm\ten M'}{\td\afa=0}/\text{Gauge}$$
+$\afa_1\sim\afa_2\iff \afa_1-\afa_2=\td\beta$ for some $\beta\in\mfkm\ten M^0$
+
+$\Rightarrow Def_M(A)=\mfkm\ten H^1(M)=0$
+
+$\Rightarrow Def_M$ is a point.
+\end{proof}
+
+\begin{prop}
+Let $\fai:\mfkg_1\to\mfkg_2$ be a $L_\infty$ quasi-isomorphism of two dgLas.
+Then $\fai$ induces an isomorphism of the corresponding deformation functor
+$$\fai:Def_{\mfkg_1}\to Def_{\mfkg_2}$$
+\end{prop}
+
+\begin{proof}
+%%%375%%%%%%%%%%%
+\end{proof}
+
+\textbf{Relation with Feymann diagram}
+
+\begin{example}(CS-theory)
+
+$\mfkg$ be a dgLa, $X$ be a compact oriented manifold,
+$$(\Omg\updot(X,\mfkg),\td,[-,-])$$
+$\td$ is the de Rham differential.
+
+$\mfkg_X:=\Omg\updot(X,\mfkg)$, $H:=H\updot(\mfkg_X,\td)=H\updot(X,\mfkg)$.
+
+Question: What is the $L_\infty$-structure on $H=H\updot(X,\mfkg)$
+such that it is $L_\infty$ quasi-isomorphism to $(\mfkg_X,\td,[-,-])$.
+\end{example}
+
+Choose a metric on $X$,
+$\Omg\updot(X,\mfkg)$ has a inner product
+$$\afa\ten\beta\to
+\int_XTr\pair{\afa}{\beta}\td Vol
+=\int_XTr\afa\wedge*\beta\td Vol$$
+
+Let $\td^*$ be the adjoint of $\td$,
+$$\td^*:\Omg^k(X,\mfkg)\to\Omg^{k-1}(X,\mfkg)$$
+Let $\yc=\td\td^*+\td^*\td$ be the Laplacian, then
+$$\bbH:=\ker\yc\cong H$$
+harmonic.
+
+Let $\pi_\bbH:\mfkg_X\to\bbH$ be harmonic projection,
+$$\mfkg_X\cong\bbH\oplus\im\td\oplus\im\td^*$$
+be the Hodge decomposition.
+Notice that $\bbH=\Bigset{\afa\in\mfkg_X}{\td\afa=\td^*\afa=0}$.
+
+Minimal $L_\infty$-structure on $\bbH$ as follows:
+$$\ell_1:\bbH\to\bbH \qquad \ell_1=0$$
+
+$$\ell_2:\wedgeform{2}\bbH\to\bbH$$
+$$\afa\wedge\beta\mapsto \pi_\bbH([\afa,\beta])$$
+
+Let $\td^{-1}=\td^*\frac{1}{\yc}:\Omg^k\to\Omg^{k-1}$,
+where $\frac{1}{\yc}$ is the Green's operator.
+$$\Rightarrow
+\td\td^{-1}+\td^{-1}\td=1-\pi_\bbH$$
+because
+$\td\td^*\frac{1}{\yc}+\td^*\td\frac{1}{\yc}=
+(\td\td^*+\td^*\td)\frac{1}{\yc}$
+
+%%%%%%%%%%%Feymann again!%%%%%%%%%%%%%%%
 
 
 
