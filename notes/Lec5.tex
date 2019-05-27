@@ -2003,5 +2003,527 @@ $\td\td^*\frac{1}{\yc}+\td^*\td\frac{1}{\yc}=
 
 %%%%%%%%%%%Feymann again!%%%%%%%%%%%%%%%
 
+\section{Kontsevich Formality}
+
+Last time: $\mfkg_1,\mfkg_2$ be two dgLa,
+$\fai:\mfkg_1\to\mfkg_2$ is an $L_\infty$-quasi-isomorphism,
+($\fai_1:H\updot(\mfkg_1)\cong H\updot(\mfkg_2)$),
+
+$\Rightarrow$ (1) $\exists \eta:\mfkg_2\to\mfkg_1$ $L_\infty$-quasi-isomorphism,
+s.t. $\eta_1:H\updot(\mfkg_2)\to H\updot(\mfkg_1)$ is the inverse of $\fai_1$.
+
+(2) $\fai:Def_{\mfkg_1}\cong Def_{\mfkg_2}$.
+
+Recall:$X=\bbR^n$, deformation quantization.
+
+$\mfkg_{\PV}=\PV_X\updot[1]$, dgLa, $\td=0$ and $[,]_{SN}$.
+
+$\mfkg_{Hoch}=C\updot(A,A)[1]$, $A=C^\infty(X)$, dgLa,
+$\td=\p$(Hochschild differential) and
+$[,]$ is the Gerstenhaber bracket.
+
+Kontsevich: $L_\infty$ quasi-isomorphism
+$$\mcalU:\mfkg_{\PV}\updot\to\mfkg_{Hoch}\updot$$
+($MC=\text{Poisson tensor}$ and associative respectively.)
+
+We consider the subspace
+$$D_{Poly}\updot(X)\subseteq \mfkg_{Hoch}\updot$$
+where $D_{Poly}^k(X):=C_{Diff}\updot(A,A)[1]\subseteq C^k(A,A)$
+is the subspace consisting of the poly differential operators
+$$\fai\in C_{Diff}^k(A,A):A^{\ten k}\to A$$
+has the form $\fai(f_1,...,f_k)=\sum D_1(f_1)D_2(f_2)\cdots D_k(f_k)$,
+$D_i$ are differential operators,
+$\fai\in C_{Diff}^k(A,A)$ is "local",
+if $supp(f_i)\cap supp(f_j)=0$, then
+$\fai(...,f_i,...,f_j,...)=0$.
+
+\textbf{Fact}:(1)$D_{Poly}\updot\subseteq\mfkg_{Hoch}\updot$
+is a sub-dgLa, i.e. preserved by Hochschild differential and Gerstenhaber bracket.
+
+(2) This embedding is a quasi-isomorphism.
+\begin{proof}
+  Omit.
+\end{proof}
+
+\textbf{Goal:} Construct $L_\infty$ quasi-isomorphism
+$$\mcalU:\mfkg_{\PV}\updot\to D_{Poly}\updot$$
+
+Idea of construction: $\mcalU$ is described by its Taylor series,
+$$\mcalU_k:\wedgeform{k}\mfkg_{\PV}\to D_{Poly}\updot$$
+(or $\Sym^k(\mfkg_{\PV}[1])\to D_{Poly}\updot[1]$).\vsp
+
+%%%%%%%%%%116%%%%%%%%%%%%
+%%%%%%%多图预警%%%%%%%%%%%
+
+Intuitively, consider
+$$
+  \Conf_{n,m}(\bbD):=
+  \Bigset{p_1,...,p_n\in \bbD^\circ\,;q_1,...,q_n\in\p\bbD}
+  {\text{all distinct}}
+\subseteq
+  (\bbD^\circ)^n\times(\p\bbD)^n
+$$
+
+$$\Aut(\bbD)=\text{Mobius transformations of the disk}$$
+$$
+  =\Bigset{z\mapsto\lmd\frac{z-a}{\overline{a}z-1}}{a\in\mcalU(1),|a|<1}
+$$
+
+$\Aut(\bbD)$ includes an actions $\Aut(\bbD)\curvearrowright \Conf_{n,m}(\bbD)$.
+Let
+$$C_{n,m}(\bbD):=\Conf_{n,m}(\bbD)/\Aut(\bbD)$$
+$$\dim_{\bbR}C_{n,m}(\bbD)=2n+m-3$$
+
+\textbf{Key:} $C_{n,m}$ can be compactified
+$\overline{C}_{n,m}(D)$ compact manifold (with corner)
+
+Example:
+$C_2(\bbR^2)=\Bigset{p,q\in\bbR^2}{p\neq q}$,
+consider $C_2(\bbR^2)/\bbR^2$(translation)$\cong\bbR^2-\{0\}$.
+
+$$\xra{\text{compactify}}\text{by adding an $S^1$}$$
+
+%%%%%%%yuloq;tl%%%%%%%%%%%%%%%%%
+%%%%%%%%多图预警%%%%%%%%%%%%%%%%%%%
+
+idal of the construction for $\mcalU$:(TQFT)
+
+Construct an operation valued in a closed differential form $\Phi$
+on $\overline{C}_{\bullet,\bullet}$, $\td\Phi=0$,
+$$0=\int_{\overline{C}_{\bullet,\bullet}}\td\Phi=
+\int_{\p\overline{C}_{\bullet,\bullet}}\Phi
+=
+  \int_{\text{两个圈圈}}\Phi
+ +\int_{\text{一个圈圈带张饼}}\Phi
+$$
+this gives $\mcalU$.
+
+Next time: More details.....
+
+%%%%%%%%%%2019.5.21%%%%%%%%%%%%%%%%%
+\textbf{Kontsevich formality(II)}
+
+Last Time: $\mcalU:\mfkg_{\PV}\updot\to D_{Poly}\updot$ be $L_\infty$-quasi-isomorphism.
+
+$L_\infty$-morphism means...
+
+Equivalently, Let $\bbH:=\Bigset{z\in\bbC}{\im z\geq 0}$,
+$G:=\Bigset{z\mapsto az+b}{a,b\in\bbR,\,a>0}$.
+
+$$
+  \Conf_{m,\overline{m}}(\bbH)
+:=
+  \Bigset{p_1,...,p_n\in\bbH^\circ;q_1,...,q_n\in\bbR}{\text{all distinct}}
+$$
+
+$$
+  C_{n,\overline{m}}(\bbH)
+:=\Conf_{n,\overline{m}}(\bbH)/G
+\cong C_{n,m+1}(\bbD)
+$$
+$\dim(C_{n,\overline{m}}(\bbH))=2n+m-2$. Codimension $=1$ boundary strata of
+$C_{n,\overline{m}}(\bbH)$.
+
+$\Conf_n(\bbC)=\Bigset{p_1,...,p_n\in\bbC}{\text{all distinct}}$,
+$$C_n(\bbC)=\Conf_n(\bbC)/\text{translation$+$rescaling}$$
+
+\begin{definition}The set $\mfkg_{n,\overline{m}}$ of admissible
+graph consists of $\Gma$ such that
+
+(1) Vertex$(\Gma)=\{1,2,...,n\}\cup\{\overline{1},\overline{2},...,\overline{m}\}$,
+(called "type I" and "type II");
+
+(2) $n>0,m\geq 0$ and $2n+m-2\geq 0$. (stability)
+
+(3) Edge($\Gma$) has self loop;
+
+(4) Each edge starts from a Type-1 vertex.
+
+(5) The set of each edges form a vertex is ordered!
+\end{definition}
+%%%%%%hdziyi%%%%%%%Examples...
+
+For each graph $\Gma\in\mfkg_{n,\overline{m}}$ and $n$
+$\mu_1,...,\mu_n\in\PV(\bbR^d)$,
+$$\mu_i=\mu_i^{i_1,...,i_k}\p_{i1}\wedge\p_{i2}\wedge\cdots\wedge\p_{ik}$$
+
+(1)We associate to each vertex $i$ of type $(I)$,
+
+(2)We place a function at each vertez of type II,
+
+(3)We associate each edge a derivative
+
+(4) Multiply all together to get an out put function.
+This defines the operation
+$$\mcalU_{\Gma}(\mu_1,...,\mu_m)(f_1,...,f_m)$$
+
+%%%%pkq%%%%%%%%%%%%
+
+Define the $L_\infty$-morphism $\mcalU$ by
+$$
+  \mcalU_n:=\sum_{m}\sum_{\Gma\in\mfkg_{n,\overline{m}}}
+  w_\Gma\mcalU_\Gma
+$$
+$$
+  w_{\Gma}=(*)\int_{C_{n,\overline{m}}(\bbH)}w_\Gma
+$$
+where $(*)$ is some constant.(见Kontsevich的原始论文23333)
+
+The differential form $w_\Gma$ is constructed as following:
+%%%%%%%%Hyperbloic%%%%%%%%%%%%%%%%%
+
+$$\fai(p,q)=\text{angle above}
+=\frac{1}{2i}\log\left(\frac{q-p}{q-\overline{p}}
+\frac{\overline{q}-p}{\overline{q}-\overline{p}}\right)$$
+
+For each edge $e\in\Gma$, we define a map
+\begin{eqnarray*}
+  \fai_e:C_{n,\overline{m}}(\bbH)&\to& \bbR/2\pi\bbZ\\
+  (p_1,...,p_n;q_1,...,q_m)&\mapsto&\fai(s(e),t(e))
+\end{eqnarray*}
+
+$$w_\Gma=\bigwedge_{e\in\Gma}\td\fai_e$$
+Obviously, $\td\omg_{\Gma}=0$.
+
+$\mcalU_1$, $\mcalU_1(\Gma)(f_1,...,f_m)
+\propto\mu^{i_1...i_m}(\p_{i1}f_1)\cdots(\p_{im}f_m)$.
+$$\mcalU_1:\PV^m\to C^m(A,A)$$
+$$
+  \p_{i1}\wedge\cdots\wedge\p_{im}\mapsto...
+$$
+(HKR isomorphism..) $\mcalU_1$ is quasi-isomorphism by HKR.
+
+Sketch of proof that $\mcalU$ is $L_\infty$-morphism.
+
+Consider
+$$
+  \sum_{\Gma\in\mfkg_{n,\overline{m}}}
+    \int_{\p\overline{C}_{n,\overline{m}}}
+      \left(
+        \bigwedge_{e\in\Gma}
+          \td\fai_e
+      \right)
+      \mcalU_\Gma
+=0
+$$
+(Check only two points contribution)
+
+\textbf{Ideas from Quantum field theory}
+Poisson $\sgm$-model. $V=\bbR^d$,
+$$\bbD\to T^*V[1]=V\oplus V^*[1]$$
+(Structure sheaf $=\Omg\updot(\bbD)$)
+
+Fields $\mcalE=\Omg\updot(\bbD)\ten(V\oplus V^*[1])$
+$$=(\Omg\updot(\bbD)\ten V)\oplus(\Omg\updot(\bbD)\ten V^*[1])$$
+$\{\phi^i\}_{i=1,...,d}$ and $\{\eta_i\}_{i=1,...,d}$,
+$\phi^1,\eta_i\in\Omg\updot(\bbD)$.
+
+$\mcalE$ is dg $(-1)$-symplectic space, differential $=$ de Rham on $\bbD$,
+$$\pair{\phi^1}{\eta_i}=\int_{\bbD}\phi^i\wedge\eta_j$$
+
+Classical action: Let $P=P^{ij}\p_i\wedge\p_j$
+be a Poisson tensor on $\bbR^d$.
+$$S=\underbrace{\sum_i\int\td\phi^1\wedge\eta_i}_{\text{free part}}
++\underbrace{\sum_{i,j}\int P^{ij}(\phi)\eta_i\eta_j}_{\mcalI}$$
+
+$S$ satisfies classical master equation $\{S,S\}=0$
+($\iff [P,P]=0$,i.e $P$ is a Poisson tensor)
+
+$$
+  (f*g)(x)
+=
+  \int_{\phi(\infty)=x}
+    f(\phi(x))g(\phi(1))e^{iS/\hbar}
+$$
+
+Fact: a QFT on a manifold $M$ gives a factorization algebra on $M$.
+
+Expectation: QFT on $M+$ boundary condition $\Rightarrow$
+Factorization algebra on $\p M$.
+
+Orbifold Formality $V=\bbR^d\rightsquigarrow\mcalA=C^\infty(\bbR^d)$,
+$C\updot(A,A)[1]$ is formal. $G$- finite group acts on $V$,
+$V/G$ has formality?
+
+Naively, $\mcalO(V/G)=\mcalA^G$ ($G$-invariant part of $\mcalA$.)
+Consider $A|\times G$ semi-direct product,
+$(A[G])$, $(a_1,\mfkg_1)\cdot(a_2,\mfkg_2)=(a_1\mfkg_1(a_2),\mfkg_1\mfkg_2)$,
+is $A|\times G$ formal? \textbf{Open problem...}
+
+
+%%%%%%%%%%%%2019.5.27（第14周了？）%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%第24节课了？%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Deformation Quantizations and index theorem}
+
+$(x,p)\rightsquigarrow
+  \left\{
+    \begin{array}{l}
+      \hat{x}=x\\
+      \hat{p}=-i\pp{x}
+    \end{array}
+  \right.
+$
+
+Index theorem has the following form:
+
+Analytic index $\leftrightsquigarrow$ Topological index
+
+\begin{example}(Chern-Gauss-Bonnet theorem)
+
+Let $X$ be a oriented manifold, then
+$$\chi(X)=\int_M\text{Pf}(R)$$
+where $\chi(M):=\sum\limits_i\dim_{\bbR}H^i(M)$, and $R$ is the Ricci curvature.
+\end{example}
+
+\begin{example}(Hirzebruch Signature theorem)
+
+$\dim_M=4k$,then
+$$\sgm(M):=\text{sgn}H^{2k}(M)
+=\det\nolimits^{1/2}\frac{R/2}{\tanh R/2}$$
+\end{example}
+
+\begin{example}(Hirzebruch-Riemann-Roch)
+
+$M$ is Kahler ,$E\to M$ be a holomorphic vector bundle,
+$\chi_{hol}(E):=\sum\limits_i(-1)^i\dim H_{\pbar}^i(M,E)$,then
+$$\chi_{hol}(E)=\int_M Td(M)Ch(E)$$
+\end{example}
+
+They are all special cases of Atiyah-Singer index theorem,
+$$Ind(D)=\int_M\hat{A}(M)Ch(\mcalE/s)$$
+$$\hat{A}(M)=\det\nolimits^{1/2}\frac{R/2}{\sinh R/2}$$
+
+Some ideas about the proof (of Atiyah singer)
+- Heat kernel approach
+
+For example, we consider
+$$\chi(M)=\sum_i(-1)^i\dim H^i(M)$$
+$H^i(M)$ be the $i$-th de Rham cohomology, it also be the $i$-th harmonic forms.
+We have the chain complex $(\Omg\updot(M),\td)$.
+
+Fix a metric on $M$, let $\td^*$ be the formal adjoint of $\td$,
+$$\td^*:\Omg^k\to\Omg^{k-1}$$
+$\yc=\td\td^*+\td^*\td=[\td,\td^*]$ Laplacian.
+
+$\bbH^k:=\ker(\yc:\Omg^k\to\Omg^k)$ be the harmonic $k$-forms,
+Hodge theory, it $\cong H_{dR}^k(M)$. So,
+$$\chi(M)=\sum_i(-1)^i\dim\bbH^i$$
+
+Idea: $\chi(M)=\text{Trs} e^{-t\yc}$.where "Trs" be the "super trace."
+
+\begin{definition}
+Super trace: Given a $\bbZ$-graded vector space
+$$V=V_+\oplus V_-$$
+(even or odd) Let $\fai:V\to V$ linear map,
+$\fai=\begin{pmatrix}
+        \fai_{++} & \fai_{+-} \\
+        \fai_{-+} & \fai_{--}
+      \end{pmatrix}$,
+then
+$$\text{Trs}=\text{Tr}_{V_+}\fai_{++}-\text{Tr}_{V_-}\fai_{--}$$
+\end{definition}
+
+\begin{prop}
+Let $D_1,D_2:V\to V$, then
+$$\text{Trs}[D_1,D_2]=0$$
+where $[,]$ be graded commutator.
+\end{prop}
+
+\begin{proof}
+Exercise.
+\end{proof}
+
+
+Now, $(\Omg\updot(M),\td)$, $\yc=[\td,\td^*]$ Laplacian, Let 
+$$e^{-t\yc}:\Omg\updot\to\Omg\updot$$
+be the heat operator, $\Omg\updot$ is $\bbZ_2$-graded:
+$$\Omg\updot=\Omg^{\text{even}}\oplus\Omg^{\text{odd}}$$
+Consider the super trace $\text{Trs}e^{-t\yc}$
+(良定性依赖于泛函的邪恶力量)($t>0$)
+
+\begin{prop}
+$\text{Trs}e^{-t\yc}$ is independent of $t$...
+\end{prop}
+
+\begin{proof}[Sketch of proof]
+Since $\td=[\td,\td^*]$, we have $[\td,\yc]=[\td^*,\yc]=0$.
+(Laplacian operator is $\td$-exact).
+$$
+  \frac{\td}{\td t}
+  \text{Trs} e^{-t\yc}
+=
+  -\text{Trs} \yc E^{-t\yc}
+=
+  -\text{Trs} [\td,\td^*]e^{-t\yc}
+=
+  -\text{Trs} [\td,\td^*e^{-t\yc}]=0
+$$
+(need PDE!)
+\end{proof}
+
+$$
+  \text{Trs} e^{-t\yc}
+  \left\langle
+    \begin{array}{ll}
+      t\to+\infty  &  \text{Analytic index}\\
+      t\to 0       &  \text{Topological index}
+    \end{array}
+  \right.
+$$
+
+$\lim\limits_{t\to+\infty}e^{-t\yc}=$ Harmonic projection.
+
+For $\afa\in\Omg^k$,
+$\afa=\sum\limits_i\afa^i$, $\yc\afa=\lmd_i\afa^i$ eigenvector.
+$\lmd_0=0$ and $\lmd_i\geq 0$ for $i>0$.
+$$e^{-t\yc\afa}=\sum_ie^{-\lmd_i t}\afa^i$$
+$$
+  \lim_{t\to+\infty}
+  e^{-t\yc}
+=
+  \begin{pmatrix}
+    I & O \\
+    O & O
+  \end{pmatrix}
+$$
+$$
+  \lim_{t\to+\infty}
+  \text{Trs}e^{-t\yc}
+=
+  \text{Trs}_{\bbH}1
+=\sum_i(-1)^i\dim\bbH^i=\chi(M)
+$$
+
+For $t\to 0$, $e^{-t\yc}$ has an asymptotic expansion
+$h_t(x_1,x_2)$ be the heat kernel of $e^{-t\yc}$.
+$$h_t(x_1,x_2)\sim\frac{1}{(4\pi t)^{n/2}}e^{-\text{dist}(x_1,x_2)^2/4t}
+(1+O(t))$$
+where $O(t)$ expressed by curvatures.
+$$
+  \lim_{t\to 0}
+    \text{Trs} e^{-t\yc}
+=
+  \int_M
+    \text{Curvatures}
+$$
+
+Idea of "proof" from physics.
+
+Index $=$ path integral on loop space (Quantum mechanics)
+
+Feymann: 
+$$
+  h_t(x_1,x_2)
+=
+  \int_{\gma:[0,t]\to M\atop \gma(0)=x_1,\gma(t)=x_2}
+    [Dr]e^{-\int_{0}^{t}|\gma'|^2+\cdots}
+$$ 
+
+$$
+  \text{Trs} e^{-t\yc}
+=
+  \int_M h_t(x,x)\td x
+"="
+  \int_{\gma\in LM:=\text{maps}(S^1,M)}
+    [Dr]
+    e^{-\int |\gma'|^2+\cdots}
+$$
+\textbf{Atiyah-Bott localization formula}
+
+$G\curvearrowright X$ group action, 
+$\afa$ is $G$-invariant form on $X$, then
+$$
+  \int_X\afa
+=
+  \int_{G\text{-fixed point}}
+    \frac{\afa}{(\cdots)}
+$$
+
+Consider $S^1\curvearrowright\text{map}(S^1,M)$,
+$(e^{i\afa}\fai)(\theta)=\fai(\theta+\afa)$. 
+$S^1$-fixed points $=$ constant map $S^1\to M=M$.
+
+References:
+
+\verb"Alvarce-Gaume: Supersymmetry and the Atiyah-Singer index theorem"
+
+\verb"Witten: Supersymmetry and Morse theory"
+
+\verb"Witten: Index of Dirac operators an loop space"
+
+\textbf{Upshot:} Index theorem has something to do with loop space.
+
+Let $(X,\omg)$ be a symplectic manifold. Let $*$ be a star product,
+$$\mcalA^\hbar:=(C^\infty(x)\fps{\hbar},*)$$
+be an associative algebra. We are looking for trace
+$$\text{Tr}:\mcalA^\hbar\to\bbR\Ls{\hbar}$$
+s.t. $\text{Tr}(f*g)=\text{Tr}(g*f)$. 
+$$
+  \text{Tr}\in\HH_0(\mcalA^\hbar)^*
+\cong\bbR\Ls{\hbar}
+$$
+$1$-dimensional (up to rescaling).
+
+$\rightsquigarrow$ we can fix the ambiguity by requiring the classical limit
+$$
+  \text{Tr}(f)
+=
+  \frac{1}{n!\hbar^n}
+  \left(
+    \int_M \omg^nf+O(\hbar)
+  \right)
+$$
+where $\dim(M)=2n$.
+
+$\rightsquigarrow$ Obtain a classical trace Tr.
+
+\begin{thm}(Fedosov, Nest-Tsygan)
+
+Let Tr be the canonical trace, then
+$$
+  \text{Tr}1
+=
+  \int_M
+    \hat{A}(M)e^{-\omg_\hbar/\hbar}
+$$
+where $\omg_\hbar=\omg+\hbar\omg_1+\hbar^2\omg_2+\cdots$,
+$\omg$ is symplectic form, $\omg_i(i\geq 1)$ parametrize the choice of $*$,
+are closed $2$-forms.
+\end{thm}
+
+\begin{thm}(Nest-Tsygan)
+
+Algebraic index theorem $\Rightarrow$ Atiyah-Singer analytic index theorem.
+\end{thm}
+
+\begin{rem}(Feigin-Feldev-Shoiket formula)
+$$
+  \text{Tr}(f)
+=
+  \int_M
+    \psi(f)
+$$
+where $\psi(f)$ be the local expression for the operator "$f$".
+\end{rem}
+
+\textbf{Lefschetz number} $M$ be a compact complex manifold,
+$E\to M$ holomorphic vector bundle, $D:E\to E$ 
+holomorphic differential operator.
+$$
+  \Rightarrow
+  H^i(D):H^i(X,E)\to H^i(X,E)
+$$
+
+\begin{definition}(Lefschetz number)
+$$L(1)=\chi_{hol}(X,E)$$
+$$
+  L(D):=\sum_i(-1)^i\dim \text{Tr}H^i(D)
+$$
+\end{definition}
+
+Question: $\infty$-dimensional Lefschetz fixed theorem?
+(Open problem)...
+
 
 
